@@ -22,6 +22,18 @@ export const schemaAddSource = async ({
       typeof schemaJson === 'string' ? schemaJson : JSON.stringify(schemaJson), // JSON Schema 字符串
   });
 
+
+  // const schemaInput = jsonInputForTargetLanguage('typescript');
+  // // 将 JSON 数据添加到输入
+  // await schemaInput.addSource({
+  //   name,
+  //   samples: [
+  //     JSON.stringify({
+  //       openapi: '3.0.1',
+  //     }),
+  //   ],
+  // });
+
   const inputData = new InputData();
   inputData.addInput(schemaInput);
   return inputData;
