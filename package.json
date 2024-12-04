@@ -1,0 +1,20 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "dev:plugin": "mnpm run build:plugin && lerna run start",
+    "build:plugin": "lerna run build && node copy_script.js"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "npmClient": "mnpm",
+  "devDependencies": {
+    "@types/babel__register": "^7.17.3",
+    "lerna": "^8.1.9"
+  },
+  "dependencies": {
+    "@babel/preset-typescript": "^7.26.0"
+  }
+}
