@@ -10,13 +10,12 @@ import { InputData } from 'quicktype-core';
 import { swaggerJsonToJsonSchema } from './utils/swaggerJsonToJsonSchema';
 import { copyFolderSync } from './utils';
 const swaggerOpenApi = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, '../test/swagger/index.json'), 'utf8')
+  fs.readFileSync(path.resolve(__dirname, '../test/swagger/test2.json'), 'utf8')
 ) as SwaggerOpenApiType;
 /**
  * https://github.com/glideapps/quicktype
  */
 const main = async () => {
-  console.log(swaggerOpenApi)
   const inputData = new InputData();
   const { definitionSchemaJson, requestFileCodeSort } =
     swaggerJsonToJsonSchema(swaggerOpenApi);
@@ -25,7 +24,6 @@ const main = async () => {
   });
   inputData.addInput(schemaInput);
   copyFolderSync('./template', './test');
-  // fs.unlinkSync('./test/request/request-test');
   await generatedRequestCode(
     requestFileCodeSort,
     './test/request/request-test'
