@@ -93,3 +93,30 @@ export function copyFolderSync(source: string, target: string) {
     }
   });
 }
+/**
+ * 将字符串格式化并且提取出来里面的值
+ * eg: /postRequest/{id}/user/{userId}/details/{detailId}
+ * @returns
+ * transformedString: /postRequest/${id}/user/${userId}/details/${detailId}
+ * variables: ['id', 'userId', 'detailId']
+ */
+export function transformedString(originalString: string) {
+  // 使用正则表达式匹配所有 {variable} 格式的占位符
+  const variablePattern = /{([^}]+)}/g;
+
+  let transformedString = originalString;
+  let match;
+  const variables = [];
+
+  // 使用正则表达式的 exec 方法来遍历所有匹配项
+  while ((match = variablePattern.exec(originalString)) !== null) {
+    const variableName = match[1]; // 提取变量名
+    variables.push(variableName);
+    // 替换 {variable} 为 ${variable}
+    transformedString = transformedString.replace(
+      match[0],
+      `\${${variableName}}`
+    );
+  }
+  return { transformedString, variables };
+}
