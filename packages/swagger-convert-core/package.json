@@ -1,22 +1,23 @@
 {
-  "name": "swagger-convert-core",
+  "name": "java-convert-ts",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.cjs.js",
   "scripts": {
     "dev": "tsc -w",
-    "build": "tsc && node dist/index.js"
+    "clean": "del-cli dist",
+    "build": "npm run clean && tsc && node copTemplateFiles.js && node dist/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@types/node": "^22.10.1",
     "prettier": "^3.4.1",
     "quicktype-core": "^23.0.170",
     "typescript": "^5.7.2"
   },
   "devDependencies": {
-    "axios": "^1.7.8"
+    "axios": "^1.7.8",
+    "del-cli": "^6.0.0"
   }
 }
