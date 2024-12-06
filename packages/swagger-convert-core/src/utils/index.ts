@@ -16,7 +16,7 @@ export function typeNameGenerated(
         return capitalizeFirstLetter(str);
       })
       ?.join('') || '';
-  return tagsStr + capitalizeFirstLetter(operationId) + ext;
+  return tagsStr + capitalizeFirstLetter(operationId) + capitalizeFirstLetter(ext);
 }
 
 export function replaceRef($ref: string) {
