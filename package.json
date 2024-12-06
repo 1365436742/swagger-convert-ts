@@ -9,7 +9,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "npmClient": "mnpm",
   "devDependencies": {
     "@types/babel__register": "^7.17.3",
     "lerna": "^8.1.9"
