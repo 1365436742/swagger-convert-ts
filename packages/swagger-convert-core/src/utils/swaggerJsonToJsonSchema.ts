@@ -1,9 +1,15 @@
-import { SchemaPropertiesType, SwaggerOpenApiType } from '@/types';
-import { replaceAllRefs, typeNameGenerated } from '.';
+import {
+  RequestCodeProps,
+  RequestFileCodeSort,
+  SchemaPropertiesType,
+  SwaggerOpenApiType,
+} from '@/types';
+import { replaceAllRefs, toCamelCase, typeNameGenerated } from '.';
 
 export function swaggerJsonToJsonSchema(swaggerOpenApi: SwaggerOpenApiType) {
   /** 生成组件的ts类型 */
   const definitionSchemaJson: Record<string, any> = {};
+  const requestFileCodeSort: RequestFileCodeSort = {};
   Object.keys(swaggerOpenApi.components.schemas).forEach((key) => {
     swaggerOpenApi.components.schemas[key].additionalProperties = false;
     definitionSchemaJson[key] = swaggerOpenApi.components.schemas[key];
@@ -14,13 +20,11 @@ export function swaggerJsonToJsonSchema(swaggerOpenApi: SwaggerOpenApiType) {
     for (const requestMethods in paths[requestUrl]) {
       const { operationId, tags, parameters, requestBody, responses } =
         paths[requestUrl][requestMethods];
+
       /** parameters参数 */
+      let parametersTypeName = '';
       if (parameters && parameters.length) {
-        const parametersTypeName = typeNameGenerated(
-          'params',
-          operationId,
-          tags
-        );
+        parametersTypeName = typeNameGenerated('params', operationId, tags);
         const parametersSchema = {
           type: 'object',
           properties: {} as Record<string, SchemaPropertiesType>,
@@ -37,12 +41,9 @@ export function swaggerJsonToJsonSchema(swaggerOpenApi: SwaggerOpenApiType) {
       /** body参数 */
       const requestBodySchema =
         requestBody?.['content']?.['application/json']?.['schema'];
+      let requestBodyTypeName = '';
       if (requestBodySchema) {
-        const requestBodyTypeName = typeNameGenerated(
-          'body',
-          operationId,
-          tags
-        );
+        requestBodyTypeName = typeNameGenerated('body', operationId, tags);
         if (requestBodySchema.properties) {
           requestBodySchema.additionalProperties = false;
         }
@@ -51,19 +52,29 @@ export function swaggerJsonToJsonSchema(swaggerOpenApi: SwaggerOpenApiType) {
       /** responses 响应ts参数 */
       const responsesSchema =
         responses?.['200']?.['content']?.['*/*']?.['schema'];
+      let responsesTypeName = '';
       if (responsesSchema) {
-        const responsesTypeName = typeNameGenerated(
-          'responses',
-          operationId,
-          tags
-        );
+        responsesTypeName = typeNameGenerated('responses', operationId, tags);
         if (responsesSchema.properties) {
           responsesSchema.additionalProperties = false;
         }
         definitionSchemaJson[responsesTypeName] = responsesSchema;
       }
+      const fileName = tags?.join('/') || 'request-ts-base-controller';
+      let functionCode: RequestCodeProps = {
+        requestMethodName: operationId,
+        url: requestUrl,
+        method: requestMethods,
+        paramsTypeName: toCamelCase(parametersTypeName),
+        dataTypeName: toCamelCase(requestBodyTypeName),
+        responseTypeName: toCamelCase(responsesTypeName),
+      };
+      if (!requestFileCodeSort[fileName]) {
+        requestFileCodeSort[fileName] = [];
+      }
+      requestFileCodeSort[fileName].push(functionCode);
     }
   }
   replaceAllRefs(definitionSchemaJson);
-  return definitionSchemaJson;
+  return { definitionSchemaJson, requestFileCodeSort };
 }
