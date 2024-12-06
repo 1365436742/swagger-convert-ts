@@ -11,6 +11,8 @@ export const generatedTsTypeCode = async (inputData: InputData) => {
     rendererOptions: {
       'just-types': 'true', // 设置只生成类型
       'acronym-style': 'original', // 解决Id变成了ID
+      'prefer-unions': 'false',
+      'prefer-types': 'true',
     },
     lang: 'typescript',
   });
