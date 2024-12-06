@@ -30,8 +30,8 @@ export function replaceRef($ref: string) {
 
 export function replaceAllRefs(schema: Record<string, any>) {
   // 使用递归遍历对象
-  function findRefs(obj: Record<string, any>) {
-    if (typeof obj !== 'object' || obj === null) return;
+  function findRefs(obj: Record<string, any>, key?: string) {
+    if (typeof obj !== 'object' || obj === null) return obj;
     // 检查当前对象是否有 $ref 属性
     if (obj['$ref']) {
       obj['$ref'] = replaceRef(obj['$ref']);
@@ -40,11 +40,28 @@ export function replaceAllRefs(schema: Record<string, any>) {
     for (const key in obj) {
       const value = obj[key];
       if (typeof value === 'object') {
-        findRefs(value);
+        obj[key] = findRefs(value, key);
       }
     }
+    if (obj['$ref'] && !obj['properties']) {
+      obj = {
+        allOf: [
+          { $ref: obj['$ref'] },
+          {
+            type: 'object',
+            properties: {
+              _type: {
+                type: 'string',
+                enum: [key],
+              },
+            },
+          },
+        ],
+      };
+    }
+    return obj;
   }
-  findRefs(schema);
+  return findRefs(schema);
 }
 /** 去掉下划线首字母大写 */
 export function toCamelCase(str: string) {
