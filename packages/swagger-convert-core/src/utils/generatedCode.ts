@@ -3,6 +3,7 @@ import prettier from 'prettier';
 import { RequestCodeProps, RequestFileCodeSort } from '@/types';
 import path from 'path';
 import fs from 'fs';
+import { transformedString } from '.';
 
 export const generatedTsTypeCode = async (inputData: InputData) => {
   // 生成 TypeScript 代码
@@ -49,10 +50,16 @@ export const codeTemplaate = (requestCodeProps: RequestCodeProps) => {
   // 构建函数参数
   const hasParamsOrData = paramsTypeName || dataTypeName;
   const functionParams = hasParamsOrData ? `${data}: ${type} = {}` : '';
+  const { transformedString: transformedUrl, variables } =
+    transformedString(url);
+  let funcRestParams = '';
+  if (variables.length) {
+    funcRestParams = variables.map((i) => `${i}:string`).join(',') + ',';
+  }
   // 返回函数定义
-  return `export function ${requestMethodName}(${functionParams}) {
+  return `export function ${requestMethodName}(${funcRestParams}${functionParams}) {
     return request<IApi.${responseTypeName}>({
-      url: \`${url}\`,
+      url: \`${transformedUrl}\`,
       method: '${method}',
       ${paramsTypeName ? 'params: params || {},' : ''}
       ${dataTypeName ? 'data: data || {},' : ''}
