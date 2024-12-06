@@ -1,7 +1,7 @@
 import { InputData, quicktype } from 'quicktype-core';
 import prettier from 'prettier';
 
-export const generatedCode = async (inputData: InputData) => {
+export const generatedTsTypeCode = async (inputData: InputData) => {
   // 生成 TypeScript 代码
   const { lines } = await quicktype({
     inputData,
