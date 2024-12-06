@@ -22,7 +22,7 @@ const main = async () => {
 
   fs.writeFileSync('./test/output.json', JSON.stringify(jsonSchema, null, 2));
 
-  const code = await generatedCode(inputData);
+  const code = await generatedTsTypeCode(inputData);
 
   fs.writeFileSync('./test/type.d.ts', code);
 };
