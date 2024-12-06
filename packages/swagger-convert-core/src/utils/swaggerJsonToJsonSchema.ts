@@ -75,6 +75,8 @@ export function swaggerJsonToJsonSchema(swaggerOpenApi: SwaggerOpenApiType) {
       requestFileCodeSort[fileName].push(functionCode);
     }
   }
-  replaceAllRefs(definitionSchemaJson);
-  return { definitionSchemaJson, requestFileCodeSort };
+  return {
+    definitionSchemaJson: replaceAllRefs(definitionSchemaJson),
+    requestFileCodeSort,
+  };
 }
