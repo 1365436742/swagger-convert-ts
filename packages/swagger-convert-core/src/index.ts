@@ -23,7 +23,7 @@ const main = async () => {
     schemas: definitionSchemaJson,
   });
   inputData.addInput(schemaInput);
-  copyFolderSync('./template', './test');
+  copyFolderSync(path.join(__dirname, './template'), './test');
   await generatedRequestCode(
     requestFileCodeSort,
     './test/request/request-test'
