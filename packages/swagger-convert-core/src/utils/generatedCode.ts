@@ -39,11 +39,11 @@ export const codeTemplaate = (requestCodeProps: RequestCodeProps) => {
   const dataParats = [];
   if (paramsTypeName) {
     typeParts.push(`params?: IApi.${paramsTypeName}`);
-    dataParats.push('params,');
+    dataParats.push('params');
   }
   if (dataTypeName) {
     typeParts.push(`data?: IApi.${dataTypeName}`);
-    dataParats.push('data,');
+    dataParats.push('data');
   }
   const type = `{${typeParts.join(', ')}}`;
   const data = `{${dataParats.join(', ')}}`;

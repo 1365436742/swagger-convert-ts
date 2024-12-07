@@ -1,7 +1,7 @@
 import {
+  JSONSchema,
   RequestCodeProps,
   RequestFileCodeSort,
-  SchemaPropertiesType,
   SwaggerOpenApiType,
 } from '@/types';
 import { replaceAllRefs, toCamelCase, typeNameGenerated } from '.';
@@ -27,7 +27,7 @@ export function swaggerJsonToJsonSchema(swaggerOpenApi: SwaggerOpenApiType) {
         parametersTypeName = typeNameGenerated('params', operationId, tags);
         const parametersSchema = {
           type: 'object',
-          properties: {} as Record<string, SchemaPropertiesType>,
+          properties: {} as Record<string, JSONSchema>,
           require: [] as string[],
           additionalProperties: false,
         };

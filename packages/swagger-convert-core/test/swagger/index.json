@@ -1,33 +1,51 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.3",
   "info": {
-    "title": "OpenAPI definition",
-    "version": "v0"
+    "title": "Your API Title",
+    "description": "Your API Description",
+    "version": "1.0.0"
   },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Inferred Url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "get-request",
+      "description": "Get Request"
+    }
+  ],
   "paths": {
-    "/getRequest/psttest/{id}": {
-      "post": {
+    "/getRequest/getBody": {
+      "get": {
         "tags": [
-          "get-request-controller"
+          "get-request"
         ],
-        "operationId": "psttestById",
+        "summary": "bodyListItems",
+        "operationId": "bodyListItemsUsingGET",
+        "parameters": [
+          {
+            "name": "length",
+            "in": "query",
+            "description": "length",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "userInfo": {
-                    "$ref": "#/components/schemas/UserResponse"
-                  },
-                  "userInfox": {
-                    "$ref": "#/components/schemas/UserResponse"
-                  }
-                }
+                "$ref": "#/components/schemas/ItemBody"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -35,35 +53,64 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "type": "string"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItemBody"
+                  }
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
     },
-    "/deleteRequest/submit": {
-      "post": {
+    "/getRequest/search": {
+      "get": {
         "tags": [
-          "delete-request-controller"
+          "get-request"
         ],
-        "operationId": "getUserById",
+        "summary": "searchItems",
+        "operationId": "searchItemsUsingGET",
         "parameters": [
           {
-            "name": "key1",
+            "name": "length",
             "in": "query",
+            "description": "length",
             "required": true,
+            "style": "form",
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "int32"
             }
           },
           {
-            "name": "key2",
+            "name": "query",
             "in": "query",
+            "description": "query",
             "required": true,
+            "style": "form",
             "schema": {
-              "$ref": "#/components/schemas/UserResponse"
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "text",
+            "in": "query",
+            "description": "text",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -73,167 +120,43 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserResponse"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Item"
+                  }
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
     },
-    "/putRequest": {
+    "/getRequest/users/{id}": {
       "get": {
         "tags": [
-          "put-request-controller"
+          "get-request"
         ],
-        "operationId": "getAllUsers",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/putRequest/{id}": {
-      "get": {
-        "tags": [
-          "put-request-controller"
-        ],
-        "operationId": "getUserById_1",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/postRequest": {
-      "get": {
-        "tags": [
-          "post-request-controller"
-        ],
-        "operationId": "getAllUsers_1",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/postRequest/{id}": {
-      "get": {
-        "tags": [
-          "post-request-controller"
-        ],
-        "operationId": "getUserById_2",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/patchRequest": {
-      "get": {
-        "tags": [
-          "patch-request-controller"
-        ],
-        "operationId": "getAllUsers_2",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/patchRequest/{id}": {
-      "get": {
-        "tags": [
-          "patch-request-controller"
-        ],
-        "operationId": "getUserById_3",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/getRequest": {
-      "get": {
-        "tags": [
-          "get-request-controller"
-        ],
-        "operationId": "getAllProducts",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/getRequest/{id}": {
-      "get": {
-        "tags": [
-          "get-request-controller"
-        ],
-        "operationId": "getProductById",
+        "summary": "getUserById",
+        "operationId": "getUserByIdUsingGET",
         "parameters": [
           {
-            "name": "userInfo",
-            "in": "query",
+            "name": "id",
+            "in": "path",
+            "description": "id",
             "required": true,
+            "style": "simple",
             "schema": {
-              "$ref": "#/components/schemas/UserResponse"
+              "type": "integer",
+              "format": "int64"
             }
           }
         ],
@@ -247,16 +170,49 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
     },
-    "/deleteRequest/deleteUser/{id}": {
-      "delete": {
+    "/getRequest/users/{id}/{spanceId}": {
+      "get": {
         "tags": [
-          "delete-request-controller"
+          "get-request"
         ],
-        "operationId": "getAllUsers_3",
+        "summary": "getUserByIds",
+        "operationId": "getUserByIdsUsingGET",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "spanceId",
+            "in": "path",
+            "description": "spanceId",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -267,6 +223,15 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -274,15 +239,36 @@
   },
   "components": {
     "schemas": {
-      "UserResponse": {
+      "Item": {
+        "title": "Item",
         "type": "object",
         "properties": {
-          "id": {
+          "number": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "ItemBody": {
+        "title": "ItemBody",
+        "type": "object",
+        "properties": {
+          "listItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Item"
+            }
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "名称"
+          },
+          "text": {
+            "type": "string",
+            "description": "描述"
           }
         }
       }

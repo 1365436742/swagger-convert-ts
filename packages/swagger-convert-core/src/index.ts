@@ -12,7 +12,7 @@ import { copyFolderSync } from './utils';
 
 const config = {
   /** swagger地址。支持https|http、本地文件目录 */
-  swaggerOpenApiUrl: path.resolve(__dirname, '../test/swagger/test2.json'),
+  swaggerOpenApiUrl: path.resolve(__dirname, '../test/swagger/index.json'),
   generatedCodeFileUrl: './test',
   /** 生成本次接口的应用空间名称 */
   requestSpanceName: 'request-test',

@@ -1,0 +1,36 @@
+{
+  "get-request": [
+    {
+      "requestMethodName": "bodyListItemsUsingGET",
+      "url": "/getRequest/getBody",
+      "method": "get",
+      "paramsTypeName": "GetRequestBodyListItemsUsingGETParams",
+      "dataTypeName": "GetRequestBodyListItemsUsingGETBody",
+      "responseTypeName": "GetRequestBodyListItemsUsingGETResponses"
+    },
+    {
+      "requestMethodName": "searchItemsUsingGET",
+      "url": "/getRequest/search",
+      "method": "get",
+      "paramsTypeName": "GetRequestSearchItemsUsingGETParams",
+      "dataTypeName": "",
+      "responseTypeName": "GetRequestSearchItemsUsingGETResponses"
+    },
+    {
+      "requestMethodName": "getUserByIdUsingGET",
+      "url": "/getRequest/users/{id}",
+      "method": "get",
+      "paramsTypeName": "GetRequestGetUserByIdUsingGETParams",
+      "dataTypeName": "",
+      "responseTypeName": "GetRequestGetUserByIdUsingGETResponses"
+    },
+    {
+      "requestMethodName": "getUserByIdsUsingGET",
+      "url": "/getRequest/users/{id}/{spanceId}",
+      "method": "get",
+      "paramsTypeName": "GetRequestGetUserByIdsUsingGETParams",
+      "dataTypeName": "",
+      "responseTypeName": "GetRequestGetUserByIdsUsingGETResponses"
+    }
+  ]
+}
