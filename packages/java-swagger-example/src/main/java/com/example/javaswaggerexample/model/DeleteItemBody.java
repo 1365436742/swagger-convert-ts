@@ -4,27 +4,27 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.util.ArrayList;
 
-public class ItemBody {
-    @ApiModelProperty("名称")
-    private String name;
-    @ApiModelProperty("描述")
-    private String text;
-
+public class DeleteItemBody {
+    @ApiModelProperty("删除名称")
+    private String deleteName;
+    @ApiModelProperty("删除描述")
+    private String deleteText;
+    @ApiModelProperty("删除列表内容")
     private ArrayList<Item> listItems;
     // 构造方法
-    public ItemBody(String name, String text, ArrayList<Item> listItems) {
-        this.name = name;
-        this.text = text;
+    public DeleteItemBody(String name, String text, ArrayList<Item> listItems) {
+        this.deleteName = deleteName;
+        this.deleteText = deleteText;
         this.listItems = listItems;
     }
 
     // 获取属性值的方法
     public String getName() {
-        return name;
+        return deleteName;
     }
 
     public String getText() {
-        return text;
+        return deleteText;
     }
 
     public ArrayList<Item> getListItems() {
@@ -33,12 +33,12 @@ public class ItemBody {
 
 
     // 设置属性值的方法
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String deleteName) {
+        this.deleteName = deleteName;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setText(String deleteText) {
+        this.deleteText = deleteText;
     }
 
     public void setText(ArrayList<Item> listItems) {
@@ -47,6 +47,6 @@ public class ItemBody {
 
     // 其他方法
     public void printInfo() {
-        System.out.println("Name: " + name + ", Text: " + text);
+        System.out.println("DeleteName: " + deleteName + ", DeleteText: " + deleteText);
     }
 }

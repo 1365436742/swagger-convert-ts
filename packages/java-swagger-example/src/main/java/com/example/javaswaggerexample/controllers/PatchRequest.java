@@ -8,16 +8,16 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/getRequest")
-public class PutRequest {
-    @GetMapping("/users/{id}")
+public class PatchRequest {
+    @PatchMapping("/users/{id}")
     public String getUserById(@PathVariable Long id) {
        return id + "";
     }
-    @GetMapping("/users/{id}/{spanceId}")
+    @PatchMapping("/users/{id}/{spanceId}")
     public String getUserByIds(@PathVariable Long id,@PathVariable String spanceId) {
         return id + spanceId + "";
     }
-    @GetMapping("/search")
+    @PatchMapping("/search")
     public ArrayList<Item> searchItems(@RequestParam int length,@RequestParam int query, @RequestParam String text) {
         ArrayList list = new ArrayList();
         for (int i = 0; i < length; i++) {
@@ -26,7 +26,7 @@ public class PutRequest {
         // 处理逻辑
         return list;
     }
-    @GetMapping("/getBody")
+    @PatchMapping("/getBody")
     public ArrayList<ItemBody> bodyListItems(@RequestBody ItemBody itemBody,@RequestParam int length) {
         ArrayList list = new ArrayList();
         for (int i = 0; i < length; i++) {
