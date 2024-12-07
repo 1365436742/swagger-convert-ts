@@ -1,4 +1,39 @@
 {
+  "DeleteItemBody": {
+    "title": "DeleteItemBody",
+    "type": "object",
+    "properties": {
+      "listItems": {
+        "type": "array",
+        "description": "删除列表内容",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "Item"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "_type": {
+                  "type": "string",
+                  "enum": [
+                    "items"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "name": {
+        "type": "string"
+      },
+      "text": {
+        "type": "string"
+      }
+    },
+    "additionalProperties": false
+  },
   "Item": {
     "title": "Item",
     "type": "object",
@@ -49,6 +84,137 @@
     },
     "additionalProperties": false
   },
+  "DeleteRequestBodyListItemsUsingDELETEParams": {
+    "type": "object",
+    "properties": {
+      "length": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "require": [
+      "length"
+    ],
+    "additionalProperties": false
+  },
+  "DeleteRequestBodyListItemsUsingDELETEBody": {
+    "allOf": [
+      {
+        "$ref": "DeleteItemBody"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "_type": {
+            "type": "string",
+            "enum": [
+              "DeleteRequestBodyListItemsUsingDELETEBody"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "DeleteRequestBodyListItemsUsingDELETEResponses": {
+    "type": "array",
+    "items": {
+      "allOf": [
+        {
+          "$ref": "DeleteItemBody"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_type": {
+              "type": "string",
+              "enum": [
+                "items"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "DeleteRequestSearchItemsUsingDELETEParams": {
+    "type": "object",
+    "properties": {
+      "length": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "query": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "text": {
+        "type": "string"
+      }
+    },
+    "require": [
+      "length",
+      "query",
+      "text"
+    ],
+    "additionalProperties": false
+  },
+  "DeleteRequestSearchItemsUsingDELETEResponses": {
+    "type": "array",
+    "items": {
+      "allOf": [
+        {
+          "$ref": "Item"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_type": {
+              "type": "string",
+              "enum": [
+                "items"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "DeleteRequestGetUserByIdUsingDELETEParams": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "format": "int64"
+      }
+    },
+    "require": [
+      "id"
+    ],
+    "additionalProperties": false
+  },
+  "DeleteRequestGetUserByIdUsingDELETEResponses": {
+    "type": "string"
+  },
+  "DeleteRequestGetUserByIdsUsingDELETEParams": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "spanceId": {
+        "type": "string"
+      }
+    },
+    "require": [
+      "id",
+      "spanceId"
+    ],
+    "additionalProperties": false
+  },
+  "DeleteRequestGetUserByIdsUsingDELETEResponses": {
+    "type": "string"
+  },
   "GetRequestBodyListItemsUsingGETParams": {
     "type": "object",
     "properties": {
@@ -81,6 +247,162 @@
     ]
   },
   "GetRequestBodyListItemsUsingGETResponses": {
+    "type": "array",
+    "items": {
+      "allOf": [
+        {
+          "$ref": "ItemBody"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_type": {
+              "type": "string",
+              "enum": [
+                "items"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "PutRequestBodyListItemsUsingPUTParams": {
+    "type": "object",
+    "properties": {
+      "length": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "require": [
+      "length"
+    ],
+    "additionalProperties": false
+  },
+  "PutRequestBodyListItemsUsingPUTBody": {
+    "allOf": [
+      {
+        "$ref": "ItemBody"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "_type": {
+            "type": "string",
+            "enum": [
+              "PutRequestBodyListItemsUsingPUTBody"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "PutRequestBodyListItemsUsingPUTResponses": {
+    "type": "array",
+    "items": {
+      "allOf": [
+        {
+          "$ref": "ItemBody"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_type": {
+              "type": "string",
+              "enum": [
+                "items"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "PostRequestBodyListItemsUsingPOSTParams": {
+    "type": "object",
+    "properties": {
+      "length": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "require": [
+      "length"
+    ],
+    "additionalProperties": false
+  },
+  "PostRequestBodyListItemsUsingPOSTBody": {
+    "allOf": [
+      {
+        "$ref": "ItemBody"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "_type": {
+            "type": "string",
+            "enum": [
+              "PostRequestBodyListItemsUsingPOSTBody"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "PostRequestBodyListItemsUsingPOSTResponses": {
+    "type": "array",
+    "items": {
+      "allOf": [
+        {
+          "$ref": "ItemBody"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_type": {
+              "type": "string",
+              "enum": [
+                "items"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "PatchRequestBodyListItemsUsingPATCHParams": {
+    "type": "object",
+    "properties": {
+      "length": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "require": [
+      "length"
+    ],
+    "additionalProperties": false
+  },
+  "PatchRequestBodyListItemsUsingPATCHBody": {
+    "allOf": [
+      {
+        "$ref": "ItemBody"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "_type": {
+            "type": "string",
+            "enum": [
+              "PatchRequestBodyListItemsUsingPATCHBody"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "PatchRequestBodyListItemsUsingPATCHResponses": {
     "type": "array",
     "items": {
       "allOf": [
@@ -144,6 +466,135 @@
       ]
     }
   },
+  "PutRequestSearchItemsUsingPUTParams": {
+    "type": "object",
+    "properties": {
+      "length": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "query": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "text": {
+        "type": "string"
+      }
+    },
+    "require": [
+      "length",
+      "query",
+      "text"
+    ],
+    "additionalProperties": false
+  },
+  "PutRequestSearchItemsUsingPUTResponses": {
+    "type": "array",
+    "items": {
+      "allOf": [
+        {
+          "$ref": "Item"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_type": {
+              "type": "string",
+              "enum": [
+                "items"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "PostRequestSearchItemsUsingPOSTParams": {
+    "type": "object",
+    "properties": {
+      "length": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "query": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "text": {
+        "type": "string"
+      }
+    },
+    "require": [
+      "length",
+      "query",
+      "text"
+    ],
+    "additionalProperties": false
+  },
+  "PostRequestSearchItemsUsingPOSTResponses": {
+    "type": "array",
+    "items": {
+      "allOf": [
+        {
+          "$ref": "Item"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_type": {
+              "type": "string",
+              "enum": [
+                "items"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "PatchRequestSearchItemsUsingPATCHParams": {
+    "type": "object",
+    "properties": {
+      "length": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "query": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "text": {
+        "type": "string"
+      }
+    },
+    "require": [
+      "length",
+      "query",
+      "text"
+    ],
+    "additionalProperties": false
+  },
+  "PatchRequestSearchItemsUsingPATCHResponses": {
+    "type": "array",
+    "items": {
+      "allOf": [
+        {
+          "$ref": "Item"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_type": {
+              "type": "string",
+              "enum": [
+                "items"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
   "GetRequestGetUserByIdUsingGETParams": {
     "type": "object",
     "properties": {
@@ -158,6 +609,54 @@
     "additionalProperties": false
   },
   "GetRequestGetUserByIdUsingGETResponses": {
+    "type": "string"
+  },
+  "PutRequestGetUserByIdUsingPUTParams": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "format": "int64"
+      }
+    },
+    "require": [
+      "id"
+    ],
+    "additionalProperties": false
+  },
+  "PutRequestGetUserByIdUsingPUTResponses": {
+    "type": "string"
+  },
+  "PostRequestGetUserByIdUsingPOSTParams": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "format": "int64"
+      }
+    },
+    "require": [
+      "id"
+    ],
+    "additionalProperties": false
+  },
+  "PostRequestGetUserByIdUsingPOSTResponses": {
+    "type": "string"
+  },
+  "PatchRequestGetUserByIdUsingPATCHParams": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "format": "int64"
+      }
+    },
+    "require": [
+      "id"
+    ],
+    "additionalProperties": false
+  },
+  "PatchRequestGetUserByIdUsingPATCHResponses": {
     "type": "string"
   },
   "GetRequestGetUserByIdsUsingGETParams": {
@@ -178,6 +677,66 @@
     "additionalProperties": false
   },
   "GetRequestGetUserByIdsUsingGETResponses": {
+    "type": "string"
+  },
+  "PutRequestGetUserByIdsUsingPUTParams": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "spanceId": {
+        "type": "string"
+      }
+    },
+    "require": [
+      "id",
+      "spanceId"
+    ],
+    "additionalProperties": false
+  },
+  "PutRequestGetUserByIdsUsingPUTResponses": {
+    "type": "string"
+  },
+  "PostRequestGetUserByIdsUsingPOSTParams": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "spanceId": {
+        "type": "string"
+      }
+    },
+    "require": [
+      "id",
+      "spanceId"
+    ],
+    "additionalProperties": false
+  },
+  "PostRequestGetUserByIdsUsingPOSTResponses": {
+    "type": "string"
+  },
+  "PatchRequestGetUserByIdsUsingPATCHParams": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "spanceId": {
+        "type": "string"
+      }
+    },
+    "require": [
+      "id",
+      "spanceId"
+    ],
+    "additionalProperties": false
+  },
+  "PatchRequestGetUserByIdsUsingPATCHResponses": {
     "type": "string"
   }
 }
