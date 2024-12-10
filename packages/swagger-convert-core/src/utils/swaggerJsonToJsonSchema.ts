@@ -8,7 +8,7 @@ import { replaceAllRefs, toCamelCase, typeNameGenerated } from '.';
 
 export function swaggerJsonToJsonSchema(swaggerOpenApi: SwaggerOpenApiType) {
   /** 生成组件的ts类型 */
-  const definitionSchemaJson: Record<string, any> = {};
+  const definitionSchemaJson: Record<string, JSONSchema> = {};
   const requestFileCodeSort: RequestFileCodeSort = {};
   Object.keys(swaggerOpenApi.components.schemas).forEach((key) => {
     swaggerOpenApi.components.schemas[key].additionalProperties = false;
@@ -51,12 +51,14 @@ export function swaggerJsonToJsonSchema(swaggerOpenApi: SwaggerOpenApiType) {
       }
       /** responses 响应ts参数 */
       const responsesSchema =
-        responses?.['200']?.['content']?.['*/*']?.['schema'];
+        responses?.['200']?.['content']?.['*/*']?.['schema'] ||
+        responses?.['200']?.['content']?.['application/json']?.['schema'];
       let responsesTypeName = '';
       if (responsesSchema) {
         responsesTypeName = typeNameGenerated('responses', operationId, tags);
         if (responsesSchema.properties) {
-          responsesSchema.additionalProperties = false;
+          responsesSchema.additionalProperties =
+            responsesSchema.additionalProperties ?? false;
         }
         definitionSchemaJson[responsesTypeName] = responsesSchema;
       }
