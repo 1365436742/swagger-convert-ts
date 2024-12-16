@@ -51,12 +51,14 @@ export function swaggerJsonToJsonSchema(swaggerOpenApi: SwaggerOpenApiType) {
       }
       /** responses 响应ts参数 */
       const responsesSchema =
-        responses?.['200']?.['content']?.['*/*']?.['schema'];
+        responses?.['200']?.['content']?.['*/*']?.['schema'] ||
+        responses?.['200']?.['content']?.['application/json']?.['schema'];
       let responsesTypeName = '';
       if (responsesSchema) {
         responsesTypeName = typeNameGenerated('responses', operationId, tags);
         if (responsesSchema.properties) {
-          responsesSchema.additionalProperties = false;
+          responsesSchema.additionalProperties =
+            responsesSchema.additionalProperties ?? false;
         }
         definitionSchemaJson[responsesTypeName] = responsesSchema;
       }

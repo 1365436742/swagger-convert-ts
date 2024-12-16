@@ -1,28 +1,69 @@
 import { InputData, quicktype } from 'quicktype-core';
-import prettier from 'prettier';
-import { RequestCodeProps, RequestFileCodeSort } from '@/types';
+import { format } from 'prettier';
+import { JSONSchema, RequestCodeProps, RequestFileCodeSort } from '@/types';
 import path from 'path';
 import fs from 'fs';
 import { transformedString } from '.';
+import { compile } from 'json-schema-to-typescript';
 
-export const generatedTsTypeCode = async (inputData: InputData) => {
+/**
+ * 补偿处理ts未转ts的问题
+ * "additionalProperties": {
+ *    "type": "integer",
+ *    "format": "int32"
+ * }
+ */
+export async function compensationProcessingTsCode(
+  definitionSchemaJson: Record<string, JSONSchema>
+) {
+  /** 补偿的tscode。有些类型无法直接通过quicktype-core解析成ts */
+  let compensationTsCode = '';
+  for (const key in definitionSchemaJson) {
+    const element = definitionSchemaJson[key];
+    if (
+      !element.properties &&
+      typeof element.additionalProperties === 'object'
+    ) {
+      try {
+        const tsCode = await compile(element, key);
+        compensationTsCode += tsCode;
+      } catch (error) {
+        console.error('补偿解析失败');
+      }
+    }
+  }
+  return compensationTsCode;
+}
+
+export const generatedTsTypeCode = async (
+  inputData: InputData,
+  compensationTsCode: string = ''
+) => {
   // 生成 TypeScript 代码
   const { lines } = await quicktype({
     inputData,
     rendererOptions: {
       'just-types': 'true', // 设置只生成类型
       'acronym-style': 'original', // 解决Id变成了ID
-      'prefer-unions': 'false',
-      'prefer-types': 'true',
+      // 'prefer-unions': 'false',
+      'explicit-unions': 'true',
+      // 'prefer-types': 'true',
     },
     lang: 'typescript',
   });
   const tsCode = lines.join('\n');
   // 使用 Prettier 格式化代码
-  const formattedCode = await prettier.format(`namespace IApi{${tsCode}}`, {
-    parser: 'typescript',
-  });
+  const formattedCode = await format(
+    `namespace IApi{${tsCode + compensationTsCode}}`,
+    {
+      parser: 'typescript',
+    }
+  );
   return formattedCode;
+};
+const typeFix = (name: string) => {
+  if (name) return `IApi.${name}`;
+  return 'any';
 };
 
 export const codeTemplaate = (requestCodeProps: RequestCodeProps) => {
@@ -58,7 +99,7 @@ export const codeTemplaate = (requestCodeProps: RequestCodeProps) => {
   }
   // 返回函数定义
   return `export function ${requestMethodName}(${funcRestParams}${functionParams}) {
-    return request<IApi.${responseTypeName}>({
+    return request<${typeFix(responseTypeName)}>({
       url: \`${transformedUrl}\`,
       method: '${method}',
       ${paramsTypeName ? 'params: params || {},' : ''}
@@ -80,7 +121,7 @@ export const generatedRequestCode = async (
       const requestCodeProps = functionCodeList[j];
       codeResult += codeTemplaate(requestCodeProps);
     }
-    const formattedCode = await prettier.format(codeResult, {
+    const formattedCode = await format(codeResult, {
       parser: 'typescript',
     });
     // 创建目录
