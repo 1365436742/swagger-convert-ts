@@ -6,21 +6,17 @@
     "esModuleInterop": true, // 启用 ES 模块的互操作性
     "skipLibCheck": true, // 跳过库文件的类型检查
     "declaration": true, // 生成 .d.ts 文件
-    "outDir": "./dist", // 输出目录
-    "rootDir": "./src", // 输入文件的根目录
+    "rootDir": "./generate-test", // 输入文件的根目录
     "moduleResolution": "node", // 模块解析策略
     "forceConsistentCasingInFileNames": true, // 强制文件名一致性
     "baseUrl": "./", // 设置基础路径为项目根目录
     "paths": {
       "@/*": [
-        "src/*"
+        "generate-test/*"
       ] // 配置 @ 符号为 src 目录的别名
     }
   },
   "include": [
-    "src"
-  ],
-  "exclude": [
-    "src/template/**/*.template.ts" // 这里指定不需要编译的文件模式
+    "generate-test"
   ]
 }

@@ -1,7 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { createRequire } from 'node:module';
-const require = createRequire(import.meta.url);
 const { generatedFileCode, jsonSchemaToTsCode, parseSwagger } = require("../dist/index")
 
 describe("文件生成测试", () => {
