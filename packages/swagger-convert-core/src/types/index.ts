@@ -57,3 +57,11 @@ export interface GeneratedTsTypeCodeProps {
     /** ts的命名空间 */
     namespace?: string
 }
+
+export interface MockJson {
+    url: string;
+    /** 请求类型是get还是post等 */
+    method: string;
+    /** mockjsInfo输出 */
+    mockjsInfo: Record<string, any>
+}

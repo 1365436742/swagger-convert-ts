@@ -11,10 +11,10 @@ import { InputData } from 'quicktype-core';
 import { swaggerJsonToJsonSchema, SwaggerJsonToJsonSchemaReturn } from './utils/swaggerJsonToJsonSchema';
 import { copyFolderSync } from './utils';
 import axios from 'axios';
-
 /**
  * https://github.com/glideapps/quicktype
  */
+
 /** 获取Swagger的Json */
 export const parseSwagger = async (swaggerOpenApiUrl: string): Promise<SwaggerJsonToJsonSchemaReturn> => {
   let swaggerOpenApi: SwaggerOpenApiType | null = null;
@@ -29,6 +29,7 @@ export const parseSwagger = async (swaggerOpenApiUrl: string): Promise<SwaggerJs
   if (!swaggerOpenApi) return {}
   return swaggerJsonToJsonSchema(swaggerOpenApi);
 }
+
 /** swagger生成tscode */
 export const jsonSchemaToTsCode = async ({
   definitionSchemaJson,
