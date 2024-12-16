@@ -1,3 +1,5 @@
+import { InputData } from "quicktype-core";
+
 export type JSONSchema = Record<string, any>
 
 export interface SwaggerOpenApiType {
@@ -29,5 +31,29 @@ export interface RequestCodeProps {
     dataTypeName: string;
     /** 相应参数类型名称 */
     responseTypeName: string;
+    /** 生成ts的命名空间，默认IApi */
+    nameSpance?: string
 }
-export type RequestFileCodeSort = Record<string, RequestCodeProps[]>
+export type RequestFileCodeSort = Record<string, RequestCodeProps[]>;
+
+
+export interface GeneratedRequestCodeProps {
+    requestFileCodeSort: RequestFileCodeSort
+    directoryPath: string
+    /** 
+     * 导入函数
+     * @eg
+     * "import request from '../index';"
+     */
+    importStr: string
+    /** 生成ts的命名空间，默认IApi */
+    nameSpance?: string
+}
+
+export interface GeneratedTsTypeCodeProps {
+    inputData: InputData,
+    /** 有一些无法解析的ts需要特殊补偿 */
+    compensationTsCode: string,
+    /** ts的命名空间 */
+    namespace?: string
+}

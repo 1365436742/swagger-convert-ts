@@ -1,4 +1,4 @@
-namespace IApi {
+namespace IRequest {
   type DeleteRequestGetUserByIdUsingDELETEResponses = string;
 
   type DeleteRequestGetUserByIdsUsingDELETEResponses = string;

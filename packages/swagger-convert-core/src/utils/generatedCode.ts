@@ -1,6 +1,6 @@
 import { InputData, quicktype } from 'quicktype-core';
 import { format } from 'prettier';
-import { JSONSchema, RequestCodeProps, RequestFileCodeSort } from '@/types';
+import { GeneratedRequestCodeProps, GeneratedTsTypeCodeProps, JSONSchema, RequestCodeProps, RequestFileCodeSort } from '@/types';
 import path from 'path';
 import fs from 'fs';
 import { transformedString } from '.';
@@ -35,10 +35,8 @@ export async function compensationProcessingTsCode(
   return compensationTsCode;
 }
 
-export const generatedTsTypeCode = async (
-  inputData: InputData,
-  compensationTsCode: string = ''
-) => {
+export const generatedTsTypeCode = async (props: GeneratedTsTypeCodeProps) => {
+  const { inputData, compensationTsCode = '', namespace = 'IApi' } = props
   // 生成 TypeScript 代码
   const { lines } = await quicktype({
     inputData,
@@ -54,15 +52,15 @@ export const generatedTsTypeCode = async (
   const tsCode = lines.join('\n');
   // 使用 Prettier 格式化代码
   const formattedCode = await format(
-    `namespace IApi{${tsCode + compensationTsCode}}`,
+    `namespace ${namespace}{${tsCode + compensationTsCode}}`,
     {
       parser: 'typescript',
     }
   );
   return formattedCode;
 };
-const typeFix = (name: string) => {
-  if (name) return `IApi.${name}`;
+const typeFix = (name: string, nameSpance: string) => {
+  if (name) return `${nameSpance}.${name}`;
   return 'any';
 };
 
@@ -74,16 +72,17 @@ export const codeTemplaate = (requestCodeProps: RequestCodeProps) => {
     method,
     paramsTypeName,
     dataTypeName,
+    nameSpance = "IApi"
   } = requestCodeProps;
   // 构建类型声明
   const typeParts = [];
   const dataParats = [];
   if (paramsTypeName) {
-    typeParts.push(`params?: IApi.${paramsTypeName}`);
+    typeParts.push(`params?: ${nameSpance}.${paramsTypeName}`);
     dataParats.push('params');
   }
   if (dataTypeName) {
-    typeParts.push(`data?: IApi.${dataTypeName}`);
+    typeParts.push(`data?: ${nameSpance}.${dataTypeName}`);
     dataParats.push('data');
   }
   const type = `{${typeParts.join(', ')}}`;
@@ -99,7 +98,7 @@ export const codeTemplaate = (requestCodeProps: RequestCodeProps) => {
   }
   // 返回函数定义
   return `export function ${requestMethodName}(${funcRestParams}${functionParams}) {
-    return request<${typeFix(responseTypeName)}>({
+    return request<${typeFix(responseTypeName, nameSpance)}>({
       url: \`${transformedUrl}\`,
       method: '${method}',
       ${paramsTypeName ? 'params: params || {},' : ''}
@@ -108,17 +107,21 @@ export const codeTemplaate = (requestCodeProps: RequestCodeProps) => {
   };`;
 };
 
-export const generatedRequestCode = async (
-  requestFileCodeSort: RequestFileCodeSort,
-  directoryPath: string,
-  importStr: string = "import request from '../index';"
-) => {
+
+export const generatedRequestCode = async (props: GeneratedRequestCodeProps) => {
+  const {
+    requestFileCodeSort,
+    directoryPath,
+    importStr = "import request from '../index';",
+    nameSpance
+  } = props
   for (const fileSpance in requestFileCodeSort) {
     let codeResult = importStr;
     const functionCodeList = requestFileCodeSort[fileSpance];
     const filePath = path.join(directoryPath, fileSpance + '.ts');
     for (let j = 0; j < functionCodeList.length; j++) {
       const requestCodeProps = functionCodeList[j];
+      requestCodeProps.nameSpance = nameSpance;
       codeResult += codeTemplaate(requestCodeProps);
     }
     const formattedCode = await format(codeResult, {

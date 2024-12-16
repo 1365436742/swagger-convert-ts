@@ -1,0 +1,172 @@
+{
+  "delete-request": [
+    {
+      "requestMethodName": "bodyListItemsUsingDELETE",
+      "url": "/deleteRequest/getBody",
+      "method": "delete",
+      "paramsTypeName": "DeleteRequestBodyListItemsUsingDELETEParams",
+      "dataTypeName": "DeleteRequestBodyListItemsUsingDELETEBody",
+      "responseTypeName": "DeleteRequestBodyListItemsUsingDELETEResponses"
+    },
+    {
+      "requestMethodName": "searchItemsUsingDELETE",
+      "url": "/deleteRequest/search",
+      "method": "delete",
+      "paramsTypeName": "DeleteRequestSearchItemsUsingDELETEParams",
+      "dataTypeName": "",
+      "responseTypeName": "DeleteRequestSearchItemsUsingDELETEResponses"
+    },
+    {
+      "requestMethodName": "getUserByIdUsingDELETE",
+      "url": "/deleteRequest/users/{id}",
+      "method": "delete",
+      "paramsTypeName": "DeleteRequestGetUserByIdUsingDELETEParams",
+      "dataTypeName": "",
+      "responseTypeName": "DeleteRequestGetUserByIdUsingDELETEResponses"
+    },
+    {
+      "requestMethodName": "getUserByIdsUsingDELETE",
+      "url": "/deleteRequest/users/{id}/{spanceId}",
+      "method": "delete",
+      "paramsTypeName": "DeleteRequestGetUserByIdsUsingDELETEParams",
+      "dataTypeName": "",
+      "responseTypeName": "DeleteRequestGetUserByIdsUsingDELETEResponses"
+    }
+  ],
+  "get-request": [
+    {
+      "requestMethodName": "bodyListItemsUsingGET",
+      "url": "/getRequest/getBody",
+      "method": "get",
+      "paramsTypeName": "GetRequestBodyListItemsUsingGETParams",
+      "dataTypeName": "GetRequestBodyListItemsUsingGETBody",
+      "responseTypeName": "GetRequestBodyListItemsUsingGETResponses"
+    },
+    {
+      "requestMethodName": "searchItemsUsingGET",
+      "url": "/getRequest/search",
+      "method": "get",
+      "paramsTypeName": "GetRequestSearchItemsUsingGETParams",
+      "dataTypeName": "",
+      "responseTypeName": "GetRequestSearchItemsUsingGETResponses"
+    },
+    {
+      "requestMethodName": "getUserByIdUsingGET",
+      "url": "/getRequest/users/{id}",
+      "method": "get",
+      "paramsTypeName": "GetRequestGetUserByIdUsingGETParams",
+      "dataTypeName": "",
+      "responseTypeName": "GetRequestGetUserByIdUsingGETResponses"
+    },
+    {
+      "requestMethodName": "getUserByIdsUsingGET",
+      "url": "/getRequest/users/{id}/{spanceId}",
+      "method": "get",
+      "paramsTypeName": "GetRequestGetUserByIdsUsingGETParams",
+      "dataTypeName": "",
+      "responseTypeName": "GetRequestGetUserByIdsUsingGETResponses"
+    }
+  ],
+  "put-request": [
+    {
+      "requestMethodName": "bodyListItemsUsingPUT",
+      "url": "/getRequest/getBody",
+      "method": "put",
+      "paramsTypeName": "PutRequestBodyListItemsUsingPUTParams",
+      "dataTypeName": "PutRequestBodyListItemsUsingPUTBody",
+      "responseTypeName": "PutRequestBodyListItemsUsingPUTResponses"
+    },
+    {
+      "requestMethodName": "searchItemsUsingPUT",
+      "url": "/getRequest/search",
+      "method": "put",
+      "paramsTypeName": "PutRequestSearchItemsUsingPUTParams",
+      "dataTypeName": "",
+      "responseTypeName": "PutRequestSearchItemsUsingPUTResponses"
+    },
+    {
+      "requestMethodName": "getUserByIdUsingPUT",
+      "url": "/getRequest/users/{id}",
+      "method": "put",
+      "paramsTypeName": "PutRequestGetUserByIdUsingPUTParams",
+      "dataTypeName": "",
+      "responseTypeName": "PutRequestGetUserByIdUsingPUTResponses"
+    },
+    {
+      "requestMethodName": "getUserByIdsUsingPUT",
+      "url": "/getRequest/users/{id}/{spanceId}",
+      "method": "put",
+      "paramsTypeName": "PutRequestGetUserByIdsUsingPUTParams",
+      "dataTypeName": "",
+      "responseTypeName": "PutRequestGetUserByIdsUsingPUTResponses"
+    }
+  ],
+  "post-request": [
+    {
+      "requestMethodName": "bodyListItemsUsingPOST",
+      "url": "/getRequest/getBody",
+      "method": "post",
+      "paramsTypeName": "PostRequestBodyListItemsUsingPOSTParams",
+      "dataTypeName": "PostRequestBodyListItemsUsingPOSTBody",
+      "responseTypeName": "PostRequestBodyListItemsUsingPOSTResponses"
+    },
+    {
+      "requestMethodName": "searchItemsUsingPOST",
+      "url": "/getRequest/search",
+      "method": "post",
+      "paramsTypeName": "PostRequestSearchItemsUsingPOSTParams",
+      "dataTypeName": "",
+      "responseTypeName": "PostRequestSearchItemsUsingPOSTResponses"
+    },
+    {
+      "requestMethodName": "getUserByIdUsingPOST",
+      "url": "/getRequest/users/{id}",
+      "method": "post",
+      "paramsTypeName": "PostRequestGetUserByIdUsingPOSTParams",
+      "dataTypeName": "",
+      "responseTypeName": "PostRequestGetUserByIdUsingPOSTResponses"
+    },
+    {
+      "requestMethodName": "getUserByIdsUsingPOST",
+      "url": "/getRequest/users/{id}/{spanceId}",
+      "method": "post",
+      "paramsTypeName": "PostRequestGetUserByIdsUsingPOSTParams",
+      "dataTypeName": "",
+      "responseTypeName": "PostRequestGetUserByIdsUsingPOSTResponses"
+    }
+  ],
+  "patch-request": [
+    {
+      "requestMethodName": "bodyListItemsUsingPATCH",
+      "url": "/getRequest/getBody",
+      "method": "patch",
+      "paramsTypeName": "PatchRequestBodyListItemsUsingPATCHParams",
+      "dataTypeName": "PatchRequestBodyListItemsUsingPATCHBody",
+      "responseTypeName": "PatchRequestBodyListItemsUsingPATCHResponses"
+    },
+    {
+      "requestMethodName": "searchItemsUsingPATCH",
+      "url": "/getRequest/search",
+      "method": "patch",
+      "paramsTypeName": "PatchRequestSearchItemsUsingPATCHParams",
+      "dataTypeName": "",
+      "responseTypeName": "PatchRequestSearchItemsUsingPATCHResponses"
+    },
+    {
+      "requestMethodName": "getUserByIdUsingPATCH",
+      "url": "/getRequest/users/{id}",
+      "method": "patch",
+      "paramsTypeName": "PatchRequestGetUserByIdUsingPATCHParams",
+      "dataTypeName": "",
+      "responseTypeName": "PatchRequestGetUserByIdUsingPATCHResponses"
+    },
+    {
+      "requestMethodName": "getUserByIdsUsingPATCH",
+      "url": "/getRequest/users/{id}/{spanceId}",
+      "method": "patch",
+      "paramsTypeName": "PatchRequestGetUserByIdsUsingPATCHParams",
+      "dataTypeName": "",
+      "responseTypeName": "PatchRequestGetUserByIdsUsingPATCHResponses"
+    }
+  ]
+}
