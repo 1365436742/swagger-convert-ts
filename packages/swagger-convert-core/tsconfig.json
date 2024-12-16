@@ -18,8 +18,7 @@
     }
   },
   "include": [
-    "src",
-    "test"
+    "src"
   ],
   "exclude": [
     "src/template/**/*.template.ts" // 这里指定不需要编译的文件模式

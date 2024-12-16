@@ -8,7 +8,7 @@ import { replaceAllRefs, toCamelCase, typeNameGenerated } from '.';
 
 export function swaggerJsonToJsonSchema(swaggerOpenApi: SwaggerOpenApiType) {
   /** 生成组件的ts类型 */
-  const definitionSchemaJson: Record<string, any> = {};
+  const definitionSchemaJson: JSONSchema = {};
   const requestFileCodeSort: RequestFileCodeSort = {};
   Object.keys(swaggerOpenApi.components.schemas).forEach((key) => {
     swaggerOpenApi.components.schemas[key].additionalProperties = false;

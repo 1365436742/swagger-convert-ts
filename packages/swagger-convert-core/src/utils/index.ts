@@ -1,3 +1,4 @@
+import { JSONSchema } from '@/types';
 import fs from 'fs';
 import path from 'path';
 export function capitalizeFirstLetter(str: string) {
@@ -28,9 +29,9 @@ export function replaceRef($ref: string) {
   return schemaSplit[schemaSplit.length - 1];
 }
 
-export function replaceAllRefs(schema: Record<string, any>) {
+export function replaceAllRefs(schema: JSONSchema) {
   // 使用递归遍历对象
-  function findRefs(obj: Record<string, any>, key?: string) {
+  function findRefs(obj: JSONSchema, key?: string) {
     if (typeof obj !== 'object' || obj === null) return obj;
     // 检查当前对象是否有 $ref 属性
     if (obj['$ref']) {
