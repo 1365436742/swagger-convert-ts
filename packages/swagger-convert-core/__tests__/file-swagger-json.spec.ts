@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { generatedFileCode, jsonSchemaToTsCode, parseSwagger } from '../dist/index'
+import { generatedFileCode, generatedMockJson, jsonSchemaToTsCode, parseSwagger } from '../dist/index'
 import { JSONSchema, RequestFileCodeSort } from '../dist/types';
 
 const config = {
@@ -19,7 +19,19 @@ describe("文件生成测试", () => {
         definitionSchemaJson = res.definitionSchemaJson!;
         requestFileCodeSort = res.requestFileCodeSort!;
     })
+    it('mock schema Json生成', async () => {
+        const mockJson = generatedMockJson({
+            definitionSchemaJson,
+            requestFileCodeSort
+        })
+        fs.writeFileSync(
+            path.join(generatedCodeFileUrl, 'mockJson.json'),
+            JSON.stringify(mockJson, null, 2)
+        );
+        expect(mockJson).toBeDefined();
+    });
     it('debug文件生成', async () => {
+
         fs.writeFileSync(
             path.join(generatedCodeFileUrl, 'output.json'),
             JSON.stringify(definitionSchemaJson, null, 2)

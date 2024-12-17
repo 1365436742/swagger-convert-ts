@@ -6,12 +6,12 @@ import {
 } from '@/types';
 import { replaceAllRefs, toCamelCase, typeNameGenerated } from '.';
 
-export interface SwaggerJsonToJsonSchemaReturn {
+export interface SwaggerJsonConvertReturn {
   definitionSchemaJson?: JSONSchema
   requestFileCodeSort?: RequestFileCodeSort
 }
 
-export function swaggerJsonToJsonSchema(swaggerOpenApi: SwaggerOpenApiType): SwaggerJsonToJsonSchemaReturn {
+export function swaggerJsonConvert(swaggerOpenApi: SwaggerOpenApiType): SwaggerJsonConvertReturn {
   /** 生成组件的ts类型 */
   const definitionSchemaJson: JSONSchema = {};
   const requestFileCodeSort: RequestFileCodeSort = {};

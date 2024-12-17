@@ -6,17 +6,18 @@ import {
   generatedRequestCode,
   generatedTsTypeCode,
 } from './utils/generatedCode';
-import { JSONSchema, RequestFileCodeSort, SwaggerOpenApiType } from './types';
+import { JSONSchema, MockJsonInfo, RequestFileCodeSort, SwaggerOpenApiType } from './types';
 import { InputData } from 'quicktype-core';
-import { swaggerJsonToJsonSchema, SwaggerJsonToJsonSchemaReturn } from './utils/swaggerJsonToJsonSchema';
+import { swaggerJsonConvert, SwaggerJsonConvertReturn } from './utils/swaggerJsonConvert';
 import { copyFolderSync } from './utils';
 import axios from 'axios';
+import { convertSchemaToMock } from './utils/convertSchemaToMock';
 /**
  * https://github.com/glideapps/quicktype
  */
 
 /** 获取Swagger的Json */
-export const parseSwagger = async (swaggerOpenApiUrl: string): Promise<SwaggerJsonToJsonSchemaReturn> => {
+export const parseSwagger = async (swaggerOpenApiUrl: string): Promise<SwaggerJsonConvertReturn> => {
   let swaggerOpenApi: SwaggerOpenApiType | null = null;
   if (/(https|http):\/\//.test(swaggerOpenApiUrl)) {
     const res = await axios.get(swaggerOpenApiUrl);
@@ -27,7 +28,7 @@ export const parseSwagger = async (swaggerOpenApiUrl: string): Promise<SwaggerJs
     );
   }
   if (!swaggerOpenApi) return {}
-  return swaggerJsonToJsonSchema(swaggerOpenApi);
+  return swaggerJsonConvert(swaggerOpenApi);
 }
 
 /** swagger生成tscode */
@@ -81,4 +82,26 @@ export const generatedFileCode = async ({
     importStr,
     nameSpance: tsNameSpance
   });
+}
+/** 生成mockjs类型的json */
+export const generatedMockJson = ({
+  requestFileCodeSort,
+  definitionSchemaJson
+}: {
+  requestFileCodeSort: RequestFileCodeSort,
+  definitionSchemaJson: JSONSchema
+}) => {
+  const mockjsJson = convertSchemaToMock(definitionSchemaJson);
+  // const mockjsInfo: MockJsonInfo = {};
+  // for (const key in requestFileCodeSort) {
+  //   const element = requestFileCodeSort[key];
+  //   mockjsInfo[key] = element.map(item => {
+  //     return {
+  //       url: item.url,
+  //       method: item.method,
+  //       responseMockjs: mockjsJson[item.responseTypeName] || {}
+  //     }
+  //   })
+  // }
+  return mockjsJson;
 }

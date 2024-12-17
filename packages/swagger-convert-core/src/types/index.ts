@@ -37,6 +37,18 @@ export interface RequestCodeProps {
 export type RequestFileCodeSort = Record<string, RequestCodeProps[]>;
 
 
+export interface MockJsonBase {
+    /** 接口url地址 */
+    url: string;
+    /** 请求类型是get还是post等 */
+    method: string;
+    /** 响应结果的mockjs */
+    responseMockjs: Record<string, any>;
+}
+
+export type MockJsonInfo = Record<string, MockJsonBase[]>;
+
+
 export interface GeneratedRequestCodeProps {
     requestFileCodeSort: RequestFileCodeSort
     directoryPath: string
