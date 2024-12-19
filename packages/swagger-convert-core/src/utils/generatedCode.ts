@@ -2,16 +2,16 @@ import { format } from 'prettier';
 import { GeneratedRequestCodeProps, GeneratedTsTypeCodeProps, JSONSchema, RequestCodeProps } from '@/types';
 import path from 'path';
 import fs from 'fs';
-import { resolveRef, transformedString } from '.';
+import { removeUnderscoreProperties, transformedString } from '.';
 import { compile } from 'json-schema-to-typescript';
-
+import $RefParser from "@apidevtools/json-schema-ref-parser";
 
 
 export const generatedTsTypeCode = async (props: GeneratedTsTypeCodeProps) => {
   const { definitionSchemaJson, namespace = 'IApi' } = props
-  const schemas = await resolveRef(definitionSchemaJson);
+  const resolvedSchema = await $RefParser.dereference(removeUnderscoreProperties(schemas))
   let tsCode = ""
-  for (const [name, schema] of Object.entries(schemas)) {
+  for (const [name, schema] of Object.entries(resolvedSchema)) {
     const curCode = await compile(schema, name);
     tsCode += curCode
   }
