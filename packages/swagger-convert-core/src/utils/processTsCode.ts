@@ -1,7 +1,7 @@
 /**
  *  解决ts生成重复的类型
  */
-export const processTypeScript = () => {
+export const processTsCode = () => {
   const generatedInterfaces = new Set<string>();
   return (ts: string) => {
     const lines = ts.split('\n');
