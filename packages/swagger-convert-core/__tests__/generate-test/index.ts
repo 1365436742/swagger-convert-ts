@@ -1,6 +1,6 @@
 import axios from 'axios';
 const request = axios.create({
-  baseURL: '',
+  baseURL: 'ddd',
 });
 
 export default request;

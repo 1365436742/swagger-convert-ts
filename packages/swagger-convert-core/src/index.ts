@@ -49,7 +49,8 @@ export const generatedFileCode = async ({
   generatedCodeFileUrl,
   requestSpanceName,
   importStr = "import request from '../index';",
-  tsNameSpance = 'IApi'
+  tsNameSpance = 'IApi',
+  axiosGenerat = true
 }: {
   requestFileCodeSort: RequestFileCodeSort,
   /** 生成文件地址 */
@@ -64,11 +65,18 @@ export const generatedFileCode = async ({
   importStr?: string,
   /** 生成ts的命名空间，默认IApi */
   tsNameSpance?: string
+  /** 是否要生成请求，不生成将去掉请求  */
+  axiosGenerat?: boolean
 }) => {
-  copyFolderSync(path.join(__dirname, './template'), generatedCodeFileUrl);
+  if (axiosGenerat) {
+    const isAxios = fs.existsSync(path.join(generatedCodeFileUrl, 'index.ts'));
+    if (!isAxios) {
+      copyFolderSync(path.join(__dirname, './template'), generatedCodeFileUrl);
+    }
+  }
   await generatedRequestCode({
     requestFileCodeSort,
-    directoryPath: path.join(generatedCodeFileUrl, 'request', requestSpanceName),
+    directoryPath: path.join(generatedCodeFileUrl, requestSpanceName),
     importStr,
     nameSpance: tsNameSpance
   });
