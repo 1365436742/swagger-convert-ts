@@ -27,7 +27,7 @@ export function typeNameGenerated(
 
 export function replaceRef($ref: string) {
   const schemaSplit = $ref.split('/');
-  return schemaSplit[schemaSplit.length - 1];
+  return "#/" + schemaSplit[schemaSplit.length - 1];
 }
 
 export function replaceAllRefs(schema: JSONSchema) {
