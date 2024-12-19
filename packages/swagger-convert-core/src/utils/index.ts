@@ -113,53 +113,88 @@ export function transformedString(originalString: string) {
   }
   return { transformedString, variables };
 }
-
-/**
- * 解决$ref转为对应的类型
+/** 
+ * 删除schema私有变量 携带下划线的变量
  */
-export function resolveRef(schemas: JSONSchema) {
-  const cloneSchemas = cloneDeep(schemas)
-  const transformRef = (schema: JSONSchema) => {
-    if (typeof schema !== 'object' || schema === null) return schema;
-    // 检查当前对象是否有 $ref 属性
-    if (schema['$ref']) {
-      schema['$ref1'] = cloneSchemas[schema['$ref']];
-    }
-    // 递归遍历子对象
-    for (const key in schema) {
-      const value = schema[key];
-      if (typeof value === 'object') {
-        schema[key] = transformRef(value);
-      }
-    }
-    return schema
-  }
-  for (const key in cloneSchemas) {
-    const schema = cloneSchemas[key];
-    cloneSchemas[key] = transformRef(schema);
+const removeUnderscoreProperties = (schema: JSONSchema): JSONSchema | null => {
+  if (typeof schema !== 'object' || schema === null) {
+    return schema;
   }
 
-  const deletRefs = (schema: JSONSchema) => {
-    if (typeof schema !== 'object' || schema === null) return schema;
-    // 检查当前对象是否有 $ref 属性
-    if (schema['$ref']) {
-      delete schema['$ref'];
-      schema = {
-        ...schema['$ref1']
-      };
+  if (Array.isArray(schema)) {
+    return schema
+      .map((item) => removeUnderscoreProperties(item))
+      .filter((item) => {
+        // 过滤掉空对象和只包含 type: "object" 的对象
+        if (typeof item === 'object' && item !== null) {
+          const keys = Object.keys(item);
+          if (keys.length === 0) return false;
+          if (keys.length === 1 && keys[0] === 'type' && item.type === 'object')
+            return false;
+        }
+        return item !== null;
+      });
+  }
+
+  // 如果对象只包含 _type 属性或只包含 type: "object"，则移除整个对象
+  const keys = Object.keys(schema);
+  if (keys.length === 0) return null;
+  if (keys.length === 1 && keys[0] === '_type') return null;
+  if (keys.length === 1 && keys[0] === 'type' && schema.type === 'object')
+    return null;
+
+  const result: JSONSchema = {};
+  for (const [key, value] of Object.entries(schema)) {
+    // 跳过以下划线开头的属性
+    if (key.startsWith('_')) {
+      continue;
     }
-    // 递归遍历子对象
-    for (const key in schema) {
-      const value = schema[key];
-      if (typeof value === 'object') {
-        schema[key] = deletRefs(value);
+
+    if (key === 'allOf' && Array.isArray(value)) {
+      // 处理 allOf 数组
+      const filteredAllOf = value
+        .map((item) => removeUnderscoreProperties(item))
+        .filter((item) => {
+          // 过滤掉空对象和只包含 type: "object" 的对象
+          if (typeof item === 'object' && item !== null) {
+            const keys = Object.keys(item);
+            if (keys.length === 0) return false;
+            if (
+              keys.length === 1 &&
+              keys[0] === 'type' &&
+              item.type === 'object'
+            )
+              return false;
+          }
+          return item !== null;
+        });
+
+      if (filteredAllOf.length > 0) {
+        result[key] = filteredAllOf;
+      }
+    } else if (key === 'properties' && typeof value === 'object') {
+      // 处理 properties 对象
+      const filteredProperties: Record<string, any> = {};
+      for (const [propKey, propValue] of Object.entries(value)) {
+        if (!propKey.startsWith('_')) {
+          const processed = removeUnderscoreProperties(propValue as JSONSchema);
+          if (processed !== null) {
+            filteredProperties[propKey] = processed;
+          }
+        }
+      }
+      if (Object.keys(filteredProperties).length > 0) {
+        result[key] = filteredProperties;
+      }
+    } else {
+      // 递归处理其他对象
+      const processed = removeUnderscoreProperties(value);
+      if (processed !== null) {
+        result[key] = processed;
       }
     }
-    return schema
   }
-  for (const key in cloneSchemas) {
-    const schema = cloneSchemas[key];
-    cloneSchemas[key] = deletRefs(schema);
-  }
-  return cloneSchemas
-}
+
+  // 如果处理后的对象为空，返回 null
+  return Object.keys(result).length > 0 ? result : null;
+};
