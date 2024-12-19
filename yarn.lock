@@ -3161,7 +3161,6 @@
     "json-schema-to-typescript" "^15.0.3"
     "lodash-es" "^4.17.21"
     "prettier" "^3.4.1"
-    "quicktype-core" "^23.0.170"
     "typescript" "^5.7.2"
 
 "jest-changed-files@^29.7.0":
@@ -4850,26 +4849,6 @@
   "integrity" "sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g=="
   "resolved" "https://registry.npmmirror.com/quick-lru/-/quick-lru-4.0.1.tgz"
   "version" "4.0.1"
-
-"quicktype-core@^23.0.170":
-  "integrity" "sha512-ZsjveG0yJUIijUx4yQshzyQ5EAXKbFSBTQJHnJ+KoSZVxcS+m3GcmDpzrdUIRYMhgLaF11ZGvLSYi5U0xcwemw=="
-  "resolved" "https://registry.npmmirror.com/quicktype-core/-/quicktype-core-23.0.170.tgz"
-  "version" "23.0.170"
-  dependencies:
-    "@glideapps/ts-necessities" "2.2.3"
-    "browser-or-node" "^3.0.0"
-    "collection-utils" "^1.0.1"
-    "cross-fetch" "^4.0.0"
-    "is-url" "^1.2.4"
-    "js-base64" "^3.7.7"
-    "lodash" "^4.17.21"
-    "pako" "^1.0.6"
-    "pluralize" "^8.0.0"
-    "readable-stream" "4.5.2"
-    "unicode-properties" "^1.4.1"
-    "urijs" "^1.19.1"
-    "wordwrap" "^1.0.0"
-    "yaml" "^2.4.1"
 
 "react-is@^18.0.0":
   "integrity" "sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg=="
