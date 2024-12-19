@@ -9,7 +9,8 @@
     "dev": "tsc -w",
     "clean": "del-cli dist",
     "build": "npm run clean && tsc && node copTemplateFiles.js",
-    "test": "npm run build && node --no-warnings --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
+    "test:build": "npm run build && node --no-warnings --experimental-vm-modules ../../node_modules/jest/bin/jest.js",
+    "test": "node --no-warnings --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
   },
   "keywords": [],
   "author": "",

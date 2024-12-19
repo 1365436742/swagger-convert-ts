@@ -1,0 +1,50 @@
+{
+    "DeleteItemBody": {
+        "title": "DeleteItemBody",
+        "type": "object",
+        "properties": {
+            "listItems": {
+                "type": "array",
+                "description": "删除列表内容",
+                "items": {
+                    "allOf": [
+                        {
+                            "$ref": "#/Item"
+                        }
+                    ]
+                }
+            },
+            "name": {
+                "type": "string"
+            },
+            "text": {
+                "type": "string"
+            }
+        },
+        "additionalProperties": false
+    },
+    "Item": {
+        "title": "Item",
+        "type": "object",
+        "properties": {
+            "number": {
+                "type": "integer",
+                "format": "int32"
+            },
+            "text": {
+                "type": "string"
+            }
+        },
+        "additionalProperties": false
+    },
+    "DeleteRequestBodyListItemsUsingDELETEResponses": {
+        "type": "array",
+        "items": {
+            "allOf": [
+                {
+                    "$ref": "#/DeleteItemBody"
+                }
+            ]
+        }
+    }
+}

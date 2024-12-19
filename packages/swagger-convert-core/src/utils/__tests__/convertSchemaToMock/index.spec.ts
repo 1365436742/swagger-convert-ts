@@ -8,9 +8,7 @@ describe("convertSchemaToMock测试用例", () => {
     jsonList.forEach(({ fileName, value, expectValue }) => {
         it(`解析${fileName}文件，测试用例`, async () => {
             const convertData = convertSchemaToMock(value);
-            console.log(JSON.stringify(expectValue),"3522222ss")
-            console.log(JSON.stringify(convertData))
-            expect(convertData).toBe(expectValue)
+            expect(JSON.stringify(convertData)).toBe(JSON.stringify(expectValue))
         });
     })
 
