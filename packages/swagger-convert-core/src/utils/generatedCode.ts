@@ -10,7 +10,8 @@ import $RefParser from "@apidevtools/json-schema-ref-parser";
 export const generatedTsTypeCode = async (props: GeneratedTsTypeCodeProps) => {
   const { definitionSchemaJson, namespace = 'IApi' } = props
   const resolvedSchema = await $RefParser.dereference(removeUnderscoreProperties(schemas))
-  let tsCode = ""
+  let tsCode = "";
+  const processTypeScript = processTsCode();
   for (const [name, schema] of Object.entries(resolvedSchema)) {
     const curCode = await compile(schema, name);
     tsCode += curCode
