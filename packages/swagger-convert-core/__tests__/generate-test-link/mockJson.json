@@ -1,0 +1,222 @@
+{
+  "delete-request": [
+    {
+      "url": "/deleteRequest/getBody",
+      "method": "delete",
+      "responseMockjs": {
+        "array|1-10": [
+          {
+            "listItems": {
+              "array|1-10": [
+                {
+                  "number": "@integer(1, 100)",
+                  "text": "@string"
+                }
+              ]
+            },
+            "name": "@string",
+            "text": "@string"
+          }
+        ]
+      }
+    },
+    {
+      "url": "/deleteRequest/search",
+      "method": "delete",
+      "responseMockjs": {
+        "array|1-10": [
+          {
+            "number": "@integer(1, 100)",
+            "text": "@string"
+          }
+        ]
+      }
+    },
+    {
+      "url": "/deleteRequest/users/{id}",
+      "method": "delete",
+      "responseMockjs": "@string"
+    },
+    {
+      "url": "/deleteRequest/users/{id}/{spanceId}",
+      "method": "delete",
+      "responseMockjs": "@string"
+    }
+  ],
+  "get-request": [
+    {
+      "url": "/getRequest/getBody",
+      "method": "get",
+      "responseMockjs": {
+        "array|1-10": [
+          {
+            "listItems": {
+              "array|1-10": [
+                {
+                  "number": "@integer(1, 100)",
+                  "text": "@string"
+                }
+              ]
+            },
+            "name": "@string",
+            "text": "@string"
+          }
+        ]
+      }
+    },
+    {
+      "url": "/getRequest/search",
+      "method": "get",
+      "responseMockjs": {
+        "array|1-10": [
+          {
+            "number": "@integer(1, 100)",
+            "text": "@string"
+          }
+        ]
+      }
+    },
+    {
+      "url": "/getRequest/users/{id}",
+      "method": "get",
+      "responseMockjs": "@string"
+    },
+    {
+      "url": "/getRequest/users/{id}/{spanceId}",
+      "method": "get",
+      "responseMockjs": "@string"
+    }
+  ],
+  "put-request": [
+    {
+      "url": "/getRequest/getBody",
+      "method": "put",
+      "responseMockjs": {
+        "array|1-10": [
+          {
+            "listItems": {
+              "array|1-10": [
+                {
+                  "number": "@integer(1, 100)",
+                  "text": "@string"
+                }
+              ]
+            },
+            "name": "@string",
+            "text": "@string"
+          }
+        ]
+      }
+    },
+    {
+      "url": "/getRequest/search",
+      "method": "put",
+      "responseMockjs": {
+        "array|1-10": [
+          {
+            "number": "@integer(1, 100)",
+            "text": "@string"
+          }
+        ]
+      }
+    },
+    {
+      "url": "/getRequest/users/{id}",
+      "method": "put",
+      "responseMockjs": "@string"
+    },
+    {
+      "url": "/getRequest/users/{id}/{spanceId}",
+      "method": "put",
+      "responseMockjs": "@string"
+    }
+  ],
+  "post-request": [
+    {
+      "url": "/getRequest/getBody",
+      "method": "post",
+      "responseMockjs": {
+        "array|1-10": [
+          {
+            "listItems": {
+              "array|1-10": [
+                {
+                  "number": "@integer(1, 100)",
+                  "text": "@string"
+                }
+              ]
+            },
+            "name": "@string",
+            "text": "@string"
+          }
+        ]
+      }
+    },
+    {
+      "url": "/getRequest/search",
+      "method": "post",
+      "responseMockjs": {
+        "array|1-10": [
+          {
+            "number": "@integer(1, 100)",
+            "text": "@string"
+          }
+        ]
+      }
+    },
+    {
+      "url": "/getRequest/users/{id}",
+      "method": "post",
+      "responseMockjs": "@string"
+    },
+    {
+      "url": "/getRequest/users/{id}/{spanceId}",
+      "method": "post",
+      "responseMockjs": "@string"
+    }
+  ],
+  "patch-request": [
+    {
+      "url": "/getRequest/getBody",
+      "method": "patch",
+      "responseMockjs": {
+        "array|1-10": [
+          {
+            "listItems": {
+              "array|1-10": [
+                {
+                  "number": "@integer(1, 100)",
+                  "text": "@string"
+                }
+              ]
+            },
+            "name": "@string",
+            "text": "@string"
+          }
+        ]
+      }
+    },
+    {
+      "url": "/getRequest/search",
+      "method": "patch",
+      "responseMockjs": {
+        "array|1-10": [
+          {
+            "number": "@integer(1, 100)",
+            "text": "@string"
+          }
+        ]
+      }
+    },
+    {
+      "url": "/getRequest/users/{id}",
+      "method": "patch",
+      "responseMockjs": "@string"
+    },
+    {
+      "url": "/getRequest/users/{id}/{spanceId}",
+      "method": "patch",
+      "responseMockjs": "@string"
+    }
+  ]
+}

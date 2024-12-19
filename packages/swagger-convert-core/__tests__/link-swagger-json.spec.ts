@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { generatedFileCode, jsonSchemaToTsCode, parseSwagger } from '../dist/index'
+import { generatedFileCode, generatedMockJson, jsonSchemaToTsCode, parseSwagger } from '../dist/index'
 import { JSONSchema, RequestFileCodeSort } from '../dist/types';
 const config = {
     /** swagger地址。支持https|http、本地文件目录 */
@@ -19,6 +19,17 @@ describe("链接生成测试", () => {
         definitionSchemaJson = res.definitionSchemaJson!;
         requestFileCodeSort = res.requestFileCodeSort!;
     })
+    it('mock schema Json生成', async () => {
+        const mockJson = generatedMockJson({
+            definitionSchemaJson,
+            requestFileCodeSort
+        })
+        fs.writeFileSync(
+            path.join(generatedCodeFileUrl, 'mockJson.json'),
+            JSON.stringify(mockJson, null, 2)
+        );
+        expect(mockJson).toBeDefined();
+    });
     it('debug文件生成', async () => {
         fs.writeFileSync(
             path.join(generatedCodeFileUrl, 'output.json'),
