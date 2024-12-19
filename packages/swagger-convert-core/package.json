@@ -1,7 +1,10 @@
 {
-  "name": "java-convert-ts",
+  "name": "swagger-convert-core",
   "version": "1.0.0",
-  "main": "index.cjs.js",
+  "main": "index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "tsc -w",
     "clean": "del-cli dist",
