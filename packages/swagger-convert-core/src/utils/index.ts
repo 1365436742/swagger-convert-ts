@@ -1,5 +1,6 @@
 import { JSONSchema } from '@/types';
 import fs from 'fs';
+import { cloneDeep } from 'lodash';
 import path from 'path';
 export function capitalizeFirstLetter(str: string) {
   if (!str) return ''; // 处理空字符串或非字符串输入
@@ -31,7 +32,7 @@ export function replaceRef($ref: string) {
 
 export function replaceAllRefs(schema: JSONSchema) {
   // 使用递归遍历对象
-  function findRefs(obj: JSONSchema, key?: string) {
+  function findRefs(obj: JSONSchema) {
     if (typeof obj !== 'object' || obj === null) return obj;
     // 检查当前对象是否有 $ref 属性
     if (obj['$ref']) {
@@ -41,22 +42,13 @@ export function replaceAllRefs(schema: JSONSchema) {
     for (const key in obj) {
       const value = obj[key];
       if (typeof value === 'object') {
-        obj[key] = findRefs(value, key);
+        obj[key] = findRefs(value);
       }
     }
     if (obj['$ref'] && !obj['properties']) {
       obj = {
         allOf: [
           { $ref: obj['$ref'] },
-          {
-            type: 'object',
-            properties: {
-              _type: {
-                type: 'string',
-                enum: [key],
-              },
-            },
-          },
         ],
       };
     }
@@ -120,4 +112,54 @@ export function transformedString(originalString: string) {
     );
   }
   return { transformedString, variables };
+}
+
+/**
+ * 解决$ref转为对应的类型
+ */
+export function resolveRef(schemas: JSONSchema) {
+  const cloneSchemas = cloneDeep(schemas)
+  const transformRef = (schema: JSONSchema) => {
+    if (typeof schema !== 'object' || schema === null) return schema;
+    // 检查当前对象是否有 $ref 属性
+    if (schema['$ref']) {
+      schema['$ref1'] = cloneSchemas[schema['$ref']];
+    }
+    // 递归遍历子对象
+    for (const key in schema) {
+      const value = schema[key];
+      if (typeof value === 'object') {
+        schema[key] = transformRef(value);
+      }
+    }
+    return schema
+  }
+  for (const key in cloneSchemas) {
+    const schema = cloneSchemas[key];
+    cloneSchemas[key] = transformRef(schema);
+  }
+
+  const deletRefs = (schema: JSONSchema) => {
+    if (typeof schema !== 'object' || schema === null) return schema;
+    // 检查当前对象是否有 $ref 属性
+    if (schema['$ref']) {
+      delete schema['$ref'];
+      schema = {
+        ...schema['$ref1']
+      };
+    }
+    // 递归遍历子对象
+    for (const key in schema) {
+      const value = schema[key];
+      if (typeof value === 'object') {
+        schema[key] = deletRefs(value);
+      }
+    }
+    return schema
+  }
+  for (const key in cloneSchemas) {
+    const schema = cloneSchemas[key];
+    cloneSchemas[key] = deletRefs(schema);
+  }
+  return cloneSchemas
 }

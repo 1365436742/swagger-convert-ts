@@ -1,15 +1,12 @@
 import fs from 'fs';
 import path from 'path';
-import { schemaAddSource } from './utils/schemaAddSource';
 import {
-  compensationProcessingTsCode,
   generatedRequestCode,
   generatedTsTypeCode,
 } from './utils/generatedCode';
 import { JSONSchema, MockJsonInfo, RequestFileCodeSort, SwaggerOpenApiType } from './types';
-import { InputData } from 'quicktype-core';
 import { swaggerJsonConvert, SwaggerJsonConvertReturn } from './utils/swaggerJsonConvert';
-import { copyFolderSync } from './utils';
+import { copyFolderSync, resolveRef } from './utils';
 import axios from 'axios';
 import { convertSchemaToMock } from './utils/convertSchemaToMock';
 /**
@@ -39,15 +36,9 @@ export const jsonSchemaToTsCode = async ({
   definitionSchemaJson: JSONSchema,
   tsNameSpance?: string
 }) => {
-  const inputData = new InputData();
-  const schemaInput = await schemaAddSource({
-    schemas: definitionSchemaJson,
-  });
-  inputData.addInput(schemaInput);
-  const compensationTsCode = await compensationProcessingTsCode(definitionSchemaJson);
+  const schemas = await resolveRef(definitionSchemaJson);
   const code = await generatedTsTypeCode({
-    inputData,
-    compensationTsCode,
+    definitionSchemaJson: schemas,
     namespace: tsNameSpance
   });
   return code

@@ -1,64 +1,30 @@
-import { InputData, quicktype } from 'quicktype-core';
 import { format } from 'prettier';
-import { GeneratedRequestCodeProps, GeneratedTsTypeCodeProps, JSONSchema, RequestCodeProps, RequestFileCodeSort } from '@/types';
+import { GeneratedRequestCodeProps, GeneratedTsTypeCodeProps, JSONSchema, RequestCodeProps } from '@/types';
 import path from 'path';
 import fs from 'fs';
-import { transformedString } from '.';
+import { resolveRef, transformedString } from '.';
 import { compile } from 'json-schema-to-typescript';
 
-/**
- * 补偿处理ts未转ts的问题
- * "additionalProperties": {
- *    "type": "integer",
- *    "format": "int32"
- * }
- */
-export async function compensationProcessingTsCode(
-  definitionSchemaJson: Record<string, JSONSchema>
-) {
-  /** 补偿的tscode。有些类型无法直接通过quicktype-core解析成ts */
-  let compensationTsCode = '';
-  for (const key in definitionSchemaJson) {
-    const element = definitionSchemaJson[key];
-    if (
-      !element.properties &&
-      typeof element.additionalProperties === 'object'
-    ) {
-      try {
-        const tsCode = await compile(element, key);
-        compensationTsCode += tsCode;
-      } catch (error) {
-        console.error('补偿解析失败');
-      }
-    }
-  }
-  return compensationTsCode;
-}
+
 
 export const generatedTsTypeCode = async (props: GeneratedTsTypeCodeProps) => {
-  const { inputData, compensationTsCode = '', namespace = 'IApi' } = props
-  // 生成 TypeScript 代码
-  const { lines } = await quicktype({
-    inputData,
-    rendererOptions: {
-      'just-types': 'true', // 设置只生成类型
-      'acronym-style': 'original', // 解决Id变成了ID
-      // 'prefer-unions': 'false',
-      'explicit-unions': 'true',
-      // 'prefer-types': 'true',
-    },
-    lang: 'typescript',
-  });
-  const tsCode = lines.join('\n');
+  const { definitionSchemaJson, namespace = 'IApi' } = props
+  const schemas = await resolveRef(definitionSchemaJson);
+  let tsCode = ""
+  for (const [name, schema] of Object.entries(schemas)) {
+    const curCode = await compile(schema, name);
+    tsCode += curCode
+  }
   // 使用 Prettier 格式化代码
   const formattedCode = await format(
-    `namespace ${namespace}{${tsCode + compensationTsCode}}`,
+    `namespace ${namespace}{${tsCode}}`,
     {
       parser: 'typescript',
     }
   );
   return formattedCode;
 };
+
 const typeFix = (name: string, nameSpance: string) => {
   if (name) return `${nameSpance}.${name}`;
   return 'any';

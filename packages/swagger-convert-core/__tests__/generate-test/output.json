@@ -10,17 +10,6 @@
           "allOf": [
             {
               "$ref": "Item"
-            },
-            {
-              "type": "object",
-              "properties": {
-                "_type": {
-                  "type": "string",
-                  "enum": [
-                    "items"
-                  ]
-                }
-              }
             }
           ]
         }
@@ -58,17 +47,6 @@
           "allOf": [
             {
               "$ref": "Item"
-            },
-            {
-              "type": "object",
-              "properties": {
-                "_type": {
-                  "type": "string",
-                  "enum": [
-                    "items"
-                  ]
-                }
-              }
             }
           ]
         }
@@ -101,17 +79,6 @@
     "allOf": [
       {
         "$ref": "DeleteItemBody"
-      },
-      {
-        "type": "object",
-        "properties": {
-          "_type": {
-            "type": "string",
-            "enum": [
-              "DeleteRequestBodyListItemsUsingDELETEBody"
-            ]
-          }
-        }
       }
     ]
   },
@@ -121,17 +88,6 @@
       "allOf": [
         {
           "$ref": "DeleteItemBody"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "_type": {
-              "type": "string",
-              "enum": [
-                "items"
-              ]
-            }
-          }
         }
       ]
     }
@@ -164,17 +120,6 @@
       "allOf": [
         {
           "$ref": "Item"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "_type": {
-              "type": "string",
-              "enum": [
-                "items"
-              ]
-            }
-          }
         }
       ]
     }
@@ -232,17 +177,6 @@
     "allOf": [
       {
         "$ref": "ItemBody"
-      },
-      {
-        "type": "object",
-        "properties": {
-          "_type": {
-            "type": "string",
-            "enum": [
-              "GetRequestBodyListItemsUsingGETBody"
-            ]
-          }
-        }
       }
     ]
   },
@@ -252,17 +186,6 @@
       "allOf": [
         {
           "$ref": "ItemBody"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "_type": {
-              "type": "string",
-              "enum": [
-                "items"
-              ]
-            }
-          }
         }
       ]
     }
@@ -284,17 +207,6 @@
     "allOf": [
       {
         "$ref": "ItemBody"
-      },
-      {
-        "type": "object",
-        "properties": {
-          "_type": {
-            "type": "string",
-            "enum": [
-              "PutRequestBodyListItemsUsingPUTBody"
-            ]
-          }
-        }
       }
     ]
   },
@@ -304,17 +216,6 @@
       "allOf": [
         {
           "$ref": "ItemBody"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "_type": {
-              "type": "string",
-              "enum": [
-                "items"
-              ]
-            }
-          }
         }
       ]
     }
@@ -336,17 +237,6 @@
     "allOf": [
       {
         "$ref": "ItemBody"
-      },
-      {
-        "type": "object",
-        "properties": {
-          "_type": {
-            "type": "string",
-            "enum": [
-              "PostRequestBodyListItemsUsingPOSTBody"
-            ]
-          }
-        }
       }
     ]
   },
@@ -356,17 +246,6 @@
       "allOf": [
         {
           "$ref": "ItemBody"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "_type": {
-              "type": "string",
-              "enum": [
-                "items"
-              ]
-            }
-          }
         }
       ]
     }
@@ -388,17 +267,6 @@
     "allOf": [
       {
         "$ref": "ItemBody"
-      },
-      {
-        "type": "object",
-        "properties": {
-          "_type": {
-            "type": "string",
-            "enum": [
-              "PatchRequestBodyListItemsUsingPATCHBody"
-            ]
-          }
-        }
       }
     ]
   },
@@ -408,17 +276,6 @@
       "allOf": [
         {
           "$ref": "ItemBody"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "_type": {
-              "type": "string",
-              "enum": [
-                "items"
-              ]
-            }
-          }
         }
       ]
     }
@@ -451,17 +308,6 @@
       "allOf": [
         {
           "$ref": "Item"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "_type": {
-              "type": "string",
-              "enum": [
-                "items"
-              ]
-            }
-          }
         }
       ]
     }
@@ -494,17 +340,6 @@
       "allOf": [
         {
           "$ref": "Item"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "_type": {
-              "type": "string",
-              "enum": [
-                "items"
-              ]
-            }
-          }
         }
       ]
     }
@@ -537,17 +372,6 @@
       "allOf": [
         {
           "$ref": "Item"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "_type": {
-              "type": "string",
-              "enum": [
-                "items"
-              ]
-            }
-          }
         }
       ]
     }
@@ -580,17 +404,6 @@
       "allOf": [
         {
           "$ref": "Item"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "_type": {
-              "type": "string",
-              "enum": [
-                "items"
-              ]
-            }
-          }
         }
       ]
     }

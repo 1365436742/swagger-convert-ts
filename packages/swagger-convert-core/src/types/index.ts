@@ -1,5 +1,3 @@
-import { InputData } from "quicktype-core";
-
 export type JSONSchema = Record<string, any>
 
 export interface SwaggerOpenApiType {
@@ -63,9 +61,7 @@ export interface GeneratedRequestCodeProps {
 }
 
 export interface GeneratedTsTypeCodeProps {
-    inputData: InputData,
-    /** 有一些无法解析的ts需要特殊补偿 */
-    compensationTsCode: string,
+    definitionSchemaJson: JSONSchema,
     /** ts的命名空间 */
     namespace?: string
 }

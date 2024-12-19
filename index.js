@@ -1,62 +1,65 @@
 function mergeAllOf(schemas, allOfArray) {
     return allOfArray.reduce((acc, item) => {
         if (item?.$ref) {
-            const refSchema = schemas[item?.$ref];
-            return { ...acc, ...refSchema, ...item };
+            const refSchema = schemas[item?.$ref]
+            return { ...acc, ...refSchema, ...item }
         }
-        return { ...acc, ...item };
-    }, {});
-}
-
-const jsonSchemaTypeMapMockjs = (property) => {
-    switch (property.type) {
-        case 'integer':
-            return '@integer(1, 100)';
-        case 'string':
-            if (property.format === 'email') {
-                return '@EMAIL';
-            } else if (property.enum) {
-                return property.enum[0];  // Choose first enum value as example
-            } else {
-                return '@string';
-            }
-        case 'boolean':
-            return '@boolean';
-        case 'array':
-            return {
-                "array|1-10": [
-                    {}
-                ]
-            };
-        default:
-            return '@string';
-    }
+        return { ...acc, ...item }
+    }, {})
 }
 
 function convertSchemaToMock(schemas) {
     const mock = {};
-    const convertSchema = (schema, name) => {
-        const { properties, allOf, $ref } = schema;
+    const jsonSchemaTypeMapMockjs = (property) => {
+        switch (property.type) {
+            case 'integer':
+                return '@integer(1, 100)'
+            case 'string':
+                if (property.format === 'email') {
+                    return '@EMAIL'
+                } else if (property.enum) {
+                    return property.enum[0]  // Choose first enum value as example
+                } else {
+                    return '@string'
+                }
+            case 'boolean':
+                return '@boolean'
+            default:
+                return '@string'
+        }
+    }
+    const convertSchema = (schema) => {
+        const { properties, allOf, $ref, type } = schema
         let currentMockInfo = {}
         if (properties) {
             for (const key in properties) {
-                const property = properties[key];
-                currentMockInfo[key] = jsonSchemaTypeMapMockjs(property)
+                const property = properties[key]
+                currentMockInfo[key] = convertSchema(property)
             }
         } else if ($ref) {
             currentMockInfo = convertSchema(schemas[$ref])
         } else if (allOf?.length > 0) {
             allOf.map(item => {
-                console.log(schema, name, convertSchema(item), "xxxx")
-                currentMockInfo = convertSchema(item)
+                currentMockInfo = {
+                    ...currentMockInfo,
+                    ...convertSchema(item),
+                }
             })
+        } else if (type === "array" && schema.items) {
+            currentMockInfo = {
+                "array|1-10": [
+                    convertSchema(schema.items)
+                ]
+            }
+        } else {
+            currentMockInfo = jsonSchemaTypeMapMockjs(schema)
         }
         return currentMockInfo
     }
     for (const [name, schema] of Object.entries(schemas)) {
         mock[name] = convertSchema(schema, name)
     }
-    // return mock
+    return mock
 }
 
 console.log(convertSchemaToMock({
