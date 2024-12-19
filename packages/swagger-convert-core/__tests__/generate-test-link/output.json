@@ -9,7 +9,7 @@
         "items": {
           "allOf": [
             {
-              "$ref": "Item"
+              "$ref": "#/Item"
             }
           ]
         }
@@ -46,7 +46,7 @@
         "items": {
           "allOf": [
             {
-              "$ref": "Item"
+              "$ref": "#/Item"
             }
           ]
         }
@@ -78,7 +78,7 @@
   "DeleteRequestBodyListItemsUsingDELETEBody": {
     "allOf": [
       {
-        "$ref": "DeleteItemBody"
+        "$ref": "#/DeleteItemBody"
       }
     ]
   },
@@ -87,7 +87,7 @@
     "items": {
       "allOf": [
         {
-          "$ref": "DeleteItemBody"
+          "$ref": "#/DeleteItemBody"
         }
       ]
     }
@@ -119,7 +119,7 @@
     "items": {
       "allOf": [
         {
-          "$ref": "Item"
+          "$ref": "#/Item"
         }
       ]
     }
@@ -176,7 +176,7 @@
   "GetRequestBodyListItemsUsingGETBody": {
     "allOf": [
       {
-        "$ref": "ItemBody"
+        "$ref": "#/ItemBody"
       }
     ]
   },
@@ -185,7 +185,7 @@
     "items": {
       "allOf": [
         {
-          "$ref": "ItemBody"
+          "$ref": "#/ItemBody"
         }
       ]
     }
@@ -206,7 +206,7 @@
   "PutRequestBodyListItemsUsingPUTBody": {
     "allOf": [
       {
-        "$ref": "ItemBody"
+        "$ref": "#/ItemBody"
       }
     ]
   },
@@ -215,7 +215,7 @@
     "items": {
       "allOf": [
         {
-          "$ref": "ItemBody"
+          "$ref": "#/ItemBody"
         }
       ]
     }
@@ -236,7 +236,7 @@
   "PostRequestBodyListItemsUsingPOSTBody": {
     "allOf": [
       {
-        "$ref": "ItemBody"
+        "$ref": "#/ItemBody"
       }
     ]
   },
@@ -245,7 +245,7 @@
     "items": {
       "allOf": [
         {
-          "$ref": "ItemBody"
+          "$ref": "#/ItemBody"
         }
       ]
     }
@@ -266,7 +266,7 @@
   "PatchRequestBodyListItemsUsingPATCHBody": {
     "allOf": [
       {
-        "$ref": "ItemBody"
+        "$ref": "#/ItemBody"
       }
     ]
   },
@@ -275,7 +275,7 @@
     "items": {
       "allOf": [
         {
-          "$ref": "ItemBody"
+          "$ref": "#/ItemBody"
         }
       ]
     }
@@ -307,7 +307,7 @@
     "items": {
       "allOf": [
         {
-          "$ref": "Item"
+          "$ref": "#/Item"
         }
       ]
     }
@@ -339,7 +339,7 @@
     "items": {
       "allOf": [
         {
-          "$ref": "Item"
+          "$ref": "#/Item"
         }
       ]
     }
@@ -371,7 +371,7 @@
     "items": {
       "allOf": [
         {
-          "$ref": "Item"
+          "$ref": "#/Item"
         }
       ]
     }
@@ -403,7 +403,7 @@
     "items": {
       "allOf": [
         {
-          "$ref": "Item"
+          "$ref": "#/Item"
         }
       ]
     }

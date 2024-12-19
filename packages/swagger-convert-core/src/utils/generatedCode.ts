@@ -1,20 +1,23 @@
 import { format } from 'prettier';
-import { GeneratedRequestCodeProps, GeneratedTsTypeCodeProps, JSONSchema, RequestCodeProps } from '@/types';
+import { GeneratedRequestCodeProps, GeneratedTsTypeCodeProps, RequestCodeProps } from '@/types';
 import path from 'path';
 import fs from 'fs';
-import { removeUnderscoreProperties, transformedString } from '.';
+import { transformedString } from '.';
 import { compile } from 'json-schema-to-typescript';
 import $RefParser from "@apidevtools/json-schema-ref-parser";
+import { processTsCode } from './processTsCode';
 
 
 export const generatedTsTypeCode = async (props: GeneratedTsTypeCodeProps) => {
   const { definitionSchemaJson, namespace = 'IApi' } = props
-  const resolvedSchema = await $RefParser.dereference(removeUnderscoreProperties(schemas))
+  const resolvedSchema = await $RefParser.dereference(definitionSchemaJson)
   let tsCode = "";
   const processTypeScript = processTsCode();
   for (const [name, schema] of Object.entries(resolvedSchema)) {
-    const curCode = await compile(schema, name);
-    tsCode += curCode
+    const curCode = await compile(schema, name, {
+      bannerComment: '',
+    });
+    tsCode += processTypeScript(curCode) + '\n'
   }
   // 使用 Prettier 格式化代码
   const formattedCode = await format(

@@ -6,7 +6,7 @@ import {
 } from './utils/generatedCode';
 import { JSONSchema, MockJsonInfo, RequestFileCodeSort, SwaggerOpenApiType } from './types';
 import { swaggerJsonConvert, SwaggerJsonConvertReturn } from './utils/swaggerJsonConvert';
-import { copyFolderSync, resolveRef } from './utils';
+import { copyFolderSync } from './utils';
 import axios from 'axios';
 import { convertSchemaToMock } from './utils/convertSchemaToMock';
 /**
@@ -36,9 +36,8 @@ export const jsonSchemaToTsCode = async ({
   definitionSchemaJson: JSONSchema,
   tsNameSpance?: string
 }) => {
-  const schemas = await resolveRef(definitionSchemaJson);
   const code = await generatedTsTypeCode({
-    definitionSchemaJson: schemas,
+    definitionSchemaJson: definitionSchemaJson,
     namespace: tsNameSpance
   });
   return code
@@ -83,16 +82,16 @@ export const generatedMockJson = ({
   definitionSchemaJson: JSONSchema
 }) => {
   const mockjsJson = convertSchemaToMock(definitionSchemaJson);
-  // const mockjsInfo: MockJsonInfo = {};
-  // for (const key in requestFileCodeSort) {
-  //   const element = requestFileCodeSort[key];
-  //   mockjsInfo[key] = element.map(item => {
-  //     return {
-  //       url: item.url,
-  //       method: item.method,
-  //       responseMockjs: mockjsJson[item.responseTypeName] || {}
-  //     }
-  //   })
-  // }
-  return mockjsJson;
+  const mockjsInfo: MockJsonInfo = {};
+  for (const key in requestFileCodeSort) {
+    const element = requestFileCodeSort[key];
+    mockjsInfo[key] = element.map(item => {
+      return {
+        url: item.url,
+        method: item.method,
+        responseMockjs: mockjsJson[item.responseTypeName] || {}
+      }
+    })
+  }
+  return mockjsInfo;
 }

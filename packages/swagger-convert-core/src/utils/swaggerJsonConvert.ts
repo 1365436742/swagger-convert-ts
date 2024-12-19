@@ -4,7 +4,7 @@ import {
   RequestFileCodeSort,
   SwaggerOpenApiType,
 } from '@/types';
-import { replaceAllRefs, toCamelCase, typeNameGenerated } from '.';
+import { removeUnderscoreProperties, replaceAllRefs, toCamelCase, typeNameGenerated } from '.';
 
 export interface SwaggerJsonConvertReturn {
   definitionSchemaJson?: JSONSchema
@@ -83,7 +83,7 @@ export function swaggerJsonConvert(swaggerOpenApi: SwaggerOpenApiType): SwaggerJ
     }
   }
   return {
-    definitionSchemaJson: replaceAllRefs(definitionSchemaJson),
+    definitionSchemaJson: removeUnderscoreProperties(replaceAllRefs(definitionSchemaJson))!,
     requestFileCodeSort,
   };
 }

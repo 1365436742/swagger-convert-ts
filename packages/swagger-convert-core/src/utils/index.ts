@@ -116,11 +116,10 @@ export function transformedString(originalString: string) {
 /** 
  * 删除schema私有变量 携带下划线的变量
  */
-const removeUnderscoreProperties = (schema: JSONSchema): JSONSchema | null => {
+export const removeUnderscoreProperties = (schema: JSONSchema): JSONSchema | null => {
   if (typeof schema !== 'object' || schema === null) {
     return schema;
   }
-
   if (Array.isArray(schema)) {
     return schema
       .map((item) => removeUnderscoreProperties(item))
