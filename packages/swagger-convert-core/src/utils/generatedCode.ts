@@ -21,7 +21,8 @@ export const generatedTsTypeCode = async (props: GeneratedTsTypeCodeProps) => {
   }
   // 使用 Prettier 格式化代码
   const formattedCode = await format(
-    `namespace ${namespace}{${tsCode}}`,
+    `/* 代码为自动生成、请勿手动修改 */\n\n
+    namespace ${namespace}{${tsCode}}`,
     {
       parser: 'typescript',
     }
