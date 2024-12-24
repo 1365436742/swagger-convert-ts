@@ -1,6 +1,6 @@
 import { Button, Flex, Input, Popover } from 'antd';
 import React from 'react';
-import FormItemMoncaoEditor from '../../../../components/FormItemMoncaoEditor';
+import FormItemMoncaoEditor from '../FormItemMoncaoEditor';
 interface ParseSwaggerProps {
   value?: string;
   onChange?: () => void;

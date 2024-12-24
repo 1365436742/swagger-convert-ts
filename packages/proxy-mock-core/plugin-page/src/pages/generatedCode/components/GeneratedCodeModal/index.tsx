@@ -1,9 +1,9 @@
 import { Button, Flex, Form, Modal, Popover } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import React from 'react';
-import ParseSwagger from './ParseSwagger';
 import './index.less';
 import FormItemMoncaoEditor from '../../../../components/FormItemMoncaoEditor';
+import ParseSwagger from '../../../../components/ParseSwagger';
 interface GeneratedCodeModalProps {
   open?: boolean;
   onChange?: (open: boolean) => void;

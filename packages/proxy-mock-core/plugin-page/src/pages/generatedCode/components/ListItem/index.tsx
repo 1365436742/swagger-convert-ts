@@ -2,15 +2,21 @@ import { Button, Flex, Popconfirm, Tag } from 'antd';
 import './index.less';
 import GeneratedCodeModal from '../GeneratedCodeModal';
 import { useState } from 'react';
+import CreateSpanceModal from '../CreateSpanceModal';
 
 const ListItem = () => {
   const [opneGeneratedCodeModal, setGeneratedCodeModal] = useState(false);
+  const [opneCreateSpanceModal, setCreateSpanceModal] = useState(false);
   return (
     <>
       <GeneratedCodeModal
         open={opneGeneratedCodeModal}
         onChange={setGeneratedCodeModal}
       ></GeneratedCodeModal>
+       <CreateSpanceModal
+        open={opneCreateSpanceModal}
+        onChange={setCreateSpanceModal}
+      ></CreateSpanceModal>
       <div className="list-item-generated">
         <div className="left">
           <Flex gap="small" className="action">
@@ -30,6 +36,9 @@ const ListItem = () => {
           <Flex gap="small">
             <Button type="primary" onClick={() => setGeneratedCodeModal(true)}>
               代码生成
+            </Button>
+            <Button onClick={() => setCreateSpanceModal(true)}>
+              修改
             </Button>
             <Popconfirm
               title="确认删除"

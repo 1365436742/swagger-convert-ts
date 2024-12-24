@@ -1,9 +1,9 @@
 import { Button, Flex, Form, Modal, Popover } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import React from 'react';
-import ParseSwagger from './ParseSwagger';
 import FormItemTableTransfer from './FormItemTableTransfer';
 import './index.less';
+import ParseSwagger from '../../../../components/ParseSwagger';
 interface GeneratedMockModalProps {
   open?: boolean;
   onChange?: (open: boolean) => void;
