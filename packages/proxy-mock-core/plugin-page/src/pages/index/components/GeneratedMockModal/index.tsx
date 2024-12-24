@@ -4,32 +4,25 @@ import React from 'react';
 import ParseSwagger from './ParseSwagger';
 import FormItemTableTransfer from './FormItemTableTransfer';
 import './index.less';
-interface GeneratedCodeModalProps {
+interface GeneratedMockModalProps {
   open?: boolean;
   onChange?: (open: boolean) => void;
 }
-const GeneratedCodeModal: React.FC<GeneratedCodeModalProps> = ({
+const GeneratedMockModal: React.FC<GeneratedMockModalProps> = ({
   open,
   onChange,
 }) => {
   return (
     <Modal
       width={900}
-      className="generated-code"
-      title={
-        <Flex gap="small">
-          <div>生成axios代码</div>
-          <Popover content="生成代码的地址是由插件填写路径配置的">
-            <QuestionCircleOutlined />
-          </Popover>
-        </Flex>
-      }
+      className="generated-mock-code"
+      title="生成mock数据"
       open={open}
       onCancel={() => onChange?.(false)}
       footer={null}
     >
       <Form
-        name="GeneratedCodeModal"
+        name="GeneratedMockModal"
         labelAlign="left"
         layout="vertical"
         autoComplete="off"
@@ -62,14 +55,11 @@ const GeneratedCodeModal: React.FC<GeneratedCodeModalProps> = ({
         >
           <ParseSwagger />
         </Form.Item>
-        <Form.Item name="axiosUrls" label="指定接口生成">
+        <Form.Item name="axiosUrls" label="指定接口生成mock">
           <FormItemTableTransfer />
         </Form.Item>
         <Form.Item>
           <Flex gap="small" justify="flex-end">
-            <Button type="primary" htmlType="submit">
-              生成代码
-            </Button>
             <Button type="primary" htmlType="submit">
               生成Mock数据
             </Button>
@@ -81,4 +71,4 @@ const GeneratedCodeModal: React.FC<GeneratedCodeModalProps> = ({
   );
 };
 
-export default GeneratedCodeModal;
+export default GeneratedMockModal;
