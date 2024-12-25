@@ -1,11 +1,16 @@
 {
-  "name": "plugin-page",
-  "private": true,
+  "name": "proxy-mock-core",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "npm run build:service && vite",
+    "build": "npm run build:service && tsc -b && vite build",
+    "build:service": "tsc --project tsconfig.service.json",
     "lint": "eslint .",
     "preview": "vite preview"
   },
