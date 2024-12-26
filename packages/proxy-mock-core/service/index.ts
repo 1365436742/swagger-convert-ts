@@ -1,35 +1,21 @@
-export interface ConfigOptions {
-    /** 
-     * 端口
-     * 默认3001 
-     */
-    port?: number;
-    /** 
-     * axios、ts生成地址
-     * 默认：request-apis
-     */
-    generatedCodeFileUrl?: string
-    /**
-     * mock数据文件地址
-     * 默认：mock
-     */
-    mockDataFileUrl?: string
-}
-export interface MainServiceReturn {
-    /** 
-     * 根据请求url、method。匹配是有相同的mock
-     * 有相同的就返回、没匹配上就返回undefined
-     */
-    getMockInfo: (url: string, method: string) => any;
-    /** 
-     * 当前启动服务的url地址
-     * 默认：http://localhost:3001
-     */
-    serviceUrl: string
-}
+import { ConfigOptions, MainServiceReturn } from "./types";
+import express from "express"
+import cors from "cors"
+import mockRouter from "./controllers/mock"
+import generatedCodeRouter from "./controllers/generatedCode"
+const app = express();
 const mainService = (options: ConfigOptions = {}): MainServiceReturn => {
-    const { port = 3001 } = options
-    console.log(`端口启动:${port}`);
+    const { port = 3001 } = options;
+    const serviceUrl = `http://localhost:${port}/`;
+    app.use(cors());
+    app.use(express.json({ limit: "50mb" }));
+
+    app.use('/mock', mockRouter(options));
+    app.use('/generatedCode', generatedCodeRouter(options));
+
+    app.listen(port, () => {
+        console.log(`mock服务启动:${serviceUrl}`);
+    })
     return {
         getMockInfo(url, method) {
             return ""
