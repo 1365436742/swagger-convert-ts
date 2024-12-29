@@ -1,12 +1,15 @@
 import { PluginOption } from 'vite';
 import mainService from "./dist/index";
 import path from "path";
+const generatedCodeFileUrl = path.resolve(__dirname, "./src/request-apis")
+const mockDataFileUrl = path.resolve(__dirname, "./mock")
+const mainServiceInfo = mainService({
+    generatedCodeFileUrl,
+    mockDataFileUrl
+})
 export default function devServicePlugin(): PluginOption {
-    const generatedCodeFileUrl = path.resolve(__dirname, "./src/request-apis")
-    const mockDataFileUrl = path.resolve(__dirname, "./mock")
-    const mainServiceInfo = mainService({
-        generatedCodeFileUrl,
-        mockDataFileUrl
+    mainServiceInfo.getMockInfo("app/list", "get").then((res: any) => {
+        console.log(res, "xxxxx")
     })
     return {
         name: 'dev-service-plugin', // 插件名称

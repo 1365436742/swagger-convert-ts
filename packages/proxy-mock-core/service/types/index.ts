@@ -19,8 +19,9 @@ export interface MainServiceReturn {
     /** 
      * 根据请求url、method。匹配是有相同的mock
      * 有相同的就返回、没匹配上就返回undefined
+     * proxyParams 可以透传插件中的参数
      */
-    getMockInfo: (url: string, method: string) => any;
+    getMockInfo: (url: string, method: string, proxyParams?: any) => any;
     /** 
      * 当前启动服务的url地址
      * 默认：http://localhost:3001
