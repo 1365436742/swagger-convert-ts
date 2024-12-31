@@ -37,8 +37,8 @@ export async function dynamicReadJs(url: string) {
     const os = process.platform;
     let filePrefix = os === 'win32' ? "file://" : "";
     const importUrl = filePrefix + url;
-    if (typeof import.meta.url !== 'string') {
-        delete require.cache[require.resolve(url)];
+    if (require?.cache) {
+        delete require.cache[url];
         return await require(importUrl)
     } else {
         const fn = await import(`${importUrl}?t=${Date.now()}`);

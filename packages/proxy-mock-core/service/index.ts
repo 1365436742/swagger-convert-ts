@@ -1,4 +1,5 @@
 import { ConfigOptions, MainServiceReturn } from "./types";
+import path from "path"
 import express from "express"
 import cors from "cors"
 import mockRouter from "./controllers/mock"
@@ -17,9 +18,14 @@ const mainService = (options: ConfigOptions = {}): MainServiceReturn => {
     app.use('/mock', mockRouter(options));
     app.use('/generatedCode', generatedCodeRouter(options));
 
+    const publicRouter = express.Router();
+    publicRouter.use(express.static(path.join(__dirname, "public")));
+    app.use('/public', publicRouter);
+    
     app.listen(port, () => {
         console.log(`mock服务启动:${serviceUrl}`);
     })
+    
     initFile(options);
     const getMockInfo = async (url: string, method: string, proxyParams: any) => {
         if (!options.mockDataFileUrl) return false

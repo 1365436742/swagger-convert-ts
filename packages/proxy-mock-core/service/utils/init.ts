@@ -1,17 +1,8 @@
 import fs from "fs"
 import { ConfigOptions } from "../types"
+import { createFileDir } from "./file";
 export async function initFile(options: ConfigOptions) {
     const { generatedCodeFileUrl, mockDataFileUrl } = options
-    if (mockDataFileUrl) {
-        const isExists = fs.existsSync(mockDataFileUrl);
-        if (!isExists) {
-            await fs.promises.mkdir(mockDataFileUrl)
-        }
-    }
-    if (generatedCodeFileUrl) {
-        const isExists = fs.existsSync(generatedCodeFileUrl);
-        if (!isExists) {
-            await fs.promises.mkdir(generatedCodeFileUrl)
-        }
-    }
+    mockDataFileUrl && createFileDir(mockDataFileUrl);
+    generatedCodeFileUrl && createFileDir(generatedCodeFileUrl);
 }
