@@ -25,8 +25,8 @@ export async function getMockConfig(mockDataFileUrl: string, fileInfo: FileListI
 }
 
 /** 更新Mock数据 */
-export async function updateMock(mockDataFileUrl: string, MockOpOptions: FileListItem & MockConfigJson, sourceFileInfo?: FileListItem) {
-    const { url, method, ...configJson } = MockOpOptions;
+export async function updateMock(mockDataFileUrl: string, mockOpOptions: FileListItem & MockConfigJson, sourceFileInfo?: FileListItem) {
+    const { url, method, ...configJson } = mockOpOptions;
     const fileInfo = { url, method }
     const fileName = urlToFileName(fileInfo);
     const baseUrl = path.join(mockDataFileUrl, fileName);

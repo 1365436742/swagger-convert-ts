@@ -1,12 +1,14 @@
 import fs from "fs";
 import path from "path"
-import { FileListItem, MockConfigJson } from "../types/fileMock";
+import { FileListItem, MockConfigJson, SenceOptions } from "../types/fileMock";
 import { readJson, urlToFileName } from "../utils";
 
-interface SenceOptions {
-    senceName: string;
-    senceContent: string;
-    oldSenceName?: string;
+export async function getSenceList(mockDataFileUrl: string, fileInfo: FileListItem) {
+    const fileName = urlToFileName(fileInfo);
+    const baseUrl = path.join(mockDataFileUrl, fileName);
+    const files = await fs.promises.readdir(baseUrl);
+    const jsFiles = files.filter(file => path.extname(file) === '.js');
+    return jsFiles.map(file => path.basename(file));
 }
 
 export async function updateSence(mockDataFileUrl: string, fileInfo: FileListItem, senceOptions: SenceOptions) {
