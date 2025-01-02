@@ -47,5 +47,12 @@ export default (options: ConfigOptions) => {
         }
     });
 
+    router.post('/senceDetail', async (req, res) => {
+        
+    });
+    
+    router.post('/selectSence', async (req, res) => {
+            
+        });
     return router
 }
