@@ -46,6 +46,10 @@ export const updateMock = (params: UpdateMockParams) => {
   return instance.post<ResResult>('/mock/updateMock', params);
 };
 
-export const mockList = () => {
-  return instance.get<ResResult<MockListRes>>('/mock/mockList');
+export const toggleMock = (params: DeleteMockParams) => {
+  return instance.post<ResResult>('/mock/toggleMock', params);
+};
+
+export const getMockList = () => {
+  return instance.get<ResResult<MockListRes[]>>('/mock/mockList');
 };
