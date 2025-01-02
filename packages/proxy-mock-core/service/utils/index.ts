@@ -5,18 +5,20 @@ import fs from "fs";
 let packageJson: PackageJsonOptions | null = null;
 
 export const fileNameToUrl = (fileName: string) => {
-    const fileNameSplit = fileName.split("_");
-    const lastIndex = fileNameSplit.length - 1
-    const method = fileNameSplit[lastIndex].toLocaleUpperCase();
-    const url = fileNameSplit.slice(0, lastIndex).join('/')
-    return {
-        url,
-        method
-    }
-}
+  const fileNameSplit = fileName.split('_');
+  const lastIndex = fileNameSplit.length - 1;
+  const method = fileNameSplit[lastIndex].toLocaleUpperCase();
+  const url = '/' + fileNameSplit.slice(0, lastIndex).join('/');
+  return {
+    url,
+    method,
+  };
+};
 export const urlToFileName = ({ url, method }: FileListItem) => {
-    return `${url.replace(/\//g, "_")}_${method.toLocaleUpperCase()}`
-}
+  return `${url
+    .replace(/^\/+/, '')
+    .replace(/\//g, '_')}_${method.toLocaleUpperCase()}`;
+};
 
 export const sleep = (time: number = 0) => {
     return new Promise((resolve) => {
