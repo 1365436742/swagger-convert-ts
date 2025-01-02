@@ -1,19 +1,24 @@
 import { Button, Form, Input, Drawer } from 'antd';
 import React from 'react';
 import FormItemMoncaoEditor from '../../../../components/FormItemMoncaoEditor';
+import { UpdateSenceParams } from '../../../../apis/mockSence';
 
 interface UpdataSceneModalkProps {
   title?: string;
   btnText?: string;
   open?: boolean;
+  initialValues?: UpdateSenceParams;
   onChange?: (open: boolean) => void;
+  onFinish?: (values: UpdateSenceParams) => void;
 }
 
 const UpdataSceneModal: React.FC<UpdataSceneModalkProps> = ({
   title,
   btnText,
   open,
+  initialValues,
   onChange,
+  onFinish,
 }) => {
   return (
     <Drawer
@@ -21,24 +26,24 @@ const UpdataSceneModal: React.FC<UpdataSceneModalkProps> = ({
       title={title || '添加场景数据'}
       open={open}
       footer={null}
+      destroyOnClose
       onClose={() => onChange?.(false)}
     >
-      <Form
+      <Form<UpdateSenceParams>
         name="UpdataSceneModal"
         labelCol={{ span: 6 }}
         layout="vertical"
-        initialValues={{
-          method: 'GET',
-        }}
+        initialValues={initialValues}
+        onFinish={onFinish}
       >
         <Form.Item
           label="场景名称"
-          name="sceneName"
+          name="senceName"
           rules={[{ required: true, message: '请输入场景名称' }]}
         >
           <Input placeholder="例如：default" />
         </Form.Item>
-        <Form.Item label="代码内容" name="code">
+        <Form.Item label="代码内容" name="senceContent">
           <FormItemMoncaoEditor />
         </Form.Item>
         <Form.Item label="">
