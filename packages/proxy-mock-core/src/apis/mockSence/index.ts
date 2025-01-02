@@ -18,6 +18,7 @@ export interface UpdateSenceParams {
   method: string;
   senceName: string;
   senceContent: string;
+  oldSenceName?: string;
 }
 
 export interface SenceDetailRes {
@@ -34,6 +35,10 @@ export const deleteSence = (params: DeleteSenceParams) => {
 
 export const updateSence = (params: UpdateSenceParams) => {
   return instance.post<ResResult>('/mockSence/updateSence', params);
+};
+
+export const selectSence = (params: DeleteSenceParams) => {
+  return instance.post<ResResult>('/mockSence/selectSence', params);
 };
 
 export const senceDetail = (params: DeleteSenceParams) => {
