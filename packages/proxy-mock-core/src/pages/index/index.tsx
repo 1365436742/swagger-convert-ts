@@ -1,17 +1,30 @@
+import { useEffect, useMemo, useState } from 'react';
 import Header from '../../components/Header';
-import ListItem from './components/ListItem'
+import ListItem from './components/ListItem';
 import SearchArea from './components/SearchArea';
+import { getMockList, MockListRes } from '../../apis/mock';
 const Index = () => {
+  const [list, setList] = useState<MockListRes[]>([]);
+  const [searchValue, setSearchValue] = useState<string>('');
+  const showList = useMemo(() => {
+    return list.filter((item) => item.url.includes(searchValue));
+  }, [searchValue, list]);
+  useEffect(() => {
+    getMockList().then((res) => {
+      setList(res.data.data);
+    });
+  }, []);
   return (
     <div className="layout-page">
       <Header>
-        <SearchArea></SearchArea>
+        <SearchArea
+          searchValue={searchValue}
+          onSearchChange={setSearchValue}
+        ></SearchArea>
       </Header>
-      <ListItem></ListItem>
-      <ListItem></ListItem>
-      <ListItem></ListItem>
-      <ListItem></ListItem>
-      <ListItem></ListItem>
+      {showList.map((item) => {
+        return <ListItem item={item} key={item.url + item.method}></ListItem>;
+      })}
     </div>
   );
 };
