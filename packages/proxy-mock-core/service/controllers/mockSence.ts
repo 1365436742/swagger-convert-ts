@@ -34,7 +34,7 @@ export default (options: ConfigOptions) => {
         }
     });
 
-    router.post('/updateMock', async (req, res) => {
+    router.post('/updateSence', async (req, res) => {
         const { url, method, ...senceOptions } = req.body as (FileListItem & SenceOptions);
         if (!url || !method || !senceOptions.oldSenceName) {
             res.send(errorRes(req.body, "缺少参数"));
