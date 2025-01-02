@@ -28,3 +28,7 @@ export interface MainServiceReturn {
      */
     serviceUrl: string
 }
+
+export interface PackageJsonOptions {
+  type?: string;
+}
