@@ -11,6 +11,11 @@ export default (options: ConfigOptions) => {
     router.post('/addMock', async (req, res) => {
         const body = req.body as FileListItem & MockConfigJson;
         try {
+            const mockList = await getMockList(mockDataFileUrl);
+            if(mockList.some(item=>item.method === body.method && item.url === body.url)){
+              res.send(errorRes({}, "已经存在该mock"));
+              return 
+            }
             await updateMock(mockDataFileUrl, body);
             res.send(successRes({}, "创建成功"));
         } catch (error) {
