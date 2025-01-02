@@ -46,6 +46,15 @@ export default (options: ConfigOptions) => {
         }
     });
 
+    router.post('/toggleMock', async (req, res) => {
+        const body = req.body as FileListItem;
+        if (!body?.url || !body.method) {
+            res.send(errorRes(body, "缺少参数"));
+            return
+        }
+       
+    });
+    
     router.get('/mockList', async (req, res) => {
         try {
             const list = await getMockList(mockDataFileUrl);
