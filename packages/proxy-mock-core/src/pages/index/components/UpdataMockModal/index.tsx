@@ -1,38 +1,46 @@
 import { Button, Form, Input, InputNumber, Modal, Select, Switch } from 'antd';
 import React from 'react';
+import { AddMockParams } from '../../../../apis/mock';
 
 interface AddMockProps {
   title?: string;
   btnText?: string;
+  initialValues?: AddMockParams;
   open?: boolean;
   onChange?: (open: boolean) => void;
+  onFinish?: (values: AddMockParams) => void;
 }
 
 const UpdateMockModal: React.FC<AddMockProps> = ({
   title,
   btnText,
   open,
+  initialValues,
   onChange,
+  onFinish,
 }) => {
   return (
     <Modal
       title={title || '添加mock数据'}
       open={open}
       footer={null}
+      destroyOnClose
       onCancel={() => onChange?.(false)}
     >
-      <Form
+      <Form<AddMockParams>
         name="UpdateMockModal"
         labelCol={{ span: 6 }}
         labelAlign="left"
         initialValues={{
           method: 'GET',
+          ...initialValues,
         }}
         style={{ paddingTop: '10px' }}
+        onFinish={onFinish}
       >
         <Form.Item
           label="接口url地址"
-          name="api"
+          name="url"
           rules={[{ required: true, message: '请输入路径' }]}
         >
           <Input placeholder="例如：/api/test" />
@@ -52,14 +60,14 @@ const UpdateMockModal: React.FC<AddMockProps> = ({
             ]}
           />
         </Form.Item>
-        <Form.Item label="延时" name="timeout">
+        <Form.Item label="延时" name="delay">
           <InputNumber
             style={{ width: '100%' }}
             placeholder="设置延时如果>0延时生效"
             suffix="ms"
           />
         </Form.Item>
-        <Form.Item label="mock是否开启" name="mockStart">
+        <Form.Item label="mock是否开启" name="mock">
           <Switch
             checkedChildren="开启"
             unCheckedChildren="关闭"
