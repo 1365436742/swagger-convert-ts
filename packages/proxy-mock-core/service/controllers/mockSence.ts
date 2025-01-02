@@ -2,7 +2,7 @@ import express from "express"
 import { ConfigOptions } from "../types";
 import { FileListItem, SenceOptions } from "../types/fileMock";
 import { errorRes, successRes } from "../utils/response";
-import { deleteSence, updateSence } from "../fileModel/mockSence";
+import { deleteSence, getSenceDetail, selectSence, updateSence } from "../fileModel/mockSence";
 export default (options: ConfigOptions) => {
     const { mockDataFileUrl = '' } = options
     const router = express.Router();
@@ -48,11 +48,31 @@ export default (options: ConfigOptions) => {
     });
 
     router.post('/senceDetail', async (req, res) => {
-        
+        const { senceName, ...fileInfo } = req.body as (FileListItem & { senceName: string });
+        if (!fileInfo?.url || !fileInfo.method || !senceName) {
+            res.send(errorRes(req.body, "缺少参数"));
+            return
+        }
+        try {
+            const senceContent = await getSenceDetail(mockDataFileUrl, fileInfo, senceName);
+            res.send(successRes({ senceName, senceContent }, "场景详情读取成功"));
+        } catch (error) {
+            res.send(errorRes(error, "场景详情读取失败"));
+        }
     });
-    
+
     router.post('/selectSence', async (req, res) => {
-            
-        });
+        const { senceName, ...fileInfo } = req.body as (FileListItem & { senceName: string });
+        if (!fileInfo?.url || !fileInfo.method || !senceName) {
+            res.send(errorRes(req.body, "缺少参数"));
+            return
+        }
+        try {
+            await selectSence(mockDataFileUrl, fileInfo, senceName);
+            res.send(successRes({}, "设置场景成功"));
+        } catch (error) {
+            res.send(errorRes(error, "设置场景失败"));
+        }
+    });
     return router
 }

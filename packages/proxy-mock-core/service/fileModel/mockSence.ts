@@ -32,11 +32,18 @@ export async function deleteSence(mockDataFileUrl: string, fileInfo: FileListIte
     await fs.promises.unlink(senceUrl);
 }
 
-export async function changeSence(mockDataFileUrl: string, fileInfo: FileListItem, senceName: string) {
+export async function selectSence(mockDataFileUrl: string, fileInfo: FileListItem, senceName: string) {
     const fileName = urlToFileName(fileInfo);
     const baseUrl = path.join(mockDataFileUrl, fileName);
     const indexJsonUrl = path.join(baseUrl, "index.json");
     const mockConfigJson: MockConfigJson = await readJson(indexJsonUrl);
     mockConfigJson.sence = senceName;
     await fs.promises.writeFile(indexJsonUrl, JSON.stringify(mockConfigJson, null, 2))
+}
+
+export async function getSenceDetail(mockDataFileUrl: string, fileInfo: FileListItem, senceName: string) {
+    const fileName = urlToFileName(fileInfo);
+    const baseUrl = path.join(mockDataFileUrl, fileName);
+    const senceUrl = path.join(baseUrl, senceName + ".js");
+    return await fs.promises.readFile(senceUrl, 'utf8')
 }

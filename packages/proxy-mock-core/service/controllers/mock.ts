@@ -1,7 +1,7 @@
 import express from "express"
 import { ConfigOptions } from "../types";
 import { FileListItem, MockConfigJson } from "../types/fileMock";
-import { deleteMock, getMockConfig, getMockList, updateMock } from "../fileModel/mockList";
+import { deleteMock, getMockConfig, getMockList, toggleMock, updateMock } from "../fileModel/mockList";
 import { errorRes, successRes } from "../utils/response";
 import { getSenceList } from "../fileModel/mockSence";
 export default (options: ConfigOptions) => {
@@ -12,9 +12,9 @@ export default (options: ConfigOptions) => {
         const body = req.body as FileListItem & MockConfigJson;
         try {
             const mockList = await getMockList(mockDataFileUrl);
-            if(mockList.some(item=>item.method === body.method && item.url === body.url)){
-              res.send(errorRes({}, "已经存在该mock"));
-              return 
+            if (mockList.some(item => item.method === body.method && item.url === body.url)) {
+                res.send(errorRes({}, "已经存在该mock"));
+                return
             }
             await updateMock(mockDataFileUrl, body);
             res.send(successRes({}, "创建成功"));
@@ -57,9 +57,14 @@ export default (options: ConfigOptions) => {
             res.send(errorRes(body, "缺少参数"));
             return
         }
-       
+        try {
+            await toggleMock(mockDataFileUrl, body)
+            res.send(successRes({}, "切换成功"));
+        } catch (error) {
+            res.send(errorRes(error, "切换失败"));
+        }
     });
-    
+
     router.get('/mockList', async (req, res) => {
         try {
             const list = await getMockList(mockDataFileUrl);
