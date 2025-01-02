@@ -1,5 +1,8 @@
 import { FileListItem } from "../types/fileMock";
 import fs from "fs";
+/** 获取根目录的package.json信息、判断是ejs还是cjs **/
+let packageJson: PackageJsonOptions | null = null;
+
 export const fileNameToUrl = (fileName: string) => {
     const fileNameSplit = fileName.split("_");
     const lastIndex = fileNameSplit.length - 1
@@ -32,6 +35,14 @@ export const readJson = async (url: string) => {
         return {}
     }
 }
+
+/** 获取根目录的package.json信息、判断是ejs还是cjs */
+export const getPackageJson = () => {
+  if (packageJson) return packageJson;
+  packageJson = readJson('package.json') as { type?: string };
+  return packageJson;
+};
+
 
 export async function dynamicReadJs(url: string) {
     const os = process.platform;
