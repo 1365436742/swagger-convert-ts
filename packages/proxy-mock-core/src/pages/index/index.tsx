@@ -27,7 +27,13 @@ const Index = () => {
         ></SearchArea>
       </Header>
       {showList.map((item) => {
-        return <ListItem item={item} key={item.url + item.method}></ListItem>;
+        return (
+          <ListItem
+            onUpdateList={getData}
+            item={item}
+            key={item.url + item.method}
+          ></ListItem>
+        );
       })}
     </div>
   );
