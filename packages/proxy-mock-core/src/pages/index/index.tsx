@@ -9,15 +9,19 @@ const Index = () => {
   const showList = useMemo(() => {
     return list.filter((item) => item.url.includes(searchValue));
   }, [searchValue, list]);
-  useEffect(() => {
+  const getData = () => {
     getMockList().then((res) => {
       setList(res.data.data);
     });
+  };
+  useEffect(() => {
+    getData();
   }, []);
   return (
     <div className="layout-page">
       <Header>
         <SearchArea
+          onUpdateList={getData}
           searchValue={searchValue}
           onSearchChange={setSearchValue}
         ></SearchArea>
