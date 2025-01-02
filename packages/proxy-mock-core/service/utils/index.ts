@@ -1,4 +1,5 @@
 import { FileListItem } from "../types/fileMock";
+import { PackageJsonOptions } from '../types/index';
 import fs from "fs";
 /** 获取根目录的package.json信息、判断是ejs还是cjs **/
 let packageJson: PackageJsonOptions | null = null;
