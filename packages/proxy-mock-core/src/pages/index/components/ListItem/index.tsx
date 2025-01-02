@@ -125,7 +125,7 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
             unCheckedChildren="关闭"
             onChange={() => toggleMock({ url, method })}
           />
-          <Tag color="green">{item.sence}</Tag>
+          {item.sence && <Tag color="green">{item.sence}</Tag>}
           {item.delay && <Tag color="red">延时：{item.delay}ms</Tag>}
           <Tag bordered={false} color="processing">
             {method}
