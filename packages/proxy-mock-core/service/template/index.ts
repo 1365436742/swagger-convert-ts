@@ -1,29 +1,17 @@
-export const cjsTemplate = `
-    const Mock = require("mockjs");
-    module.exports = (params) => {
-        // 使用 Mock
-        var data = Mock.mock({
-            // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
-            'list|1-10': [{
-                // 属性 id 是一个自增数，起始值为 1，每次增 1
-                'id|+1': 1
-            }]
-        })
-        return data
+export const cjsTemplate = `module.exports = (params) => {
+    // 使用 Mock
+    var data = {
+        test:"测试字段"
     }
+    return data
+}
 `
 
-export const ejsTemplate = `
-    import Mock from "mockjs";
-    export default (params) => {
-        // 使用 Mock
-        var data = Mock.mock({
-            // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
-            'list|1-10': [{
-                // 属性 id 是一个自增数，起始值为 1，每次增 1
-                'id|+1': 1
-            }]
-        })
-        return data
+export const ejsTemplate = `export default (params) => {
+    // 使用 Mock
+    var data = {
+        test: "测试字段"
     }
+    return data
+}
 `

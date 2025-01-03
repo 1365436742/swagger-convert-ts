@@ -38,7 +38,7 @@ export const addMock = (params: AddMockParams) => {
   return instance.post<ResResult>('/mock/addMock', params);
 };
 
-export const deleteMock = (params: AddMockParams) => {
+export const deleteMock = (params: DeleteMockParams) => {
   return instance.post<ResResult>('/mock/deleteMock', params);
 };
 

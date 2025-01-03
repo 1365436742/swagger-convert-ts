@@ -26,11 +26,9 @@ const SearchArea: React.FC<SearchAreaProps> = ({
               if (res.data.status === 1) {
                 message.success(res.data.message);
                 onUpdateList?.();
+                setOpneUpdataMockModal(false);
               }
             })
-            .finally(() => {
-              setOpneUpdataMockModal(false);
-            });
         }}
         open={opneUpdataMockModal}
         onChange={setOpneUpdataMockModal}

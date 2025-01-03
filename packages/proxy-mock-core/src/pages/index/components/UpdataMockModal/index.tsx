@@ -33,6 +33,7 @@ const UpdateMockModal: React.FC<AddMockProps> = ({
         labelAlign="left"
         initialValues={{
           method: 'GET',
+          mock: true,
           ...initialValues,
         }}
         style={{ paddingTop: '10px' }}
@@ -71,7 +72,6 @@ const UpdateMockModal: React.FC<AddMockProps> = ({
           <Switch
             checkedChildren="开启"
             unCheckedChildren="关闭"
-            defaultChecked
           />
         </Form.Item>
         <Form.Item label={null}>

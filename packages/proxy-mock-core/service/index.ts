@@ -5,6 +5,7 @@ import cors from "cors"
 import generatedCodeRouter from "./controllers/generatedCode"
 import mockRouter from "./controllers/mock"
 import mockSence from "./controllers/mockSence"
+import codeTemplate from "./controllers/codeTemplate"
 import { getMockConfig, getMockList } from "./fileModel/mockList";
 import { dynamicReadJs, sleep } from "./utils";
 import { initFile } from "./utils/init";
@@ -19,6 +20,7 @@ const mainService = (options: ConfigOptions = {}): MainServiceReturn => {
     app.use('/generatedCode', generatedCodeRouter(options));
     app.use('/mock', mockRouter(options));
     app.use('/mockSence', mockSence(options));
+    app.use('/codeTemplate', codeTemplate(options));
 
     const publicRouter = express.Router();
     publicRouter.use(express.static(path.join(__dirname, "public")));

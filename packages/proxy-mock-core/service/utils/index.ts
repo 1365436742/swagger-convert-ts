@@ -5,19 +5,19 @@ import fs from "fs";
 let packageJson: PackageJsonOptions | null = null;
 
 export const fileNameToUrl = (fileName: string) => {
-  const fileNameSplit = fileName.split('_');
-  const lastIndex = fileNameSplit.length - 1;
-  const method = fileNameSplit[lastIndex].toLocaleUpperCase();
-  const url = '/' + fileNameSplit.slice(0, lastIndex).join('/');
-  return {
-    url,
-    method,
-  };
+    const fileNameSplit = fileName.split('_');
+    const lastIndex = fileNameSplit.length - 1;
+    const method = fileNameSplit[lastIndex].toLocaleUpperCase();
+    const url = '/' + fileNameSplit.slice(0, lastIndex).join('/');
+    return {
+        url,
+        method,
+    };
 };
 export const urlToFileName = ({ url, method }: FileListItem) => {
-  return `${url
-    .replace(/^\/+/, '')
-    .replace(/\//g, '_')}_${method.toLocaleUpperCase()}`;
+    return `${url
+        .replace(/^\/+/, '')
+        .replace(/\//g, '_')}_${method.toLocaleUpperCase()}`;
 };
 
 export const sleep = (time: number = 0) => {
@@ -29,29 +29,38 @@ export const sleep = (time: number = 0) => {
     })
 }
 
-export const readJson = async (url: string) => {
+export const readJson = async (url: string, ignoreError: boolean = false) => {
     try {
         const indexJson = await fs.promises.readFile(url, "utf-8");
         return JSON.parse(indexJson)
     } catch (error) {
-        console.error("获取配置文件失败", error)
+        if (!ignoreError) {
+            console.error("获取json文件失败", error)
+        }
         return {}
     }
 }
 
 /** 获取根目录的package.json信息、判断是ejs还是cjs */
 export const getPackageJson = () => {
-  if (packageJson) return packageJson;
-  packageJson = readJson('package.json') as { type?: string };
-  return packageJson;
+    if (packageJson) return packageJson;
+    packageJson = readJson('package.json') as { type?: string };
+    return packageJson;
 };
 
+/** 判断是否是ejs */
+export function isEjs() {
+    if (require?.cache) {
+        return false
+    }
+    return true
+}
 
 export async function dynamicReadJs(url: string) {
     const os = process.platform;
     let filePrefix = os === 'win32' ? "file://" : "";
     const importUrl = filePrefix + url;
-    if (require?.cache) {
+    if (!isEjs()) {
         delete require.cache[url];
         return await require(importUrl)
     } else {

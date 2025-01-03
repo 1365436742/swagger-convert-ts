@@ -38,7 +38,7 @@ export async function updateMock(mockDataFileUrl: string, mockOpOptions: FileLis
         await createFileDir(baseUrl);
     }
     const indexJsonUrl = path.join(baseUrl, "index.json");
-    const oldMockConfigJson: MockConfigJson = await readJson(indexJsonUrl);
+    const oldMockConfigJson: MockConfigJson = await readJson(indexJsonUrl, true);
     await fs.promises.writeFile(indexJsonUrl, JSON.stringify(Object.assign(oldMockConfigJson, configJson), null, 2));
 }
 
@@ -55,6 +55,6 @@ export async function toggleMock(mockDataFileUrl: string, fileInfo: FileListItem
     const baseUrl = path.join(mockDataFileUrl, fileName);
     const indexJsonUrl = path.join(baseUrl, "index.json");
     const mockConfigJson: MockConfigJson = await readJson(indexJsonUrl);
-    mockConfigJson.mock = !mockConfigJson.mock;
+    mockConfigJson.mock = mockConfigJson?.mock === undefined ? true : !mockConfigJson?.mock;
     await fs.promises.writeFile(indexJsonUrl, JSON.stringify(mockConfigJson, null, 2));
 }

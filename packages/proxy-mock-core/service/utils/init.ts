@@ -1,4 +1,3 @@
-import fs from "fs"
 import { ConfigOptions } from "../types"
 import { createFileDir } from "./file";
 export async function initFile(options: ConfigOptions) {

@@ -1,7 +1,7 @@
 
 export interface MockConfigJson {
     sence?: string;
-    mock: boolean;
+    mock?: boolean;
     delay: number;
 }
 export interface MockConfig {

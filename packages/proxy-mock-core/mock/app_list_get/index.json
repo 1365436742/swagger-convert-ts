@@ -1,5 +1,4 @@
 {
-    "sence": "default",
-    "mock": true,
-    "delay": 0
+  "mock": true,
+  "sence": "default"
 }

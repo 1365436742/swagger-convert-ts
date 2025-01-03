@@ -8,7 +8,7 @@ export async function getSenceList(mockDataFileUrl: string, fileInfo: FileListIt
     const baseUrl = path.join(mockDataFileUrl, fileName);
     const files = await fs.promises.readdir(baseUrl);
     const jsFiles = files.filter(file => path.extname(file) === '.js');
-    return jsFiles.map(file => path.basename(file));
+    return jsFiles.map(file => path.basename(file, path.extname(file)));
 }
 
 export async function updateSence(mockDataFileUrl: string, fileInfo: FileListItem, senceOptions: SenceOptions) {
@@ -17,7 +17,7 @@ export async function updateSence(mockDataFileUrl: string, fileInfo: FileListIte
     const baseUrl = path.join(mockDataFileUrl, fileName);
     const senceUrl = path.join(baseUrl, senceName + ".js");
     if (oldSenceName && oldSenceName !== senceName) {
-        const oldSenceUrl = path.join(baseUrl, senceName + ".js");
+        const oldSenceUrl = path.join(baseUrl, oldSenceName + ".js");
         await fs.promises.rename(oldSenceUrl, senceUrl);
     }
     if (senceContent) {

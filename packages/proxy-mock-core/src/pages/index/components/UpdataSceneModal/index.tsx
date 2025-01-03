@@ -7,7 +7,7 @@ interface UpdataSceneModalkProps {
   title?: string;
   btnText?: string;
   open?: boolean;
-  initialValues?: UpdateSenceParams;
+  initialValues?: Partial<UpdateSenceParams>;
   onChange?: (open: boolean) => void;
   onFinish?: (values: UpdateSenceParams) => void;
 }

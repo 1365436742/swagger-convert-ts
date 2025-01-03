@@ -2,7 +2,7 @@ import express from "express"
 import { ConfigOptions } from "../types";
 import { FileListItem, SenceOptions } from "../types/fileMock";
 import { errorRes, successRes } from "../utils/response";
-import { deleteSence, getSenceDetail, selectSence, updateSence } from "../fileModel/mockSence";
+import { deleteSence, getSenceDetail, getSenceList, selectSence, updateSence } from "../fileModel/mockSence";
 export default (options: ConfigOptions) => {
     const { mockDataFileUrl = '' } = options
     const router = express.Router();
@@ -11,8 +11,14 @@ export default (options: ConfigOptions) => {
         const { url, method, ...senceOptions } = req.body as (FileListItem & Omit<SenceOptions, 'oldSenceName'>);
         if (!url || !method || !senceOptions) {
             res.send(errorRes(req.body, "缺少参数"));
+            return
         }
         try {
+            const senceList = await getSenceList(mockDataFileUrl, { url, method });
+            if (senceList.includes(senceOptions.senceName)) {
+                res.send(errorRes({}, "该场景已经创建"));
+                return
+            }
             await updateSence(mockDataFileUrl, { url, method }, senceOptions);
             res.send(successRes({}, "创建成功"));
         } catch (error) {
@@ -38,8 +44,14 @@ export default (options: ConfigOptions) => {
         const { url, method, ...senceOptions } = req.body as (FileListItem & SenceOptions);
         if (!url || !method || !senceOptions.oldSenceName) {
             res.send(errorRes(req.body, "缺少参数"));
+            return
         }
         try {
+            const senceList = await getSenceList(mockDataFileUrl, { url, method });
+            if (senceList.includes(senceOptions.senceName) && senceOptions.oldSenceName !== senceOptions.senceName) {
+                res.send(errorRes({}, "该场景名称重复"));
+                return
+            }
             await updateSence(mockDataFileUrl, { url, method }, senceOptions);
             res.send(successRes({}, "更新成功"));
         } catch (error) {

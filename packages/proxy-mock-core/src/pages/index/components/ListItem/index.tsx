@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import UpdataSceneModal from '../UpdataSceneModal';
 import {
   AddMockParams,
+  deleteMock,
   MockListRes,
   toggleMock,
   updateMock,
@@ -35,10 +36,15 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
     useState<UpdateSenceParams>();
 
   const onChangeSence = async (curSence: string) => {
+    if (curSence === item.sence) return
     await selectSence({
       url,
       method,
       senceName: curSence,
+    }).then((res) => {
+      if (res.data.status === 1) {
+        onUpdateList?.();
+      }
     });
   };
 
@@ -52,7 +58,9 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
           senceContent: res.data.data.senceContent,
           oldSenceName: curSence,
         });
-        setEditOpneUpdataSceneModal(true);
+        setTimeout(() => {
+          setEditOpneUpdataSceneModal(true);
+        }, 0)
       }
     });
   };
@@ -85,6 +93,9 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
         }}
       ></UpdataMockModal>
       <UpdataSceneModal
+        initialValues={{
+          senceContent: window.globalData?.senceCodeTemplate
+        }}
         onFinish={(values) => {
           const { senceName, senceContent } = values;
           addSence({ url, method, senceName, senceContent })
@@ -92,11 +103,9 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
               if (res.data.status === 1) {
                 message.success(res.data.message);
                 onUpdateList?.();
+                setOpneUpdataSceneModal(false);
               }
             })
-            .finally(() => {
-              setOpneUpdataSceneModal(false);
-            });
         }}
         open={opneUpdataSceneModal}
         onChange={setOpneUpdataSceneModal}
@@ -107,14 +116,27 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
         btnText="修改"
         open={opneEditUpdataSceneModal}
         onChange={setEditOpneUpdataSceneModal}
-        onFinish={(values) => {
-          updateSence({
-            url,
-            method,
-            senceContent: values.senceContent,
-            senceName: values.senceName,
-            oldSenceName: values.oldSenceName,
-          });
+        onFinish={async (values) => {
+          try {
+            const res = await updateSence({
+              url,
+              method,
+              senceContent: values.senceContent,
+              senceName: values.senceName,
+              oldSenceName: initialValuesSence?.oldSenceName,
+            })
+            if (res.data.status === 1) {
+              message.success(res.data.message);
+              if (initialValuesSence?.oldSenceName !== values.senceName) {
+                await selectSence({ url, method, senceName: values.senceName })
+              }
+              onUpdateList?.();
+              setEditOpneUpdataSceneModal(false);
+            }
+          } catch (error) {
+
+          }
+
         }}
       ></UpdataSceneModal>
       <div className="left">
@@ -123,7 +145,11 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
             value={item.mock}
             checkedChildren="开启"
             unCheckedChildren="关闭"
-            onChange={() => toggleMock({ url, method })}
+            onChange={() => toggleMock({ url, method }).then(res => {
+              if (res.data.status === 1) {
+                onUpdateList?.()
+              }
+            })}
           />
           {item.sence ? <Tag color="green">{item.sence}</Tag> : ''}
           {item.delay ? <Tag color="red">延时：{item.delay}ms</Tag> : ''}
@@ -144,6 +170,7 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
             return (
               <Button
                 {...selectProps}
+                key={sence}
                 icon={
                   <EditOutlined
                     onClick={(e) => {
@@ -190,6 +217,14 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
             description="将删除该mock数据"
             okText="确定"
             cancelText="取消"
+            onConfirm={() => {
+              deleteMock({ url, method }).then(res => {
+                if (res.data.status === 1) {
+                  message.success(res.data.message);
+                  onUpdateList?.();
+                }
+              })
+            }}
           >
             <Button danger>删除</Button>
           </Popconfirm>

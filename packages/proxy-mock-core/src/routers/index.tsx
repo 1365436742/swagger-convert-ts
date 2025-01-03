@@ -6,7 +6,7 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import { Button, Layout, Menu, MenuProps, theme } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   AuditOutlined,
   CodeOutlined,
@@ -15,6 +15,7 @@ import {
 import cls from 'classnames';
 import Index from '../pages/index';
 import GeneratedCode from '../pages/generatedCode';
+import { senceCodeTemplate } from '../apis/codeTemplate';
 
 const { Content, Sider } = Layout;
 type MenuItem = Required<MenuProps>['items'][number];
@@ -38,11 +39,21 @@ const Routers: (RouteProps & MenuItem)[] = [
 
 const RouterView = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [showRouter, setShowRouter] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    senceCodeTemplate().then(res => {
+      if (res.data.status === 1) {
+        setShowRouter(true);
+        window.globalData.senceCodeTemplate = res.data.data.code;
+      };
+    })
+  }, [])
   return (
     <Layout style={{ height: '100%' }}>
       <Layout>
@@ -81,7 +92,7 @@ const RouterView = () => {
           }}
         >
           <div className="router-pages">
-            <Routes>
+            {showRouter && <Routes>
               {Routers.map((item) => {
                 return (
                   <Route
@@ -91,7 +102,7 @@ const RouterView = () => {
                   />
                 );
               })}
-            </Routes>
+            </Routes>}
           </div>
         </Content>
       </Layout>
