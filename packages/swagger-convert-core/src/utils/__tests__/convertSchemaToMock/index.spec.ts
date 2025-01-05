@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { convertSchemaToMock } from '../../convertSchemaToMock';
 import { getTestDataJsonList } from '..';

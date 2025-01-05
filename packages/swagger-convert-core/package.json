@@ -1,23 +1,23 @@
 {
   "name": "swagger-convert-core",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.1",
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],
   "scripts": {
     "dev": "tsc -w",
-    "clean": "del-cli dist",
-    "build": "npm run clean && tsc && node copTemplateFiles.js",
+    "clear": "del-cli dist",
+    "build": "npm run clear && tsc && node copTemplateFiles.js",
     "test:build": "npm run build && node --no-warnings --experimental-vm-modules ../../node_modules/jest/bin/jest.js",
     "test": "node --no-warnings --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "reqingzai",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "axios": "^1.7.8",
+    "superagent": "^10.1.1",
     "json-schema-to-typescript": "^15.0.3",
     "lodash-es": "^4.17.21",
     "prettier": "^3.4.1",
@@ -31,6 +31,9 @@
     "del-cli": "^6.0.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.2.5",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@types/superagent": "^8.1.9"
   }
 }

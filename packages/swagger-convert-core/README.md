@@ -4,6 +4,21 @@
 
 本工具将swagger转换为标准schema-json格式、ts类型code、axios请求code、mockjs的json
 
+## 解析swagger内容
+
+```js
+/** 
+  * swaggerUrl 支持http 请求、支持文件读取swaggerJson文件
+  * eg: http://localhost:8080/v3/api-docs
+  * file: ../index.json
+  * 示例可以查看githup测试用例
+  * https://github.com/1365436742/swagger-convert-ts/blob/main/packages/swagger-convert-core/__tests__
+  */
+const { definitionSchemaJson, requestFileCodeSort } = await parseSwagger(swaggerUrl);
+// definitionSchemaJson 解析出jsonschema
+// requestFileCodeSort 所有url、ts名称，相当于后续生成的AST
+```
+
 ## 转换json-schema
 
 ```js

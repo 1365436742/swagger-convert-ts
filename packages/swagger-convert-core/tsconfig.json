@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES5", // 目标语言版本
-    "module": "CommonJS", // 使用 ESNext 模块系统
+    "module": "ESNext", // 使用 ESNext 模块系统
     "strict": true, // 启用所有严格类型检查选项
     "esModuleInterop": true, // 启用 ES 模块的互操作性
     "skipLibCheck": true, // 跳过库文件的类型检查

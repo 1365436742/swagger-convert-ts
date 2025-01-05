@@ -7,7 +7,7 @@ import {
 import { JSONSchema, MockJsonInfo, RequestFileCodeSort, SwaggerOpenApiType } from './types';
 import { swaggerJsonConvert, SwaggerJsonConvertReturn } from './utils/swaggerJsonConvert';
 import { copyFolderSync } from './utils';
-import axios from 'axios';
+import superagent from 'superagent';
 import { convertSchemaToMock } from './utils/convertSchemaToMock';
 /**
  * https://github.com/glideapps/quicktype
@@ -17,8 +17,8 @@ import { convertSchemaToMock } from './utils/convertSchemaToMock';
 export const parseSwagger = async (swaggerOpenApiUrl: string): Promise<SwaggerJsonConvertReturn> => {
   let swaggerOpenApi: SwaggerOpenApiType | null = null;
   if (/(https|http):\/\//.test(swaggerOpenApiUrl)) {
-    const res = await axios.get(swaggerOpenApiUrl);
-    swaggerOpenApi = res.data;
+    const res = await superagent.get(swaggerOpenApiUrl);
+    swaggerOpenApi = res.body;
   } else {
     swaggerOpenApi = JSON.parse(
       fs.readFileSync(swaggerOpenApiUrl, 'utf8')
