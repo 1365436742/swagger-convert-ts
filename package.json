@@ -6,6 +6,7 @@
     "dev:plugin": "mnpm run build:plugin && lerna run start",
     "build:plugin": "lerna run build && node copy_script.js"
   },
+  "author": "reqingzai",
   "workspaces": [
     "packages/*"
   ],

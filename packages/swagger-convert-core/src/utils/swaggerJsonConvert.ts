@@ -3,7 +3,7 @@ import {
   RequestCodeProps,
   RequestFileCodeSort,
   SwaggerOpenApiType,
-} from '@/types';
+} from '../types';
 import { removeUnderscoreProperties, replaceAllRefs, toCamelCase, typeNameGenerated } from '.';
 
 export interface SwaggerJsonConvertReturn {

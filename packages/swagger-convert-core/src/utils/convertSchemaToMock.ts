@@ -1,4 +1,4 @@
-import { JSONSchema } from "@/types";
+import { JSONSchema } from "../types";
 
 export function convertSchemaToMock(schemas: JSONSchema) {
     const mock: Record<string, any> = {};

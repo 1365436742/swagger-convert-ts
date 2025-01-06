@@ -1,9 +1,10 @@
-import { Button, Flex, Form, Modal, Popover } from 'antd';
+import { Button, Flex, Form, Input, Modal, Popover } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import React from 'react';
+import React, { useState } from 'react';
 import FormItemTableTransfer from './FormItemTableTransfer';
 import './index.less';
-import ParseSwagger from '../../../../components/ParseSwagger';
+import { parseSwaggerByUrl, ParseSwaggerByUrlRes } from '../../../../apis/generatedCode';
+import { useDebounceFn } from 'ahooks';
 interface GeneratedMockModalProps {
   open?: boolean;
   onChange?: (open: boolean) => void;
@@ -12,6 +13,20 @@ const GeneratedMockModal: React.FC<GeneratedMockModalProps> = ({
   open,
   onChange,
 }) => {
+  const [form] = Form.useForm();
+  const [requestList, setRequestList] = useState<ParseSwaggerByUrlRes[]>([]);
+  const { run: getSwaggerUrl } = useDebounceFn(async (swaggerUrl: string) => {
+    if (!swaggerUrl || !/^(http|https)\:\/\//.test(swaggerUrl)) return null;
+    const res = await parseSwaggerByUrl({
+      swaggerUrl
+    })
+    if (res.data.status === 1) {
+      setRequestList(res.data.data.requestList)
+    }
+  }, {
+    trailing: true,
+    wait: 200
+  })
   return (
     <Modal
       width={900}
@@ -23,6 +38,7 @@ const GeneratedMockModal: React.FC<GeneratedMockModalProps> = ({
     >
       <Form
         name="GeneratedMockModal"
+        form={form}
         labelAlign="left"
         layout="vertical"
         autoComplete="off"
@@ -53,10 +69,16 @@ const GeneratedMockModal: React.FC<GeneratedMockModalProps> = ({
             </Flex>
           }
         >
-          <ParseSwagger />
+          <Input
+            onChange={(e) => {
+              const swaggerUrl = e.target.value
+              getSwaggerUrl(swaggerUrl);
+            }}
+            placeholder="例如：http://localhost:8081/v3/api-docs"
+          />
         </Form.Item>
         <Form.Item name="axiosUrls" label="指定接口生成mock">
-          <FormItemTableTransfer />
+          <FormItemTableTransfer dataSource={requestList} />
         </Form.Item>
         <Form.Item>
           <Flex gap="small" justify="flex-end">

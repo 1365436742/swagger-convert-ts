@@ -1,5 +1,5 @@
 import { format } from 'prettier';
-import { GeneratedRequestCodeProps, GeneratedTsTypeCodeProps, RequestCodeProps } from '@/types';
+import { GeneratedRequestCodeProps, GeneratedTsTypeCodeProps, RequestCodeProps } from '../types';
 import path from 'path';
 import fs from 'fs';
 import { transformedString } from '.';

@@ -6,20 +6,16 @@ import type {
   TableProps,
   TransferProps,
 } from 'antd';
+import { ParseSwaggerByUrlRes } from '../../../../apis/generatedCode';
 
 type TransferItem = GetProp<TransferProps, 'dataSource'>[number];
 type TableRowSelection<T extends object> = TableProps<T>['rowSelection'];
 
-interface DataType {
-  key: string;
-  requestUrl: string;
-  methods: string;
-}
 
 interface TableTransferProps extends TransferProps<TransferItem> {
-  dataSource: DataType[];
-  leftColumns: TableColumnsType<DataType>;
-  rightColumns: TableColumnsType<DataType>;
+  dataSource: ParseSwaggerByUrlRes[];
+  leftColumns: TableColumnsType<ParseSwaggerByUrlRes>;
+  rightColumns: TableColumnsType<ParseSwaggerByUrlRes>;
 }
 
 // Customize Table Transfer
@@ -71,40 +67,36 @@ const TableTransfer: React.FC<TableTransferProps> = (props) => {
   );
 };
 
-const mockTags = ['GET', 'POST', 'DELETE'];
 
-const mockData = Array.from({ length: 20 }).map<DataType>((_, i) => ({
-  key: i.toString(),
-  requestUrl: `description of content${i + 1}`,
-  methods: mockTags[i % 3],
-}));
-
-const columns: TableColumnsType<DataType> = [
+const columns: TableColumnsType<ParseSwaggerByUrlRes> = [
   {
     dataIndex: 'requestUrl',
     title: 'requestUrl',
   },
   {
-    dataIndex: 'methods',
-    title: 'methods',
+    dataIndex: 'method',
+    title: 'method',
     render: (tag: string) => <Tag color="processing">{tag.toUpperCase()}</Tag>,
   },
 ];
 
-const filterOption = (input: string, item: DataType) =>
-  item.requestUrl?.includes(input) || item.methods?.includes(input);
+const filterOption = (input: string, item: ParseSwaggerByUrlRes) =>
+  item.requestUrl?.includes(input) || item.method?.includes(input);
+
 interface FormItemTableTransferProps {
+  dataSource?: ParseSwaggerByUrlRes[]
   value?: TransferProps['targetKeys'];
   onChange?: TableTransferProps['onChange'];
 }
 
 const FormItemTableTransfer: React.FC<FormItemTableTransferProps> = ({
   value,
+  dataSource,
   onChange,
 }) => {
   return (
     <TableTransfer
-      dataSource={mockData}
+      dataSource={dataSource || []}
       targetKeys={value}
       showSelectAll
       showSearch

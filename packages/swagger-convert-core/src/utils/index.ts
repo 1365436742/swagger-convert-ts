@@ -1,6 +1,5 @@
-import { JSONSchema } from '@/types';
+import { JSONSchema } from '../types';
 import fs from 'fs';
-import { cloneDeep } from 'lodash';
 import path from 'path';
 export function capitalizeFirstLetter(str: string) {
   if (!str) return ''; // 处理空字符串或非字符串输入
