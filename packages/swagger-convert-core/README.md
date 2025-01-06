@@ -27,6 +27,18 @@ import { JSONSchema, RequestFileCodeSort } from 'swagger-convert-core/types';
 const {definitionSchemaJson , requestFileCodeSort} = await parseSwagger(swaggerOpenApiUrl);
 ```
 
+## 转换为mockjs
+
+```js
+import { parseSwagger } from 'swagger-convert-core'
+import { JSONSchema, RequestFileCodeSort } from 'swagger-convert-core/types'; 
+const {definitionSchemaJson , requestFileCodeSort} = await parseSwagger(swaggerOpenApiUrl);
+const mockJson = generatedMockJson({
+    definitionSchemaJson,
+    requestFileCodeSort
+})
+```
+
 ## 转换tscode
 
 ```js

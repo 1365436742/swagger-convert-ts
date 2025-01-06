@@ -13,3 +13,11 @@ export const parseSwaggerByUrl = (params: ParseSwaggerByUrlParams) => {
         params
     });
 };
+
+export interface GeneratedCodeMockjsParams {
+    swaggerUrl: string
+    generatedCodeList: ParseSwaggerByUrlRes[]
+}
+export const generatedCodeMockjs = (params: GeneratedCodeMockjsParams) => {
+    return instance.post<ResResult>('/generatedCode/mockjs', params);
+};

@@ -1,5 +1,5 @@
 import { Button, Flex, message, Popconfirm, Switch, Tag } from 'antd';
-import { EditOutlined, PlusOutlined } from '@ant-design/icons';
+import { EditOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import UpdataMockModal from '../UpdataMockModal';
 import React, { useState } from 'react';
 import UpdataSceneModal from '../UpdataSceneModal';
@@ -13,6 +13,7 @@ import {
 import './index.less';
 import {
   addSence,
+  deleteSence,
   selectSence,
   senceDetail,
   updateSence,
@@ -172,12 +173,39 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
                 {...selectProps}
                 key={sence}
                 icon={
-                  <EditOutlined
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onChangeSenceContent(sence);
-                    }}
-                  />
+                  <Flex gap="small">
+                    <EditOutlined
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onChangeSenceContent(sence);
+                      }}
+                    />
+                    <Popconfirm
+                      onPopupClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                      title="确认删除"
+                      description="将删除该场景数据"
+                      okText="确定"
+                      cancelText="取消"
+                      onConfirm={() => {
+                        deleteSence({ url, method, senceName: sence }).then(res => {
+                          if (res.data.status === 1) {
+                            message.success("删除成功")
+                            onUpdateList?.()
+                          }
+                        })
+                      }}
+                    >
+                      <DeleteOutlined
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                        style={{ color: "red" }}
+                      />
+                    </Popconfirm>
+
+                  </Flex>
                 }
                 iconPosition="end"
                 onClick={() => onChangeSence(sence)}

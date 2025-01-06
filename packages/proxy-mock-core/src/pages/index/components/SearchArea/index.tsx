@@ -34,6 +34,7 @@ const SearchArea: React.FC<SearchAreaProps> = ({
         onChange={setOpneUpdataMockModal}
       ></UpdataMockModal>
       <GeneratedMockModal
+        onUpdateList={onUpdateList}
         open={opneGeneratedMockModal}
         onChange={setGeneratedMockModal}
       ></GeneratedMockModal>
