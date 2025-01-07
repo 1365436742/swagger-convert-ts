@@ -166,7 +166,7 @@ export default (options: ConfigOptions) => {
     }
   });
 
-  router.get('/getSpace', async (_req, res) => {
+  router.get('/getSpaceList', async (_req, res) => {
     try {
       const list = await getCodeSpaceList(generatedCodeFileUrl);
       res.send(successRes(list, '修改成功'));
