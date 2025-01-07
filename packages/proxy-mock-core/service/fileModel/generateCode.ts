@@ -1,20 +1,23 @@
-import fs from 'fs';
-import path from 'path';
-import { SapceItem, SpaceConfigJson } from '../types/generatedCode';
-import { readJson } from '../utils';
-import { createFileDir } from '../utils/file';
+import fs from "fs";
+import path from "path";
+import { SapceItem, SpaceConfigJson } from "../types/generatedCode";
+import { readJson } from "../utils";
+import { createFileDir } from "../utils/file";
 
 export async function getCodeSpaceList(
   generatedCodeFileUrl: string
 ): Promise<SapceItem[]> {
-  const files = await fs.promises.readdir(generatedCodeFileUrl);
+  let files = await fs.promises.readdir(generatedCodeFileUrl, {
+    withFileTypes: true,
+  });
   const result: SapceItem[] = [];
+  files = files.filter((item) => item.isDirectory());
   for (let i = 0; i < files.length; i++) {
-    const spaceName = files[i];
+    const spaceName = files[i].name;
     const configJsonUrl = path.join(
       generatedCodeFileUrl,
       spaceName,
-      'index.json'
+      "index.json"
     );
     const configJson: SpaceConfigJson = await readJson(configJsonUrl);
     const cur: SapceItem = {
@@ -38,7 +41,7 @@ export async function updateCodeSpace(
   } else {
     await createFileDir(baseUrl);
   }
-  const configJsonUrl = path.join(baseUrl, 'index.json');
+  const configJsonUrl = path.join(baseUrl, "index.json");
   const oldConfigJson: SapceItem = await readJson(configJsonUrl, true);
   await fs.promises.writeFile(
     configJsonUrl,
@@ -59,6 +62,6 @@ export async function writeTsCode(
   spaceName: string,
   tsCode: string
 ) {
-  const tsUrl = path.join(generatedCodeFileUrl, spaceName, 'type.d.ts');
+  const tsUrl = path.join(generatedCodeFileUrl, spaceName, "type.d.ts");
   await fs.promises.writeFile(tsUrl, tsCode);
 }

@@ -64,27 +64,6 @@ export function toCamelCase(str: string) {
   });
 }
 
-export function copyFolderSync(source: string, target: string) {
-  // 检查目标目录是否存在，不存在则创建
-  if (!fs.existsSync(target)) {
-    fs.mkdirSync(target, { recursive: true });
-  }
-  // 读取源目录中的所有文件/目录
-  const files: string[] = fs.readdirSync(source);
-  files.forEach((file) => {
-    const sourcePath = path.join(source, file);
-    const targetPath = path.join(target, file);
-
-    // 判断是文件还是目录
-    if (fs.lstatSync(sourcePath).isDirectory()) {
-      // 如果是目录，递归调用
-      copyFolderSync(sourcePath, targetPath);
-    } else {
-      // 如果是文件，直接复制
-      fs.copyFileSync(sourcePath, targetPath);
-    }
-  });
-}
 /**
  * 将字符串格式化并且提取出来里面的值
  * eg: /postRequest/{id}/user/{userId}/details/{detailId}

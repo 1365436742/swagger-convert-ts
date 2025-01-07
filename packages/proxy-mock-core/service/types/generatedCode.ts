@@ -9,8 +9,9 @@ export interface MockJsParams {
   swaggerUrl: string;
   generatedCodeList: GeneratedCodeRequestList[];
 }
-export interface SpaceConfigJson{
+export interface SpaceConfigJson {
   filterUrl: string[];
+  importStr?: string;
 }
 export interface SapceItem {
   spaceName: string;

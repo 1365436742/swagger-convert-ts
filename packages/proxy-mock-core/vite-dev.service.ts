@@ -1,8 +1,8 @@
 import { PluginOption } from 'vite';
 import mainService from "./dist/index";
 import path from "path";
-const generatedCodeFileUrl = path.resolve(__dirname, "./src/request-apis")
-const mockDataFileUrl = path.resolve(__dirname, "./mock")
+const generatedCodeFileUrl = path.resolve(__dirname, "./eg-test/request-apis")
+const mockDataFileUrl = path.resolve(__dirname, "./eg-test/mock")
 const mainServiceInfo = mainService({
     generatedCodeFileUrl,
     mockDataFileUrl

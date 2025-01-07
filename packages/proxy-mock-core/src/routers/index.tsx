@@ -35,7 +35,11 @@ const Routers: (RouteProps & MenuItem)[] = [
     icon: <CodeOutlined />,
     element: <GeneratedCode />,
   },
-];
+].map(item => {
+  item.path = '/public' + item.path;
+  item.key = '/public' + item.key;
+  return item
+});
 
 const RouterView = () => {
   const [collapsed, setCollapsed] = useState(false);

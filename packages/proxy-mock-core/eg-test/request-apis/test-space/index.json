@@ -1,0 +1,6 @@
+{
+  "importStr": "import request from '../index';",
+  "filterUrl": [
+    "/deleteRequest/**"
+  ]
+}

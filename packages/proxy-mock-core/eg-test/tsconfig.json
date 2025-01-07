@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES5", // 目标语言版本
+    "module": "CommonJS", // 使用 ESNext 模块系统
+    "strict": true, // 启用所有严格类型检查选项
+    "esModuleInterop": true, // 启用 ES 模块的互操作性
+    "skipLibCheck": true, // 跳过库文件的类型检查
+    "declaration": true, // 生成 .d.ts 文件
+    "rootDir": "./", // 输入文件的根目录
+    "moduleResolution": "node", // 模块解析策略
+    "forceConsistentCasingInFileNames": true, // 强制文件名一致性
+    "baseUrl": "./"
+  },
+  "include": [
+    "request-apis"
+  ]
+}

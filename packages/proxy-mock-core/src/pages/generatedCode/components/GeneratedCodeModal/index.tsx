@@ -1,17 +1,23 @@
-import { Button, Flex, Form, Modal, Popover } from 'antd';
+import { Button, Flex, Form, Input, Modal, Popover } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import React from 'react';
 import './index.less';
 import FormItemMoncaoEditor from '../../../../components/FormItemMoncaoEditor';
-import ParseSwagger from '../../../../components/ParseSwagger';
+interface FormType {
+  swaggerUrl: string;
+  configJson: string;
+}
 interface GeneratedCodeModalProps {
+  initialValues?: { configJson: string }
   open?: boolean;
   onChange?: (open: boolean) => void;
+  onFinish?: (values: FormType) => void;
 }
-const defaultJson = ['/api/aaa', '/generatedCode/*'];
 const GeneratedCodeModal: React.FC<GeneratedCodeModalProps> = ({
+  initialValues,
   open,
   onChange,
+  onFinish
 }) => {
   return (
     <Modal
@@ -29,16 +35,18 @@ const GeneratedCodeModal: React.FC<GeneratedCodeModalProps> = ({
       onCancel={() => onChange?.(false)}
       footer={null}
     >
-      <Form
+      <Form<FormType>
         name="GeneratedCodeModal"
         labelAlign="left"
         layout="vertical"
         autoComplete="off"
-        initialValues={{ urlFilter: JSON.stringify(defaultJson, null, 2) }}
+        initialValues={initialValues}
         style={{ paddingTop: '10px' }}
+        onFinish={onFinish}
       >
         <Form.Item
           name="swaggerUrl"
+          rules={[{ required: true, message: "请输入swagger地址" }]}
           label={
             <Flex gap="small">
               <div>swaggerUrl</div>
@@ -62,13 +70,13 @@ const GeneratedCodeModal: React.FC<GeneratedCodeModalProps> = ({
             </Flex>
           }
         >
-          <ParseSwagger />
+          <Input placeholder="例如：http://localhost:8081/v3/api-docs" />
         </Form.Item>
         <Form.Item
-          name="urlFilter"
+          name="configJson"
           label={
             <Flex gap="small">
-              <div>指定接口过滤（不填默认生成全部接口）</div>
+              <div>指定接口过滤配置（不填默认生成全部接口）</div>
               <Popover content="生成后会覆盖所有空间下的文件。请选择所有你需要用到的接口">
                 <QuestionCircleOutlined />
               </Popover>

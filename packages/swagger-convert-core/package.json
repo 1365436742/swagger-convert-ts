@@ -1,6 +1,6 @@
 {
   "name": "swagger-convert-core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "files": [
     "dist"
@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "tsc -w",
     "clear": "del-cli dist",
-    "build": "npm run clear && tsc && node copTemplateFiles.js",
+    "build": "npm run clear && tsc",
     "test:build": "npm run build && node --no-warnings --experimental-vm-modules ../../node_modules/jest/bin/jest.js",
     "test": "node --no-warnings --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
   },
