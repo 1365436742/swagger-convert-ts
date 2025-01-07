@@ -1,6 +1,11 @@
 import express from 'express';
 import { ConfigOptions } from '../types';
-import { generatedMockJson, parseSwagger } from 'swagger-convert-core';
+import {
+  generatedFileCode,
+  generatedMockJson,
+  jsonSchemaToTsCode,
+  parseSwagger,
+} from 'swagger-convert-core';
 import { errorRes, successRes } from '../utils/response';
 import {
   GeneratedCodeRequestList,
@@ -17,6 +22,7 @@ import {
   deleteCodeSpace,
   getCodeSpaceList,
   updateCodeSpace,
+  writeTsCode,
 } from '../fileModel/generateCode';
 
 export default (options: ConfigOptions) => {
@@ -175,5 +181,38 @@ export default (options: ConfigOptions) => {
     }
   });
 
+  router.post('/axiosCode', async (req, res) => {
+    const body = req.body as SapceItem & { swaggerUrl: string };
+    if (!body.spaceName) {
+      res.send(errorRes(body, '缺少参数'));
+      return;
+    }
+    try {
+      const { definitionSchemaJson, requestFileCodeSort } = await parseSwagger(
+        body.swaggerUrl
+      );
+      if (!requestFileCodeSort || !definitionSchemaJson) {
+        res.send(
+          errorRes(
+            { requestFileCodeSort, definitionSchemaJson },
+            'parseSwagger解析失败'
+          )
+        );
+        return;
+      }
+      const tsCode = await jsonSchemaToTsCode({
+        definitionSchemaJson,
+      });
+      await generatedFileCode({
+        requestFileCodeSort,
+        generatedCodeFileUrl,
+        requestSpanceName: body.spaceName,
+      });
+      await writeTsCode(generatedCodeFileUrl, body.spaceName, tsCode);
+      res.send(successRes({}, '生成代码成功'));
+    } catch (error) {
+      res.send(errorRes(error, '生成失败'));
+    }
+  });
   return router;
 };
