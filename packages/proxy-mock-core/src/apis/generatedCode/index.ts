@@ -21,3 +21,40 @@ export interface GeneratedCodeMockjsParams {
 export const generatedCodeMockjs = (params: GeneratedCodeMockjsParams) => {
     return instance.post<ResResult>('/generatedCode/mockjs', params);
 };
+
+export interface SpaceConfigJson {
+  filterUrl: string[];
+}
+export interface SapceItem {
+  spaceName: string;
+  configJson: SpaceConfigJson;
+}
+
+export interface GeneratedCreateSpaceParams {
+  spaceName: string;
+  configJson: SpaceConfigJson;
+}
+export const generatedCodeCreateSpace = (
+  params: GeneratedCreateSpaceParams
+) => {
+  return instance.post<ResResult>('/generatedCode/createSpace', params);
+};
+
+export const generatedCodeDeleteSpace = (
+  params: Pick<SapceItem, 'spaceName'>
+) => {
+  return instance.post<ResResult>('/generatedCode/deleteSpace', params);
+};
+
+export interface GeneratedCodeUpdateSpaceParams extends Partial<SapceItem> {
+  oldSpaceName: string;
+}
+export const generatedCodeUpdateSpace = (
+  params: GeneratedCodeUpdateSpaceParams
+) => {
+  return instance.post<ResResult>('/generatedCode/updateSpace', params);
+};
+
+export const generatedCodeGetSpaceList = () => {
+  return instance.get<ResResult<SapceItem[]>>('/generatedCode/getSpaceList');
+};
