@@ -30,9 +30,8 @@ const {definitionSchemaJson , requestFileCodeSort} = await parseSwagger(swaggerO
 ## 转换为mockjs
 
 ```js
-import { parseSwagger } from 'swagger-convert-core'
-import { JSONSchema, RequestFileCodeSort } from 'swagger-convert-core/types'; 
-const {definitionSchemaJson , requestFileCodeSort} = await parseSwagger(swaggerOpenApiUrl);
+import { parseSwagger, generatedMockJson } from 'swagger-convert-core'
+const { definitionSchemaJson , requestFileCodeSort} = await parseSwagger(swaggerOpenApiUrl);
 const mockJson = generatedMockJson({
     definitionSchemaJson,
     requestFileCodeSort
@@ -42,14 +41,16 @@ const mockJson = generatedMockJson({
 ## 转换tscode
 
 ```js
-import { jsonSchemaToTsCode } from 'swagger-convert-core'
+import { parseSwagger, jsonSchemaToTsCode } from 'swagger-convert-core'
+const { definitionSchemaJson } = await parseSwagger(swaggerOpenApiUrl);
 const code = await jsonSchemaToTsCode({ definitionSchemaJson });
 ```
 
 ## 转换前端的axios-code
 
 ```js
-import { generatedFileCode } from 'swagger-convert-core'
+import { parseSwagger, generatedFileCode } from 'swagger-convert-core'
+const { requestFileCodeSort } = await parseSwagger(swaggerOpenApiUrl);
 const config = {
     generatedCodeFileUrl: path.resolve(__dirname, './generate-test'),
     /** 生成本次接口的应用空间名称 */
