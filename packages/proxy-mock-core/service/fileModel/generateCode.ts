@@ -21,7 +21,7 @@ export async function getCodeSpaceList(
       configJson,
       spaceName,
     };
-    result.push(cur)
+    result.push(cur);
   }
   return result;
 }
@@ -52,4 +52,13 @@ export async function deleteCodeSpace(
 ) {
   const baseUrl = path.join(generatedCodeFileUrl, spaceName);
   await fs.promises.rm(baseUrl, { recursive: true });
+}
+
+export async function writeTsCode(
+  generatedCodeFileUrl: string,
+  spaceName: string,
+  tsCode: string
+) {
+  const tsUrl = path.join(generatedCodeFileUrl, spaceName, 'type.d.ts');
+  await fs.promises.writeFile(tsUrl, tsCode);
 }
