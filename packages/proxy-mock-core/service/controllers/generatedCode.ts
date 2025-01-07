@@ -1,94 +1,179 @@
-import express from "express"
-import { ConfigOptions } from "../types";
+import express from 'express';
+import { ConfigOptions } from '../types';
 import { generatedMockJson, parseSwagger } from 'swagger-convert-core';
-import { errorRes, successRes } from "../utils/response";
-import { GeneratedCodeRequestList, MockJsParams } from "../types/generatedCode";
-import { getMockList, updateMock } from "../fileModel/mockList";
-import { updateSence } from "../fileModel/mockSence";
-import { isEjs } from "../utils";
-import { cjsMockTemplate, ejsMockTemplate } from "../template";
+import { errorRes, successRes } from '../utils/response';
+import {
+  GeneratedCodeRequestList,
+  MockJsParams,
+  SapceItem,
+} from '../types/generatedCode';
+import { getMockList, updateMock } from '../fileModel/mockList';
+import { updateSence } from '../fileModel/mockSence';
+import { isEjs } from '../utils';
+import { cjsMockTemplate, ejsMockTemplate } from '../template';
 import { v4 as uuidv4 } from 'uuid';
 import { format } from 'prettier';
+import {
+  deleteCodeSpace,
+  getCodeSpaceList,
+  updateCodeSpace,
+} from '../fileModel/generateCode';
 
 export default (options: ConfigOptions) => {
-    const { mockDataFileUrl = '' } = options
-    const router = express.Router();
-    // http://localhost:3001/generatedCode/parseSwagger?swaggerUrl=http%3A%2F%2Flocalhost%3A8080%2Fv3%2Fapi-docs
-    router.get('/parseSwagger', async (req, res) => {
-        const body = req.query as { swaggerUrl: string }
-        if (!body.swaggerUrl) {
-            res.send(errorRes(body, "缺少参数"));
-            return
-        }
-        try {
-            const { requestFileCodeSort } = await parseSwagger(body.swaggerUrl);
-            const requestList: GeneratedCodeRequestList[] = [];
-            for (const key in requestFileCodeSort) {
-                const element = requestFileCodeSort[key];
-                requestList.push(...element.map(item => ({
-                    key: uuidv4(),
-                    requestUrl: item.url,
-                    method: item.method
-                })))
+  const { mockDataFileUrl = '', generatedCodeFileUrl = '' } = options;
+  const router = express.Router();
+  // http://localhost:3001/generatedCode/parseSwagger?swaggerUrl=http%3A%2F%2Flocalhost%3A8080%2Fv3%2Fapi-docs
+  router.get('/parseSwagger', async (req, res) => {
+    const body = req.query as { swaggerUrl: string };
+    if (!body.swaggerUrl) {
+      res.send(errorRes(body, '缺少参数'));
+      return;
+    }
+    try {
+      const { requestFileCodeSort } = await parseSwagger(body.swaggerUrl);
+      const requestList: GeneratedCodeRequestList[] = [];
+      for (const key in requestFileCodeSort) {
+        const element = requestFileCodeSort[key];
+        requestList.push(
+          ...element.map((item) => ({
+            key: uuidv4(),
+            requestUrl: item.url,
+            method: item.method,
+          }))
+        );
+      }
+      res.send(successRes({ requestList }));
+    } catch (error) {
+      res.send(errorRes(error, '输入链接有误'));
+    }
+  });
+
+  router.post('/mockjs', async (req, res) => {
+    const body = req.body as MockJsParams;
+    if (!body.swaggerUrl || !body.generatedCodeList.length) {
+      res.send(errorRes(body, '缺少参数'));
+      return;
+    }
+    try {
+      const { requestFileCodeSort, definitionSchemaJson } = await parseSwagger(
+        body.swaggerUrl
+      );
+      if (!requestFileCodeSort || !definitionSchemaJson) {
+        res.send(
+          errorRes(
+            { requestFileCodeSort, definitionSchemaJson },
+            'parseSwagger解析失败'
+          )
+        );
+        return;
+      }
+
+      const mockJson = generatedMockJson({
+        definitionSchemaJson,
+        requestFileCodeSort,
+      });
+
+      const requestList: GeneratedCodeRequestList[] = [];
+      const mockList = await getMockList(mockDataFileUrl);
+      for (const key in mockJson) {
+        const element = mockJson[key];
+        for (let i = 0; i < element.length; i++) {
+          const { responseMockjs, url, method } = element[i];
+          if (
+            body.generatedCodeList.some(
+              (i) => i.requestUrl === url && i.method === method
+            )
+          ) {
+            const senceName = 'mockjs_' + uuidv4().split('-')[0];
+            let senceContent = isEjs()
+              ? ejsMockTemplate(responseMockjs)
+              : cjsMockTemplate(responseMockjs);
+            senceContent = await format(senceContent, { parser: 'typescript' });
+            if (
+              !mockList.some(
+                (item) => item.method === method && item.url === url
+              )
+            ) {
+              await updateMock(mockDataFileUrl, {
+                sence: senceName,
+                delay: 0,
+                mock: false,
+                url,
+                method,
+              });
             }
-            res.send(successRes({ requestList }));
-        } catch (error) {
-            res.send(errorRes(error, "输入链接有误"))
+            await updateSence(
+              mockDataFileUrl,
+              {
+                url,
+                method,
+              },
+              {
+                senceContent,
+                senceName,
+              }
+            );
+          }
         }
-    });
+      }
+      res.send(successRes({ requestList }));
+    } catch (error) {
+      res.send(errorRes(error, '输入链接有误'));
+    }
+  });
 
-    router.post('/mockjs', async (req, res) => {
-        const body = req.body as MockJsParams;
-        if (!body.swaggerUrl || !body.generatedCodeList.length) {
-            res.send(errorRes(body, "缺少参数"));
-            return
-        }
-        try {
-            const { requestFileCodeSort, definitionSchemaJson } = await parseSwagger(body.swaggerUrl);
-            if (!requestFileCodeSort || !definitionSchemaJson) {
-                res.send(errorRes({ requestFileCodeSort, definitionSchemaJson }, "parseSwagger解析失败"));
-                return
-            }
+  router.post('/createSpace', async (req, res) => {
+    const body = req.body as SapceItem;
+    if (!body.spaceName) {
+      res.send(errorRes(body, '缺少参数'));
+      return;
+    }
+    try {
+      await updateCodeSpace(generatedCodeFileUrl, body);
+      res.send(successRes({}, '创建成功'));
+    } catch (error) {
+      res.send(errorRes(error, '创建失败'));
+    }
+  });
 
-            const mockJson = generatedMockJson({
-                definitionSchemaJson,
-                requestFileCodeSort
-            })
+  router.post('/deleteSpace', async (req, res) => {
+    const body = req.body as Pick<SapceItem, 'spaceName'>;
+    if (!body.spaceName) {
+      res.send(errorRes(body, '缺少参数'));
+      return;
+    }
+    try {
+      await deleteCodeSpace(generatedCodeFileUrl, body.spaceName);
+      res.send(successRes({}, '删除成功'));
+    } catch (error) {
+      res.send(errorRes(error, '删除失败'));
+    }
+  });
 
-            const requestList: GeneratedCodeRequestList[] = [];
-            const mockList = await getMockList(mockDataFileUrl);
-            for (const key in mockJson) {
-                const element = mockJson[key];
-                for (let i = 0; i < element.length; i++) {
-                    const { responseMockjs, url, method } = element[i];
-                    if (body.generatedCodeList.some(i => i.requestUrl === url && i.method === method)) {
-                        const senceName = "mockjs_" + uuidv4().split("-")[0];
-                        let senceContent = isEjs() ? ejsMockTemplate(responseMockjs) : cjsMockTemplate(responseMockjs)
-                        senceContent = await format(senceContent, { parser: 'typescript' });
-                        if (!mockList.some(item => item.method === method && item.url === url)) {
-                            await updateMock(mockDataFileUrl, {
-                                sence: senceName,
-                                delay: 0,
-                                mock: false,
-                                url,
-                                method
-                            })
-                        }
-                        await updateSence(mockDataFileUrl, {
-                            url,
-                            method
-                        }, {
-                            senceContent,
-                            senceName,
-                        })
-                    }
-                }
-            }
+  router.post('/updateSpace', async (req, res) => {
+    const body = req.body as SapceItem & {
+      oldSpaceName: string;
+    };
+    if (!body.spaceName || !body.oldSpaceName) {
+      res.send(errorRes(body, '缺少参数'));
+      return;
+    }
+    try {
+      await updateCodeSpace(generatedCodeFileUrl, body);
+      res.send(successRes({}, '修改成功'));
+    } catch (error) {
+      res.send(errorRes(error, '修改失败'));
+    }
+  });
 
-            res.send(successRes({ requestList }));
-        } catch (error) {
-            res.send(errorRes(error, "输入链接有误"))
-        }
-    });
-    return router
-}
+  router.get('/getSpace', async (_req, res) => {
+    try {
+      const list = await getCodeSpaceList(generatedCodeFileUrl);
+      res.send(successRes(list, '修改成功'));
+    } catch (error) {
+      res.send(errorRes(error, '修改失败'));
+    }
+  });
+
+  return router;
+};
