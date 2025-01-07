@@ -10,7 +10,7 @@ export interface MockJsParams {
   generatedCodeList: GeneratedCodeRequestList[];
 }
 export interface SpaceConfigJson{
-  filterUrl: string;
+  filterUrl: string[];
 }
 export interface SapceItem {
   spaceName: string;
