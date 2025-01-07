@@ -40,7 +40,21 @@ const mainService = (options: ConfigOptions = {}): MainServiceReturn => {
         if (!mockConfigJson.mock || !mockFileUrl) return false;
         await sleep(mockConfigJson.delay);
         const fn = await dynamicReadJs(mockFileUrl);
-        return await fn(...proxyParams)
+        const getMockInfo = async (url: string, method: string, proxyParams: any) => {
+        if (!options.mockDataFileUrl) return false
+        const list = await getMockList(options.mockDataFileUrl);
+        const findMock = list.find(item => item.method === method.toLocaleUpperCase() && item.url === url);
+        if (!findMock) return false;
+        const { mockConfigJson, mockFileUrl } = await getMockConfig(options.mockDataFileUrl, findMock);
+        if (!mockConfigJson.mock || !mockFileUrl) return false;
+        await sleep(mockConfigJson.delay);
+        const fn = await dynamicReadJs(mockFileUrl);
+        if (typeof fn === 'function') {
+              return await fn(...proxyParams)
+            } else {
+             return fn
+            }
+        }
     }
     return {
         getMockInfo,
