@@ -24,7 +24,7 @@ const SearchArea: React.FC<SearchAreaProps> = ({
           generatedCodeCreateSpace({
             ...values,
             configJson: {
-              filterUrl: ['/*'],
+              filterUrl: ['/**'],
               importStr: "import request from '../index';"
             }
           }).then(res => {
