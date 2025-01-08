@@ -1,0 +1,40 @@
+{
+  "name": "webpack-mock-plugin",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "exports": {
+    "import": "./dist/index.esm.js",
+    "require": "./dist/index.cjs.js"
+  },
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "dev": "mnpm run build && webpack server",
+    "start": "webpack server",
+    "build": "rollup -c"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-typescript": "^12.1.1",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/http-proxy": "^1.17.15",
+    "@types/webpack": "^5.28.5",
+    "express": "^4.21.1",
+    "http-proxy": "^1.18.1",
+    "rollup": "^4.27.4",
+    "rollup-plugin-delete": "^2.1.0",
+    "typescript": "^5.7.2",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
+  },
+  "dependencies": {}
+}
