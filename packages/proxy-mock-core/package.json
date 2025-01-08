@@ -7,6 +7,12 @@
   "description": "",
   "version": "0.0.2",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "dev:build": "npm run build:service && vite",
