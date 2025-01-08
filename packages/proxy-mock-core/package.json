@@ -7,8 +7,12 @@
   "description": "",
   "version": "0.0.2",
   "type": "module",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     }
