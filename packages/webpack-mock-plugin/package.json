@@ -1,6 +1,6 @@
 {
   "name": "webpack-mock-plugin",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "exports": {
@@ -11,7 +11,8 @@
     "dist/"
   ],
   "scripts": {
-    "dev": "mnpm run build && webpack server",
+    "dev": "webpack server",
+    "dev:build": "npm run build && webpack server",
     "start": "webpack server",
     "build": "rollup -c"
   },
@@ -36,5 +37,8 @@
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "http-proxy-middleware": "^3.0.3",
+    "proxy-mock-core": "*"
+  }
 }

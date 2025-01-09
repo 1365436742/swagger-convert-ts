@@ -1,12 +1,14 @@
-import { Compiler } from 'webpack';
-import { OnProxyReqCallback, ProxyMockPluginOptions } from './types';
-import mainService from 'proxy-mock-core';
-import { ConfigOptions } from 'proxy-mock-core/dist/types/index';
-import path from 'path';
+import { Compiler } from "webpack";
+import { OnProxyReqCallback, ProxyMockPluginOptions } from "./types";
+import mainService from "proxy-mock-core";
+import { ConfigOptions } from "proxy-mock-core/dist/types/index";
+import path from "path";
+import { responseInterceptor } from "http-proxy-middleware";
+
 const DefaultOption: ConfigOptions = {
   port: 3001,
-  generatedCodeFileUrl: path.join(__dirname, 'request-apis'),
-  mockDataFileUrl: path.join(__dirname, 'mock'),
+  generatedCodeFileUrl: path.join(__dirname, "request-apis"),
+  mockDataFileUrl: path.join(__dirname, "mock"),
 };
 class ProxyMockPlugin {
   options: ConfigOptions;
@@ -17,7 +19,7 @@ class ProxyMockPlugin {
   }
 
   apply(compiler: Compiler) {
-    compiler.hooks.done.tap('ProxyMockPlugin', () => {
+    compiler.hooks.done.tap("ProxyMockPlugin", () => {
       setImmediate(() => {
         if (!this.serviceUrl) return;
         console.log(
@@ -26,7 +28,7 @@ class ProxyMockPlugin {
       });
     });
     // 在 Webpack 的环境准备好后进行拦截
-    compiler.hooks.environment.tap('ProxyMockPlugin', () => {
+    compiler.hooks.environment.tap("ProxyMockPlugin", () => {
       const devServer = compiler.options.devServer;
       if (devServer && devServer.proxy) {
         // 获取代理配置
@@ -36,31 +38,38 @@ class ProxyMockPlugin {
         const that = this;
         // 遍历代理配置，添加中间件
         Object.keys(proxy).forEach((context) => {
-          const oldOnProxyReq = proxy[context]?.onProxyReq;
-          const onProxyReq: OnProxyReqCallback = async (...params) => {
-            oldOnProxyReq?.(...params);
-            const [_proxyReq, req, res] = params;
-            const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
-            const { pathname } = new URL(fullUrl);
-            const json = await mainServiceInfo.getMockInfo(
-              pathname,
-              req.method,
-              params
-            );
-            if (json) {
-              res.writeHead(200, { 'Content-Type': 'application/json' });
-              res.end(JSON.stringify(json));
+          const oldOnProxyRes = proxy[context]?.onProxyRes;
+          const onProxyRes = responseInterceptor(
+            async (responseBuffer, proxyRes, req, res) => {
+              oldOnProxyRes?.(proxyRes, req, res);
+              //@ts-ignore
+              const fullUrl = `${req.protocol}://${req.get("host")}${req.originalUrl}`;
+              const { pathname } = new URL(fullUrl);
+              const json = await mainServiceInfo.getMockInfo(
+                pathname,
+                req.method || "",
+                { proxyRes, req, res }
+              );
+              if (json) {
+                res.statusCode = 200;
+                const newResponseBuffer = Buffer.from(JSON.stringify(json));
+                proxyRes.headers["Content-Type"] = "application/json";
+                return newResponseBuffer;
+              }
+              return responseBuffer;
             }
-          };
-          if (typeof context === 'string') {
+          );
+          if (typeof context === "string") {
             // 如果是字符串形式的代理配置
             proxy[context] = {
               ...proxy[context],
-              onProxyReq,
+              selfHandleResponse: true,
+              onProxyRes,
             };
           } else {
+            proxy[context].selfHandleResponse = true;
             // 如果是对象形式的代理配置
-            proxy[context].onProxyReq = onProxyReq;
+            proxy[context].onProxyRes = onProxyRes;
           }
         });
       }

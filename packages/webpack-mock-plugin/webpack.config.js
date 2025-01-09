@@ -1,7 +1,7 @@
 const path = require('path');
 const ProxyMockPlugin = require('./dist/index.cjs.js');
-
 module.exports = {
+  mode: 'development',
   entry: './example/index.js',
   output: {
     filename: 'bundle.js',
@@ -11,16 +11,18 @@ module.exports = {
     hot: true,
     proxy: [
       {
-        context: ['/appfactory'],
-        target: 'https://chengzifeng-fdphz-sl-friday.ai.test.sankuai.com',
+        context: ['/api'],
+        target: 'http://localhost:8080',
         changeOrigin: true,
-        pathRewrite: { '^/appfactory': '' }
+        pathRewrite: { '^/api': '' },
       }
     ]
   },
   plugins: [
     new ProxyMockPlugin({
-      savePath: path.resolve(__dirname, './example')
+      port: 3001,
+      generatedCodeFileUrl: path.join(__dirname, './mockInfo/request-apis'),
+      mockDataFileUrl: path.join(__dirname, './mockInfo/mock'),
     })
   ]
 };

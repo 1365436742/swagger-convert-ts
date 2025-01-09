@@ -57,10 +57,11 @@ export function isEjs() {
 }
 
 export async function dynamicReadJs(url: string) {
+    const ejsEnv = isEjs()
     const os = process.platform;
-    let filePrefix = os === 'win32' ? "file://" : "";
+    let filePrefix = (os === 'win32' && ejsEnv) ? "file://" : "";
     const importUrl = filePrefix + url;
-    if (!isEjs()) {
+    if (!ejsEnv) {
         delete require.cache[url];
         return await require(importUrl)
     } else {

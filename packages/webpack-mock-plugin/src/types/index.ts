@@ -1,6 +1,6 @@
-import express from 'express';
-import type * as http from 'http';
-import type * as httpProxy from 'http-proxy';
+import express from "express";
+import type * as http from "http";
+import type * as httpProxy from "http-proxy";
 export interface ProxyMockPluginOptions {
   /** 端口 */
   port?: number;
@@ -10,8 +10,7 @@ export interface ProxyMockPluginOptions {
 export interface Request extends express.Request {}
 export interface Response extends express.Response {}
 export type OnProxyReqCallback = (
-  proxyReq: http.ClientRequest,
-  req: Request,
-  res: Response,
-  options: httpProxy.ServerOptions
-) => void;
+  proxyRes: http.ClientRequest & Request,
+  req: http.ClientRequest & Request,
+  res: Response
+) => Promise<void>;
