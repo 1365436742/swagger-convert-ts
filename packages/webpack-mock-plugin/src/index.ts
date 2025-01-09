@@ -1,5 +1,5 @@
 import { Compiler } from "webpack";
-import { OnProxyReqCallback, ProxyMockPluginOptions } from "./types";
+import { ProxyMockPluginOptions } from "./types";
 import mainService from "proxy-mock-core";
 import { ConfigOptions } from "proxy-mock-core/dist/types/index";
 import path from "path";
