@@ -2,9 +2,9 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "dev:plugin": "mnpm run build:plugin && lerna run start",
-    "build:plugin": "lerna run build && node copy_script.js"
+    "bootstrap": "yarn",
+    "build": "lerna run build",
+    "publish": "lerna publish"
   },
   "author": "reqingzai",
   "workspaces": [
