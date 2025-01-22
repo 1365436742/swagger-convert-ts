@@ -1,5 +1,4 @@
 import { Compiler } from "webpack";
-import { ProxyMockPluginOptions } from "./types";
 import mainService from "proxy-mock-core";
 import { ConfigOptions } from "proxy-mock-core/dist/types/index";
 import path from "path";
@@ -13,7 +12,7 @@ const DefaultOption: ConfigOptions = {
 class ProxyMockPlugin {
   options: ConfigOptions;
   serviceUrl?: string;
-  constructor(options: ProxyMockPluginOptions = {}) {
+  constructor(options: ConfigOptions = {}) {
     // 接受用户传入的选项
     this.options = Object.assign(DefaultOption, options); // 默认端口为8081
   }

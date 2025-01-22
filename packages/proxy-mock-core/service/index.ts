@@ -32,7 +32,7 @@ const mainService = (options: ConfigOptions = {}): MainServiceReturn => {
     resolvePath = require.resolve;
   }
   const packagePath = resolvePath("proxy-mock-core");
-  const packageDir = path.dirname(packagePath);
+  const packageDir = path.dirname(packagePath).replace(/^file:\/\/\//g, "");
   publicRouter.use(express.static(path.join(packageDir, "public")));
 
   app.use("/public", publicRouter);
