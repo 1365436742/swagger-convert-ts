@@ -1,14 +1,14 @@
-import { Button, Flex, Form, Input, Modal } from 'antd';
-import React from 'react';
-import './index.less';
-import { GeneratedCreateSpaceParams } from '../../../../apis/generatedCode';
+import { Button, Flex, Form, Input, Modal } from 'antd'
+import React from 'react'
+import './index.less'
+import { GeneratedCreateSpaceParams } from '../../../../apis/generatedCode'
 interface CreateSpanceModalProps {
-  title?: string;
-  btnText?: string;
-  open?: boolean;
-  initialValues?: Pick<GeneratedCreateSpaceParams, "spaceName">;
-  onChange?: (open: boolean) => void;
-  onFinish?: ((values: Pick<GeneratedCreateSpaceParams, "spaceName">) => void);
+  title?: string
+  btnText?: string
+  open?: boolean
+  initialValues?: Pick<GeneratedCreateSpaceParams, 'spaceName'>
+  onChange?: (open: boolean) => void
+  onFinish?: (values: Pick<GeneratedCreateSpaceParams, 'spaceName'>) => void
 }
 const CreateSpanceModal: React.FC<CreateSpanceModalProps> = ({
   title,
@@ -16,7 +16,7 @@ const CreateSpanceModal: React.FC<CreateSpanceModalProps> = ({
   open,
   initialValues,
   onChange,
-  onFinish
+  onFinish,
 }) => {
   return (
     <Modal
@@ -36,7 +36,11 @@ const CreateSpanceModal: React.FC<CreateSpanceModalProps> = ({
         initialValues={initialValues}
         onFinish={onFinish}
       >
-        <Form.Item rules={[{ required: true, message: "名称不能为空" }]} name="spaceName" label="空间名称">
+        <Form.Item
+          rules={[{ required: true, message: '名称不能为空' }]}
+          name="spaceName"
+          label="空间名称"
+        >
           <Input maxLength={20} showCount />
         </Form.Item>
         <Form.Item>
@@ -49,7 +53,7 @@ const CreateSpanceModal: React.FC<CreateSpanceModalProps> = ({
         </Form.Item>
       </Form>
     </Modal>
-  );
-};
+  )
+}
 
-export default CreateSpanceModal;
+export default CreateSpanceModal

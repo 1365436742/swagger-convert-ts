@@ -1,5 +1,5 @@
-import axios from 'axios';
+import axios from 'axios'
 const request = axios.create({
   baseURL: '',
-});
-export default request;
+})
+export default request

@@ -1,16 +1,16 @@
-import { Button, Flex, message, Popconfirm, Switch, Tag } from 'antd';
-import { EditOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons';
-import UpdataMockModal from '../UpdataMockModal';
-import React, { useState } from 'react';
-import UpdataSceneModal from '../UpdataSceneModal';
+import { Button, Flex, message, Popconfirm, Switch, Tag } from 'antd'
+import { EditOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons'
+import UpdataMockModal from '../UpdataMockModal'
+import React, { useState } from 'react'
+import UpdataSceneModal from '../UpdataSceneModal'
 import {
   AddMockParams,
   deleteMock,
   MockListRes,
   toggleMock,
   updateMock,
-} from '../../../../apis/mock';
-import './index.less';
+} from '../../../../apis/mock'
+import './index.less'
 import {
   addSence,
   deleteSence,
@@ -18,23 +18,23 @@ import {
   senceDetail,
   updateSence,
   UpdateSenceParams,
-} from '../../../../apis/mockSence';
+} from '../../../../apis/mockSence'
 
 interface ListItemProps {
-  item: MockListRes;
-  onUpdateList?: () => void;
+  item: MockListRes
+  onUpdateList?: () => void
 }
 
 const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
-  const { url, method } = item;
-  const [opneUpdataMockModal, setOpneUpdataMockModal] = useState(false);
-  const [opneUpdataSceneModal, setOpneUpdataSceneModal] = useState(false);
+  const { url, method } = item
+  const [opneUpdataMockModal, setOpneUpdataMockModal] = useState(false)
+  const [opneUpdataSceneModal, setOpneUpdataSceneModal] = useState(false)
 
   const [opneEditUpdataSceneModal, setEditOpneUpdataSceneModal] =
-    useState(false);
-  const [initialValuesMock, setInitialValuesMock] = useState<AddMockParams>();
+    useState(false)
+  const [initialValuesMock, setInitialValuesMock] = useState<AddMockParams>()
   const [initialValuesSence, setInitialValuesSence] =
-    useState<UpdateSenceParams>();
+    useState<UpdateSenceParams>()
 
   const onChangeSence = async (curSence: string) => {
     if (curSence === item.sence) return
@@ -42,15 +42,15 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
       url,
       method,
       senceName: curSence,
-    }).then((res) => {
+    }).then(res => {
       if (res.data.status === 1) {
-        onUpdateList?.();
+        onUpdateList?.()
       }
-    });
-  };
+    })
+  }
 
   const onChangeSenceContent = (curSence: string) => {
-    senceDetail({ url, method, senceName: curSence }).then((res) => {
+    senceDetail({ url, method, senceName: curSence }).then(res => {
       if (res.data.status === 1) {
         setInitialValuesSence({
           url,
@@ -58,13 +58,13 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
           senceName: curSence,
           senceContent: res.data.data.senceContent,
           oldSenceName: curSence,
-        });
+        })
         setTimeout(() => {
-          setEditOpneUpdataSceneModal(true);
+          setEditOpneUpdataSceneModal(true)
         }, 0)
       }
-    });
-  };
+    })
+  }
 
   return (
     <div className="list-item">
@@ -74,7 +74,7 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
         btnText="修改"
         open={opneUpdataMockModal}
         onChange={setOpneUpdataMockModal}
-        onFinish={(values) => {
+        onFinish={values => {
           updateMock({
             ...values,
             sourceFileInfo: {
@@ -82,31 +82,30 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
               method,
             },
           })
-            .then((res) => {
+            .then(res => {
               if (res.data.status === 1) {
-                message.success(res.data.message);
-                onUpdateList?.();
+                message.success(res.data.message)
+                onUpdateList?.()
               }
             })
             .finally(() => {
-              setOpneUpdataMockModal(false);
-            });
+              setOpneUpdataMockModal(false)
+            })
         }}
       ></UpdataMockModal>
       <UpdataSceneModal
         initialValues={{
-          senceContent: window.globalData?.senceCodeTemplate
+          senceContent: window.globalData?.senceCodeTemplate,
         }}
-        onFinish={(values) => {
-          const { senceName, senceContent } = values;
-          addSence({ url, method, senceName, senceContent })
-            .then((res) => {
-              if (res.data.status === 1) {
-                message.success(res.data.message);
-                onUpdateList?.();
-                setOpneUpdataSceneModal(false);
-              }
-            })
+        onFinish={values => {
+          const { senceName, senceContent } = values
+          addSence({ url, method, senceName, senceContent }).then(res => {
+            if (res.data.status === 1) {
+              message.success(res.data.message)
+              onUpdateList?.()
+              setOpneUpdataSceneModal(false)
+            }
+          })
         }}
         open={opneUpdataSceneModal}
         onChange={setOpneUpdataSceneModal}
@@ -117,7 +116,7 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
         btnText="修改"
         open={opneEditUpdataSceneModal}
         onChange={setEditOpneUpdataSceneModal}
-        onFinish={async (values) => {
+        onFinish={async values => {
           try {
             const res = await updateSence({
               url,
@@ -127,17 +126,14 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
               oldSenceName: initialValuesSence?.oldSenceName,
             })
             if (res.data.status === 1) {
-              message.success(res.data.message);
+              message.success(res.data.message)
               if (initialValuesSence?.oldSenceName !== values.senceName) {
                 await selectSence({ url, method, senceName: values.senceName })
               }
-              onUpdateList?.();
-              setEditOpneUpdataSceneModal(false);
+              onUpdateList?.()
+              setEditOpneUpdataSceneModal(false)
             }
-          } catch (error) {
-
-          }
-
+          } catch (error) {}
         }}
       ></UpdataSceneModal>
       <div className="left">
@@ -146,11 +142,13 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
             value={item.mock}
             checkedChildren="开启"
             unCheckedChildren="关闭"
-            onChange={() => toggleMock({ url, method }).then(res => {
-              if (res.data.status === 1) {
-                onUpdateList?.()
-              }
-            })}
+            onChange={() =>
+              toggleMock({ url, method }).then(res => {
+                if (res.data.status === 1) {
+                  onUpdateList?.()
+                }
+              })
+            }
           />
           {item.sence ? <Tag color="green">{item.sence}</Tag> : ''}
           {item.delay ? <Tag color="red">延时：{item.delay}ms</Tag> : ''}
@@ -160,13 +158,13 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
           <div className="title">{url}</div>
         </Flex>
         <Flex gap="small" className="radion-content" wrap>
-          {item.senceList.map((sence) => {
-            let selectProps = {};
+          {item.senceList.map(sence => {
+            let selectProps = {}
             if (sence === item.sence) {
               selectProps = {
                 color: 'primary',
                 variant: 'outlined',
-              };
+              }
             }
             return (
               <Button
@@ -175,36 +173,37 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
                 icon={
                   <Flex gap="small">
                     <EditOutlined
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onChangeSenceContent(sence);
+                      onClick={e => {
+                        e.stopPropagation()
+                        onChangeSenceContent(sence)
                       }}
                     />
                     <Popconfirm
-                      onPopupClick={(e) => {
-                        e.stopPropagation();
+                      onPopupClick={e => {
+                        e.stopPropagation()
                       }}
                       title="确认删除"
                       description="将删除该场景数据"
                       okText="确定"
                       cancelText="取消"
                       onConfirm={() => {
-                        deleteSence({ url, method, senceName: sence }).then(res => {
-                          if (res.data.status === 1) {
-                            message.success("删除成功")
-                            onUpdateList?.()
-                          }
-                        })
+                        deleteSence({ url, method, senceName: sence }).then(
+                          res => {
+                            if (res.data.status === 1) {
+                              message.success('删除成功')
+                              onUpdateList?.()
+                            }
+                          },
+                        )
                       }}
                     >
                       <DeleteOutlined
-                        onClick={(e) => {
-                          e.stopPropagation();
+                        onClick={e => {
+                          e.stopPropagation()
                         }}
-                        style={{ color: "red" }}
+                        style={{ color: 'red' }}
                       />
                     </Popconfirm>
-
                   </Flex>
                 }
                 iconPosition="end"
@@ -212,7 +211,7 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
               >
                 {sence}
               </Button>
-            );
+            )
           })}
           <Button
             type="dashed"
@@ -234,8 +233,8 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
                 sence: item.sence,
                 mock: item.mock,
                 delay: item.delay,
-              });
-              setOpneUpdataMockModal(true);
+              })
+              setOpneUpdataMockModal(true)
             }}
           >
             修改配置
@@ -248,8 +247,8 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
             onConfirm={() => {
               deleteMock({ url, method }).then(res => {
                 if (res.data.status === 1) {
-                  message.success(res.data.message);
-                  onUpdateList?.();
+                  message.success(res.data.message)
+                  onUpdateList?.()
                 }
               })
             }}
@@ -259,7 +258,7 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
         </Flex>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ListItem;
+export default ListItem

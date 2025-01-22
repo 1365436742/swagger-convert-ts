@@ -12,12 +12,8 @@
     "forceConsistentCasingInFileNames": true, // 强制文件名一致性
     "baseUrl": "./", // 设置基础路径为项目根目录
     "paths": {
-      "@/*": [
-        "src/*"
-      ] // 配置 @ 符号为 src 目录的别名
+      "@/*": ["src/*"] // 配置 @ 符号为 src 目录的别名
     }
   },
-  "include": [
-    "src"
-  ] // 包含的文件目录
+  "include": ["src"] // 包含的文件目录
 }

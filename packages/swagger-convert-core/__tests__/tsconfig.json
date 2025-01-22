@@ -11,8 +11,5 @@
     "forceConsistentCasingInFileNames": true, // 强制文件名一致性
     "baseUrl": "./"
   },
-  "include": [
-    "generate-test",
-    "generate-test-link"
-  ]
+  "include": ["generate-test", "generate-test-link"]
 }

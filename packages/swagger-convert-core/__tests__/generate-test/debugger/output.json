@@ -70,9 +70,7 @@
         "format": "int32"
       }
     },
-    "require": [
-      "length"
-    ],
+    "require": ["length"],
     "additionalProperties": false
   },
   "DeleteRequestBodyListItemsUsingDELETEBody": {
@@ -107,11 +105,7 @@
         "type": "string"
       }
     },
-    "require": [
-      "length",
-      "query",
-      "text"
-    ],
+    "require": ["length", "query", "text"],
     "additionalProperties": false
   },
   "DeleteRequestSearchItemsUsingDELETEResponses": {
@@ -132,9 +126,7 @@
         "format": "int64"
       }
     },
-    "require": [
-      "id"
-    ],
+    "require": ["id"],
     "additionalProperties": false
   },
   "DeleteRequestGetUserByIdUsingDELETEResponses": {
@@ -151,10 +143,7 @@
         "type": "string"
       }
     },
-    "require": [
-      "id",
-      "spanceId"
-    ],
+    "require": ["id", "spanceId"],
     "additionalProperties": false
   },
   "DeleteRequestGetUserByIdsUsingDELETEResponses": {
@@ -168,9 +157,7 @@
         "format": "int32"
       }
     },
-    "require": [
-      "length"
-    ],
+    "require": ["length"],
     "additionalProperties": false
   },
   "GetRequestBodyListItemsUsingGETBody": {
@@ -198,9 +185,7 @@
         "format": "int32"
       }
     },
-    "require": [
-      "length"
-    ],
+    "require": ["length"],
     "additionalProperties": false
   },
   "PutRequestBodyListItemsUsingPUTBody": {
@@ -228,9 +213,7 @@
         "format": "int32"
       }
     },
-    "require": [
-      "length"
-    ],
+    "require": ["length"],
     "additionalProperties": false
   },
   "PostRequestBodyListItemsUsingPOSTBody": {
@@ -258,9 +241,7 @@
         "format": "int32"
       }
     },
-    "require": [
-      "length"
-    ],
+    "require": ["length"],
     "additionalProperties": false
   },
   "PatchRequestBodyListItemsUsingPATCHBody": {
@@ -295,11 +276,7 @@
         "type": "string"
       }
     },
-    "require": [
-      "length",
-      "query",
-      "text"
-    ],
+    "require": ["length", "query", "text"],
     "additionalProperties": false
   },
   "GetRequestSearchItemsUsingGETResponses": {
@@ -327,11 +304,7 @@
         "type": "string"
       }
     },
-    "require": [
-      "length",
-      "query",
-      "text"
-    ],
+    "require": ["length", "query", "text"],
     "additionalProperties": false
   },
   "PutRequestSearchItemsUsingPUTResponses": {
@@ -359,11 +332,7 @@
         "type": "string"
       }
     },
-    "require": [
-      "length",
-      "query",
-      "text"
-    ],
+    "require": ["length", "query", "text"],
     "additionalProperties": false
   },
   "PostRequestSearchItemsUsingPOSTResponses": {
@@ -391,11 +360,7 @@
         "type": "string"
       }
     },
-    "require": [
-      "length",
-      "query",
-      "text"
-    ],
+    "require": ["length", "query", "text"],
     "additionalProperties": false
   },
   "PatchRequestSearchItemsUsingPATCHResponses": {
@@ -416,9 +381,7 @@
         "format": "int64"
       }
     },
-    "require": [
-      "id"
-    ],
+    "require": ["id"],
     "additionalProperties": false
   },
   "GetRequestGetUserByIdUsingGETResponses": {
@@ -432,9 +395,7 @@
         "format": "int64"
       }
     },
-    "require": [
-      "id"
-    ],
+    "require": ["id"],
     "additionalProperties": false
   },
   "PutRequestGetUserByIdUsingPUTResponses": {
@@ -448,9 +409,7 @@
         "format": "int64"
       }
     },
-    "require": [
-      "id"
-    ],
+    "require": ["id"],
     "additionalProperties": false
   },
   "PostRequestGetUserByIdUsingPOSTResponses": {
@@ -464,9 +423,7 @@
         "format": "int64"
       }
     },
-    "require": [
-      "id"
-    ],
+    "require": ["id"],
     "additionalProperties": false
   },
   "PatchRequestGetUserByIdUsingPATCHResponses": {
@@ -483,10 +440,7 @@
         "type": "string"
       }
     },
-    "require": [
-      "id",
-      "spanceId"
-    ],
+    "require": ["id", "spanceId"],
     "additionalProperties": false
   },
   "GetRequestGetUserByIdsUsingGETResponses": {
@@ -503,10 +457,7 @@
         "type": "string"
       }
     },
-    "require": [
-      "id",
-      "spanceId"
-    ],
+    "require": ["id", "spanceId"],
     "additionalProperties": false
   },
   "PutRequestGetUserByIdsUsingPUTResponses": {
@@ -523,10 +474,7 @@
         "type": "string"
       }
     },
-    "require": [
-      "id",
-      "spanceId"
-    ],
+    "require": ["id", "spanceId"],
     "additionalProperties": false
   },
   "PostRequestGetUserByIdsUsingPOSTResponses": {
@@ -543,10 +491,7 @@
         "type": "string"
       }
     },
-    "require": [
-      "id",
-      "spanceId"
-    ],
+    "require": ["id", "spanceId"],
     "additionalProperties": false
   },
   "PatchRequestGetUserByIdsUsingPATCHResponses": {

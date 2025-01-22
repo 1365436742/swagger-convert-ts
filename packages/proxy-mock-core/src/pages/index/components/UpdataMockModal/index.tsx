@@ -1,14 +1,14 @@
-import { Button, Form, Input, InputNumber, Modal, Select, Switch } from 'antd';
-import React from 'react';
-import { AddMockParams } from '../../../../apis/mock';
+import { Button, Form, Input, InputNumber, Modal, Select, Switch } from 'antd'
+import React from 'react'
+import { AddMockParams } from '../../../../apis/mock'
 
 interface AddMockProps {
-  title?: string;
-  btnText?: string;
-  initialValues?: AddMockParams;
-  open?: boolean;
-  onChange?: (open: boolean) => void;
-  onFinish?: (values: AddMockParams) => void;
+  title?: string
+  btnText?: string
+  initialValues?: AddMockParams
+  open?: boolean
+  onChange?: (open: boolean) => void
+  onFinish?: (values: AddMockParams) => void
 }
 
 const UpdateMockModal: React.FC<AddMockProps> = ({
@@ -69,10 +69,7 @@ const UpdateMockModal: React.FC<AddMockProps> = ({
           />
         </Form.Item>
         <Form.Item label="mock是否开启" name="mock">
-          <Switch
-            checkedChildren="开启"
-            unCheckedChildren="关闭"
-          />
+          <Switch checkedChildren="开启" unCheckedChildren="关闭" />
         </Form.Item>
         <Form.Item label={null}>
           <Button
@@ -87,7 +84,7 @@ const UpdateMockModal: React.FC<AddMockProps> = ({
         </Form.Item>
       </Form>
     </Modal>
-  );
-};
+  )
+}
 
-export default UpdateMockModal;
+export default UpdateMockModal

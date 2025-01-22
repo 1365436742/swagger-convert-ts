@@ -1,26 +1,26 @@
-import request from "../index";
+import request from '../index'
 export function bodyListItemsUsingPOST({
   params,
   data,
 }: {
-  params?: IApi.PostRequestBodyListItemsUsingPOSTParams;
-  data?: IApi.PostRequestBodyListItemsUsingPOSTBody;
+  params?: IApi.PostRequestBodyListItemsUsingPOSTParams
+  data?: IApi.PostRequestBodyListItemsUsingPOSTBody
 } = {}) {
   return request<IApi.PostRequestBodyListItemsUsingPOSTResponses>({
     url: `/getRequest/getBody`,
-    method: "post",
+    method: 'post',
     params: params || {},
     data: data || {},
-  });
+  })
 }
 export function searchItemsUsingPOST({
   params,
 }: { params?: IApi.PostRequestSearchItemsUsingPOSTParams } = {}) {
   return request<IApi.PostRequestSearchItemsUsingPOSTResponses>({
     url: `/getRequest/search`,
-    method: "post",
+    method: 'post',
     params: params || {},
-  });
+  })
 }
 export function getUserByIdUsingPOST(
   id: string,
@@ -28,9 +28,9 @@ export function getUserByIdUsingPOST(
 ) {
   return request<IApi.PostRequestGetUserByIdUsingPOSTResponses>({
     url: `/getRequest/users/${id}`,
-    method: "post",
+    method: 'post',
     params: params || {},
-  });
+  })
 }
 export function getUserByIdsUsingPOST(
   id: string,
@@ -39,7 +39,7 @@ export function getUserByIdsUsingPOST(
 ) {
   return request<IApi.PostRequestGetUserByIdsUsingPOSTResponses>({
     url: `/getRequest/users/${id}/${spanceId}`,
-    method: "post",
+    method: 'post',
     params: params || {},
-  });
+  })
 }

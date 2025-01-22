@@ -1,34 +1,34 @@
 {
-    "DeleteItemBody": {
+  "DeleteItemBody": {
+    "listItems": {
+      "array|1-10": [
+        {
+          "number": "@integer(1, 100)",
+          "text": "@string"
+        }
+      ]
+    },
+    "name": "@string",
+    "text": "@string"
+  },
+  "Item": {
+    "number": "@integer(1, 100)",
+    "text": "@string"
+  },
+  "DeleteRequestBodyListItemsUsingDELETEResponses": {
+    "array|1-10": [
+      {
         "listItems": {
-            "array|1-10": [
-                {
-                    "number": "@integer(1, 100)",
-                    "text": "@string"
-                }
-            ]
+          "array|1-10": [
+            {
+              "number": "@integer(1, 100)",
+              "text": "@string"
+            }
+          ]
         },
         "name": "@string",
         "text": "@string"
-    },
-    "Item": {
-        "number": "@integer(1, 100)",
-        "text": "@string"
-    },
-    "DeleteRequestBodyListItemsUsingDELETEResponses": {
-        "array|1-10": [
-            {
-                "listItems": {
-                    "array|1-10": [
-                        {
-                            "number": "@integer(1, 100)",
-                            "text": "@string"
-                        }
-                    ]
-                },
-                "name": "@string",
-                "text": "@string"
-            }
-        ]
-    }
+      }
+    ]
+  }
 }

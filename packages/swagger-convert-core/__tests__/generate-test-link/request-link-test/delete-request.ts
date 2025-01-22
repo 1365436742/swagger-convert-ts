@@ -1,26 +1,26 @@
-import request from "../index";
+import request from '../index'
 export function bodyListItemsUsingDELETE({
   params,
   data,
 }: {
-  params?: IRequest.DeleteRequestBodyListItemsUsingDELETEParams;
-  data?: IRequest.DeleteRequestBodyListItemsUsingDELETEBody;
+  params?: IRequest.DeleteRequestBodyListItemsUsingDELETEParams
+  data?: IRequest.DeleteRequestBodyListItemsUsingDELETEBody
 } = {}) {
   return request<IRequest.DeleteRequestBodyListItemsUsingDELETEResponses>({
     url: `/deleteRequest/getBody`,
-    method: "delete",
+    method: 'delete',
     params: params || {},
     data: data || {},
-  });
+  })
 }
 export function searchItemsUsingDELETE({
   params,
 }: { params?: IRequest.DeleteRequestSearchItemsUsingDELETEParams } = {}) {
   return request<IRequest.DeleteRequestSearchItemsUsingDELETEResponses>({
     url: `/deleteRequest/search`,
-    method: "delete",
+    method: 'delete',
     params: params || {},
-  });
+  })
 }
 export function getUserByIdUsingDELETE(
   id: string,
@@ -30,9 +30,9 @@ export function getUserByIdUsingDELETE(
 ) {
   return request<IRequest.DeleteRequestGetUserByIdUsingDELETEResponses>({
     url: `/deleteRequest/users/${id}`,
-    method: "delete",
+    method: 'delete',
     params: params || {},
-  });
+  })
 }
 export function getUserByIdsUsingDELETE(
   id: string,
@@ -43,7 +43,7 @@ export function getUserByIdsUsingDELETE(
 ) {
   return request<IRequest.DeleteRequestGetUserByIdsUsingDELETEResponses>({
     url: `/deleteRequest/users/${id}/${spanceId}`,
-    method: "delete",
+    method: 'delete',
     params: params || {},
-  });
+  })
 }

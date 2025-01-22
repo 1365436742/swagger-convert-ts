@@ -36,9 +36,7 @@
   "paths": {
     "/deleteRequest/getBody": {
       "delete": {
-        "tags": [
-          "delete-request"
-        ],
+        "tags": ["delete-request"],
         "summary": "bodyListItems",
         "operationId": "bodyListItemsUsingDELETE",
         "parameters": [
@@ -91,9 +89,7 @@
     },
     "/deleteRequest/search": {
       "delete": {
-        "tags": [
-          "delete-request"
-        ],
+        "tags": ["delete-request"],
         "summary": "searchItems",
         "operationId": "searchItemsUsingDELETE",
         "parameters": [
@@ -158,9 +154,7 @@
     },
     "/deleteRequest/users/{id}": {
       "delete": {
-        "tags": [
-          "delete-request"
-        ],
+        "tags": ["delete-request"],
         "summary": "getUserById",
         "operationId": "getUserByIdUsingDELETE",
         "parameters": [
@@ -201,9 +195,7 @@
     },
     "/deleteRequest/users/{id}/{spanceId}": {
       "delete": {
-        "tags": [
-          "delete-request"
-        ],
+        "tags": ["delete-request"],
         "summary": "getUserByIds",
         "operationId": "getUserByIdsUsingDELETE",
         "parameters": [
@@ -254,9 +246,7 @@
     },
     "/getRequest/getBody": {
       "get": {
-        "tags": [
-          "get-request"
-        ],
+        "tags": ["get-request"],
         "summary": "bodyListItems",
         "operationId": "bodyListItemsUsingGET",
         "parameters": [
@@ -307,9 +297,7 @@
         }
       },
       "put": {
-        "tags": [
-          "put-request"
-        ],
+        "tags": ["put-request"],
         "summary": "bodyListItems",
         "operationId": "bodyListItemsUsingPUT",
         "parameters": [
@@ -363,9 +351,7 @@
         }
       },
       "post": {
-        "tags": [
-          "post-request"
-        ],
+        "tags": ["post-request"],
         "summary": "bodyListItems",
         "operationId": "bodyListItemsUsingPOST",
         "parameters": [
@@ -419,9 +405,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "patch-request"
-        ],
+        "tags": ["patch-request"],
         "summary": "bodyListItems",
         "operationId": "bodyListItemsUsingPATCH",
         "parameters": [
@@ -474,9 +458,7 @@
     },
     "/getRequest/search": {
       "get": {
-        "tags": [
-          "get-request"
-        ],
+        "tags": ["get-request"],
         "summary": "searchItems",
         "operationId": "searchItemsUsingGET",
         "parameters": [
@@ -539,9 +521,7 @@
         }
       },
       "put": {
-        "tags": [
-          "put-request"
-        ],
+        "tags": ["put-request"],
         "summary": "searchItems",
         "operationId": "searchItemsUsingPUT",
         "parameters": [
@@ -607,9 +587,7 @@
         }
       },
       "post": {
-        "tags": [
-          "post-request"
-        ],
+        "tags": ["post-request"],
         "summary": "searchItems",
         "operationId": "searchItemsUsingPOST",
         "parameters": [
@@ -675,9 +653,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "patch-request"
-        ],
+        "tags": ["patch-request"],
         "summary": "searchItems",
         "operationId": "searchItemsUsingPATCH",
         "parameters": [
@@ -742,9 +718,7 @@
     },
     "/getRequest/users/{id}": {
       "get": {
-        "tags": [
-          "get-request"
-        ],
+        "tags": ["get-request"],
         "summary": "getUserById",
         "operationId": "getUserByIdUsingGET",
         "parameters": [
@@ -783,9 +757,7 @@
         }
       },
       "put": {
-        "tags": [
-          "put-request"
-        ],
+        "tags": ["put-request"],
         "summary": "getUserById",
         "operationId": "getUserByIdUsingPUT",
         "parameters": [
@@ -827,9 +799,7 @@
         }
       },
       "post": {
-        "tags": [
-          "post-request"
-        ],
+        "tags": ["post-request"],
         "summary": "getUserById",
         "operationId": "getUserByIdUsingPOST",
         "parameters": [
@@ -871,9 +841,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "patch-request"
-        ],
+        "tags": ["patch-request"],
         "summary": "getUserById",
         "operationId": "getUserByIdUsingPATCH",
         "parameters": [
@@ -914,9 +882,7 @@
     },
     "/getRequest/users/{id}/{spanceId}": {
       "get": {
-        "tags": [
-          "get-request"
-        ],
+        "tags": ["get-request"],
         "summary": "getUserByIds",
         "operationId": "getUserByIdsUsingGET",
         "parameters": [
@@ -965,9 +931,7 @@
         }
       },
       "put": {
-        "tags": [
-          "put-request"
-        ],
+        "tags": ["put-request"],
         "summary": "getUserByIds",
         "operationId": "getUserByIdsUsingPUT",
         "parameters": [
@@ -1019,9 +983,7 @@
         }
       },
       "post": {
-        "tags": [
-          "post-request"
-        ],
+        "tags": ["post-request"],
         "summary": "getUserByIds",
         "operationId": "getUserByIdsUsingPOST",
         "parameters": [
@@ -1073,9 +1035,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "patch-request"
-        ],
+        "tags": ["patch-request"],
         "summary": "getUserByIds",
         "operationId": "getUserByIdsUsingPATCH",
         "parameters": [

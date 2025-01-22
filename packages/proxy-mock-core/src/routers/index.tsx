@@ -4,21 +4,21 @@ import {
   Routes,
   useLocation,
   useNavigate,
-} from 'react-router-dom';
-import { Button, Layout, Menu, MenuProps, theme } from 'antd';
-import { useEffect, useState } from 'react';
+} from 'react-router-dom'
+import { Button, Layout, Menu, MenuProps, theme } from 'antd'
+import { useEffect, useState } from 'react'
 import {
   AuditOutlined,
   CodeOutlined,
   MenuFoldOutlined,
-} from '@ant-design/icons';
-import cls from 'classnames';
-import Index from '../pages/index';
-import GeneratedCode from '../pages/generatedCode';
-import { senceCodeTemplate } from '../apis/codeTemplate';
+} from '@ant-design/icons'
+import cls from 'classnames'
+import Index from '../pages/index'
+import GeneratedCode from '../pages/generatedCode'
+import { senceCodeTemplate } from '../apis/codeTemplate'
 
-const { Content, Sider } = Layout;
-type MenuItem = Required<MenuProps>['items'][number];
+const { Content, Sider } = Layout
+type MenuItem = Required<MenuProps>['items'][number]
 
 const Routers: (RouteProps & MenuItem)[] = [
   {
@@ -36,26 +36,26 @@ const Routers: (RouteProps & MenuItem)[] = [
     element: <GeneratedCode />,
   },
 ].map(item => {
-  item.path = '/public' + item.path;
-  item.key = '/public' + item.key;
+  item.path = '/public' + item.path
+  item.key = '/public' + item.key
   return item
-});
+})
 
 const RouterView = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const [showRouter, setShowRouter] = useState(false);
+  const [collapsed, setCollapsed] = useState(false)
+  const [showRouter, setShowRouter] = useState(false)
   const {
     token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-  const location = useLocation();
-  const navigate = useNavigate();
+  } = theme.useToken()
+  const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
     senceCodeTemplate().then(res => {
       if (res.data.status === 1) {
-        setShowRouter(true);
-        window.globalData.senceCodeTemplate = res.data.data.code;
-      };
+        setShowRouter(true)
+        window.globalData.senceCodeTemplate = res.data.data.code
+      }
     })
   }, [])
   return (
@@ -96,21 +96,23 @@ const RouterView = () => {
           }}
         >
           <div className="router-pages">
-            {showRouter && <Routes>
-              {Routers.map((item) => {
-                return (
-                  <Route
-                    path={item.path}
-                    element={item.element}
-                    key={item.key}
-                  />
-                );
-              })}
-            </Routes>}
+            {showRouter && (
+              <Routes>
+                {Routers.map(item => {
+                  return (
+                    <Route
+                      path={item.path}
+                      element={item.element}
+                      key={item.key}
+                    />
+                  )
+                })}
+              </Routes>
+            )}
           </div>
         </Content>
       </Layout>
     </Layout>
-  );
-};
-export default RouterView;
+  )
+}
+export default RouterView

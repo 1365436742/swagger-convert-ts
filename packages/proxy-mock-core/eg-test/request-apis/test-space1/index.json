@@ -1,5 +1,3 @@
 {
-  "filterUrl": [
-    "/deleteRequest/getBody"
-  ]
+  "filterUrl": ["/deleteRequest/getBody"]
 }

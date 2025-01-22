@@ -1,15 +1,15 @@
 export const successRes = <T>(data: T, message?: string) => {
-    return {
-        data,
-        message,
-        status: 1
-    }
+  return {
+    data,
+    message,
+    status: 1,
+  }
 }
 
 export const errorRes = <T>(data: T, message?: string) => {
-    return {
-        data,
-        message,
-        status: 0
-    }
+  return {
+    data,
+    message,
+    status: 0,
+  }
 }

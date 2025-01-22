@@ -1,26 +1,26 @@
-import request from "../index";
+import request from '../index'
 export function bodyListItemsUsingGET({
   params,
   data,
 }: {
-  params?: IRequest.GetRequestBodyListItemsUsingGETParams;
-  data?: IRequest.GetRequestBodyListItemsUsingGETBody;
+  params?: IRequest.GetRequestBodyListItemsUsingGETParams
+  data?: IRequest.GetRequestBodyListItemsUsingGETBody
 } = {}) {
   return request<IRequest.GetRequestBodyListItemsUsingGETResponses>({
     url: `/getRequest/getBody`,
-    method: "get",
+    method: 'get',
     params: params || {},
     data: data || {},
-  });
+  })
 }
 export function searchItemsUsingGET({
   params,
 }: { params?: IRequest.GetRequestSearchItemsUsingGETParams } = {}) {
   return request<IRequest.GetRequestSearchItemsUsingGETResponses>({
     url: `/getRequest/search`,
-    method: "get",
+    method: 'get',
     params: params || {},
-  });
+  })
 }
 export function getUserByIdUsingGET(
   id: string,
@@ -28,9 +28,9 @@ export function getUserByIdUsingGET(
 ) {
   return request<IRequest.GetRequestGetUserByIdUsingGETResponses>({
     url: `/getRequest/users/${id}`,
-    method: "get",
+    method: 'get',
     params: params || {},
-  });
+  })
 }
 export function getUserByIdsUsingGET(
   id: string,
@@ -39,7 +39,7 @@ export function getUserByIdsUsingGET(
 ) {
   return request<IRequest.GetRequestGetUserByIdsUsingGETResponses>({
     url: `/getRequest/users/${id}/${spanceId}`,
-    method: "get",
+    method: 'get',
     params: params || {},
-  });
+  })
 }

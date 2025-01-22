@@ -10,9 +10,7 @@
     "rootDir": "./service", // 输入文件的根目录
     "moduleResolution": "node", // 模块解析策略
     "forceConsistentCasingInFileNames": true, // 强制文件名一致性
-    "baseUrl": "./", // 设置基础路径为项目根目录
+    "baseUrl": "./" // 设置基础路径为项目根目录
   },
-  "include": [
-    "service"
-  ]
+  "include": ["service"]
 }

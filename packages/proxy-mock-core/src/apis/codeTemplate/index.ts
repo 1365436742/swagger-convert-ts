@@ -1,6 +1,5 @@
-import instance, { ResResult } from "..";
-
+import instance, { ResResult } from '..'
 
 export const senceCodeTemplate = () => {
-    return instance.get<ResResult<{ code: string }>>('/codeTemplate/senceDefault');
-};
+  return instance.get<ResResult<{ code: string }>>('/codeTemplate/senceDefault')
+}

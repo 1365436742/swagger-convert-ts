@@ -11,7 +11,5 @@
     "forceConsistentCasingInFileNames": true, // 强制文件名一致性
     "baseUrl": "./"
   },
-  "include": [
-    "request-apis"
-  ]
+  "include": ["request-apis"]
 }

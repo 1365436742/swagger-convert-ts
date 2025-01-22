@@ -12,9 +12,7 @@
     "forceConsistentCasingInFileNames": true, // 强制文件名一致性
     "baseUrl": "./"
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "exclude": [
     "src/template/**/*.template.ts" // 这里指定不需要编译的文件模式
   ]

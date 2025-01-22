@@ -1,26 +1,26 @@
-import request from "../index";
+import request from '../index'
 export function bodyListItemsUsingPATCH({
   params,
   data,
 }: {
-  params?: IRequest.PatchRequestBodyListItemsUsingPATCHParams;
-  data?: IRequest.PatchRequestBodyListItemsUsingPATCHBody;
+  params?: IRequest.PatchRequestBodyListItemsUsingPATCHParams
+  data?: IRequest.PatchRequestBodyListItemsUsingPATCHBody
 } = {}) {
   return request<IRequest.PatchRequestBodyListItemsUsingPATCHResponses>({
     url: `/getRequest/getBody`,
-    method: "patch",
+    method: 'patch',
     params: params || {},
     data: data || {},
-  });
+  })
 }
 export function searchItemsUsingPATCH({
   params,
 }: { params?: IRequest.PatchRequestSearchItemsUsingPATCHParams } = {}) {
   return request<IRequest.PatchRequestSearchItemsUsingPATCHResponses>({
     url: `/getRequest/search`,
-    method: "patch",
+    method: 'patch',
     params: params || {},
-  });
+  })
 }
 export function getUserByIdUsingPATCH(
   id: string,
@@ -30,9 +30,9 @@ export function getUserByIdUsingPATCH(
 ) {
   return request<IRequest.PatchRequestGetUserByIdUsingPATCHResponses>({
     url: `/getRequest/users/${id}`,
-    method: "patch",
+    method: 'patch',
     params: params || {},
-  });
+  })
 }
 export function getUserByIdsUsingPATCH(
   id: string,
@@ -43,7 +43,7 @@ export function getUserByIdsUsingPATCH(
 ) {
   return request<IRequest.PatchRequestGetUserByIdsUsingPATCHResponses>({
     url: `/getRequest/users/${id}/${spanceId}`,
-    method: "patch",
+    method: 'patch',
     params: params || {},
-  });
+  })
 }

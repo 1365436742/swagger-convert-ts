@@ -1,1 +1,1 @@
-console.log("启动")
+console.log('启动')

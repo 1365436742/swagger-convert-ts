@@ -1,14 +1,18 @@
-import { Button, Flex, Form, Input, message, Modal, Popover } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
-import React, { useState } from 'react';
-import FormItemTableTransfer from './FormItemTableTransfer';
-import './index.less';
-import { generatedCodeMockjs, parseSwaggerByUrl, ParseSwaggerByUrlRes } from '../../../../apis/generatedCode';
-import { useDebounceFn } from 'ahooks';
+import { Button, Flex, Form, Input, message, Modal, Popover } from 'antd'
+import { QuestionCircleOutlined } from '@ant-design/icons'
+import React, { useState } from 'react'
+import FormItemTableTransfer from './FormItemTableTransfer'
+import './index.less'
+import {
+  generatedCodeMockjs,
+  parseSwaggerByUrl,
+  ParseSwaggerByUrlRes,
+} from '../../../../apis/generatedCode'
+import { useDebounceFn } from 'ahooks'
 interface GeneratedMockModalProps {
-  open?: boolean;
-  onChange?: (open: boolean) => void;
-  onUpdateList?: () => void;
+  open?: boolean
+  onChange?: (open: boolean) => void
+  onUpdateList?: () => void
 }
 interface FromDataType {
   swaggerUrl: string
@@ -17,43 +21,50 @@ interface FromDataType {
 const GeneratedMockModal: React.FC<GeneratedMockModalProps> = ({
   open,
   onChange,
-  onUpdateList
+  onUpdateList,
 }) => {
-  const [form] = Form.useForm();
-  const [requestList, setRequestList] = useState<ParseSwaggerByUrlRes[]>([]);
-  const [loading, setLoading] = useState(false);
-  const { run: getSwaggerUrl } = useDebounceFn(async (swaggerUrl: string) => {
-    if (!swaggerUrl || !/^(http|https)\:\/\//.test(swaggerUrl)) return null;
-    const res = await parseSwaggerByUrl({
-      swaggerUrl
-    })
-    if (res.data.status === 1) {
-      setRequestList(res.data.data.requestList)
-    }
-  }, {
-    trailing: true,
-    wait: 200
-  })
+  const [form] = Form.useForm()
+  const [requestList, setRequestList] = useState<ParseSwaggerByUrlRes[]>([])
+  const [loading, setLoading] = useState(false)
+  const { run: getSwaggerUrl } = useDebounceFn(
+    async (swaggerUrl: string) => {
+      if (!swaggerUrl || !/^(http|https)\:\/\//.test(swaggerUrl)) return null
+      const res = await parseSwaggerByUrl({
+        swaggerUrl,
+      })
+      if (res.data.status === 1) {
+        setRequestList(res.data.data.requestList)
+      }
+    },
+    {
+      trailing: true,
+      wait: 200,
+    },
+  )
   const onFinish = (values: FromDataType) => {
     if (!values.generatedCodeList || !values.generatedCodeList.length) {
-      message.error("请选择需要生成mockjs的url")
+      message.error('请选择需要生成mockjs的url')
       return
     }
-    if (loading) return;
-    setLoading(true);
-    const generatedCodeList = values.generatedCodeList.map(key => requestList.find(item => item.key === key)).filter(i => i !== undefined)
+    if (loading) return
+    setLoading(true)
+    const generatedCodeList = values.generatedCodeList
+      .map(key => requestList.find(item => item.key === key))
+      .filter(i => i !== undefined)
     generatedCodeMockjs({
       swaggerUrl: values.swaggerUrl,
-      generatedCodeList
-    }).then(res => {
-      if (res.data.status === 1) {
-        message.success("创建成功")
-        onChange?.(false)
-        onUpdateList?.()
-      }
-    }).finally(() => {
-      setLoading(false);
+      generatedCodeList,
     })
+      .then(res => {
+        if (res.data.status === 1) {
+          message.success('创建成功')
+          onChange?.(false)
+          onUpdateList?.()
+        }
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }
   return (
     <Modal
@@ -75,7 +86,7 @@ const GeneratedMockModal: React.FC<GeneratedMockModalProps> = ({
       >
         <Form.Item
           name="swaggerUrl"
-          rules={[{ required: true, message: "请输入swagger地址" }]}
+          rules={[{ required: true, message: '请输入swagger地址' }]}
           label={
             <Flex gap="small">
               <div>swaggerUrl</div>
@@ -100,9 +111,9 @@ const GeneratedMockModal: React.FC<GeneratedMockModalProps> = ({
           }
         >
           <Input
-            onChange={(e) => {
+            onChange={e => {
               const swaggerUrl = e.target.value
-              getSwaggerUrl(swaggerUrl);
+              getSwaggerUrl(swaggerUrl)
             }}
             placeholder="例如：http://localhost:8081/v3/api-docs"
           />
@@ -120,7 +131,7 @@ const GeneratedMockModal: React.FC<GeneratedMockModalProps> = ({
         </Form.Item>
       </Form>
     </Modal>
-  );
-};
+  )
+}
 
-export default GeneratedMockModal;
+export default GeneratedMockModal

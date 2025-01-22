@@ -1,26 +1,26 @@
-import request from "../index";
+import request from '../index'
 export function bodyListItemsUsingPATCH({
   params,
   data,
 }: {
-  params?: IApi.PatchRequestBodyListItemsUsingPATCHParams;
-  data?: IApi.PatchRequestBodyListItemsUsingPATCHBody;
+  params?: IApi.PatchRequestBodyListItemsUsingPATCHParams
+  data?: IApi.PatchRequestBodyListItemsUsingPATCHBody
 } = {}) {
   return request<IApi.PatchRequestBodyListItemsUsingPATCHResponses>({
     url: `/getRequest/getBody`,
-    method: "patch",
+    method: 'patch',
     params: params || {},
     data: data || {},
-  });
+  })
 }
 export function searchItemsUsingPATCH({
   params,
 }: { params?: IApi.PatchRequestSearchItemsUsingPATCHParams } = {}) {
   return request<IApi.PatchRequestSearchItemsUsingPATCHResponses>({
     url: `/getRequest/search`,
-    method: "patch",
+    method: 'patch',
     params: params || {},
-  });
+  })
 }
 export function getUserByIdUsingPATCH(
   id: string,
@@ -28,9 +28,9 @@ export function getUserByIdUsingPATCH(
 ) {
   return request<IApi.PatchRequestGetUserByIdUsingPATCHResponses>({
     url: `/getRequest/users/${id}`,
-    method: "patch",
+    method: 'patch',
     params: params || {},
-  });
+  })
 }
 export function getUserByIdsUsingPATCH(
   id: string,
@@ -39,7 +39,7 @@ export function getUserByIdsUsingPATCH(
 ) {
   return request<IApi.PatchRequestGetUserByIdsUsingPATCHResponses>({
     url: `/getRequest/users/${id}/${spanceId}`,
-    method: "patch",
+    method: 'patch',
     params: params || {},
-  });
+  })
 }

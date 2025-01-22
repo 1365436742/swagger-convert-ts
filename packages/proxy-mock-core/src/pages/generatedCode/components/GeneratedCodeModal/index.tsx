@@ -1,23 +1,23 @@
-import { Button, Flex, Form, Input, Modal, Popover } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
-import React from 'react';
-import './index.less';
-import FormItemMoncaoEditor from '../../../../components/FormItemMoncaoEditor';
+import { Button, Flex, Form, Input, Modal, Popover } from 'antd'
+import { QuestionCircleOutlined } from '@ant-design/icons'
+import React from 'react'
+import './index.less'
+import FormItemMoncaoEditor from '../../../../components/FormItemMoncaoEditor'
 interface FormType {
-  swaggerUrl: string;
-  configJson: string;
+  swaggerUrl: string
+  configJson: string
 }
 interface GeneratedCodeModalProps {
   initialValues?: { configJson: string }
-  open?: boolean;
-  onChange?: (open: boolean) => void;
-  onFinish?: (values: FormType) => void;
+  open?: boolean
+  onChange?: (open: boolean) => void
+  onFinish?: (values: FormType) => void
 }
 const GeneratedCodeModal: React.FC<GeneratedCodeModalProps> = ({
   initialValues,
   open,
   onChange,
-  onFinish
+  onFinish,
 }) => {
   return (
     <Modal
@@ -46,7 +46,7 @@ const GeneratedCodeModal: React.FC<GeneratedCodeModalProps> = ({
       >
         <Form.Item
           name="swaggerUrl"
-          rules={[{ required: true, message: "请输入swagger地址" }]}
+          rules={[{ required: true, message: '请输入swagger地址' }]}
           label={
             <Flex gap="small">
               <div>swaggerUrl</div>
@@ -99,7 +99,7 @@ const GeneratedCodeModal: React.FC<GeneratedCodeModalProps> = ({
         </Form.Item>
       </Form>
     </Modal>
-  );
-};
+  )
+}
 
-export default GeneratedCodeModal;
+export default GeneratedCodeModal

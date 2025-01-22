@@ -1,26 +1,26 @@
-import request from "../index";
+import request from '../index'
 export function bodyListItemsUsingPUT({
   params,
   data,
 }: {
-  params?: IRequest.PutRequestBodyListItemsUsingPUTParams;
-  data?: IRequest.PutRequestBodyListItemsUsingPUTBody;
+  params?: IRequest.PutRequestBodyListItemsUsingPUTParams
+  data?: IRequest.PutRequestBodyListItemsUsingPUTBody
 } = {}) {
   return request<IRequest.PutRequestBodyListItemsUsingPUTResponses>({
     url: `/getRequest/getBody`,
-    method: "put",
+    method: 'put',
     params: params || {},
     data: data || {},
-  });
+  })
 }
 export function searchItemsUsingPUT({
   params,
 }: { params?: IRequest.PutRequestSearchItemsUsingPUTParams } = {}) {
   return request<IRequest.PutRequestSearchItemsUsingPUTResponses>({
     url: `/getRequest/search`,
-    method: "put",
+    method: 'put',
     params: params || {},
-  });
+  })
 }
 export function getUserByIdUsingPUT(
   id: string,
@@ -28,9 +28,9 @@ export function getUserByIdUsingPUT(
 ) {
   return request<IRequest.PutRequestGetUserByIdUsingPUTResponses>({
     url: `/getRequest/users/${id}`,
-    method: "put",
+    method: 'put',
     params: params || {},
-  });
+  })
 }
 export function getUserByIdsUsingPUT(
   id: string,
@@ -39,7 +39,7 @@ export function getUserByIdsUsingPUT(
 ) {
   return request<IRequest.PutRequestGetUserByIdsUsingPUTResponses>({
     url: `/getRequest/users/${id}/${spanceId}`,
-    method: "put",
+    method: 'put',
     params: params || {},
-  });
+  })
 }

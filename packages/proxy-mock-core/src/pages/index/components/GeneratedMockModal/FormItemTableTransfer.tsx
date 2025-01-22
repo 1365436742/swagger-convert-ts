@@ -1,26 +1,20 @@
-import React from 'react';
-import { Table, Tag, Transfer } from 'antd';
-import type {
-  GetProp,
-  TableColumnsType,
-  TableProps,
-  TransferProps,
-} from 'antd';
-import { ParseSwaggerByUrlRes } from '../../../../apis/generatedCode';
+import React from 'react'
+import { Table, Tag, Transfer } from 'antd'
+import type { GetProp, TableColumnsType, TableProps, TransferProps } from 'antd'
+import { ParseSwaggerByUrlRes } from '../../../../apis/generatedCode'
 
-type TransferItem = GetProp<TransferProps, 'dataSource'>[number];
-type TableRowSelection<T extends object> = TableProps<T>['rowSelection'];
-
+type TransferItem = GetProp<TransferProps, 'dataSource'>[number]
+type TableRowSelection<T extends object> = TableProps<T>['rowSelection']
 
 interface TableTransferProps extends TransferProps<TransferItem> {
-  dataSource: ParseSwaggerByUrlRes[];
-  leftColumns: TableColumnsType<ParseSwaggerByUrlRes>;
-  rightColumns: TableColumnsType<ParseSwaggerByUrlRes>;
+  dataSource: ParseSwaggerByUrlRes[]
+  leftColumns: TableColumnsType<ParseSwaggerByUrlRes>
+  rightColumns: TableColumnsType<ParseSwaggerByUrlRes>
 }
 
 // Customize Table Transfer
-const TableTransfer: React.FC<TableTransferProps> = (props) => {
-  const { leftColumns, rightColumns, ...restProps } = props;
+const TableTransfer: React.FC<TableTransferProps> = props => {
+  const { leftColumns, rightColumns, ...restProps } = props
   return (
     <Transfer style={{ width: '100%' }} {...restProps}>
       {({
@@ -31,14 +25,14 @@ const TableTransfer: React.FC<TableTransferProps> = (props) => {
         selectedKeys: listSelectedKeys,
         disabled: listDisabled,
       }) => {
-        const columns = direction === 'left' ? leftColumns : rightColumns;
+        const columns = direction === 'left' ? leftColumns : rightColumns
         const rowSelection: TableRowSelection<TransferItem> = {
           getCheckboxProps: () => ({ disabled: listDisabled }),
           onChange(selectedRowKeys) {
-            onItemSelectAll(selectedRowKeys, 'replace');
+            onItemSelectAll(selectedRowKeys, 'replace')
           },
           selectedRowKeys: listSelectedKeys,
-        };
+        }
 
         return (
           <Table
@@ -55,18 +49,17 @@ const TableTransfer: React.FC<TableTransferProps> = (props) => {
             onRow={({ key, disabled: itemDisabled }) => ({
               onClick: () => {
                 if (itemDisabled || listDisabled) {
-                  return;
+                  return
                 }
-                onItemSelect(key, !listSelectedKeys.includes(key));
+                onItemSelect(key, !listSelectedKeys.includes(key))
               },
             })}
           />
-        );
+        )
       }}
     </Transfer>
-  );
-};
-
+  )
+}
 
 const columns: TableColumnsType<ParseSwaggerByUrlRes> = [
   {
@@ -78,15 +71,15 @@ const columns: TableColumnsType<ParseSwaggerByUrlRes> = [
     title: 'method',
     render: (tag: string) => <Tag color="processing">{tag.toUpperCase()}</Tag>,
   },
-];
+]
 
 const filterOption = (input: string, item: ParseSwaggerByUrlRes) =>
-  item.requestUrl?.includes(input) || item.method?.includes(input);
+  item.requestUrl?.includes(input) || item.method?.includes(input)
 
 interface FormItemTableTransferProps {
   dataSource?: ParseSwaggerByUrlRes[]
-  value?: TransferProps['targetKeys'];
-  onChange?: TableTransferProps['onChange'];
+  value?: TransferProps['targetKeys']
+  onChange?: TableTransferProps['onChange']
 }
 
 const FormItemTableTransfer: React.FC<FormItemTableTransferProps> = ({
@@ -105,7 +98,7 @@ const FormItemTableTransfer: React.FC<FormItemTableTransferProps> = ({
       leftColumns={columns}
       rightColumns={columns}
     />
-  );
-};
+  )
+}
 
-export default FormItemTableTransfer;
+export default FormItemTableTransfer

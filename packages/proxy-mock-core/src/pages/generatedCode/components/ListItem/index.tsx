@@ -1,59 +1,65 @@
-import { Button, Flex, message, Popconfirm, Tag } from 'antd';
-import './index.less';
-import GeneratedCodeModal from '../GeneratedCodeModal';
-import { useState } from 'react';
-import CreateSpanceModal from '../CreateSpanceModal';
-import { generatedCodAxiosCode, generatedCodeDeleteSpace, generatedCodeUpdateSpace, SapceItem, SpaceConfigJson } from '../../../../apis/generatedCode';
+import { Button, Flex, message, Popconfirm, Tag } from 'antd'
+import './index.less'
+import GeneratedCodeModal from '../GeneratedCodeModal'
+import { useState } from 'react'
+import CreateSpanceModal from '../CreateSpanceModal'
+import {
+  generatedCodAxiosCode,
+  generatedCodeDeleteSpace,
+  generatedCodeUpdateSpace,
+  SapceItem,
+  SpaceConfigJson,
+} from '../../../../apis/generatedCode'
 interface ListItemProps {
   item: SapceItem
-  onUpdateList?: () => void;
+  onUpdateList?: () => void
 }
 const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
   const { spaceName } = item
-  const [opneGeneratedCodeModal, setGeneratedCodeModal] = useState(false);
-  const [opneCreateSpanceModal, setCreateSpanceModal] = useState(false);
+  const [opneGeneratedCodeModal, setGeneratedCodeModal] = useState(false)
+  const [opneCreateSpanceModal, setCreateSpanceModal] = useState(false)
   return (
     <>
       <GeneratedCodeModal
         initialValues={{
-          configJson: JSON.stringify(item.configJson, null, 2)
+          configJson: JSON.stringify(item.configJson, null, 2),
         }}
         open={opneGeneratedCodeModal}
         onChange={setGeneratedCodeModal}
-        onFinish={(values) => {
+        onFinish={values => {
           try {
-            const configJson = JSON.parse(values.configJson) as SpaceConfigJson;
+            const configJson = JSON.parse(values.configJson) as SpaceConfigJson
             generatedCodAxiosCode({
               swaggerUrl: values.swaggerUrl,
               spaceName,
-              configJson: configJson
+              configJson: configJson,
             }).then(res => {
               if (res.data.status === 1) {
-                onUpdateList?.();
-                message.success("生成成功");
-                setGeneratedCodeModal(false);
+                onUpdateList?.()
+                message.success('生成成功')
+                setGeneratedCodeModal(false)
               }
             })
           } catch (error) {
-            message.error("指定接口过滤配置，格式错误")
+            message.error('指定接口过滤配置，格式错误')
           }
         }}
       ></GeneratedCodeModal>
       <CreateSpanceModal
-        title='修改空间名称'
-        btnText='修改'
+        title="修改空间名称"
+        btnText="修改"
         initialValues={{ spaceName }}
         open={opneCreateSpanceModal}
         onChange={setCreateSpanceModal}
-        onFinish={(values) => {
+        onFinish={values => {
           if (values.spaceName !== spaceName) {
             generatedCodeUpdateSpace({
               spaceName: values.spaceName,
-              oldSpaceName: spaceName
+              oldSpaceName: spaceName,
             }).then(res => {
               if (res.data.status === 1) {
                 onUpdateList?.()
-                message.success("更改成功")
+                message.success('更改成功')
               }
             })
           }
@@ -65,12 +71,12 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
             <div className="title">{spaceName}</div>
           </Flex>
           <Flex gap="small" className="radion-content" wrap>
-            {item.configJson?.filterUrl?.map((item) => {
+            {item.configJson?.filterUrl?.map(item => {
               return (
                 <Tag key={item} bordered={false} color="processing">
                   {item}
                 </Tag>
-              );
+              )
             })}
           </Flex>
         </div>
@@ -79,9 +85,7 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
             <Button type="primary" onClick={() => setGeneratedCodeModal(true)}>
               代码生成
             </Button>
-            <Button onClick={() => setCreateSpanceModal(true)}>
-              修改
-            </Button>
+            <Button onClick={() => setCreateSpanceModal(true)}>修改</Button>
             <Popconfirm
               title="确认删除"
               description="将删除该空间，包括下面的所有接口"
@@ -90,7 +94,7 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
               onConfirm={() => {
                 generatedCodeDeleteSpace({ spaceName }).then(res => {
                   if (res.data.status === 1) {
-                    message.success("删除成功");
+                    message.success('删除成功')
                     onUpdateList?.()
                   }
                 })
@@ -102,7 +106,7 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ListItem;
+export default ListItem

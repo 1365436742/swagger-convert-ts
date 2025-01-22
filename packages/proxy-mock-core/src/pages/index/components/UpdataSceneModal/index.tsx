@@ -1,15 +1,15 @@
-import { Button, Form, Input, Drawer } from 'antd';
-import React from 'react';
-import FormItemMoncaoEditor from '../../../../components/FormItemMoncaoEditor';
-import { UpdateSenceParams } from '../../../../apis/mockSence';
+import { Button, Form, Input, Drawer } from 'antd'
+import React from 'react'
+import FormItemMoncaoEditor from '../../../../components/FormItemMoncaoEditor'
+import { UpdateSenceParams } from '../../../../apis/mockSence'
 
 interface UpdataSceneModalkProps {
-  title?: string;
-  btnText?: string;
-  open?: boolean;
-  initialValues?: Partial<UpdateSenceParams>;
-  onChange?: (open: boolean) => void;
-  onFinish?: (values: UpdateSenceParams) => void;
+  title?: string
+  btnText?: string
+  open?: boolean
+  initialValues?: Partial<UpdateSenceParams>
+  onChange?: (open: boolean) => void
+  onFinish?: (values: UpdateSenceParams) => void
 }
 
 const UpdataSceneModal: React.FC<UpdataSceneModalkProps> = ({
@@ -59,7 +59,7 @@ const UpdataSceneModal: React.FC<UpdataSceneModalkProps> = ({
         </Form.Item>
       </Form>
     </Drawer>
-  );
-};
+  )
+}
 
-export default UpdataSceneModal;
+export default UpdataSceneModal

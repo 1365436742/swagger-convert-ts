@@ -1,13 +1,13 @@
-import React from 'react';
-import MonacoEditor, { EditorProps } from '@monaco-editor/react';
-import './index.less';
+import React from 'react'
+import MonacoEditor, { EditorProps } from '@monaco-editor/react'
+import './index.less'
 interface FormItemMoncaoEditorProps {
-  value?: string;
-  onChange?: (content?: string) => void;
-  editorProps?: EditorProps;
+  value?: string
+  onChange?: (content?: string) => void
+  editorProps?: EditorProps
 }
-const FormItemMoncaoEditor: React.FC<FormItemMoncaoEditorProps> = (props) => {
-  const { value, onChange, editorProps = {} } = props;
+const FormItemMoncaoEditor: React.FC<FormItemMoncaoEditorProps> = props => {
+  const { value, onChange, editorProps = {} } = props
   return (
     <div className="custom-monaco-editor">
       <MonacoEditor
@@ -27,7 +27,7 @@ const FormItemMoncaoEditor: React.FC<FormItemMoncaoEditorProps> = (props) => {
         onChange={onChange}
       />
     </div>
-  );
-};
+  )
+}
 
-export default FormItemMoncaoEditor;
+export default FormItemMoncaoEditor
