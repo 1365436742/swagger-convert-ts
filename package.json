@@ -4,6 +4,10 @@
   "scripts": {
     "bootstrap": "yarn",
     "build": "lerna run build",
+    "lint": "eslint --cache .",
+    "lint:fix": "eslint --fix --cache .",
+    "format": "prettier --write --cache .",
+    "format-check": "prettier --check --cache .",
     "publish": "lerna publish"
   },
   "author": "reqingzai",
@@ -11,8 +15,14 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@types/babel__register": "^7.17.3",
-    "lerna": "^8.1.9"
+    "@typescript-eslint/eslint-plugin": "^8.21.0",
+    "@typescript-eslint/parser": "^8.21.0",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "lerna": "^8.1.9",
+    "prettier": "^3.4.2",
+    "typescript-eslint": "^8.21.0"
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.26.0"
