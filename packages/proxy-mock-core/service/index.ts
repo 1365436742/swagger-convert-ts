@@ -33,7 +33,9 @@ const mainService = async (
     resolvePath = require.resolve
   }
   const packagePath = resolvePath('proxy-mock-core')
-  const packageDir = path.dirname(packagePath).replace(/^file:\/\/\//g, '')
+  const packageDir = path
+    .dirname(packagePath)
+    .replace(/^file:\/\/\//g, process.platform === 'win32' ? '' : '/')
   publicRouter.use(express.static(path.join(packageDir, 'public')))
 
   app.use('/public', publicRouter)
