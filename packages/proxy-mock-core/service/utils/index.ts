@@ -1,6 +1,7 @@
 import { FileListItem } from '../types/fileMock'
 import { PackageJsonOptions } from '../types/index'
 import fs from 'fs'
+import net from 'net'
 /** 获取根目录的package.json信息、判断是ejs还是cjs **/
 let packageJson: PackageJsonOptions | null = null
 
@@ -80,7 +81,7 @@ export async function getAvailablePort(port: number) {
         server.close()
         resolve(false)
       }, timeout)
-      server.once('error', err => {
+      server.once('error', () => {
         clearTimeout(timeoutId)
         resolve(false)
       })
