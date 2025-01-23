@@ -40,7 +40,7 @@ const mainService = async (
 
   const findPort = await getAvailablePort(port)
   const serviceUrl = `http://localhost:${findPort}/public`
-  app.listen(findPort, () => {
+  const server = app.listen(findPort, () => {
     console.log(`mock服务启动:${serviceUrl}`)
   })
 
@@ -68,6 +68,9 @@ const mainService = async (
   return {
     getMockInfo,
     serviceUrl,
+    serverClose: () => {
+      server.close()
+    },
   }
 }
 export default mainService
