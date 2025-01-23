@@ -85,6 +85,7 @@ const GeneratedCodeModal: React.FC<GeneratedCodeModalProps> = ({
         >
           <FormItemMoncaoEditor
             editorProps={{
+              height: '50vh',
               defaultLanguage: 'json',
             }}
           />
