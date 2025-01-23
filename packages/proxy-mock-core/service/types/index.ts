@@ -27,6 +27,10 @@ export interface MainServiceReturn {
    * 默认：http://localhost:3001
    */
   serviceUrl: string
+  /**
+   * 关闭服务
+   */
+  serverClose: () => void
 }
 
 export interface PackageJsonOptions {
