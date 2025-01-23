@@ -1,5 +1,7 @@
 ## 使用说明
 
+webpack-proxy-mock-plugin 支持可视化mock能力
+
 ```js
 const path = require('path')
 const ProxyMockPlugin = require('webpack-proxy-mock-plugin')
