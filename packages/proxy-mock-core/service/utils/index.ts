@@ -69,3 +69,32 @@ export async function dynamicReadJs(url: string) {
     return fn.default
   }
 }
+
+export async function getAvailablePort(port: number) {
+  function isPortAvailable() {
+    const timeout = 1000
+    return new Promise(resolve => {
+      const server = net.createServer()
+      // 设置超时
+      const timeoutId = setTimeout(() => {
+        server.close()
+        resolve(false)
+      }, timeout)
+      server.once('error', err => {
+        clearTimeout(timeoutId)
+        resolve(false)
+      })
+      server.once('listening', () => {
+        clearTimeout(timeoutId)
+        server.close()
+        resolve(port)
+      })
+      server.listen(port)
+    })
+  }
+  let resutPort = await isPortAvailable()
+  if (resutPort === false) {
+    resutPort = await getAvailablePort(port + 1)
+  }
+  return resutPort
+}
