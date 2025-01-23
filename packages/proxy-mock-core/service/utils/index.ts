@@ -95,6 +95,7 @@ export async function getAvailablePort(port: number) {
   }
   let resutPort = await isPortAvailable()
   if (resutPort === false) {
+    console.log(`mock-server：Port ${port} is in use, trying another one...`)
     resutPort = await getAvailablePort(port + 1)
   }
   return resutPort
