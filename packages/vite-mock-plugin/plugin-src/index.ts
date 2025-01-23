@@ -19,11 +19,9 @@ export default function ProxyMockPlugin(options: ConfigOptions = {}): Plugin {
     // 配置
     async config(conf: UserConfig, env: ConfigEnv) {
       if (conf.server?.proxy && env.command === 'serve') {
-        if (!mainServiceInfo) {
-          mainServiceInfo = await mainService(
-            Object.assign(DefaultOption, options),
-          )
-        }
+        mainServiceInfo = await mainService(
+          Object.assign(DefaultOption, options),
+        )
         for (const key in conf.server?.proxy) {
           const proxItem = conf.server?.proxy[key]
           if (typeof proxItem === 'object') {
@@ -81,6 +79,12 @@ export default function ProxyMockPlugin(options: ConfigOptions = {}): Plugin {
           timestamp: true,
         },
       )
+    },
+    closeBundle() {
+      if (mainServiceInfo) {
+        mainServiceInfo.serverClose()
+        mainServiceInfo = null
+      }
     },
   }
 }
