@@ -1,3 +1,3 @@
 # swagger-convert-request
 
-swagger文档转换为前端可用的请求。包含ts类型、注释。
+支持可视化mock能力、支持swagger转ts、转mockjs、转axios请求
