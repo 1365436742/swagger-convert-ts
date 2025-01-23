@@ -27,12 +27,12 @@ class ProxyMockPlugin {
       })
     })
     // 在 Webpack 的环境准备好后进行拦截
-    compiler.hooks.environment.tap('ProxyMockPlugin', () => {
+    compiler.hooks.environment.tap('ProxyMockPlugin', async () => {
       const devServer = compiler.options.devServer
       if (devServer && devServer.proxy) {
         // 获取代理配置
         const proxy = devServer.proxy
-        const mainServiceInfo = mainService(this.options)
+        const mainServiceInfo = await mainService(this.options)
         this.serviceUrl = mainServiceInfo.serviceUrl
         const that = this
         // 遍历代理配置，添加中间件
