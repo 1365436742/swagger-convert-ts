@@ -19,7 +19,7 @@ export default function ProxyMockPlugin(options: ConfigOptions = {}): Plugin {
     // 配置
     config(conf: UserConfig, env: ConfigEnv) {
       if (conf.server?.proxy && env.command === 'serve') {
-        if (env.command === 'serve' && conf.server?.proxy && !mainServiceInfo) {
+        if (!mainServiceInfo) {
           mainServiceInfo = mainService(Object.assign(DefaultOption, options))
         }
         for (const key in conf.server?.proxy) {
