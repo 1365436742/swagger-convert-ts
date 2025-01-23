@@ -11,14 +11,11 @@ export default function devServicePlugin(): Plugin {
     // 配置
     async config(conf: UserConfig, env: ConfigEnv) {
       if (env.command === 'serve') {
-        console.log(mainServiceInfo, 'xxxxx')
-        if (!mainServiceInfo) {
-          mainServiceInfo = await mainService({
-            port: 3001,
-            generatedCodeFileUrl,
-            mockDataFileUrl,
-          })
-        }
+        mainServiceInfo = await mainService({
+          port: 3001,
+          generatedCodeFileUrl,
+          mockDataFileUrl,
+        })
         mainServiceInfo.getMockInfo('app/list', 'get').then((res: any) => {
           console.log(res, 'xxxxx')
         })
@@ -33,6 +30,12 @@ export default function devServicePlugin(): Plugin {
           timestamp: true,
         },
       )
+    },
+    closeBundle() {
+      if (mainServiceInfo) {
+        mainServiceInfo.serverClose()
+        mainServiceInfo = null
+      }
     },
   }
 }
