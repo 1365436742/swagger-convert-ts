@@ -7,13 +7,14 @@ import mockRouter from './controllers/mock'
 import mockSence from './controllers/mockSence'
 import codeTemplate from './controllers/codeTemplate'
 import { getMockConfig, getMockList } from './fileModel/mockList'
-import { dynamicReadJs, isEjs, sleep } from './utils'
+import { dynamicReadJs, getAvailablePort, sleep } from './utils'
 import { initFile } from './utils/init'
 import history from 'connect-history-api-fallback'
 const app = express()
-const mainService = (options: ConfigOptions = {}): MainServiceReturn => {
+const mainService = async (
+  options: ConfigOptions = {},
+): Promise<MainServiceReturn> => {
   const { port = 3001 } = options
-  const serviceUrl = `http://localhost:${port}/public`
 
   app.use(cors())
   app.use(express.json({ limit: '50mb' }))
@@ -36,7 +37,10 @@ const mainService = (options: ConfigOptions = {}): MainServiceReturn => {
   publicRouter.use(express.static(path.join(packageDir, 'public')))
 
   app.use('/public', publicRouter)
-  app.listen(port, () => {
+
+  const findPort = await getAvailablePort(port)
+  const serviceUrl = `http://localhost:${findPort}/public`
+  app.listen(findPort, () => {
     console.log(`mock服务启动:${serviceUrl}`)
   })
 
