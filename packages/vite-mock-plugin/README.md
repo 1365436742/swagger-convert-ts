@@ -1,5 +1,7 @@
 ## 使用方式
 
+vite-plugin-proxy-mock 支持可视化mock能力
+
 ```js
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
