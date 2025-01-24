@@ -1,7 +1,12 @@
-import { FileListItem } from '../types/fileMock'
-import { PackageJsonOptions } from '../types/index'
+import {
+  quicktype,
+  InputData,
+  jsonInputForTargetLanguage,
+} from 'quicktype-core'
 import fs from 'fs'
 import net from 'net'
+import { FileListItem } from '../types/fileMock'
+import { PackageJsonOptions } from '../types/index'
 /** 获取根目录的package.json信息、判断是ejs还是cjs **/
 let packageJson: PackageJsonOptions | null = null
 
@@ -99,4 +104,27 @@ export async function getAvailablePort(port: number) {
     resutPort = await getAvailablePort(port + 1)
   }
   return resutPort
+}
+
+export async function convertJsonToTs(jsonString: string) {
+  const lang = 'typescript'
+  const jsonInput = jsonInputForTargetLanguage(lang)
+
+  await jsonInput.addSource({
+    name: 'IApi',
+    samples: [jsonString],
+  })
+
+  const inputData = new InputData()
+  inputData.addInput(jsonInput)
+
+  return await quicktype({
+    inputData,
+    rendererOptions: {
+      'just-types': 'true', // 设置只生成类型
+      'acronym-style': 'original', // 解决Id变成了ID
+      'explicit-unions': 'true',
+    },
+    lang,
+  })
 }
