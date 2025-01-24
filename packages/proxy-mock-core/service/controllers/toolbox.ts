@@ -2,6 +2,7 @@ import express from 'express'
 import { ConfigOptions } from '../types'
 import { errorRes, successRes } from '../utils/response'
 import { convertJsonToTs } from '../utils'
+import { format } from 'prettier'
 export default (_options: ConfigOptions) => {
   const router = express.Router()
   router.post('/jsonToTs', async (req, res) => {
@@ -12,7 +13,8 @@ export default (_options: ConfigOptions) => {
     }
     try {
       const { lines } = await convertJsonToTs(body.json)
-      const tsCode = lines.join('\n')
+      let tsCode = lines.join('\n')
+      tsCode = await format(tsCode, { parser: 'typescript' })
       res.send(successRes({ tsCode }, '转换成功'))
     } catch (error) {
       res.send(errorRes(error, '转换失败'))
