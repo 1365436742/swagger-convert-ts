@@ -8,6 +8,7 @@ import terser from '@rollup/plugin-terser'
 const globals = {
   '@apidevtools/json-schema-ref-parser': '$RefParser',
   'json-schema-to-typescript': '$schemaToTs',
+  'quicktype-core': '$quicktypeCore',
   superagent: '$superagent',
 }
 
@@ -27,11 +28,7 @@ export default {
       globals,
     },
   ],
-  external: [
-    '@apidevtools/json-schema-ref-parser',
-    'json-schema-to-typescript',
-    'superagent',
-  ],
+  external: Object.keys(globals),
   plugins: [
     del({ targets: 'dist/*' }), // 删除 dist 目录中的所有文件
     json(), // 使用 JSON 插件
