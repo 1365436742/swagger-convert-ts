@@ -5,6 +5,7 @@ interface FormItemMoncaoEditorProps {
   value?: string
   onChange?: (content?: string) => void
   editorProps?: EditorProps
+  options?: Record<string, any>
 }
 const FormItemMoncaoEditor: React.FC<FormItemMoncaoEditorProps> = props => {
   const { value, onChange, editorProps = {} } = props
@@ -21,6 +22,7 @@ const FormItemMoncaoEditor: React.FC<FormItemMoncaoEditorProps> = props => {
           readOnly: false,
           cursorStyle: 'line',
           automaticLayout: true,
+          ...props.options,
         }}
         {...editorProps}
         defaultValue={value}
