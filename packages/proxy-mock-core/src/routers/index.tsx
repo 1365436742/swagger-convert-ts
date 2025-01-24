@@ -1,4 +1,5 @@
 import {
+  Navigate,
   Route,
   RouteProps,
   Routes,
@@ -11,11 +12,13 @@ import {
   AuditOutlined,
   CodeOutlined,
   MenuFoldOutlined,
+  ToolOutlined,
 } from '@ant-design/icons'
 import cls from 'classnames'
 import Index from '../pages/index'
 import GeneratedCode from '../pages/generatedCode'
 import { senceCodeTemplate } from '../apis/codeTemplate'
+import Toolbox from '../pages/toolbox'
 
 const { Content, Sider } = Layout
 type MenuItem = Required<MenuProps>['items'][number]
@@ -34,6 +37,13 @@ const Routers: (RouteProps & MenuItem)[] = [
     label: '生成代码',
     icon: <CodeOutlined />,
     element: <GeneratedCode />,
+  },
+  {
+    path: '/toolbox',
+    key: '/toolbox',
+    label: '工具箱',
+    icon: <ToolOutlined />,
+    element: <Toolbox />,
   },
 ].map(item => {
   item.path = '/public' + item.path
@@ -107,6 +117,7 @@ const RouterView = () => {
                     />
                   )
                 })}
+                <Route path="*" element={<Navigate to="/public/" />} />
               </Routes>
             )}
           </div>
