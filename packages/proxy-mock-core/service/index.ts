@@ -6,6 +6,7 @@ import generatedCodeRouter from './controllers/generatedCode'
 import mockRouter from './controllers/mock'
 import mockSence from './controllers/mockSence'
 import codeTemplate from './controllers/codeTemplate'
+import toolbox from './controllers/toolbox'
 import { getMockConfig, getMockList } from './fileModel/mockList'
 import { dynamicReadJs, getAvailablePort, sleep } from './utils'
 import { initFile } from './utils/init'
@@ -23,6 +24,7 @@ const mainService = async (
   app.use('/mock', mockRouter(options))
   app.use('/mockSence', mockSence(options))
   app.use('/codeTemplate', codeTemplate(options))
+  app.use('/toolbox', toolbox(options))
 
   const publicRouter = express.Router()
   publicRouter.use(history())
