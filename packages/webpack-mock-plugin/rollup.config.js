@@ -6,6 +6,7 @@ const json = require('@rollup/plugin-json') // 引入 JSON 插件
 const globals = {
   '@apidevtools/json-schema-ref-parser': '$RefParser',
   'json-schema-to-typescript': '$schemaToTs',
+  'quicktype-core': '$quicktypeCore',
   superagent: '$superagent',
 }
 module.exports = {
@@ -24,11 +25,7 @@ module.exports = {
       globals,
     },
   ],
-  external: [
-    '@apidevtools/json-schema-ref-parser',
-    'json-schema-to-typescript',
-    'superagent',
-  ],
+  external: Object.keys(globals),
   plugins: [
     del({ targets: 'dist/*' }), // 删除 dist 目录中的所有文件
     json(), // 使用 JSON 插件
