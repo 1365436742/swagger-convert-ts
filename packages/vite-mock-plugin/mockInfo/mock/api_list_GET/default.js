@@ -1,4 +1,4 @@
-module.exports = ({ _proxyRes, req, res }) => {
+module.exports = ({ req, res }) => {
   console.log(req.query, 'get请求入参')
   // 使用 Mock
   var data = {
