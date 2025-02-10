@@ -64,7 +64,7 @@ const mainService = async (
     await sleep(mockConfigJson.delay)
     const fn = await dynamicReadJs(mockFileUrl)
     if (typeof fn === 'function') {
-      return await fn(...proxyParams)
+      return await fn(proxyParams)
     } else {
       return fn
     }
