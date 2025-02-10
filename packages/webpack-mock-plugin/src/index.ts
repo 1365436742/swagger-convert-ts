@@ -1,6 +1,9 @@
 import { Compiler } from 'webpack'
 import mainService from 'proxy-mock-core'
-import { ConfigOptions } from 'proxy-mock-core/dist/types/index'
+import {
+  ConfigOptions,
+  MainServiceReturn,
+} from 'proxy-mock-core/dist/types/index'
 import path from 'path'
 import { responseInterceptor } from 'http-proxy-middleware'
 
@@ -12,6 +15,7 @@ const DefaultOption: ConfigOptions = {
 class ProxyMockPlugin {
   options: ConfigOptions
   serviceUrl?: string
+  mainServiceInfo?: MainServiceReturn
   constructor(options: ConfigOptions = {}) {
     // 接受用户传入的选项
     this.options = Object.assign(DefaultOption, options) // 默认端口为8081
@@ -32,9 +36,10 @@ class ProxyMockPlugin {
       if (devServer && devServer.proxy) {
         // 获取代理配置
         const proxy = devServer.proxy
-        const mainServiceInfo = await mainService(this.options)
-        this.serviceUrl = mainServiceInfo.serviceUrl
-        const that = this
+        mainService(this.options).then(mainServiceInfo => {
+          this.mainServiceInfo = mainServiceInfo
+          this.serviceUrl = mainServiceInfo.serviceUrl
+        })
         // 遍历代理配置，添加中间件
         Object.keys(proxy).forEach(context => {
           const oldOnProxyRes = proxy[context]?.onProxyRes
@@ -44,7 +49,7 @@ class ProxyMockPlugin {
               //@ts-ignore
               const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`
               const { pathname } = new URL(fullUrl)
-              const json = await mainServiceInfo.getMockInfo(
+              const json = await this.mainServiceInfo?.getMockInfo(
                 pathname,
                 req.method || '',
                 { proxyRes, req, res },
