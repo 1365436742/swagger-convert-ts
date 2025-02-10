@@ -1,5 +1,5 @@
 module.exports = ({ _proxyRes, req, res }) => {
-  console.log(req.query, 'xxxx222')
+  console.log(req.query, 'get请求入参')
   // 使用 Mock
   var data = {
     test: '测试字段',
