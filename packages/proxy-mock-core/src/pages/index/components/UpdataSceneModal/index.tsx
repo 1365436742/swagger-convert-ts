@@ -9,6 +9,7 @@ interface UpdataSceneModalkProps {
   open?: boolean
   initialValues?: Partial<UpdateSenceParams>
   onChange?: (open: boolean) => void
+  onSave?: (content: string) => void
   onFinish?: (values: UpdateSenceParams) => void
 }
 
@@ -20,6 +21,7 @@ const UpdataSceneModal: React.FC<UpdataSceneModalkProps> = ({
   onChange,
   onFinish,
 }) => {
+  const [form] = Form.useForm()
   return (
     <Drawer
       width={750}
@@ -33,6 +35,7 @@ const UpdataSceneModal: React.FC<UpdataSceneModalkProps> = ({
         name="UpdataSceneModal"
         labelCol={{ span: 6 }}
         layout="vertical"
+        form={form}
         initialValues={initialValues}
         onFinish={onFinish}
       >
@@ -44,7 +47,11 @@ const UpdataSceneModal: React.FC<UpdataSceneModalkProps> = ({
           <Input placeholder="例如：default" />
         </Form.Item>
         <Form.Item label="代码内容" name="senceContent">
-          <FormItemMoncaoEditor />
+          <FormItemMoncaoEditor
+            onSave={() => {
+              form.submit()
+            }}
+          />
         </Form.Item>
         <Form.Item label="">
           <Button
