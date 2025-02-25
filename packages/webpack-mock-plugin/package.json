@@ -29,6 +29,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@microsoft/fetch-event-source": "^2.0.1",
     "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.3.0",
@@ -36,6 +37,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/webpack": "^5.28.5",
+    "html-webpack-plugin": "^5.6.3",
     "rollup": "^4.27.4",
     "rollup-plugin-delete": "^2.1.0",
     "typescript": "^5.7.2",
@@ -43,7 +45,6 @@
     "webpack-dev-server": "^5.2.0"
   },
   "dependencies": {
-    "http-proxy-middleware": "^3.0.3",
     "proxy-mock-core": "*"
   }
 }
