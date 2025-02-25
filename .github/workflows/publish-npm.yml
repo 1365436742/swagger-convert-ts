@@ -1,18 +1,15 @@
 name: Publish to NPM in Monorepo
 
 on:
-  # 当有新的标签被推送到仓库时触发工作流
   push:
-    tags:
-      - '*'
+    branches:
+      - main-publish-v1  # 当有代码推送到 main 分支时触发工作流
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
