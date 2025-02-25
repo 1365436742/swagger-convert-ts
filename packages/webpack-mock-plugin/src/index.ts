@@ -68,15 +68,14 @@ class ProxyMockPlugin {
               )
               if (!json) {
                 res.end(Buffer.concat(body).toString())
+              } else if (
+                res.getHeader('Content-Type') === 'text/event-stream'
+              ) {
+                res.end()
               } else {
-                if (res.getHeader('Content-Type') === 'text/event-stream') {
-                  res.end()
-                } else {
-                  res.setHeader('Content-Type', 'application/json')
-                  res.writeHead(200)
-                  res.end(JSON.stringify(json))
-                  res.end()
-                }
+                res.setHeader('Content-Type', 'application/json')
+                res.writeHead(200)
+                res.end(JSON.stringify(json))
               }
             })
           }
