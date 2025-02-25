@@ -1,5 +1,6 @@
 const path = require('path')
 const ProxyMockPlugin = require('./dist/index.cjs.js')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   mode: 'development',
   entry: './example/index.js',
@@ -17,8 +18,14 @@ module.exports = {
         pathRewrite: { '^/api': '' },
       },
     ],
+    compress: false
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: './example/index.html', // 指定 HTML 模板文件
+      filename: 'index.html', // 输出的 HTML 文件名
+      inject: 'body', // 将脚本注入到 body 标签的底部
+    }),
     new ProxyMockPlugin({
       port: 3001,
       generatedCodeFileUrl: path.join(__dirname, './mockInfo/request-apis'),
