@@ -29,22 +29,23 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@microsoft/fetch-event-source": "^2.0.1",
     "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-typescript": "^12.1.1",
     "@types/cors": "^2.8.17",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
     "rollup": "^4.27.4",
     "rollup-plugin-delete": "^2.1.0",
     "typescript": "^5.7.2",
-    "@vitejs/plugin-vue": "^5.2.1",
-    "@vue/tsconfig": "^0.7.0",
     "vite": "^6.0.5",
-    "vue-tsc": "^2.2.0",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "vue-tsc": "^2.2.0"
   },
   "dependencies": {
-    "http-proxy-middleware": "^3.0.3",
-    "proxy-mock-core": "*"
+    "proxy-mock-core": "*",
+    "qs": "^6.14.0"
   }
 }
