@@ -3,7 +3,7 @@ name: Publish to NPM in Monorepo
 on:
   push:
     branches:
-      - main-publish-v1  # 当有代码推送到 main 分支时触发工作流
+      - main-publish-v1  # 当有代码推送到 main-publish-v1 分支时触发工作流
   workflow_dispatch:  # 允许手动触发
 
 jobs:
@@ -28,8 +28,8 @@ jobs:
       - name: Bump versions
         run: npm run version-bump
 
-       - name: Commit and push version changes
-         run: |
+      - name: Commit and push version changes
+        run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add packages/*/package.json
