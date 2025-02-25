@@ -1,5 +1,5 @@
 import { fetchEventSource } from '@microsoft/fetch-event-source'
-fetchEventSource("/api/eventStream", {
+fetchEventSource('/api/eventStream', {
   method: 'post',
   headers: {
     'Content-Type': 'application/json',

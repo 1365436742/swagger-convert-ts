@@ -48,7 +48,7 @@ export default function ProxyMockPlugin(options: ConfigOptions = {}): Plugin {
                       const url = req.originalUrl || req.url || ''
                       const splitUrl = url.split('?')
                       const pathname = splitUrl[0]
-                      req.query = parse(splitUrl[1]);
+                      req.query = parse(splitUrl[1])
                       const json = await mainServiceInfo.getMockInfo(
                         pathname,
                         req.method || '',

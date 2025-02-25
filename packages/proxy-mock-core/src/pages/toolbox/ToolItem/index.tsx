@@ -25,7 +25,7 @@ const ToolItem: React.FC<ToolItemProps> = props => {
       </div>
       <Modal
         title={props.title}
-        width='70vw'
+        width="70vw"
         open={isModalOpen}
         footer={null}
         closable={true}

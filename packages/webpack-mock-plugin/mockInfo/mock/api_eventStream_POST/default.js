@@ -1,14 +1,14 @@
 module.exports = async ({ req, res }) => {
   res.setHeader('Content-Type', 'text/event-stream')
-  res.statusCode = 200;
-  let timeoutId;
+  res.statusCode = 200
+  let timeoutId
   // 页面刷新要进行关闭
   res.on('close', () => {
-    timeoutId && clearInterval(timeoutId);
+    timeoutId && clearInterval(timeoutId)
     if (!res.writableEnded) {
-      res.end();
+      res.end()
     }
-  });
+  })
   // 自定义 JSON 内容
   const customData = [
     { id: 1, message: 'First chunk' },

@@ -18,7 +18,7 @@ module.exports = {
         pathRewrite: { '^/api': '' },
       },
     ],
-    compress: false
+    compress: false,
   },
   plugins: [
     new HtmlWebpackPlugin({
