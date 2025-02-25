@@ -9,10 +9,12 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # 允许对仓库内容进行写入操作
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -35,6 +37,8 @@ jobs:
         run: npm run version-bump
 
       - name: Commit and push version changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
