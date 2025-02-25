@@ -44,7 +44,7 @@ jobs:
           git config user.email "actions@github.com"
           git add packages/*/package.json
           git commit -m "chore: bump patch versions"
-          git push origin main-publish-v1
+          git push -f origin main-publish-v1
 
       - name: Publish to NPM
         env:
