@@ -1,0 +1,53 @@
+name: Publish to NPM in Monorepo
+
+on:
+  # 当有新的标签被推送到仓库时触发工作流
+  push:
+    tags:
+      - '*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build packages
+        run: npm run build
+
+      - name: Bump versions
+        run: npm run version-bump
+
+       - name: Commit and push version changes
+         run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add packages/*/package.json
+          git commit -m "chore: bump patch versions"
+          git push origin main-publish-v1
+
+      - name: Publish to NPM
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          # 遍历 packages 目录下的每个子包并发布
+          for package in packages/*; do
+            if [ -f "$package/package.json" ]; then
+              cd "$package"
+              npm publish --access public
+              cd -
+            fi
+          done
