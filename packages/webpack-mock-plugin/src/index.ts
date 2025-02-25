@@ -1,11 +1,11 @@
 import { Compiler } from 'webpack'
+import type * as http from 'http'
 import mainService from 'proxy-mock-core'
 import {
   ConfigOptions,
   MainServiceReturn,
 } from 'proxy-mock-core/dist/types/index'
 import path from 'path'
-import { responseInterceptor } from 'http-proxy-middleware'
 
 const DefaultOption: ConfigOptions = {
   port: 3001,
@@ -43,9 +43,21 @@ class ProxyMockPlugin {
         // 遍历代理配置，添加中间件
         Object.keys(proxy).forEach(context => {
           const oldOnProxyRes = proxy[context]?.onProxyRes
-          const onProxyRes = responseInterceptor(
-            async (responseBuffer, proxyRes, req, res) => {
+          const onProxyRes = (
+            proxyRes: http.IncomingMessage,
+            req: http.IncomingMessage,
+            res: http.ServerResponse<http.IncomingMessage>,
+          ) => {
+            var body: any[] = []
+            proxyRes.on('data', function (chunk: any) {
+              body.push(chunk)
+            })
+            proxyRes.on('end', async () => {
               oldOnProxyRes?.(proxyRes, req, res)
+              if (!this.mainServiceInfo) {
+                res.end(Buffer.concat(body).toString())
+                return
+              }
               //@ts-ignore
               const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`
               const { pathname } = new URL(fullUrl)
@@ -54,15 +66,20 @@ class ProxyMockPlugin {
                 req.method || '',
                 { proxyRes, req, res },
               )
-              if (json) {
-                res.statusCode = 200
-                const newResponseBuffer = Buffer.from(JSON.stringify(json))
-                proxyRes.headers['Content-Type'] = 'application/json'
-                return newResponseBuffer
+              if (!json) {
+                res.end(Buffer.concat(body).toString())
+              } else {
+                if (res.getHeader('Content-Type') === 'text/event-stream') {
+                  res.end()
+                } else {
+                  res.setHeader('Content-Type', 'application/json')
+                  res.writeHead(200)
+                  res.end(JSON.stringify(json))
+                  res.end()
+                }
               }
-              return responseBuffer
-            },
-          )
+            })
+          }
           if (typeof context === 'string') {
             // 如果是字符串形式的代理配置
             proxy[context] = {
