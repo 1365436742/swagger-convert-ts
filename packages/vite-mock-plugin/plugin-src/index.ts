@@ -7,6 +7,7 @@ import {
 } from 'proxy-mock-core/dist/types/index'
 import path from 'path'
 import { IncomingMessage } from 'http'
+import { parse } from 'qs'
 const DefaultOption: ConfigOptions = {
   port: 3001,
   generatedCodeFileUrl: path.join(__dirname, 'request-apis'),
@@ -45,7 +46,9 @@ export default function ProxyMockPlugin(options: ConfigOptions = {}): Plugin {
                         return
                       }
                       const url = req.originalUrl || req.url || ''
-                      const pathname = url.split('?')[0]
+                      const splitUrl = url.split('?')
+                      const pathname = splitUrl[0]
+                      req.query = parse(splitUrl[1]);
                       const json = await mainServiceInfo.getMockInfo(
                         pathname,
                         req.method || '',
@@ -53,6 +56,10 @@ export default function ProxyMockPlugin(options: ConfigOptions = {}): Plugin {
                       )
                       if (!json) {
                         res.end(Buffer.concat(body).toString())
+                      } else if (
+                        res.getHeader('Content-Type') === 'text/event-stream'
+                      ) {
+                        res.end()
                       } else {
                         res.setHeader('Content-Type', 'application/json')
                         res.writeHead(200)
