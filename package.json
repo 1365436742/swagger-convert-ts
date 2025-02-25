@@ -8,6 +8,7 @@
     "lint:fix": "eslint --fix --cache .",
     "format": "prettier --write --cache .",
     "format-check": "prettier --check --cache .",
+    "version-bump": "node ./script/bump-versions.js",
     "publish": "lerna publish"
   },
   "author": "reqingzai",
