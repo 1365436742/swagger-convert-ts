@@ -10,6 +10,7 @@ import toolbox from './controllers/toolbox'
 import { getMockConfig, getMockList } from './fileModel/mockList'
 import { dynamicReadJs, getAvailablePort, sleep } from './utils'
 import { initFile } from './utils/init'
+import { responseInterceptor } from './utils/responseInterceptor'
 import history from 'connect-history-api-fallback'
 const app = express()
 const mainService = async (
@@ -64,7 +65,12 @@ const mainService = async (
     await sleep(mockConfigJson.delay)
     const fn = await dynamicReadJs(mockFileUrl)
     if (typeof fn === 'function') {
-      return await fn(proxyParams)
+      try {
+        return await fn(proxyParams)
+      } catch (error) {
+        console.log('js发生错误：' + url, error)
+        return null
+      }
     } else {
       return fn
     }
@@ -77,4 +83,5 @@ const mainService = async (
     },
   }
 }
+export { responseInterceptor }
 export default mainService

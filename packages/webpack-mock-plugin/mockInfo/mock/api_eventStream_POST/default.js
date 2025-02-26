@@ -1,5 +1,9 @@
 module.exports = async ({ req, res }) => {
-  res.setHeader('Content-Type', 'text/event-stream')
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+  res.removeHeader('Content-Length');
+
   res.statusCode = 200
   let timeoutId
   // 页面刷新要进行关闭
@@ -23,6 +27,5 @@ module.exports = async ({ req, res }) => {
       timeoutId = setTimeout(resolve, 1000)
     }) // 模拟延迟
   }
-  res.end()
   return {}
 }
