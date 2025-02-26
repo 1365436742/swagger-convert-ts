@@ -1,6 +1,6 @@
 // vite-plugin-full.ts
 import type { Plugin, UserConfig, ConfigEnv } from 'vite'
-import mainService from 'proxy-mock-core'
+import mainService, { responseInterceptor } from 'proxy-mock-core'
 import {
   ConfigOptions,
   MainServiceReturn,
@@ -35,38 +35,33 @@ export default function ProxyMockPlugin(options: ConfigOptions = {}): Plugin {
                 const [proxy] = params
                 proxy.on(
                   'proxyRes',
-                  (proxyRes, req: IncomingMessage & any, res) => {
-                    var body: any[] = []
-                    proxyRes.on('data', function (chunk: any) {
-                      body.push(chunk)
-                    })
-                    proxyRes.on('end', async () => {
+                  responseInterceptor(
+                    async (responseBuffer, proxyRes, req, res) => {
                       if (!mainServiceInfo) {
-                        res.end(Buffer.concat(body).toString())
-                        return
+                        return responseBuffer
                       }
+                      //@ts-ignore
                       const url = req.originalUrl || req.url || ''
                       const splitUrl = url.split('?')
                       const pathname = splitUrl[0]
+                      //@ts-ignore
                       req.query = parse(splitUrl[1])
-                      const json = await mainServiceInfo.getMockInfo(
+                      const json = await mainServiceInfo?.getMockInfo(
                         pathname,
                         req.method || '',
                         { proxyRes, req, res },
                       )
-                      if (!json) {
-                        res.end(Buffer.concat(body).toString())
-                      } else if (
-                        res.getHeader('Content-Type') === 'text/event-stream'
+                      if (
+                        json &&
+                        res.getHeader('Content-Type') !== 'text/event-stream'
                       ) {
-                        res.end()
-                      } else {
+                        res.statusCode = 200
                         res.setHeader('Content-Type', 'application/json')
-                        res.writeHead(200)
-                        res.end(JSON.stringify(json))
+                        return JSON.stringify(json)
                       }
-                    })
-                  },
+                      return responseBuffer
+                    },
+                  ),
                 )
               },
             }
