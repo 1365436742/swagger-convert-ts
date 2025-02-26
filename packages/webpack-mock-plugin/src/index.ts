@@ -1,6 +1,5 @@
 import { Compiler } from 'webpack'
-import type * as http from 'http'
-import mainService from 'proxy-mock-core'
+import mainService, { responseInterceptor } from 'proxy-mock-core'
 import {
   ConfigOptions,
   MainServiceReturn,
@@ -43,20 +42,11 @@ class ProxyMockPlugin {
         // 遍历代理配置，添加中间件
         Object.keys(proxy).forEach(context => {
           const oldOnProxyRes = proxy[context]?.onProxyRes
-          const onProxyRes = (
-            proxyRes: http.IncomingMessage,
-            req: http.IncomingMessage,
-            res: http.ServerResponse<http.IncomingMessage>,
-          ) => {
-            var body: any[] = []
-            proxyRes.on('data', function (chunk: any) {
-              body.push(chunk)
-            })
-            proxyRes.on('end', async () => {
+          const onProxyRes = responseInterceptor(
+            async (responseBuffer, proxyRes, req, res) => {
               oldOnProxyRes?.(proxyRes, req, res)
               if (!this.mainServiceInfo) {
-                res.end(Buffer.concat(body).toString())
-                return
+                return responseBuffer
               }
               //@ts-ignore
               const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`
@@ -66,19 +56,17 @@ class ProxyMockPlugin {
                 req.method || '',
                 { proxyRes, req, res },
               )
-              if (!json) {
-                res.end(Buffer.concat(body).toString())
-              } else if (
-                res.getHeader('Content-Type') === 'text/event-stream'
+              if (
+                json &&
+                res.getHeader('Content-Type') !== 'text/event-stream'
               ) {
-                res.end()
-              } else {
+                res.statusCode = 200
                 res.setHeader('Content-Type', 'application/json')
-                res.writeHead(200)
-                res.end(JSON.stringify(json))
+                return JSON.stringify(json)
               }
-            })
-          }
+              return responseBuffer
+            },
+          )
           if (typeof context === 'string') {
             // 如果是字符串形式的代理配置
             proxy[context] = {
