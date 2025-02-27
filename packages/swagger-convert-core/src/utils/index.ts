@@ -56,7 +56,7 @@ export function replaceAllRefs(schema: JSONSchema) {
 /** 去掉下划线首字母大写 */
 export function toCamelCase(str: string) {
   // 保留开头的下划线（如果有的话）
-  return str.replace(/^_?(.)|_(\d|\D)/g, function (_, firstLetter, letter) {
+  return str.replace(/^_?(.)/g, function (_, firstLetter, letter) {
     if (firstLetter) return firstLetter
     return letter.toUpperCase()
   })
