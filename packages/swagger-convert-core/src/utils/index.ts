@@ -53,12 +53,21 @@ export function replaceAllRefs(schema: JSONSchema) {
   }
   return findRefs(schema)
 }
-/** 去掉下划线首字母大写 */
+/**
+ * 去掉下划线首字母大写
+ * 把下划线后面的字母都变成大写去掉下划线
+ * 如果下划线后面是数字。不要去掉下划线
+ */
 export function toCamelCase(str: string) {
   // 保留开头的下划线（如果有的话）
-  return str.replace(/^_?(.)/g, function (_, firstLetter, letter) {
-    if (firstLetter) return firstLetter
-    return letter.toUpperCase()
+  return str.replace(/_([a-zA-Z])|_(\d)/g, function (_, letter, number) {
+    if (letter) {
+      // 如果下划线后面是字母，转换为大写并去掉下划线
+      return letter.toUpperCase()
+    } else if (number) {
+      // 如果下划线后面是数字，保留下划线
+      return '_' + number
+    }
   })
 }
 
