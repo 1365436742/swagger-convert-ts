@@ -74,6 +74,14 @@ export function swaggerJsonConvert(
         }
         definitionSchemaJson[responsesTypeName] = responsesSchema
       }
+      /** 处理如果类型是object，但是没有类型的时候这里不做内容返回。直接输出any*/
+      if (
+        definitionSchemaJson[responsesTypeName]?.type === 'object' &&
+        !definitionSchemaJson[responsesTypeName]?.properties
+      ) {
+        delete definitionSchemaJson[responsesTypeName]
+        responsesTypeName = ''
+      }
       const fileName = tags?.join('/') || 'request-ts-base-controller'
       let functionCode: RequestCodeProps = {
         requestMethodName: operationId,
