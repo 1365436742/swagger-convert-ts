@@ -9,18 +9,26 @@ import fs from 'fs'
 import { transformedString } from '.'
 import { compile } from 'json-schema-to-typescript'
 import $RefParser from '@apidevtools/json-schema-ref-parser'
-import { processTsCode } from './processTsCode'
 
 export const generatedTsTypeCode = async (props: GeneratedTsTypeCodeProps) => {
   const { definitionSchemaJson, namespace = 'IApi' } = props
   const resolvedSchema = await $RefParser.dereference(definitionSchemaJson)
   let tsCode = ''
-  const processTypeScript = processTsCode()
+  const typeNameMap = new Map()
   for (const [name, schema] of Object.entries(resolvedSchema)) {
     const curCode = await compile(schema, name, {
       bannerComment: '',
+      customName(schema) {
+        if (!schema.title) return
+        let curTitle = schema.title
+        if (typeNameMap.has(curTitle)) {
+          curTitle = name + curTitle
+        }
+        typeNameMap.set(curTitle, '')
+        return curTitle
+      },
     })
-    tsCode += processTypeScript(curCode) + '\n'
+    tsCode += curCode + '\n'
   }
   // 使用 Prettier 格式化代码
   const formattedCode = await format(
