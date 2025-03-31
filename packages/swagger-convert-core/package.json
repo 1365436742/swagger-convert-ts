@@ -10,6 +10,7 @@
     "clear": "del-cli dist",
     "build": "npm run clear && tsc",
     "test:build": "npm run build && node --no-warnings --experimental-vm-modules ../../node_modules/jest/bin/jest.js",
+    "test:buildone": "npm run build && node --no-warnings --experimental-vm-modules ../../node_modules/jest/bin/jest.js __tests__/file1-swagger-json.spec.ts",
     "test": "node --no-warnings --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
   },
   "keywords": [],
