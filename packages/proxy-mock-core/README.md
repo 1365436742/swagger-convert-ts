@@ -27,3 +27,40 @@ if(json){
   console.log("匹配成功",json);
 }
 ```
+
+```js
+SSE 流式输出
+module.exports = async ({ req, res }) => {
+  res.setHeader('Content-Type', 'text/event-stream')
+  res.setHeader('Cache-Control', 'no-cache')
+  res.setHeader('Connection', 'keep-alive')
+  res.removeHeader('Content-Length')
+  res.statusCode = 200
+  let timeoutId
+  // 页面刷新要进行关闭
+  res.on('close', () => {
+    timeoutId && clearInterval(timeoutId)
+    if (!res.writableEnded) {
+      res.end()
+    }
+  })
+  // 自定义 JSON 内容
+  const customData = [
+    {
+      userId: 'xxxx',
+    },
+    {
+      userId: 'xxxx11222',
+    },
+  ]
+  // 分段发送自定义 JSON 内容
+  for (const data of customData) {
+    res.write(`data: ${JSON.stringify(data)}\n\n`)
+    await new Promise(resolve => {
+      // 定时时间间隔
+      timeoutId = setTimeout(resolve, 200)
+    }) // 模拟延迟
+  }
+  return {}
+}
+```

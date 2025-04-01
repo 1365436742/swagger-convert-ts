@@ -12,6 +12,7 @@ import { dynamicReadJs, getAvailablePort, sleep } from './utils'
 import { initFile } from './utils/init'
 import { responseInterceptor } from './utils/responseInterceptor'
 import history from 'connect-history-api-fallback'
+import { extractRouteParams, hasDynamicParams } from './utils/marchUrl'
 const app = express()
 const mainService = async (
   options: ConfigOptions = {},
@@ -53,9 +54,15 @@ const mainService = async (
   const getMockInfo = async (url: string, method: string, proxyParams: any) => {
     if (!options.mockDataFileUrl) return false
     const list = await getMockList(options.mockDataFileUrl)
-    const findMock = list.find(
-      item => item.method === method.toLocaleUpperCase() && item.url === url,
-    )
+    let params: null | Record<string, string> = {}
+    const findMock = list.find(item => {
+      if (!hasDynamicParams(item.url)) {
+        return item.method === method.toLocaleUpperCase() && item.url === url
+      } else {
+        params = extractRouteParams(url, item.url)
+        return item.method === method.toLocaleUpperCase() && params
+      }
+    })
     if (!findMock) return false
     const { mockConfigJson, mockFileUrl } = await getMockConfig(
       options.mockDataFileUrl,
@@ -66,7 +73,7 @@ const mainService = async (
     const fn = await dynamicReadJs(mockFileUrl)
     if (typeof fn === 'function') {
       try {
-        return await fn(proxyParams)
+        return await fn(proxyParams, params)
       } catch (error) {
         console.log('js发生错误：' + url, error)
         return null

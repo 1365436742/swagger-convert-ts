@@ -9,6 +9,7 @@ import {
   selectSence,
   updateSence,
 } from '../fileModel/mockSence'
+import { getMockConfig } from '../fileModel/mockList'
 export default (options: ConfigOptions) => {
   const { mockDataFileUrl = '' } = options
   const router = express.Router()
@@ -21,12 +22,17 @@ export default (options: ConfigOptions) => {
       return
     }
     try {
-      const senceList = await getSenceList(mockDataFileUrl, { url, method })
+      const fileInfo = { url, method }
+      const senceList = await getSenceList(mockDataFileUrl, fileInfo)
       if (senceList.includes(senceOptions.senceName)) {
         res.send(errorRes({}, '该场景已经创建'))
         return
       }
-      await updateSence(mockDataFileUrl, { url, method }, senceOptions)
+      await updateSence(mockDataFileUrl, fileInfo, senceOptions)
+      const config = await getMockConfig(mockDataFileUrl, fileInfo)
+      if (!config.mockConfigJson.sence) {
+        await selectSence(mockDataFileUrl, fileInfo, senceOptions.senceName)
+      }
       res.send(successRes({}, '创建成功'))
     } catch (error) {
       res.send(errorRes(error, '创建失败'))
