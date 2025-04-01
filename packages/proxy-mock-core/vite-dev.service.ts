@@ -16,9 +16,19 @@ export default function devServicePlugin(): Plugin {
           generatedCodeFileUrl,
           mockDataFileUrl,
         })
-        mainServiceInfo.getMockInfo('app/list', 'get').then((res: any) => {
+        mainServiceInfo
+          .getMockInfo('/api//history', 'get', {})
+          .then((res: any) => {
+            console.log(res, 'xxxxx')
+          })
+        mainServiceInfo.getMockInfo('/api/history', 'get').then((res: any) => {
           console.log(res, 'xxxxx')
         })
+        mainServiceInfo
+          .getMockInfo('/api/1521458/history', 'get')
+          .then((res: any) => {
+            console.log(res, '结果')
+          })
       }
       return conf
     },
