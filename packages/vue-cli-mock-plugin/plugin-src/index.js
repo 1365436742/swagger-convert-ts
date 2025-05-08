@@ -34,34 +34,41 @@ module.exports = (api, projectOptions) => {
   serve.fn = (...args) => {
     return serveFn(...args).then(res => {
       if (res && res.url) {
-        debounceConsole()
+        if (mainServiceInfo) {
+          debounceConsole()
+        }
       }
     })
   }
 
   // 修改devServer配置
   api.configureDevServer(app => {
-    mainService.default(options).then(_mainServiceInfo => {
-      mainServiceInfo = _mainServiceInfo
-    })
-    app.use(async (req, res, next) => {
-      if (mainServiceInfo) {
-        debounceConsole()
-        const json = await mainServiceInfo?.getMockInfo(
-          req.url,
-          req.method || '',
-          { req, res },
-        )
-        if (
-          json &&
-          res.getHeader('Content-Type') !== 'text/event-stream'
-        ) {
-          res.statusCode = 200
-          res.setHeader('Content-Type', 'application/json')
-          res.send(json)
+    if (projectOptions?.devServer?.proxy) {
+      mainService.default(options).then(_mainServiceInfo => {
+        mainServiceInfo = _mainServiceInfo
+      })
+      app.use(async (req, res, next) => {
+        if (mainServiceInfo) {
+          debounceConsole()
+          const json = await mainServiceInfo?.getMockInfo(
+            req.url,
+            req.method || '',
+            { req, res },
+          )
+          if (
+            json &&
+            res.getHeader('Content-Type') !== 'text/event-stream'
+          ) {
+            res.statusCode = 200
+            res.setHeader('Content-Type', 'application/json')
+            res.send(json)
+          } else {
+            next()
+          }
+        } else {
+          next()
         }
-      }
-      next()
-    })
+      })
+    }
   })
 }
