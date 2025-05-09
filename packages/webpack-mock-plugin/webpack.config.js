@@ -1,5 +1,5 @@
 const path = require('path')
-const ProxyMockPlugin = require('./dist/index.cjs.js')
+const ProxyMockPlugin = require('./dist/index.cjs')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   mode: 'development',
