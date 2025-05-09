@@ -1,6 +1,6 @@
 {
   "name": "webpack-proxy-mock-plugin",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "dist/index.cjs",
   "module": "dist/index.esm.js",
   "exports": {
