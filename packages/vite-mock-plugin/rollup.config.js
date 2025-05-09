@@ -15,7 +15,7 @@ export default {
   input: 'plugin-src/index.ts', // 指定 TypeScript 入口文件
   output: [
     {
-      file: 'dist/index.cjs.js',
+      file: 'dist/index.cjs',
       inlineDynamicImports: true,
       format: 'cjs', // CommonJS 格式
       globals,
