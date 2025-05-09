@@ -40,7 +40,6 @@ module.exports = (api, projectOptions) => {
       }
     })
   }
-
   // 修改devServer配置
   api.configureDevServer(app => {
     if (projectOptions?.devServer?.proxy) {
@@ -50,8 +49,10 @@ module.exports = (api, projectOptions) => {
       app.use(async (req, res, next) => {
         if (mainServiceInfo) {
           debounceConsole()
+          const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`
+          const { pathname } = new URL(fullUrl)
           const json = await mainServiceInfo?.getMockInfo(
-            req.url,
+            pathname,
             req.method || '',
             { req, res },
           )
