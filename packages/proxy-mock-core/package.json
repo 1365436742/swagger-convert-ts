@@ -1,6 +1,7 @@
 {
   "name": "proxy-mock-core",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "keywords": [],
   "author": "reqingzai",
   "license": "ISC",
@@ -14,12 +15,12 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs.js"
+      "require": "./dist/index.cjs"
     },
     "./dist/*": {
       "types": "./dist/*.d.ts",
       "import": "./dist/*.js",
-      "require": "./dist/*.cjs.js"
+      "require": "./dist/*.cjs"
     }
   },
   "scripts": {

@@ -1,0 +1,5 @@
+{
+  "name": "vue-cli-plugin-mock-proxy",
+  "version": "0.7.7",
+  "description": "提供proxy的mock的能力"
+}

@@ -1,18 +1,18 @@
 {
   "name": "webpack-proxy-mock-plugin",
   "version": "0.0.12",
-  "main": "dist/index.esm.js",
+  "main": "dist/index.cjs",
   "module": "dist/index.esm.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs.js"
+      "require": "./dist/index.cjs"
     },
     "./dist/*": {
       "types": "./dist/*.d.ts",
       "import": "./dist/*.js",
-      "require": "./dist/*.cjs.js"
+      "require": "./dist/*.cjs"
     }
   },
   "files": [
