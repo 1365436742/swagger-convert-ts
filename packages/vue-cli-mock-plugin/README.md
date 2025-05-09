@@ -1,8 +1,12 @@
 # 插件
+```bash
+npm i vue-cli-mock-plugin -D 或
+yarn add vue-cli-mock-plugin -D
+```
+
 ```javascript
 const { defineConfig } = require('@vue/cli-service')
 const path = require('path')
-// vue invoke mock-proxy
 module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
