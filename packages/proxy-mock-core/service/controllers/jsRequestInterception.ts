@@ -6,8 +6,8 @@ import { generateGetMockInfo } from '../utils/getMockInfo'
 export default (options: ConfigOptions) => {
   const router = express.Router()
   const getMockInfo = generateGetMockInfo(options)
-  router.get('/getMockInfo', async (req, res) => {
-    const { url = '', method = '', params } = req.query as GetMockInfoParams
+  router.post('/getMockInfo', async (req, res) => {
+    const { url = '', method = '', params } = req.body as GetMockInfoParams
     const json = await getMockInfo(url, method, { params })
     if (json) {
       res.send(successRes(json, 'mock成功'))
