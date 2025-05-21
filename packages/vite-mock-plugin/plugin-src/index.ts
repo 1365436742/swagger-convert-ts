@@ -36,6 +36,7 @@ export default function ProxyMockPlugin(options: ConfigOptions = {}): Plugin {
                 proxy.on(
                   'proxyRes',
                   responseInterceptor(
+                    //@ts-ignore
                     async (responseBuffer, proxyRes, req, res) => {
                       if (!mainServiceInfo) {
                         return responseBuffer
