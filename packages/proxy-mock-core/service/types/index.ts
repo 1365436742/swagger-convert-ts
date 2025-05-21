@@ -15,6 +15,14 @@ export interface ConfigOptions {
    */
   mockDataFileUrl?: string
 }
+export interface ExtendConfigOption {
+  /**
+   * url精准匹配
+   * /xxx/xxx?a.b
+   * 会把？后面后进行全量匹配
+   */
+  urlPreciseMatching?: boolean
+}
 export interface MainServiceReturn {
   /**
    * 根据请求url、method。匹配是有相同的mock
