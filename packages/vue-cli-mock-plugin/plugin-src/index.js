@@ -50,7 +50,10 @@ module.exports = (api, projectOptions) => {
         if (mainServiceInfo) {
           debounceConsole()
           const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`
-          const { pathname } = new URL(fullUrl)
+          let { pathname } = new URL(fullUrl)
+          if (options.urlPreciseMatching) {
+            pathname = req.originalUrl
+          }
           const json = await mainServiceInfo?.getMockInfo(
             pathname,
             req.method || '',
