@@ -89,9 +89,7 @@ export async function dynamicReadJs(url: string) {
     delete require.cache[url]
     return await require(importUrl)
   } else {
-    const filePath = path.resolve(importUrl)
-    console.log(filePath)
-    const fn = await import(`${importUrl}&t=${Date.now()}`)
+    const fn = await import(`${importUrl}?t=${Date.now()}`)
     return fn.default
   }
 }
