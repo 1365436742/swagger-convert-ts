@@ -1,9 +1,9 @@
-import express from 'express'
+import express, { Router } from 'express'
 import { ConfigOptions } from '../types'
 import { successRes, errorRes } from '../utils/response'
 import { GetMockInfoParams } from '../types/jsRequestInterception'
 import { generateGetMockInfo } from '../utils/getMockInfo'
-export default (options: ConfigOptions) => {
+export default (options: ConfigOptions): Router => {
   const router = express.Router()
   const getMockInfo = generateGetMockInfo(options)
   router.post('/getMockInfo', async (req, res) => {

@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Router } from 'express'
 import { ConfigOptions } from '../types'
 import { FileListItem, MockConfigJson } from '../types/fileMock'
 import {
@@ -10,7 +10,7 @@ import {
 } from '../fileModel/mockList'
 import { errorRes, successRes } from '../utils/response'
 import { getSenceList } from '../fileModel/mockSence'
-export default (options: ConfigOptions) => {
+export default (options: ConfigOptions): Router => {
   const { mockDataFileUrl = '' } = options
   const router = express.Router()
 

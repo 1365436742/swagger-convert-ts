@@ -5,8 +5,10 @@ import {
 } from 'quicktype-core'
 import fs from 'fs'
 import net from 'net'
+import path from 'path'
 import { FileListItem } from '../types/fileMock'
 import { PackageJsonOptions } from '../types/index'
+import { getFileAlias } from '../global'
 /** 获取根目录的package.json信息、判断是ejs还是cjs **/
 let packageJson: PackageJsonOptions | null = null
 
@@ -14,14 +16,30 @@ export const fileNameToUrl = (fileName: string) => {
   const fileNameSplit = fileName.split('_')
   const lastIndex = fileNameSplit.length - 1
   const method = fileNameSplit[lastIndex].toLocaleUpperCase()
-  const url = '/' + fileNameSplit.slice(0, lastIndex).join('/')
+  const url =
+    '/' +
+    fileNameSplit
+      .slice(0, lastIndex)
+      .map(item => {
+        const fileAlias = getFileAlias()
+        Object.keys(fileAlias).forEach(key => {
+          item = item.replaceAll(fileAlias[key], key)
+        })
+        return item
+      })
+      .join('/')
   return {
     url,
     method,
   }
 }
 export const urlToFileName = ({ url, method }: FileListItem) => {
-  return `${url
+  let curUrl = url
+  const fileAlias = getFileAlias()
+  Object.keys(fileAlias).forEach(key => {
+    curUrl = curUrl.replaceAll(key, fileAlias[key])
+  })
+  return `${curUrl
     .replace(/^\/+/, '')
     .replace(/\//g, '_')}_${method.toLocaleUpperCase()}`
 }

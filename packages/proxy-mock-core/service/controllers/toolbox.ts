@@ -1,9 +1,9 @@
-import express from 'express'
+import express, { Router } from 'express'
 import { ConfigOptions } from '../types'
 import { errorRes, successRes } from '../utils/response'
 import { convertJsonToTs } from '../utils'
 import { format } from 'prettier'
-export default (_options: ConfigOptions) => {
+export default (_options: ConfigOptions): Router => {
   const router = express.Router()
   router.post('/jsonToTs', async (req, res) => {
     const body = req.body as { json: string }

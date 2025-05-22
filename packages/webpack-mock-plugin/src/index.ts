@@ -3,6 +3,7 @@ import mainService, { responseInterceptor } from 'proxy-mock-core'
 import {
   ConfigOptions,
   MainServiceReturn,
+  ExtendConfigOption,
 } from 'proxy-mock-core/dist/types/index'
 import path from 'path'
 
@@ -12,10 +13,10 @@ const DefaultOption: ConfigOptions = {
   mockDataFileUrl: path.join(__dirname, 'mock'),
 }
 class ProxyMockPlugin {
-  options: ConfigOptions
+  options: ConfigOptions & ExtendConfigOption
   serviceUrl?: string
   mainServiceInfo?: MainServiceReturn
-  constructor(options: ConfigOptions = {}) {
+  constructor(options: ConfigOptions & ExtendConfigOption = {}) {
     // 接受用户传入的选项
     this.options = Object.assign(DefaultOption, options) // 默认端口为8081
   }
@@ -50,7 +51,11 @@ class ProxyMockPlugin {
               }
               //@ts-ignore
               const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`
-              const { pathname } = new URL(fullUrl)
+              let { pathname } = new URL(fullUrl)
+              if (this.options.urlPreciseMatching) {
+                //@ts-ignore
+                pathname = req.originalUrl
+              }
               const json = await this.mainServiceInfo?.getMockInfo(
                 pathname,
                 req.method || '',

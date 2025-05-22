@@ -4,9 +4,9 @@ import mainService, { responseInterceptor } from 'proxy-mock-core'
 import {
   ConfigOptions,
   MainServiceReturn,
+  ExtendConfigOption,
 } from 'proxy-mock-core/dist/types/index'
 import path from 'path'
-import { IncomingMessage } from 'http'
 import { parse } from 'qs'
 const DefaultOption: ConfigOptions = {
   port: 3001,
@@ -14,7 +14,9 @@ const DefaultOption: ConfigOptions = {
   mockDataFileUrl: path.join(__dirname, 'mock'),
 }
 let mainServiceInfo: MainServiceReturn | null = null
-export default function ProxyMockPlugin(options: ConfigOptions = {}): Plugin {
+export default function ProxyMockPlugin(
+  options: ConfigOptions & ExtendConfigOption = {},
+): Plugin {
   return {
     name: 'vite-plugin-proxy-mock',
     // 配置
@@ -36,6 +38,7 @@ export default function ProxyMockPlugin(options: ConfigOptions = {}): Plugin {
                 proxy.on(
                   'proxyRes',
                   responseInterceptor(
+                    //@ts-ignore
                     async (responseBuffer, proxyRes, req, res) => {
                       if (!mainServiceInfo) {
                         return responseBuffer
@@ -43,9 +46,12 @@ export default function ProxyMockPlugin(options: ConfigOptions = {}): Plugin {
                       //@ts-ignore
                       const url = req.originalUrl || req.url || ''
                       const splitUrl = url.split('?')
-                      const pathname = splitUrl[0]
+                      let pathname = splitUrl[0]
                       //@ts-ignore
                       req.query = parse(splitUrl[1])
+                      if (options.urlPreciseMatching) {
+                        pathname = url
+                      }
                       const json = await mainServiceInfo?.getMockInfo(
                         pathname,
                         req.method || '',
@@ -59,6 +65,7 @@ export default function ProxyMockPlugin(options: ConfigOptions = {}): Plugin {
                         res.setHeader('Content-Type', 'application/json')
                         return JSON.stringify(json)
                       }
+
                       return responseBuffer
                     },
                   ),

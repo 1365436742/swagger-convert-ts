@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Router } from 'express'
 import { ConfigOptions } from '../types'
 import {
   generatedFileCode,
@@ -26,7 +26,7 @@ import {
 } from '../fileModel/generateCode'
 import { filterMockJson, filterRequestFileCodeSort } from '../utils/filter'
 
-export default (options: ConfigOptions) => {
+export default (options: ConfigOptions): Router => {
   const { mockDataFileUrl = '', generatedCodeFileUrl = '' } = options
   const router = express.Router()
   // http://localhost:3001/generatedCode/parseSwagger?swaggerUrl=http%3A%2F%2Flocalhost%3A8080%2Fv3%2Fapi-docs
