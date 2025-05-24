@@ -58,6 +58,7 @@ const UpdateMockModal: React.FC<AddMockProps> = ({
               { value: 'POST', label: 'POST' },
               { value: 'PUT', label: 'PUT' },
               { value: 'DELETE', label: 'DELETE' },
+              { value: 'PATCH', label: 'PATCH' },
             ]}
           />
         </Form.Item>

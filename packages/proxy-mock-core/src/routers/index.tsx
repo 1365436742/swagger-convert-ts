@@ -91,7 +91,7 @@ const RouterView = () => {
           </div>
           <Menu
             mode="inline"
-            selectedKeys={[location.pathname]}
+            selectedKeys={[location.pathname === '/public' ? '/public/' : location.pathname]}
             onClick={({ key }) => location.pathname !== key && navigate(key)}
             defaultSelectedKeys={['/']}
             defaultOpenKeys={['sub1']}

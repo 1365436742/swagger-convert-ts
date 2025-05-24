@@ -9,9 +9,15 @@ export async function getMockList(
   mockDataFileUrl: string,
 ): Promise<FileListItem[]> {
   const files = await fs.promises.readdir(mockDataFileUrl)
-  return files.map(item => {
-    return fileNameToUrl(item)
-  })
+  return files
+    .filter(fileName => {
+      const filePath = path.join(mockDataFileUrl, fileName)
+      const stats = fs.statSync(filePath)
+      return stats.isDirectory()
+    })
+    .map(item => {
+      return fileNameToUrl(item)
+    })
 }
 
 export async function getMockConfig(
