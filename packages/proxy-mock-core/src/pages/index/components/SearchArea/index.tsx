@@ -1,4 +1,11 @@
-import { Button, Flex, Input, message } from 'antd'
+import {
+  Button,
+  Checkbox,
+  CheckboxChangeEvent,
+  Flex,
+  Input,
+  message,
+} from 'antd'
 import './index.less'
 import UpdataMockModal from '../UpdataMockModal'
 import { useState } from 'react'
@@ -7,16 +14,21 @@ import { addMock } from '../../../../apis/mock'
 const { Search } = Input
 interface SearchAreaProps {
   searchValue: string
+  mockCheck: boolean
   onSearchChange?: (value: string) => void
   onUpdateList?: () => void
+  onChangeCheck?: (e: CheckboxChangeEvent) => void
 }
 const SearchArea: React.FC<SearchAreaProps> = ({
   searchValue,
+  mockCheck,
   onSearchChange,
   onUpdateList,
+  onChangeCheck,
 }) => {
   const [opneUpdataMockModal, setOpneUpdataMockModal] = useState(false)
   const [opneGeneratedMockModal, setGeneratedMockModal] = useState(false)
+
   return (
     <div className="search-area">
       <UpdataMockModal
@@ -42,6 +54,11 @@ const SearchArea: React.FC<SearchAreaProps> = ({
           value={searchValue}
           placeholder="搜索接口名称"
           allowClear
+          suffix={
+            <Checkbox value={mockCheck} onChange={onChangeCheck}>
+              mock
+            </Checkbox>
+          }
           onChange={e => onSearchChange?.(e.target.value)}
         />
         <Button type="primary" onClick={() => setOpneUpdataMockModal(true)}>
