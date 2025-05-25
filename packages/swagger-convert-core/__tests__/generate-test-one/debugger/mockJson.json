@@ -1,0 +1,222 @@
+{
+  "User": [
+    {
+      "url": "/api/wechatuser/pc/login",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatuser/pc/wechat",
+      "method": "get",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatuser/pc/wechat",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatuser/pc/wechat",
+      "method": "delete",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatuser/pc/wechat",
+      "method": "patch",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatuser/pc/send-verification-code",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatuser/login",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatuser/authentication",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatuser/receive",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatuser/receive",
+      "method": "patch",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatuser/status",
+      "method": "get",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatuser/information",
+      "method": "get",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatuser/send-verification-code",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatuser/verify-code",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatuser/registry",
+      "method": "post",
+      "responseMockjs": {}
+    }
+  ],
+  "Order": [
+    {
+      "url": "/api/wechatorder/upload",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatorder/products",
+      "method": "get",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatorder/products",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatorder/products/{product_id}",
+      "method": "delete",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatorder/orders",
+      "method": "get",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatorder/orders",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatorder/orders/delivery",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatorder/orders/return",
+      "method": "get",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatorder/pc/orders",
+      "method": "get",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatorder/pc/orders",
+      "method": "patch",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatorder/pc/orders/status",
+      "method": "patch",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatorder/pc/return",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatorder/pc/products",
+      "method": "patch",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatorder/pc/orders/{order_id}/export",
+      "method": "get",
+      "responseMockjs": {}
+    }
+  ],
+  "Banner": [
+    {
+      "url": "/api/wechatbanner/pc/upload",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatbanner/pc/",
+      "method": "get",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatbanner/pc/",
+      "method": "delete",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatbanner/",
+      "method": "get",
+      "responseMockjs": {}
+    }
+  ],
+  "Address": [
+    {
+      "url": "/api/wechataddress/pc/address",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechataddress/pc/address",
+      "method": "delete",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechataddress/pc/address",
+      "method": "patch",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechataddress/pc/addresses",
+      "method": "get",
+      "responseMockjs": {}
+    }
+  ],
+  "Withdrawal": [
+    {
+      "url": "/api/wechatwithdrawal/withdrawal",
+      "method": "get",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatwithdrawal/withdrawal",
+      "method": "post",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatwithdrawal/pc/withdrawal",
+      "method": "get",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatwithdrawal/pc/withdrawal",
+      "method": "patch",
+      "responseMockjs": {}
+    },
+    {
+      "url": "/api/wechatwithdrawal/pc/withdrawal/{user_id}",
+      "method": "get",
+      "responseMockjs": {}
+    }
+  ]
+}

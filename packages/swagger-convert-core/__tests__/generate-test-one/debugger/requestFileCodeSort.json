@@ -1,0 +1,348 @@
+{
+  "User": [
+    {
+      "requestMethodName": "login_for_access_token_api_wechatuser_pc_login_post",
+      "url": "/api/wechatuser/pc/login",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "UserLoginForAccessTokenApiWechatuserPcLoginPostBody",
+      "responseTypeName": "UserLoginForAccessTokenApiWechatuserPcLoginPostResponses"
+    },
+    {
+      "requestMethodName": "get_users_api_wechatuser_pc_wechat_get",
+      "url": "/api/wechatuser/pc/wechat",
+      "method": "get",
+      "paramsTypeName": "UserGetUsersApiWechatuserPcWechatGetParams",
+      "dataTypeName": "",
+      "responseTypeName": "UserGetUsersApiWechatuserPcWechatGetResponses"
+    },
+    {
+      "requestMethodName": "unban_wechat_user_api_wechatuser_pc_wechat_post",
+      "url": "/api/wechatuser/pc/wechat",
+      "method": "post",
+      "paramsTypeName": "UserUnbanWechatUserApiWechatuserPcWechatPostParams",
+      "dataTypeName": "",
+      "responseTypeName": "UserUnbanWechatUserApiWechatuserPcWechatPostResponses"
+    },
+    {
+      "requestMethodName": "ban_wechat_user_api_wechatuser_pc_wechat_delete",
+      "url": "/api/wechatuser/pc/wechat",
+      "method": "delete",
+      "paramsTypeName": "UserBanWechatUserApiWechatuserPcWechatDeleteParams",
+      "dataTypeName": "",
+      "responseTypeName": "UserBanWechatUserApiWechatuserPcWechatDeleteResponses"
+    },
+    {
+      "requestMethodName": "modify_balance_api_wechatuser_pc_wechat_patch",
+      "url": "/api/wechatuser/pc/wechat",
+      "method": "patch",
+      "paramsTypeName": "UserModifyBalanceApiWechatuserPcWechatPatchParams",
+      "dataTypeName": "",
+      "responseTypeName": "UserModifyBalanceApiWechatuserPcWechatPatchResponses"
+    },
+    {
+      "requestMethodName": "send_verification_code_api_wechatuser_pc_send_verification_code_post",
+      "url": "/api/wechatuser/pc/send-verification-code",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "",
+      "responseTypeName": "UserSendVerificationCodeApiWechatuserPcSendVerificationCodePostResponses"
+    },
+    {
+      "requestMethodName": "wechat_login_api_wechatuser_login_post",
+      "url": "/api/wechatuser/login",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "UserWechatLoginApiWechatuserLoginPostBody",
+      "responseTypeName": "UserWechatLoginApiWechatuserLoginPostResponses"
+    },
+    {
+      "requestMethodName": "wechat_authentication_api_wechatuser_authentication_post",
+      "url": "/api/wechatuser/authentication",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "UserWechatAuthenticationApiWechatuserAuthenticationPostBody",
+      "responseTypeName": "UserWechatAuthenticationApiWechatuserAuthenticationPostResponses"
+    },
+    {
+      "requestMethodName": "wechat_authentication_api_wechatuser_receive_post",
+      "url": "/api/wechatuser/receive",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "UserWechatAuthenticationApiWechatuserReceivePostBody",
+      "responseTypeName": "UserWechatAuthenticationApiWechatuserReceivePostResponses"
+    },
+    {
+      "requestMethodName": "wechat_authentication_api_wechatuser_receive_patch",
+      "url": "/api/wechatuser/receive",
+      "method": "patch",
+      "paramsTypeName": "",
+      "dataTypeName": "UserWechatAuthenticationApiWechatuserReceivePatchBody",
+      "responseTypeName": "UserWechatAuthenticationApiWechatuserReceivePatchResponses"
+    },
+    {
+      "requestMethodName": "wechat_authentication_api_wechatuser_status_get",
+      "url": "/api/wechatuser/status",
+      "method": "get",
+      "paramsTypeName": "UserWechatAuthenticationApiWechatuserStatusGetParams",
+      "dataTypeName": "",
+      "responseTypeName": "UserWechatAuthenticationApiWechatuserStatusGetResponses"
+    },
+    {
+      "requestMethodName": "wechat_authentication_api_wechatuser_information_get",
+      "url": "/api/wechatuser/information",
+      "method": "get",
+      "paramsTypeName": "UserWechatAuthenticationApiWechatuserInformationGetParams",
+      "dataTypeName": "",
+      "responseTypeName": "UserWechatAuthenticationApiWechatuserInformationGetResponses"
+    },
+    {
+      "requestMethodName": "send_verification_code_api_wechatuser_send_verification_code_post",
+      "url": "/api/wechatuser/send-verification-code",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "UserSendVerificationCodeApiWechatuserSendVerificationCodePostBody",
+      "responseTypeName": "UserSendVerificationCodeApiWechatuserSendVerificationCodePostResponses"
+    },
+    {
+      "requestMethodName": "verify_code_api_wechatuser_verify_code_post",
+      "url": "/api/wechatuser/verify-code",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "UserVerifyCodeApiWechatuserVerifyCodePostBody",
+      "responseTypeName": ""
+    },
+    {
+      "requestMethodName": "registry_api_wechatuser_registry_post",
+      "url": "/api/wechatuser/registry",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "UserRegistryApiWechatuserRegistryPostBody",
+      "responseTypeName": ""
+    }
+  ],
+  "Order": [
+    {
+      "requestMethodName": "upload_file_api_wechatorder_upload_post",
+      "url": "/api/wechatorder/upload",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "",
+      "responseTypeName": "OrderUploadFileApiWechatorderUploadPostResponses"
+    },
+    {
+      "requestMethodName": "get_products_api_wechatorder_products_get",
+      "url": "/api/wechatorder/products",
+      "method": "get",
+      "paramsTypeName": "OrderGetProductsApiWechatorderProductsGetParams",
+      "dataTypeName": "",
+      "responseTypeName": "OrderGetProductsApiWechatorderProductsGetResponses"
+    },
+    {
+      "requestMethodName": "add_products_api_wechatorder_products_post",
+      "url": "/api/wechatorder/products",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "OrderAddProductsApiWechatorderProductsPostBody",
+      "responseTypeName": "OrderAddProductsApiWechatorderProductsPostResponses"
+    },
+    {
+      "requestMethodName": "delete_products_api_wechatorder_products__product_id__delete",
+      "url": "/api/wechatorder/products/{product_id}",
+      "method": "delete",
+      "paramsTypeName": "OrderDeleteProductsApiWechatorderProducts_ProductId_DeleteParams",
+      "dataTypeName": "",
+      "responseTypeName": "OrderDeleteProductsApiWechatorderProducts_ProductId_DeleteResponses"
+    },
+    {
+      "requestMethodName": "get_orders_wx_api_wechatorder_orders_get",
+      "url": "/api/wechatorder/orders",
+      "method": "get",
+      "paramsTypeName": "OrderGetOrdersWxApiWechatorderOrdersGetParams",
+      "dataTypeName": "",
+      "responseTypeName": "OrderGetOrdersWxApiWechatorderOrdersGetResponses"
+    },
+    {
+      "requestMethodName": "add_orders_api_wechatorder_orders_post",
+      "url": "/api/wechatorder/orders",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "OrderAddOrdersApiWechatorderOrdersPostBody",
+      "responseTypeName": "OrderAddOrdersApiWechatorderOrdersPostResponses"
+    },
+    {
+      "requestMethodName": "delivery_orders_api_wechatorder_orders_delivery_post",
+      "url": "/api/wechatorder/orders/delivery",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "OrderDeliveryOrdersApiWechatorderOrdersDeliveryPostBody",
+      "responseTypeName": "OrderDeliveryOrdersApiWechatorderOrdersDeliveryPostResponses"
+    },
+    {
+      "requestMethodName": "return_orders_api_wechatorder_orders_return_get",
+      "url": "/api/wechatorder/orders/return",
+      "method": "get",
+      "paramsTypeName": "OrderReturnOrdersApiWechatorderOrdersReturnGetParams",
+      "dataTypeName": "",
+      "responseTypeName": "OrderReturnOrdersApiWechatorderOrdersReturnGetResponses"
+    },
+    {
+      "requestMethodName": "get_orders_pc_api_wechatorder_pc_orders_get",
+      "url": "/api/wechatorder/pc/orders",
+      "method": "get",
+      "paramsTypeName": "OrderGetOrdersPcApiWechatorderPcOrdersGetParams",
+      "dataTypeName": "",
+      "responseTypeName": "OrderGetOrdersPcApiWechatorderPcOrdersGetResponses"
+    },
+    {
+      "requestMethodName": "update_orders_pc_api_wechatorder_pc_orders_patch",
+      "url": "/api/wechatorder/pc/orders",
+      "method": "patch",
+      "paramsTypeName": "OrderUpdateOrdersPcApiWechatorderPcOrdersPatchParams",
+      "dataTypeName": "OrderUpdateOrdersPcApiWechatorderPcOrdersPatchBody",
+      "responseTypeName": "OrderUpdateOrdersPcApiWechatorderPcOrdersPatchResponses"
+    },
+    {
+      "requestMethodName": "update_orders_status_pc_api_wechatorder_pc_orders_status_patch",
+      "url": "/api/wechatorder/pc/orders/status",
+      "method": "patch",
+      "paramsTypeName": "OrderUpdateOrdersStatusPcApiWechatorderPcOrdersStatusPatchParams",
+      "dataTypeName": "",
+      "responseTypeName": "OrderUpdateOrdersStatusPcApiWechatorderPcOrdersStatusPatchResponses"
+    },
+    {
+      "requestMethodName": "add_return_goods_api_wechatorder_pc_return_post",
+      "url": "/api/wechatorder/pc/return",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "OrderAddReturnGoodsApiWechatorderPcReturnPostBody",
+      "responseTypeName": "OrderAddReturnGoodsApiWechatorderPcReturnPostResponses"
+    },
+    {
+      "requestMethodName": "update_products_pc_api_wechatorder_pc_products_patch",
+      "url": "/api/wechatorder/pc/products",
+      "method": "patch",
+      "paramsTypeName": "OrderUpdateProductsPcApiWechatorderPcProductsPatchParams",
+      "dataTypeName": "OrderUpdateProductsPcApiWechatorderPcProductsPatchBody",
+      "responseTypeName": "OrderUpdateProductsPcApiWechatorderPcProductsPatchResponses"
+    },
+    {
+      "requestMethodName": "export_order_excel_api_wechatorder_pc_orders__order_id__export_get",
+      "url": "/api/wechatorder/pc/orders/{order_id}/export",
+      "method": "get",
+      "paramsTypeName": "OrderExportOrderExcelApiWechatorderPcOrders_OrderId_ExportGetParams",
+      "dataTypeName": "",
+      "responseTypeName": "OrderExportOrderExcelApiWechatorderPcOrders_OrderId_ExportGetResponses"
+    }
+  ],
+  "Banner": [
+    {
+      "requestMethodName": "upload_file_api_wechatbanner_pc_upload_post",
+      "url": "/api/wechatbanner/pc/upload",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "",
+      "responseTypeName": "BannerUploadFileApiWechatbannerPcUploadPostResponses"
+    },
+    {
+      "requestMethodName": "get_banners_api_wechatbanner_pc__get",
+      "url": "/api/wechatbanner/pc/",
+      "method": "get",
+      "paramsTypeName": "",
+      "dataTypeName": "",
+      "responseTypeName": "BannerGetBannersApiWechatbannerPc_GetResponses"
+    },
+    {
+      "requestMethodName": "delete_file_api_wechatbanner_pc__delete",
+      "url": "/api/wechatbanner/pc/",
+      "method": "delete",
+      "paramsTypeName": "BannerDeleteFileApiWechatbannerPc_DeleteParams",
+      "dataTypeName": "",
+      "responseTypeName": "BannerDeleteFileApiWechatbannerPc_DeleteResponses"
+    },
+    {
+      "requestMethodName": "get_banners_api_wechatbanner__get",
+      "url": "/api/wechatbanner/",
+      "method": "get",
+      "paramsTypeName": "",
+      "dataTypeName": "",
+      "responseTypeName": "BannerGetBannersApiWechatbanner_GetResponses"
+    }
+  ],
+  "Address": [
+    {
+      "requestMethodName": "create_address_api_wechataddress_pc_address_post",
+      "url": "/api/wechataddress/pc/address",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "AddressCreateAddressApiWechataddressPcAddressPostBody",
+      "responseTypeName": "AddressCreateAddressApiWechataddressPcAddressPostResponses"
+    },
+    {
+      "requestMethodName": "delete_address_api_wechataddress_pc_address_delete",
+      "url": "/api/wechataddress/pc/address",
+      "method": "delete",
+      "paramsTypeName": "AddressDeleteAddressApiWechataddressPcAddressDeleteParams",
+      "dataTypeName": "",
+      "responseTypeName": "AddressDeleteAddressApiWechataddressPcAddressDeleteResponses"
+    },
+    {
+      "requestMethodName": "update_address_api_wechataddress_pc_address_patch",
+      "url": "/api/wechataddress/pc/address",
+      "method": "patch",
+      "paramsTypeName": "",
+      "dataTypeName": "AddressUpdateAddressApiWechataddressPcAddressPatchBody",
+      "responseTypeName": "AddressUpdateAddressApiWechataddressPcAddressPatchResponses"
+    },
+    {
+      "requestMethodName": "get_addresses_api_wechataddress_pc_addresses_get",
+      "url": "/api/wechataddress/pc/addresses",
+      "method": "get",
+      "paramsTypeName": "AddressGetAddressesApiWechataddressPcAddressesGetParams",
+      "dataTypeName": "",
+      "responseTypeName": "AddressGetAddressesApiWechataddressPcAddressesGetResponses"
+    }
+  ],
+  "Withdrawal": [
+    {
+      "requestMethodName": "get_withdrawal_api_wechatwithdrawal_withdrawal_get",
+      "url": "/api/wechatwithdrawal/withdrawal",
+      "method": "get",
+      "paramsTypeName": "WithdrawalGetWithdrawalApiWechatwithdrawalWithdrawalGetParams",
+      "dataTypeName": "",
+      "responseTypeName": "WithdrawalGetWithdrawalApiWechatwithdrawalWithdrawalGetResponses"
+    },
+    {
+      "requestMethodName": "create_withdrawal_api_wechatwithdrawal_withdrawal_post",
+      "url": "/api/wechatwithdrawal/withdrawal",
+      "method": "post",
+      "paramsTypeName": "",
+      "dataTypeName": "WithdrawalCreateWithdrawalApiWechatwithdrawalWithdrawalPostBody",
+      "responseTypeName": "WithdrawalCreateWithdrawalApiWechatwithdrawalWithdrawalPostResponses"
+    },
+    {
+      "requestMethodName": "get_withdrawal_api_wechatwithdrawal_pc_withdrawal_get",
+      "url": "/api/wechatwithdrawal/pc/withdrawal",
+      "method": "get",
+      "paramsTypeName": "WithdrawalGetWithdrawalApiWechatwithdrawalPcWithdrawalGetParams",
+      "dataTypeName": "",
+      "responseTypeName": "WithdrawalGetWithdrawalApiWechatwithdrawalPcWithdrawalGetResponses"
+    },
+    {
+      "requestMethodName": "update_withdrawal_api_wechatwithdrawal_pc_withdrawal_patch",
+      "url": "/api/wechatwithdrawal/pc/withdrawal",
+      "method": "patch",
+      "paramsTypeName": "WithdrawalUpdateWithdrawalApiWechatwithdrawalPcWithdrawalPatchParams",
+      "dataTypeName": "",
+      "responseTypeName": "WithdrawalUpdateWithdrawalApiWechatwithdrawalPcWithdrawalPatchResponses"
+    },
+    {
+      "requestMethodName": "get_withdrawal_api_wechatwithdrawal_pc_withdrawal__user_id__get",
+      "url": "/api/wechatwithdrawal/pc/withdrawal/{user_id}",
+      "method": "get",
+      "paramsTypeName": "WithdrawalGetWithdrawalApiWechatwithdrawalPcWithdrawal_UserId_GetParams",
+      "dataTypeName": "",
+      "responseTypeName": "WithdrawalGetWithdrawalApiWechatwithdrawalPcWithdrawal_UserId_GetResponses"
+    }
+  ]
+}
