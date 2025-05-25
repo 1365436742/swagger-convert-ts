@@ -1,0 +1,3425 @@
+{
+  "AddressBase": {
+    "properties": {
+      "name": {
+        "type": "string",
+        "title": "Name",
+        "example": "<NAME>"
+      },
+      "phone": {
+        "type": "string",
+        "title": "Phone",
+        "example": "555-555-5555"
+      },
+      "detail": {
+        "type": "string",
+        "title": "Detail",
+        "example": "555-555-5555"
+      }
+    },
+    "type": "object",
+    "required": [
+      "name",
+      "phone",
+      "detail"
+    ],
+    "title": "AddressBase",
+    "additionalProperties": false
+  },
+  "AddressOut": {
+    "properties": {
+      "name": {
+        "type": "string",
+        "title": "Name",
+        "example": "<NAME>"
+      },
+      "phone": {
+        "type": "string",
+        "title": "Phone",
+        "example": "555-555-5555"
+      },
+      "detail": {
+        "type": "string",
+        "title": "Detail",
+        "example": "555-555-5555"
+      },
+      "id": {
+        "type": "integer",
+        "title": "Id"
+      },
+      "update_time": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Update Time"
+      }
+    },
+    "type": "object",
+    "required": [
+      "name",
+      "phone",
+      "detail",
+      "id",
+      "update_time"
+    ],
+    "title": "AddressOut",
+    "additionalProperties": false
+  },
+  "AddressUpdate": {
+    "properties": {
+      "name": {
+        "type": "string",
+        "title": "Name",
+        "example": "<NAME>"
+      },
+      "phone": {
+        "type": "string",
+        "title": "Phone",
+        "example": "555-555-5555"
+      },
+      "detail": {
+        "type": "string",
+        "title": "Detail",
+        "example": "555-555-5555"
+      },
+      "id": {
+        "type": "string",
+        "title": "Id"
+      }
+    },
+    "type": "object",
+    "required": [
+      "name",
+      "phone",
+      "detail",
+      "id"
+    ],
+    "title": "AddressUpdate",
+    "additionalProperties": false
+  },
+  "BannerBase": {
+    "properties": {
+      "id": {
+        "type": "integer",
+        "title": "Id"
+      },
+      "location": {
+        "type": "string",
+        "title": "Location"
+      },
+      "url": {
+        "type": "string",
+        "title": "Url"
+      },
+      "path": {
+        "type": "string",
+        "title": "Path"
+      }
+    },
+    "type": "object",
+    "required": [
+      "id",
+      "location",
+      "url",
+      "path"
+    ],
+    "title": "BannerBase",
+    "additionalProperties": false
+  },
+  "Body_upload_file_api_wechatbanner_pc_upload_post": {
+    "properties": {
+      "file": {
+        "type": "string",
+        "format": "binary",
+        "title": "File"
+      }
+    },
+    "type": "object",
+    "required": [
+      "file"
+    ],
+    "title": "Body_upload_file_api_wechatbanner_pc_upload_post",
+    "additionalProperties": false
+  },
+  "Body_upload_file_api_wechatorder_upload_post": {
+    "properties": {
+      "file": {
+        "type": "string",
+        "format": "binary",
+        "title": "File"
+      }
+    },
+    "type": "object",
+    "required": [
+      "file"
+    ],
+    "title": "Body_upload_file_api_wechatorder_upload_post",
+    "additionalProperties": false
+  },
+  "Discriminator": {
+    "properties": {
+      "propertyName": {
+        "type": "string",
+        "title": "Propertyname"
+      },
+      "mapping": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "type": "object",
+        "title": "Mapping"
+      }
+    },
+    "type": "object",
+    "required": [
+      "propertyName"
+    ],
+    "title": "Discriminator",
+    "additionalProperties": false
+  },
+  "Encoding": {
+    "properties": {
+      "contentType": {
+        "type": "string",
+        "title": "Contenttype"
+      },
+      "headers": {
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Header"
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Reference"
+                }
+              ]
+            }
+          ]
+        },
+        "type": "object",
+        "title": "Headers"
+      },
+      "style": {
+        "type": "string",
+        "title": "Style"
+      },
+      "explode": {
+        "type": "boolean",
+        "title": "Explode"
+      },
+      "allowReserved": {
+        "type": "boolean",
+        "title": "Allowreserved"
+      }
+    },
+    "type": "object",
+    "title": "Encoding",
+    "additionalProperties": false
+  },
+  "Example": {
+    "properties": {
+      "summary": {
+        "type": "string",
+        "title": "Summary"
+      },
+      "description": {
+        "type": "string",
+        "title": "Description"
+      },
+      "value": {
+        "title": "Value"
+      },
+      "externalValue": {
+        "type": "string",
+        "maxLength": 65536,
+        "minLength": 1,
+        "format": "uri",
+        "title": "Externalvalue"
+      }
+    },
+    "type": "object",
+    "title": "Example",
+    "additionalProperties": false
+  },
+  "ExternalDocumentation": {
+    "properties": {
+      "description": {
+        "type": "string",
+        "title": "Description"
+      },
+      "url": {
+        "type": "string",
+        "maxLength": 65536,
+        "minLength": 1,
+        "format": "uri",
+        "title": "Url"
+      }
+    },
+    "type": "object",
+    "required": [
+      "url"
+    ],
+    "title": "ExternalDocumentation",
+    "additionalProperties": false
+  },
+  "HTTPValidationError": {
+    "properties": {
+      "detail": {
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#/ValidationError"
+            }
+          ]
+        },
+        "type": "array",
+        "title": "Detail"
+      }
+    },
+    "type": "object",
+    "title": "HTTPValidationError",
+    "additionalProperties": false
+  },
+  "Header": {
+    "properties": {
+      "description": {
+        "type": "string",
+        "title": "Description"
+      },
+      "required": {
+        "type": "boolean",
+        "title": "Required"
+      },
+      "deprecated": {
+        "type": "boolean",
+        "title": "Deprecated"
+      },
+      "style": {
+        "type": "string",
+        "title": "Style"
+      },
+      "explode": {
+        "type": "boolean",
+        "title": "Explode"
+      },
+      "allowReserved": {
+        "type": "boolean",
+        "title": "Allowreserved"
+      },
+      "schema": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/Schema"
+              }
+            ]
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "#/Reference"
+              }
+            ]
+          }
+        ],
+        "title": "Schema"
+      },
+      "example": {
+        "title": "Example"
+      },
+      "examples": {
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Example"
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Reference"
+                }
+              ]
+            }
+          ]
+        },
+        "type": "object",
+        "title": "Examples"
+      },
+      "content": {
+        "additionalProperties": {
+          "allOf": [
+            {
+              "$ref": "#/MediaType"
+            }
+          ]
+        },
+        "type": "object",
+        "title": "Content"
+      }
+    },
+    "type": "object",
+    "title": "Header",
+    "additionalProperties": false
+  },
+  "Link": {
+    "properties": {
+      "operationRef": {
+        "type": "string",
+        "title": "Operationref"
+      },
+      "operationId": {
+        "type": "string",
+        "title": "Operationid"
+      },
+      "parameters": {
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "type": "object",
+        "title": "Parameters"
+      },
+      "requestBody": {
+        "anyOf": [
+          {
+            "type": "string"
+          }
+        ],
+        "title": "Requestbody"
+      },
+      "description": {
+        "type": "string",
+        "title": "Description"
+      },
+      "server": {
+        "allOf": [
+          {
+            "$ref": "#/Server"
+          }
+        ]
+      }
+    },
+    "type": "object",
+    "title": "Link",
+    "additionalProperties": false
+  },
+  "MediaType": {
+    "properties": {
+      "schema": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/Schema"
+              }
+            ]
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "#/Reference"
+              }
+            ]
+          }
+        ],
+        "title": "Schema"
+      },
+      "example": {
+        "title": "Example"
+      },
+      "examples": {
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Example"
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Reference"
+                }
+              ]
+            }
+          ]
+        },
+        "type": "object",
+        "title": "Examples"
+      },
+      "encoding": {
+        "additionalProperties": {
+          "allOf": [
+            {
+              "$ref": "#/Encoding"
+            }
+          ]
+        },
+        "type": "object",
+        "title": "Encoding"
+      }
+    },
+    "type": "object",
+    "title": "MediaType",
+    "additionalProperties": false
+  },
+  "OrderCreate": {
+    "properties": {
+      "openid": {
+        "type": "string",
+        "title": "Openid"
+      },
+      "product_ids": {
+        "items": {
+          "type": "integer"
+        },
+        "type": "array",
+        "title": "Product Ids"
+      }
+    },
+    "type": "object",
+    "required": [
+      "openid",
+      "product_ids"
+    ],
+    "title": "OrderCreate",
+    "additionalProperties": false
+  },
+  "OrderDetailResponse": {
+    "properties": {
+      "id": {
+        "type": "integer",
+        "title": "Id"
+      },
+      "user_id": {
+        "type": "integer",
+        "title": "User Id"
+      },
+      "status": {
+        "type": "integer",
+        "title": "Status"
+      },
+      "delivery_site": {
+        "type": "string",
+        "title": "Delivery Site"
+      },
+      "tracking_code": {
+        "type": "string",
+        "title": "Tracking Code"
+      },
+      "address_id": {
+        "type": "integer",
+        "title": "Address Id"
+      },
+      "finally_cost": {
+        "type": "number",
+        "title": "Finally Cost"
+      },
+      "create_time": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Create Time"
+      },
+      "update_time": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Update Time"
+      },
+      "products": {
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#/ProductResponse"
+            }
+          ]
+        },
+        "type": "array",
+        "title": "Products"
+      },
+      "delivery_name": {
+        "type": "string",
+        "title": "Delivery Name"
+      },
+      "delivery_phone": {
+        "type": "string",
+        "title": "Delivery Phone"
+      },
+      "return_address": {
+        "type": "string",
+        "title": "Return Address"
+      },
+      "name": {
+        "type": "string",
+        "title": "Name"
+      },
+      "phone": {
+        "type": "string",
+        "title": "Phone"
+      }
+    },
+    "type": "object",
+    "required": [
+      "id",
+      "user_id",
+      "status",
+      "create_time",
+      "products"
+    ],
+    "title": "OrderDetailResponse",
+    "additionalProperties": false
+  },
+  "OrderUpdate": {
+    "properties": {
+      "finally_cost": {
+        "type": "number",
+        "title": "Finally Cost"
+      },
+      "status": {
+        "type": "integer",
+        "title": "Status"
+      },
+      "address_id": {
+        "type": "integer",
+        "title": "Address Id"
+      },
+      "money_to_user": {
+        "type": "number",
+        "title": "Money To User"
+      },
+      "phone_code": {
+        "type": "string",
+        "title": "Phone Code"
+      }
+    },
+    "type": "object",
+    "required": [
+      "status"
+    ],
+    "title": "OrderUpdate",
+    "additionalProperties": false
+  },
+  "ProductCreate": {
+    "properties": {
+      "user_id": {
+        "type": "integer",
+        "title": "User Id"
+      },
+      "openid": {
+        "type": "string",
+        "title": "Openid",
+        "description": "openid"
+      },
+      "product_name": {
+        "type": "string",
+        "maxLength": 64,
+        "title": "Product Name",
+        "description": "产品名称"
+      },
+      "product_code": {
+        "type": "string",
+        "maxLength": 64,
+        "title": "Product Code",
+        "description": "货号"
+      },
+      "description": {
+        "type": "string",
+        "maxLength": 255,
+        "title": "Description",
+        "description": "瑕疵描述"
+      },
+      "product_infos": {
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#/ProductInfoCreate"
+            }
+          ]
+        },
+        "type": "array",
+        "title": "Product Infos",
+        "description": "产品信息列表"
+      },
+      "product_urls": {
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#/ProductUrlCreate"
+            }
+          ]
+        },
+        "type": "array",
+        "title": "Product Urls",
+        "description": "产品链接列表"
+      }
+    },
+    "type": "object",
+    "required": [
+      "openid",
+      "product_name",
+      "product_code",
+      "product_infos"
+    ],
+    "title": "ProductCreate",
+    "additionalProperties": false
+  },
+  "ProductInfoCreate": {
+    "properties": {
+      "size": {
+        "type": "string",
+        "maxLength": 64,
+        "title": "Size",
+        "description": "产品尺寸"
+      },
+      "number": {
+        "type": "integer",
+        "title": "Number",
+        "description": "产品数量"
+      }
+    },
+    "type": "object",
+    "required": [
+      "size",
+      "number"
+    ],
+    "title": "ProductInfoCreate",
+    "additionalProperties": false
+  },
+  "ProductInfoResponse": {
+    "properties": {
+      "id": {
+        "type": "integer",
+        "title": "Id"
+      },
+      "size": {
+        "type": "string",
+        "title": "Size"
+      },
+      "number": {
+        "type": "integer",
+        "title": "Number"
+      },
+      "status": {
+        "type": "integer",
+        "title": "Status"
+      },
+      "price": {
+        "type": "number",
+        "title": "Price"
+      },
+      "description": {
+        "type": "string",
+        "title": "Description",
+        "default": ""
+      },
+      "finally_price": {
+        "type": "number",
+        "title": "Finally Price"
+      },
+      "reason": {
+        "type": "string",
+        "title": "Reason"
+      }
+    },
+    "type": "object",
+    "required": [
+      "id",
+      "size",
+      "number",
+      "status",
+      "price",
+      "finally_price"
+    ],
+    "title": "ProductInfoResponse",
+    "additionalProperties": false
+  },
+  "ProductInfoUpdate": {
+    "properties": {
+      "size": {
+        "type": "string",
+        "title": "Size"
+      },
+      "number": {
+        "type": "integer",
+        "title": "Number"
+      },
+      "status": {
+        "type": "integer",
+        "title": "Status"
+      },
+      "price": {
+        "type": "number",
+        "title": "Price"
+      },
+      "description": {
+        "type": "string",
+        "title": "Description"
+      },
+      "finally_price": {
+        "type": "number",
+        "title": "Finally Price"
+      },
+      "reason": {
+        "type": "string",
+        "title": "Reason"
+      }
+    },
+    "type": "object",
+    "title": "ProductInfoUpdate",
+    "additionalProperties": false
+  },
+  "ProductResponse": {
+    "properties": {
+      "id": {
+        "type": "integer",
+        "title": "Id"
+      },
+      "user_id": {
+        "type": "integer",
+        "title": "User Id"
+      },
+      "product_name": {
+        "type": "string",
+        "title": "Product Name"
+      },
+      "product_code": {
+        "type": "string",
+        "title": "Product Code"
+      },
+      "description": {
+        "type": "string",
+        "title": "Description"
+      },
+      "create_time": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Create Time"
+      },
+      "update_time": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Update Time"
+      },
+      "product_infos": {
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#/ProductInfoResponse"
+            }
+          ]
+        },
+        "type": "array",
+        "title": "Product Infos",
+        "default": []
+      },
+      "product_urls": {
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#/ProductUrlResponse"
+            }
+          ]
+        },
+        "type": "array",
+        "title": "Product Urls",
+        "default": []
+      },
+      "status": {
+        "type": "integer",
+        "title": "Status"
+      }
+    },
+    "type": "object",
+    "required": [
+      "id",
+      "user_id",
+      "product_name",
+      "product_code",
+      "create_time",
+      "status"
+    ],
+    "title": "ProductResponse",
+    "additionalProperties": false
+  },
+  "ProductUrlCreate": {
+    "properties": {
+      "url": {
+        "type": "string",
+        "maxLength": 512,
+        "title": "Url",
+        "description": "产品图片链接"
+      },
+      "path": {
+        "type": "string",
+        "maxLength": 512,
+        "title": "Path",
+        "description": "图片路径"
+      }
+    },
+    "type": "object",
+    "required": [
+      "url",
+      "path"
+    ],
+    "title": "ProductUrlCreate",
+    "additionalProperties": false
+  },
+  "ProductUrlResponse": {
+    "properties": {
+      "url": {
+        "type": "string",
+        "title": "Url"
+      }
+    },
+    "type": "object",
+    "required": [
+      "url"
+    ],
+    "title": "ProductUrlResponse",
+    "additionalProperties": false
+  },
+  "Reference": {
+    "properties": {
+      "allOf": [
+        {
+          "$ref": {
+            "type": "string",
+            "title": "$Ref"
+          }
+        }
+      ]
+    },
+    "type": "object",
+    "required": [
+      "$ref"
+    ],
+    "title": "Reference",
+    "additionalProperties": false
+  },
+  "RegistryRequest": {
+    "properties": {
+      "code": {
+        "type": "string",
+        "title": "Code"
+      },
+      "name": {
+        "type": "string",
+        "title": "Name"
+      },
+      "phone": {
+        "type": "string",
+        "title": "Phone"
+      },
+      "id_code": {
+        "type": "string",
+        "title": "Id Code"
+      },
+      "verify_code": {
+        "type": "string",
+        "title": "Verify Code"
+      }
+    },
+    "type": "object",
+    "required": [
+      "code",
+      "name",
+      "phone",
+      "id_code",
+      "verify_code"
+    ],
+    "title": "RegistryRequest",
+    "additionalProperties": false
+  },
+  "Response": {
+    "properties": {
+      "description": {
+        "type": "string",
+        "title": "Description"
+      },
+      "headers": {
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Header"
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Reference"
+                }
+              ]
+            }
+          ]
+        },
+        "type": "object",
+        "title": "Headers"
+      },
+      "content": {
+        "additionalProperties": {
+          "allOf": [
+            {
+              "$ref": "#/MediaType"
+            }
+          ]
+        },
+        "type": "object",
+        "title": "Content"
+      },
+      "links": {
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Link"
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Reference"
+                }
+              ]
+            }
+          ]
+        },
+        "type": "object",
+        "title": "Links"
+      }
+    },
+    "type": "object",
+    "required": [
+      "description"
+    ],
+    "title": "Response",
+    "additionalProperties": false
+  },
+  "ResultSchema": {
+    "properties": {
+      "code": {
+        "type": "integer",
+        "title": "Code"
+      },
+      "data": {
+        "anyOf": [
+          {
+            "type": "array"
+          }
+        ],
+        "title": "Data"
+      },
+      "total": {
+        "type": "integer",
+        "title": "Total"
+      },
+      "msg": {
+        "type": "string",
+        "title": "Msg"
+      }
+    },
+    "type": "object",
+    "required": [
+      "code"
+    ],
+    "title": "ResultSchema",
+    "description": "结果数据模型 ",
+    "additionalProperties": false
+  },
+  "ResultSchema_UserLoginResponse_": {
+    "properties": {
+      "code": {
+        "type": "integer",
+        "title": "Code"
+      },
+      "data": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/UserLoginResponse"
+              }
+            ]
+          },
+          {
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/UserLoginResponse"
+                }
+              ]
+            },
+            "type": "array"
+          }
+        ],
+        "title": "Data"
+      },
+      "total": {
+        "type": "integer",
+        "title": "Total"
+      },
+      "msg": {
+        "type": "string",
+        "title": "Msg"
+      }
+    },
+    "type": "object",
+    "required": [
+      "code"
+    ],
+    "title": "ResultSchema[UserLoginResponse]",
+    "description": "结果数据模型 ",
+    "additionalProperties": false
+  },
+  "ResultSchema_WeChatLoginResponse_": {
+    "properties": {
+      "code": {
+        "type": "integer",
+        "title": "Code"
+      },
+      "data": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/WeChatLoginResponse"
+              }
+            ]
+          },
+          {
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/WeChatLoginResponse"
+                }
+              ]
+            },
+            "type": "array"
+          }
+        ],
+        "title": "Data"
+      },
+      "total": {
+        "type": "integer",
+        "title": "Total"
+      },
+      "msg": {
+        "type": "string",
+        "title": "Msg"
+      }
+    },
+    "type": "object",
+    "required": [
+      "code"
+    ],
+    "title": "ResultSchema[WeChatLoginResponse]",
+    "description": "结果数据模型 ",
+    "additionalProperties": false
+  },
+  "ResultSchema_WeChatUserInformationOut_": {
+    "properties": {
+      "code": {
+        "type": "integer",
+        "title": "Code"
+      },
+      "data": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/WeChatUserInformationOut"
+              }
+            ]
+          },
+          {
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/WeChatUserInformationOut"
+                }
+              ]
+            },
+            "type": "array"
+          }
+        ],
+        "title": "Data"
+      },
+      "total": {
+        "type": "integer",
+        "title": "Total"
+      },
+      "msg": {
+        "type": "string",
+        "title": "Msg"
+      }
+    },
+    "type": "object",
+    "required": [
+      "code"
+    ],
+    "title": "ResultSchema[WeChatUserInformationOut]",
+    "description": "结果数据模型 ",
+    "additionalProperties": false
+  },
+  "ResultSchema_bool_": {
+    "properties": {
+      "code": {
+        "type": "integer",
+        "title": "Code"
+      },
+      "data": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "items": {
+              "type": "boolean"
+            },
+            "type": "array"
+          }
+        ],
+        "title": "Data"
+      },
+      "total": {
+        "type": "integer",
+        "title": "Total"
+      },
+      "msg": {
+        "type": "string",
+        "title": "Msg"
+      }
+    },
+    "type": "object",
+    "required": [
+      "code"
+    ],
+    "title": "ResultSchema[bool]",
+    "description": "结果数据模型 ",
+    "additionalProperties": false
+  },
+  "ResultSchema_list__T__": {
+    "properties": {
+      "code": {
+        "type": "integer",
+        "title": "Code"
+      },
+      "data": {
+        "anyOf": [
+          {
+            "type": "array"
+          },
+          {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          }
+        ],
+        "title": "Data"
+      },
+      "total": {
+        "type": "integer",
+        "title": "Total"
+      },
+      "msg": {
+        "type": "string",
+        "title": "Msg"
+      }
+    },
+    "type": "object",
+    "required": [
+      "code"
+    ],
+    "title": "ResultSchema[list[~T]]",
+    "description": "结果数据模型 ",
+    "additionalProperties": false
+  },
+  "ResultSchema_list_schemas.address.AddressOut__": {
+    "properties": {
+      "code": {
+        "type": "integer",
+        "title": "Code"
+      },
+      "data": {
+        "anyOf": [
+          {
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/AddressOut"
+                }
+              ]
+            },
+            "type": "array"
+          },
+          {
+            "items": {
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/AddressOut"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "type": "array"
+          }
+        ],
+        "title": "Data"
+      },
+      "total": {
+        "type": "integer",
+        "title": "Total"
+      },
+      "msg": {
+        "type": "string",
+        "title": "Msg"
+      }
+    },
+    "type": "object",
+    "required": [
+      "code"
+    ],
+    "title": "ResultSchema[list[schemas.address.AddressOut]]",
+    "description": "结果数据模型 ",
+    "additionalProperties": false
+  },
+  "ResultSchema_list_schemas.banner.BannerBase__": {
+    "properties": {
+      "code": {
+        "type": "integer",
+        "title": "Code"
+      },
+      "data": {
+        "anyOf": [
+          {
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/BannerBase"
+                }
+              ]
+            },
+            "type": "array"
+          },
+          {
+            "items": {
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/BannerBase"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "type": "array"
+          }
+        ],
+        "title": "Data"
+      },
+      "total": {
+        "type": "integer",
+        "title": "Total"
+      },
+      "msg": {
+        "type": "string",
+        "title": "Msg"
+      }
+    },
+    "type": "object",
+    "required": [
+      "code"
+    ],
+    "title": "ResultSchema[list[schemas.banner.BannerBase]]",
+    "description": "结果数据模型 ",
+    "additionalProperties": false
+  },
+  "ResultSchema_list_schemas.order.OrderDetailResponse__": {
+    "properties": {
+      "code": {
+        "type": "integer",
+        "title": "Code"
+      },
+      "data": {
+        "anyOf": [
+          {
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/OrderDetailResponse"
+                }
+              ]
+            },
+            "type": "array"
+          },
+          {
+            "items": {
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/OrderDetailResponse"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "type": "array"
+          }
+        ],
+        "title": "Data"
+      },
+      "total": {
+        "type": "integer",
+        "title": "Total"
+      },
+      "msg": {
+        "type": "string",
+        "title": "Msg"
+      }
+    },
+    "type": "object",
+    "required": [
+      "code"
+    ],
+    "title": "ResultSchema[list[schemas.order.OrderDetailResponse]]",
+    "description": "结果数据模型 ",
+    "additionalProperties": false
+  },
+  "ResultSchema_list_schemas.user.WeChatUserInformationOut__": {
+    "properties": {
+      "code": {
+        "type": "integer",
+        "title": "Code"
+      },
+      "data": {
+        "anyOf": [
+          {
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/WeChatUserInformationOut"
+                }
+              ]
+            },
+            "type": "array"
+          },
+          {
+            "items": {
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/WeChatUserInformationOut"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "type": "array"
+          }
+        ],
+        "title": "Data"
+      },
+      "total": {
+        "type": "integer",
+        "title": "Total"
+      },
+      "msg": {
+        "type": "string",
+        "title": "Msg"
+      }
+    },
+    "type": "object",
+    "required": [
+      "code"
+    ],
+    "title": "ResultSchema[list[schemas.user.WeChatUserInformationOut]]",
+    "description": "结果数据模型 ",
+    "additionalProperties": false
+  },
+  "ResultSchema_list_schemas.withdrawal.WithdrawalOut__": {
+    "properties": {
+      "code": {
+        "type": "integer",
+        "title": "Code"
+      },
+      "data": {
+        "anyOf": [
+          {
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/WithdrawalOut"
+                }
+              ]
+            },
+            "type": "array"
+          },
+          {
+            "items": {
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/WithdrawalOut"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "type": "array"
+          }
+        ],
+        "title": "Data"
+      },
+      "total": {
+        "type": "integer",
+        "title": "Total"
+      },
+      "msg": {
+        "type": "string",
+        "title": "Msg"
+      }
+    },
+    "type": "object",
+    "required": [
+      "code"
+    ],
+    "title": "ResultSchema[list[schemas.withdrawal.WithdrawalOut]]",
+    "description": "结果数据模型 ",
+    "additionalProperties": false
+  },
+  "ReturnGoodsAdd": {
+    "properties": {
+      "product_id": {
+        "type": "integer",
+        "title": "Product Id"
+      },
+      "product_info_id": {
+        "type": "integer",
+        "title": "Product Info Id"
+      },
+      "order_id": {
+        "type": "integer",
+        "title": "Order Id"
+      },
+      "return_delivery_site": {
+        "type": "string",
+        "title": "Return Delivery Site"
+      },
+      "return_tracking_code": {
+        "type": "string",
+        "title": "Return Tracking Code"
+      }
+    },
+    "type": "object",
+    "required": [
+      "product_id",
+      "product_info_id",
+      "order_id",
+      "return_delivery_site",
+      "return_tracking_code"
+    ],
+    "title": "ReturnGoodsAdd",
+    "additionalProperties": false
+  },
+  "Schema": {
+    "properties": {
+      "$schema": {
+        "type": "string",
+        "title": "$Schema"
+      },
+      "$vocabulary": {
+        "type": "string",
+        "title": "$Vocabulary"
+      },
+      "$id": {
+        "type": "string",
+        "title": "$Id"
+      },
+      "$anchor": {
+        "type": "string",
+        "title": "$Anchor"
+      },
+      "$dynamicAnchor": {
+        "type": "string",
+        "title": "$Dynamicanchor"
+      },
+      "$ref": {
+        "type": "string",
+        "title": "$Ref"
+      },
+      "$dynamicRef": {
+        "type": "string",
+        "title": "$Dynamicref"
+      },
+      "$defs": {
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Schema"
+                }
+              ]
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "type": "object",
+        "title": "$Defs"
+      },
+      "$comment": {
+        "type": "string",
+        "title": "$Comment"
+      },
+      "allOf": {
+        "items": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Schema"
+                }
+              ]
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "type": "array",
+        "title": "Allof"
+      },
+      "anyOf": {
+        "items": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Schema"
+                }
+              ]
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "type": "array",
+        "title": "Anyof"
+      },
+      "oneOf": {
+        "items": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Schema"
+                }
+              ]
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "type": "array",
+        "title": "Oneof"
+      },
+      "not": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/Schema"
+              }
+            ]
+          },
+          {
+            "type": "boolean"
+          }
+        ],
+        "title": "Not"
+      },
+      "if": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/Schema"
+              }
+            ]
+          },
+          {
+            "type": "boolean"
+          }
+        ],
+        "title": "If"
+      },
+      "then": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/Schema"
+              }
+            ]
+          },
+          {
+            "type": "boolean"
+          }
+        ],
+        "title": "Then"
+      },
+      "else": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/Schema"
+              }
+            ]
+          },
+          {
+            "type": "boolean"
+          }
+        ],
+        "title": "Else"
+      },
+      "dependentSchemas": {
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Schema"
+                }
+              ]
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "type": "object",
+        "title": "Dependentschemas"
+      },
+      "prefixItems": {
+        "items": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Schema"
+                }
+              ]
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "type": "array",
+        "title": "Prefixitems"
+      },
+      "items": {
+        "anyOf": [
+          {
+            "anyOf": [
+              {
+                "allOf": [
+                  {
+                    "$ref": "#/Schema"
+                  }
+                ]
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          {
+            "items": {
+              "anyOf": [
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/Schema"
+                    }
+                  ]
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "type": "array"
+          }
+        ],
+        "title": "Items"
+      },
+      "contains": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/Schema"
+              }
+            ]
+          },
+          {
+            "type": "boolean"
+          }
+        ],
+        "title": "Contains"
+      },
+      "properties": {
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Schema"
+                }
+              ]
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "type": "object",
+        "title": "Properties"
+      },
+      "patternProperties": {
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/Schema"
+                }
+              ]
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "type": "object",
+        "title": "Patternproperties"
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/Schema"
+              }
+            ]
+          },
+          {
+            "type": "boolean"
+          }
+        ],
+        "title": "Additionalproperties"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/Schema"
+              }
+            ]
+          },
+          {
+            "type": "boolean"
+          }
+        ],
+        "title": "Propertynames"
+      },
+      "unevaluatedItems": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/Schema"
+              }
+            ]
+          },
+          {
+            "type": "boolean"
+          }
+        ],
+        "title": "Unevaluateditems"
+      },
+      "unevaluatedProperties": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/Schema"
+              }
+            ]
+          },
+          {
+            "type": "boolean"
+          }
+        ],
+        "title": "Unevaluatedproperties"
+      },
+      "type": {
+        "type": "string",
+        "title": "Type"
+      },
+      "enum": {
+        "type": "array",
+        "title": "Enum"
+      },
+      "const": {
+        "title": "Const"
+      },
+      "multipleOf": {
+        "type": "number",
+        "exclusiveMinimum": 0,
+        "title": "Multipleof"
+      },
+      "maximum": {
+        "type": "number",
+        "title": "Maximum"
+      },
+      "exclusiveMaximum": {
+        "type": "number",
+        "title": "Exclusivemaximum"
+      },
+      "minimum": {
+        "type": "number",
+        "title": "Minimum"
+      },
+      "exclusiveMinimum": {
+        "type": "number",
+        "title": "Exclusiveminimum"
+      },
+      "maxLength": {
+        "type": "integer",
+        "minimum": 0,
+        "title": "Maxlength"
+      },
+      "minLength": {
+        "type": "integer",
+        "minimum": 0,
+        "title": "Minlength"
+      },
+      "pattern": {
+        "type": "string",
+        "title": "Pattern"
+      },
+      "maxItems": {
+        "type": "integer",
+        "minimum": 0,
+        "title": "Maxitems"
+      },
+      "minItems": {
+        "type": "integer",
+        "minimum": 0,
+        "title": "Minitems"
+      },
+      "uniqueItems": {
+        "type": "boolean",
+        "title": "Uniqueitems"
+      },
+      "maxContains": {
+        "type": "integer",
+        "minimum": 0,
+        "title": "Maxcontains"
+      },
+      "minContains": {
+        "type": "integer",
+        "minimum": 0,
+        "title": "Mincontains"
+      },
+      "maxProperties": {
+        "type": "integer",
+        "minimum": 0,
+        "title": "Maxproperties"
+      },
+      "minProperties": {
+        "type": "integer",
+        "minimum": 0,
+        "title": "Minproperties"
+      },
+      "required": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array",
+        "title": "Required"
+      },
+      "dependentRequired": {
+        "additionalProperties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "type": "object",
+        "title": "Dependentrequired"
+      },
+      "format": {
+        "type": "string",
+        "title": "Format"
+      },
+      "contentEncoding": {
+        "type": "string",
+        "title": "Contentencoding"
+      },
+      "contentMediaType": {
+        "type": "string",
+        "title": "Contentmediatype"
+      },
+      "contentSchema": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/Schema"
+              }
+            ]
+          },
+          {
+            "type": "boolean"
+          }
+        ],
+        "title": "Contentschema"
+      },
+      "title": {
+        "type": "string",
+        "title": "Title"
+      },
+      "description": {
+        "type": "string",
+        "title": "Description"
+      },
+      "default": {
+        "title": "Default"
+      },
+      "deprecated": {
+        "type": "boolean",
+        "title": "Deprecated"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "title": "Readonly"
+      },
+      "writeOnly": {
+        "type": "boolean",
+        "title": "Writeonly"
+      },
+      "examples": {
+        "type": "array",
+        "title": "Examples"
+      },
+      "discriminator": {
+        "allOf": [
+          {
+            "$ref": "#/Discriminator"
+          }
+        ]
+      },
+      "xml": {
+        "allOf": [
+          {
+            "$ref": "#/XML"
+          }
+        ]
+      },
+      "externalDocs": {
+        "allOf": [
+          {
+            "$ref": "#/ExternalDocumentation"
+          }
+        ]
+      },
+      "example": {
+        "title": "Example"
+      }
+    },
+    "type": "object",
+    "title": "Schema",
+    "additionalProperties": false
+  },
+  "SendCodeRequest": {
+    "properties": {
+      "phone_number": {
+        "type": "string",
+        "title": "Phone Number"
+      }
+    },
+    "type": "object",
+    "required": [
+      "phone_number"
+    ],
+    "title": "SendCodeRequest",
+    "additionalProperties": false
+  },
+  "Server": {
+    "properties": {
+      "url": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 65536,
+            "minLength": 1,
+            "format": "uri"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "title": "Url"
+      },
+      "description": {
+        "type": "string",
+        "title": "Description"
+      },
+      "variables": {
+        "additionalProperties": {
+          "allOf": [
+            {
+              "$ref": "#/ServerVariable"
+            }
+          ]
+        },
+        "type": "object",
+        "title": "Variables"
+      }
+    },
+    "type": "object",
+    "required": [
+      "url"
+    ],
+    "title": "Server",
+    "additionalProperties": false
+  },
+  "ServerVariable": {
+    "properties": {
+      "enum": {
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": "array",
+        "minLength": 1,
+        "title": "Enum"
+      },
+      "default": {
+        "type": "string",
+        "title": "Default"
+      },
+      "description": {
+        "type": "string",
+        "title": "Description"
+      }
+    },
+    "type": "object",
+    "required": [
+      "default"
+    ],
+    "title": "ServerVariable",
+    "additionalProperties": false
+  },
+  "UpdateProductList": {
+    "properties": {
+      "product_id": {
+        "type": "integer",
+        "title": "Product Id"
+      },
+      "product_info_ids": {
+        "items": {
+          "type": "integer"
+        },
+        "type": "array",
+        "title": "Product Info Ids"
+      },
+      "un_product_info_ids": {
+        "items": {
+          "type": "integer"
+        },
+        "type": "array",
+        "title": "Un Product Info Ids"
+      }
+    },
+    "type": "object",
+    "required": [
+      "product_id",
+      "product_info_ids",
+      "un_product_info_ids"
+    ],
+    "title": "UpdateProductList",
+    "additionalProperties": false
+  },
+  "UserLogin": {
+    "properties": {
+      "username": {
+        "type": "string",
+        "title": "Username",
+        "example": "用户名"
+      },
+      "password": {
+        "type": "string",
+        "title": "Password",
+        "example": "密码"
+      }
+    },
+    "type": "object",
+    "required": [
+      "username",
+      "password"
+    ],
+    "title": "UserLogin",
+    "description": "登录 ",
+    "additionalProperties": false
+  },
+  "UserLoginResponse": {
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      },
+      "token_type": {
+        "type": "string",
+        "title": "Token Type"
+      }
+    },
+    "type": "object",
+    "required": [
+      "access_token",
+      "token_type"
+    ],
+    "title": "UserLoginResponse",
+    "additionalProperties": false
+  },
+  "ValidationError": {
+    "properties": {
+      "loc": {
+        "items": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "type": "array",
+        "title": "Location"
+      },
+      "msg": {
+        "type": "string",
+        "title": "Message"
+      },
+      "type": {
+        "type": "string",
+        "title": "Error Type"
+      }
+    },
+    "type": "object",
+    "required": [
+      "loc",
+      "msg",
+      "type"
+    ],
+    "title": "ValidationError",
+    "additionalProperties": false
+  },
+  "VerifyCodeRequest": {
+    "properties": {
+      "phone_number": {
+        "type": "string",
+        "title": "Phone Number"
+      },
+      "code": {
+        "type": "string",
+        "title": "Code"
+      }
+    },
+    "type": "object",
+    "required": [
+      "phone_number",
+      "code"
+    ],
+    "title": "VerifyCodeRequest",
+    "additionalProperties": false
+  },
+  "WeChatAuthReq": {
+    "properties": {
+      "openid": {
+        "type": "string",
+        "title": "Openid"
+      },
+      "name": {
+        "type": "string",
+        "title": "Name"
+      },
+      "id_code": {
+        "type": "string",
+        "title": "Id Code"
+      }
+    },
+    "type": "object",
+    "required": [
+      "openid",
+      "name",
+      "id_code"
+    ],
+    "title": "WeChatAuthReq",
+    "additionalProperties": false
+  },
+  "WeChatLoginRequest": {
+    "properties": {
+      "code": {
+        "type": "string",
+        "title": "Code"
+      },
+      "phone": {
+        "type": "string",
+        "title": "Phone"
+      },
+      "verify_code": {
+        "type": "string",
+        "title": "Verify Code"
+      }
+    },
+    "type": "object",
+    "required": [
+      "code",
+      "phone",
+      "verify_code"
+    ],
+    "title": "WeChatLoginRequest",
+    "additionalProperties": false
+  },
+  "WeChatLoginResponse": {
+    "properties": {
+      "openid": {
+        "type": "string",
+        "title": "Openid"
+      }
+    },
+    "type": "object",
+    "required": [
+      "openid"
+    ],
+    "title": "WeChatLoginResponse",
+    "additionalProperties": false
+  },
+  "WeChatUserInformationOut": {
+    "properties": {
+      "openid": {
+        "type": "string",
+        "title": "Openid"
+      },
+      "name": {
+        "type": "string",
+        "title": "Name"
+      },
+      "id_code": {
+        "type": "string",
+        "title": "Id Code"
+      },
+      "balance": {
+        "type": "string",
+        "title": "Balance"
+      },
+      "receive_name": {
+        "type": "string",
+        "title": "Receive Name"
+      },
+      "receive_code": {
+        "type": "string",
+        "title": "Receive Code"
+      },
+      "phone": {
+        "type": "string",
+        "title": "Phone"
+      },
+      "id": {
+        "type": "integer",
+        "title": "Id"
+      },
+      "create_time": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Create Time"
+      },
+      "is_deleted": {
+        "type": "integer",
+        "title": "Is Deleted"
+      },
+      "admin_image": {
+        "type": "string",
+        "title": "Admin Image"
+      }
+    },
+    "type": "object",
+    "required": [
+      "openid",
+      "name",
+      "id_code",
+      "balance",
+      "phone",
+      "id",
+      "create_time",
+      "is_deleted"
+    ],
+    "title": "WeChatUserInformationOut",
+    "additionalProperties": false
+  },
+  "WechatUserDeliveryReq": {
+    "properties": {
+      "openid": {
+        "type": "string",
+        "title": "Openid"
+      },
+      "order_id": {
+        "type": "integer",
+        "title": "Order Id"
+      },
+      "update_product": {
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#/UpdateProductList"
+            }
+          ]
+        },
+        "type": "array",
+        "title": "Update Product"
+      },
+      "delivery_site": {
+        "type": "string",
+        "title": "Delivery Site"
+      },
+      "tracking_code": {
+        "type": "string",
+        "title": "Tracking Code"
+      },
+      "delivery_name": {
+        "type": "string",
+        "title": "Delivery Name"
+      },
+      "delivery_phone": {
+        "type": "string",
+        "title": "Delivery Phone"
+      },
+      "return_address": {
+        "type": "string",
+        "title": "Return Address"
+      }
+    },
+    "type": "object",
+    "required": [
+      "openid",
+      "order_id",
+      "update_product",
+      "delivery_site",
+      "tracking_code",
+      "delivery_name",
+      "delivery_phone",
+      "return_address"
+    ],
+    "title": "WechatUserDeliveryReq",
+    "additionalProperties": false
+  },
+  "WithdrawalCreate": {
+    "properties": {
+      "openid": {
+        "type": "string",
+        "title": "Openid"
+      },
+      "withdrawal_money": {
+        "type": "string",
+        "title": "Withdrawal Money"
+      }
+    },
+    "type": "object",
+    "required": [
+      "openid"
+    ],
+    "title": "WithdrawalCreate",
+    "additionalProperties": false
+  },
+  "WithdrawalOut": {
+    "properties": {
+      "openid": {
+        "type": "string",
+        "title": "Openid"
+      },
+      "withdrawal_money": {
+        "type": "string",
+        "title": "Withdrawal Money"
+      },
+      "id": {
+        "type": "integer",
+        "title": "Id"
+      },
+      "user_id": {
+        "type": "integer",
+        "title": "User Id"
+      },
+      "create_time": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Create Time"
+      },
+      "id_code": {
+        "type": "string",
+        "title": "Id Code"
+      },
+      "receive_code": {
+        "type": "string",
+        "title": "Receive Code"
+      },
+      "status": {
+        "type": "integer",
+        "title": "Status"
+      },
+      "name": {
+        "type": "string",
+        "title": "Name"
+      },
+      "reason": {
+        "type": "string",
+        "title": "Reason"
+      },
+      "phone": {
+        "type": "string",
+        "title": "Phone"
+      }
+    },
+    "type": "object",
+    "required": [
+      "openid",
+      "id",
+      "user_id",
+      "create_time",
+      "id_code",
+      "status"
+    ],
+    "title": "WithdrawalOut",
+    "additionalProperties": false
+  },
+  "XML": {
+    "properties": {
+      "name": {
+        "type": "string",
+        "title": "Name"
+      },
+      "namespace": {
+        "type": "string",
+        "title": "Namespace"
+      },
+      "prefix": {
+        "type": "string",
+        "title": "Prefix"
+      },
+      "attribute": {
+        "type": "boolean",
+        "title": "Attribute"
+      },
+      "wrapped": {
+        "type": "boolean",
+        "title": "Wrapped"
+      }
+    },
+    "type": "object",
+    "title": "XML",
+    "additionalProperties": false
+  },
+  "UserLogin_for_access_token_api_wechatuser_pc_login_postBody": {
+    "allOf": [
+      {
+        "$ref": "#/UserLogin"
+      }
+    ]
+  },
+  "UserLogin_for_access_token_api_wechatuser_pc_login_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema_UserLoginResponse_"
+      }
+    ]
+  },
+  "UserGet_users_api_wechatuser_pc_wechat_getParams": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "title": "Name",
+        "default": ""
+      },
+      "phone": {
+        "type": "string",
+        "title": "Phone",
+        "default": ""
+      },
+      "id_code": {
+        "type": "string",
+        "title": "Id Code",
+        "default": ""
+      },
+      "is_deleted": {
+        "type": "integer",
+        "title": "Is Deleted"
+      },
+      "page": {
+        "type": "integer",
+        "title": "Page",
+        "default": 1
+      },
+      "page_size": {
+        "type": "integer",
+        "title": "Page Size",
+        "default": 10
+      }
+    },
+    "require": [],
+    "additionalProperties": false
+  },
+  "UserGet_users_api_wechatuser_pc_wechat_getResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema_list_schemas.user.WeChatUserInformationOut__"
+      }
+    ]
+  },
+  "UserUnban_wechat_user_api_wechatuser_pc_wechat_postParams": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "title": "Id"
+      }
+    },
+    "require": [
+      "id"
+    ],
+    "additionalProperties": false
+  },
+  "UserUnban_wechat_user_api_wechatuser_pc_wechat_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "UserBan_wechat_user_api_wechatuser_pc_wechat_deleteParams": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "title": "Id"
+      }
+    },
+    "require": [
+      "id"
+    ],
+    "additionalProperties": false
+  },
+  "UserBan_wechat_user_api_wechatuser_pc_wechat_deleteResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "UserModify_balance_api_wechatuser_pc_wechat_patchParams": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "title": "Id"
+      },
+      "balance": {
+        "type": "string",
+        "title": "Balance"
+      }
+    },
+    "require": [
+      "id",
+      "balance"
+    ],
+    "additionalProperties": false
+  },
+  "UserModify_balance_api_wechatuser_pc_wechat_patchResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "UserSend_verification_code_api_wechatuser_pc_send_verification_code_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "UserWechat_login_api_wechatuser_login_postBody": {
+    "allOf": [
+      {
+        "$ref": "#/WeChatLoginRequest"
+      }
+    ]
+  },
+  "UserWechat_login_api_wechatuser_login_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema_WeChatLoginResponse_"
+      }
+    ]
+  },
+  "UserWechat_authentication_api_wechatuser_authentication_postBody": {
+    "allOf": [
+      {
+        "$ref": "#/WeChatAuthReq"
+      }
+    ]
+  },
+  "UserWechat_authentication_api_wechatuser_authentication_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "UserWechat_authentication_api_wechatuser_receive_postBody": {
+    "allOf": [
+      {
+        "$ref": "#/WeChatAuthReq"
+      }
+    ]
+  },
+  "UserWechat_authentication_api_wechatuser_receive_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "UserWechat_authentication_api_wechatuser_receive_patchBody": {
+    "allOf": [
+      {
+        "$ref": "#/WeChatAuthReq"
+      }
+    ]
+  },
+  "UserWechat_authentication_api_wechatuser_receive_patchResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "UserWechat_authentication_api_wechatuser_status_getParams": {
+    "type": "object",
+    "properties": {
+      "openid": {
+        "type": "string",
+        "title": "Openid"
+      }
+    },
+    "require": [
+      "openid"
+    ],
+    "additionalProperties": false
+  },
+  "UserWechat_authentication_api_wechatuser_status_getResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema_bool_"
+      }
+    ]
+  },
+  "UserWechat_authentication_api_wechatuser_information_getParams": {
+    "type": "object",
+    "properties": {
+      "openid": {
+        "type": "string",
+        "title": "Openid"
+      }
+    },
+    "require": [
+      "openid"
+    ],
+    "additionalProperties": false
+  },
+  "UserWechat_authentication_api_wechatuser_information_getResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema_WeChatUserInformationOut_"
+      }
+    ]
+  },
+  "UserSend_verification_code_api_wechatuser_send_verification_code_postBody": {
+    "allOf": [
+      {
+        "$ref": "#/SendCodeRequest"
+      }
+    ]
+  },
+  "UserSend_verification_code_api_wechatuser_send_verification_code_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "UserVerify_code_api_wechatuser_verify_code_postBody": {
+    "allOf": [
+      {
+        "$ref": "#/VerifyCodeRequest"
+      }
+    ]
+  },
+  "UserRegistry_api_wechatuser_registry_postBody": {
+    "allOf": [
+      {
+        "$ref": "#/RegistryRequest"
+      }
+    ]
+  },
+  "OrderUpload_file_api_wechatorder_upload_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "OrderGet_products_api_wechatorder_products_getParams": {
+    "type": "object",
+    "properties": {
+      "openid": {
+        "type": "string",
+        "title": "Openid"
+      },
+      "order_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          }
+        ],
+        "title": "Order Id"
+      },
+      "status": {
+        "type": "integer",
+        "title": "Status"
+      },
+      "page": {
+        "type": "integer",
+        "title": "Page",
+        "default": 1
+      },
+      "page_size": {
+        "type": "integer",
+        "title": "Page Size",
+        "default": 10
+      }
+    },
+    "require": [
+      "openid"
+    ],
+    "additionalProperties": false
+  },
+  "OrderGet_products_api_wechatorder_products_getResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "OrderAdd_products_api_wechatorder_products_postBody": {
+    "allOf": [
+      {
+        "$ref": "#/ProductCreate"
+      }
+    ]
+  },
+  "OrderAdd_products_api_wechatorder_products_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "OrderDelete_products_api_wechatorder_products__product_id__deleteParams": {
+    "type": "object",
+    "properties": {
+      "product_id": {
+        "type": "integer",
+        "title": "Product Id"
+      }
+    },
+    "require": [
+      "product_id"
+    ],
+    "additionalProperties": false
+  },
+  "OrderDelete_products_api_wechatorder_products__product_id__deleteResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "OrderGet_orders_wx_api_wechatorder_orders_getParams": {
+    "type": "object",
+    "properties": {
+      "openid": {
+        "type": "string",
+        "title": "Openid"
+      },
+      "status": {
+        "type": "integer",
+        "title": "Status"
+      },
+      "page": {
+        "type": "integer",
+        "title": "Page",
+        "default": 1
+      },
+      "page_size": {
+        "type": "integer",
+        "title": "Page Size",
+        "default": 10
+      }
+    },
+    "require": [
+      "openid",
+      "status"
+    ],
+    "additionalProperties": false
+  },
+  "OrderGet_orders_wx_api_wechatorder_orders_getResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema_list__T__"
+      }
+    ]
+  },
+  "OrderAdd_orders_api_wechatorder_orders_postBody": {
+    "allOf": [
+      {
+        "$ref": "#/OrderCreate"
+      }
+    ]
+  },
+  "OrderAdd_orders_api_wechatorder_orders_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "OrderDelivery_orders_api_wechatorder_orders_delivery_postBody": {
+    "allOf": [
+      {
+        "$ref": "#/WechatUserDeliveryReq"
+      }
+    ]
+  },
+  "OrderDelivery_orders_api_wechatorder_orders_delivery_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "OrderReturn_orders_api_wechatorder_orders_return_getParams": {
+    "type": "object",
+    "properties": {
+      "openid": {
+        "type": "string",
+        "title": "Openid"
+      },
+      "order_id": {
+        "type": "integer",
+        "title": "Order Id"
+      }
+    },
+    "require": [
+      "openid"
+    ],
+    "additionalProperties": false
+  },
+  "OrderReturn_orders_api_wechatorder_orders_return_getResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema_list__T__"
+      }
+    ]
+  },
+  "OrderGet_orders_pc_api_wechatorder_pc_orders_getParams": {
+    "type": "object",
+    "properties": {
+      "order_id": {
+        "type": "integer",
+        "title": "Order Id"
+      },
+      "name": {
+        "type": "string",
+        "title": "Name",
+        "default": ""
+      },
+      "phone": {
+        "type": "string",
+        "title": "Phone",
+        "default": ""
+      },
+      "status": {
+        "type": "integer",
+        "title": "Status"
+      },
+      "page": {
+        "type": "integer",
+        "title": "Page",
+        "default": 1
+      },
+      "page_size": {
+        "type": "integer",
+        "title": "Page Size",
+        "default": 10
+      }
+    },
+    "require": [],
+    "additionalProperties": false
+  },
+  "OrderGet_orders_pc_api_wechatorder_pc_orders_getResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema_list_schemas.order.OrderDetailResponse__"
+      }
+    ]
+  },
+  "OrderUpdate_orders_pc_api_wechatorder_pc_orders_patchParams": {
+    "type": "object",
+    "properties": {
+      "order_id": {
+        "type": "integer",
+        "title": "Order Id"
+      }
+    },
+    "require": [
+      "order_id"
+    ],
+    "additionalProperties": false
+  },
+  "OrderUpdate_orders_pc_api_wechatorder_pc_orders_patchBody": {
+    "allOf": [
+      {
+        "$ref": "#/OrderUpdate"
+      }
+    ]
+  },
+  "OrderUpdate_orders_pc_api_wechatorder_pc_orders_patchResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "OrderUpdate_orders_status_pc_api_wechatorder_pc_orders_status_patchParams": {
+    "type": "object",
+    "properties": {
+      "order_id": {
+        "type": "integer",
+        "title": "Order Id"
+      },
+      "status": {
+        "type": "integer",
+        "title": "Status"
+      }
+    },
+    "require": [
+      "order_id",
+      "status"
+    ],
+    "additionalProperties": false
+  },
+  "OrderUpdate_orders_status_pc_api_wechatorder_pc_orders_status_patchResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "OrderAdd_return_goods_api_wechatorder_pc_return_postBody": {
+    "allOf": [
+      {
+        "$ref": "#/ReturnGoodsAdd"
+      }
+    ]
+  },
+  "OrderAdd_return_goods_api_wechatorder_pc_return_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "OrderUpdate_products_pc_api_wechatorder_pc_products_patchParams": {
+    "type": "object",
+    "properties": {
+      "order_id": {
+        "type": "integer",
+        "title": "Order Id"
+      },
+      "product_id": {
+        "type": "integer",
+        "title": "Product Id"
+      },
+      "product_info_id": {
+        "type": "integer",
+        "title": "Product Info Id"
+      }
+    },
+    "require": [
+      "order_id",
+      "product_id",
+      "product_info_id"
+    ],
+    "additionalProperties": false
+  },
+  "OrderUpdate_products_pc_api_wechatorder_pc_products_patchBody": {
+    "allOf": [
+      {
+        "$ref": "#/ProductInfoUpdate"
+      }
+    ]
+  },
+  "OrderUpdate_products_pc_api_wechatorder_pc_products_patchResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "OrderExport_order_excel_api_wechatorder_pc_orders__order_id__export_getParams": {
+    "type": "object",
+    "properties": {
+      "order_id": {
+        "type": "integer",
+        "title": "Order Id"
+      }
+    },
+    "require": [
+      "order_id"
+    ],
+    "additionalProperties": false
+  },
+  "OrderExport_order_excel_api_wechatorder_pc_orders__order_id__export_getResponses": {
+    "allOf": [
+      {
+        "$ref": "#/Response"
+      }
+    ]
+  },
+  "BannerUpload_file_api_wechatbanner_pc_upload_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "BannerGet_banners_api_wechatbanner_pc__getResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema_list_schemas.banner.BannerBase__"
+      }
+    ]
+  },
+  "BannerDelete_file_api_wechatbanner_pc__deleteParams": {
+    "type": "object",
+    "properties": {
+      "file_id": {
+        "type": "integer",
+        "title": "File Id"
+      }
+    },
+    "require": [
+      "file_id"
+    ],
+    "additionalProperties": false
+  },
+  "BannerDelete_file_api_wechatbanner_pc__deleteResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "BannerGet_banners_api_wechatbanner__getResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema_list_schemas.banner.BannerBase__"
+      }
+    ]
+  },
+  "AddressCreate_address_api_wechataddress_pc_address_postBody": {
+    "allOf": [
+      {
+        "$ref": "#/AddressBase"
+      }
+    ]
+  },
+  "AddressCreate_address_api_wechataddress_pc_address_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "AddressDelete_address_api_wechataddress_pc_address_deleteParams": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "title": "Id"
+      }
+    },
+    "require": [
+      "id"
+    ],
+    "additionalProperties": false
+  },
+  "AddressDelete_address_api_wechataddress_pc_address_deleteResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "AddressUpdate_address_api_wechataddress_pc_address_patchBody": {
+    "allOf": [
+      {
+        "$ref": "#/AddressUpdate"
+      }
+    ]
+  },
+  "AddressUpdate_address_api_wechataddress_pc_address_patchResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "AddressGet_addresses_api_wechataddress_pc_addresses_getParams": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "title": "Name",
+        "default": ""
+      },
+      "phone": {
+        "type": "string",
+        "title": "Phone",
+        "default": ""
+      },
+      "address": {
+        "type": "string",
+        "title": "Address",
+        "default": ""
+      },
+      "page": {
+        "type": "integer",
+        "title": "Page",
+        "default": 1
+      },
+      "page_size": {
+        "type": "integer",
+        "title": "Page Size",
+        "default": 10
+      }
+    },
+    "require": [],
+    "additionalProperties": false
+  },
+  "AddressGet_addresses_api_wechataddress_pc_addresses_getResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema_list_schemas.address.AddressOut__"
+      }
+    ]
+  },
+  "WithdrawalGet_withdrawal_api_wechatwithdrawal_withdrawal_getParams": {
+    "type": "object",
+    "properties": {
+      "openid": {
+        "type": "string",
+        "title": "Openid"
+      },
+      "page": {
+        "type": "integer",
+        "title": "Page",
+        "default": 1
+      },
+      "page_size": {
+        "type": "integer",
+        "title": "Page Size",
+        "default": 10
+      }
+    },
+    "require": [
+      "openid"
+    ],
+    "additionalProperties": false
+  },
+  "WithdrawalGet_withdrawal_api_wechatwithdrawal_withdrawal_getResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema_list_schemas.withdrawal.WithdrawalOut__"
+      }
+    ]
+  },
+  "WithdrawalCreate_withdrawal_api_wechatwithdrawal_withdrawal_postBody": {
+    "allOf": [
+      {
+        "$ref": "#/WithdrawalCreate"
+      }
+    ]
+  },
+  "WithdrawalCreate_withdrawal_api_wechatwithdrawal_withdrawal_postResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "WithdrawalGet_withdrawal_api_wechatwithdrawal_pc_withdrawal_getParams": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "title": "Name",
+        "default": ""
+      },
+      "phone": {
+        "type": "string",
+        "title": "Phone",
+        "default": ""
+      },
+      "id_code": {
+        "type": "string",
+        "title": "Id Code",
+        "default": ""
+      },
+      "receive_code": {
+        "type": "string",
+        "title": "Receive Code",
+        "default": ""
+      },
+      "status": {
+        "type": "integer",
+        "title": "Status"
+      },
+      "page": {
+        "type": "integer",
+        "title": "Page",
+        "default": 1
+      },
+      "page_size": {
+        "type": "integer",
+        "title": "Page Size",
+        "default": 10
+      }
+    },
+    "require": [],
+    "additionalProperties": false
+  },
+  "WithdrawalGet_withdrawal_api_wechatwithdrawal_pc_withdrawal_getResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema_list_schemas.withdrawal.WithdrawalOut__"
+      }
+    ]
+  },
+  "WithdrawalUpdate_withdrawal_api_wechatwithdrawal_pc_withdrawal_patchParams": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "title": "Id"
+      }
+    },
+    "require": [
+      "id"
+    ],
+    "additionalProperties": false
+  },
+  "WithdrawalUpdate_withdrawal_api_wechatwithdrawal_pc_withdrawal_patchResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema"
+      }
+    ]
+  },
+  "WithdrawalGet_withdrawal_api_wechatwithdrawal_pc_withdrawal__user_id__getParams": {
+    "type": "object",
+    "properties": {
+      "user_id": {
+        "type": "integer",
+        "title": "User Id"
+      },
+      "page": {
+        "type": "integer",
+        "title": "Page",
+        "default": 1
+      },
+      "page_size": {
+        "type": "integer",
+        "title": "Page Size",
+        "default": 10
+      }
+    },
+    "require": [
+      "user_id"
+    ],
+    "additionalProperties": false
+  },
+  "WithdrawalGet_withdrawal_api_wechatwithdrawal_pc_withdrawal__user_id__getResponses": {
+    "allOf": [
+      {
+        "$ref": "#/ResultSchema_list_schemas.withdrawal.WithdrawalOut__"
+      }
+    ]
+  }
+}

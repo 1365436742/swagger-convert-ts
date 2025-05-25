@@ -8,18 +8,13 @@
   "paths": {
     "/api/wechatuser/pc/login": {
       "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "User Login",
-        "description": "登录",
-        "operationId": "user_login_api_wechatuser_pc_login_post",
+        "tags": ["User"],
+        "summary": "Login For Access Token",
+        "operationId": "login_for_access_token_api_wechatuser_pc_login_post",
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserLogin"
-              }
+              "schema": { "$ref": "#/components/schemas/UserLogin" }
             }
           },
           "required": true
@@ -30,7 +25,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultSchema_Dict_"
+                  "$ref": "#/components/schemas/ResultSchema_UserLoginResponse_"
                 }
               }
             }
@@ -39,404 +34,46 @@
             "description": "Validation Error",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
         }
       }
     },
-    "/api/wechatuser/login": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Wechat Login",
-        "operationId": "wechat_login_api_wechatuser_login_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WeChatLoginRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResultSchema_WeChatLoginResponse_"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/wechatuser/authentication": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Wechat Authentication",
-        "description": "实名认证",
-        "operationId": "wechat_authentication_api_wechatuser_authentication_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WeChatAuthReq"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResultSchema"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/wechatuser/receive": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Wechat Authentication",
-        "description": "设置收款人",
-        "operationId": "wechat_authentication_api_wechatuser_receive_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WeChatAuthReq"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResultSchema"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Wechat Authentication",
-        "description": "修改收款人",
-        "operationId": "wechat_authentication_api_wechatuser_receive_patch",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WeChatAuthReq"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResultSchema"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/wechatuser/information": {
+    "/api/wechatuser/pc/wechat": {
       "get": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Wechat Authentication",
-        "description": "获取用户信息",
-        "operationId": "wechat_authentication_api_wechatuser_information_get",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WeChatUserBase"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResultSchema_WeChatUserInformation_"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/wechatuser/send-verification-code": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Send Verification Code",
-        "operationId": "send_verification_code_api_wechatuser_send_verification_code_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SendCodeRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResultSchema"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/wechatuser/verify-code": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Verify Code",
-        "operationId": "verify_code_api_wechatuser_verify_code_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VerifyCodeRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "title": "Response Verify Code Api Wechatuser Verify Code Post"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/wechatuser/registry": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Registry",
-        "operationId": "registry_api_wechatuser_registry_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RegistryRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "title": "Response Registry Api Wechatuser Registry Post"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/wechatorder/products": {
-      "post": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "Add Products",
-        "description": "添加产品",
-        "operationId": "add_products_api_wechatorder_products_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProductCreateReq"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResultSchema"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/log/list": {
-      "get": {
-        "tags": [
-          "Log"
-        ],
-        "summary": "Root",
-        "operationId": "root_api_log_list_get",
+        "tags": ["User"],
+        "summary": "Get Users",
+        "operationId": "get_users_api_wechatuser_pc_wechat_get",
         "parameters": [
           {
             "required": false,
-            "schema": {
-              "type": "integer",
-              "title": "Page",
-              "default": 1
-            },
+            "schema": { "type": "string", "title": "Name", "default": "" },
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Phone", "default": "" },
+            "name": "phone",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Id Code", "default": "" },
+            "name": "id_code",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Is Deleted" },
+            "name": "is_deleted",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
             "name": "page",
             "in": "query"
           },
@@ -457,7 +94,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultSchema_list_schemas.sys_log.SysLogOut__"
+                  "$ref": "#/components/schemas/ResultSchema_list_schemas.user.WeChatUserInformationOut__"
                 }
               }
             }
@@ -466,29 +103,138 @@
             "description": "Validation Error",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["User"],
+        "summary": "Unban Wechat User",
+        "operationId": "unban_wechat_user_api_wechatuser_pc_wechat_post",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "Id" },
+            "name": "id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["User"],
+        "summary": "Ban Wechat User",
+        "operationId": "ban_wechat_user_api_wechatuser_pc_wechat_delete",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "Id" },
+            "name": "id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["User"],
+        "summary": "Modify Balance",
+        "operationId": "modify_balance_api_wechatuser_pc_wechat_patch",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "Id" },
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": { "type": "string", "title": "Balance" },
+            "name": "balance",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
               }
             }
           }
         }
       }
     },
-    "/api/upload/": {
+    "/api/wechatuser/pc/send-verification-code": {
       "post": {
-        "tags": [
-          "Upload"
-        ],
-        "summary": "Upload File",
-        "description": "接收上传的文件和表单数据，并保存到本地",
-        "operationId": "upload_file_api_upload__post",
+        "tags": ["User"],
+        "summary": "Send Verification Code",
+        "operationId": "send_verification_code_api_wechatuser_pc_send_verification_code_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatuser/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Wechat Login",
+        "operationId": "wechat_login_api_wechatuser_login_post",
         "requestBody": {
           "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Body_upload_file_api_upload__post"
-              }
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/WeChatLoginRequest" }
             }
           },
           "required": true
@@ -499,7 +245,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResultSchema_UserOut_"
+                  "$ref": "#/components/schemas/ResultSchema_WeChatLoginResponse_"
                 }
               }
             }
@@ -508,38 +254,1557 @@
             "description": "Validation Error",
             "content": {
               "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatuser/authentication": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Wechat Authentication",
+        "description": "实名认证",
+        "operationId": "wechat_authentication_api_wechatuser_authentication_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/WeChatAuthReq" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatuser/receive": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Wechat Authentication",
+        "description": "设置收款人",
+        "operationId": "wechat_authentication_api_wechatuser_receive_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/WeChatAuthReq" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["User"],
+        "summary": "Wechat Authentication",
+        "description": "修改收款人",
+        "operationId": "wechat_authentication_api_wechatuser_receive_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/WeChatAuthReq" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatuser/status": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Wechat Authentication",
+        "description": "获取用户信息",
+        "operationId": "wechat_authentication_api_wechatuser_status_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "string", "title": "Openid" },
+            "name": "openid",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema_bool_" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatuser/information": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Wechat Authentication",
+        "description": "获取用户信息",
+        "operationId": "wechat_authentication_api_wechatuser_information_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "string", "title": "Openid" },
+            "name": "openid",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/ResultSchema_WeChatUserInformationOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatuser/send-verification-code": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Send Verification Code",
+        "operationId": "send_verification_code_api_wechatuser_send_verification_code_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SendCodeRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatuser/verify-code": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Verify Code",
+        "operationId": "verify_code_api_wechatuser_verify_code_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/VerifyCodeRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Verify Code Api Wechatuser Verify Code Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatuser/registry": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Registry",
+        "operationId": "registry_api_wechatuser_registry_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/RegistryRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Registry Api Wechatuser Registry Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatorder/upload": {
+      "post": {
+        "tags": ["Order"],
+        "summary": "Upload File",
+        "description": "上传单个文件，返回成功上传的文件URL",
+        "operationId": "upload_file_api_wechatorder_upload_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_file_api_wechatorder_upload_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatorder/products": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Get Products",
+        "operationId": "get_products_api_wechatorder_products_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "string", "title": "Openid" },
+            "name": "openid",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "integer" }],
+              "title": "Order Id"
+            },
+            "name": "order_id",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Status" },
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "title": "Page Size",
+              "default": 10
+            },
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Order"],
+        "summary": "Add Products",
+        "description": "添加产品",
+        "operationId": "add_products_api_wechatorder_products_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ProductCreate" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatorder/products/{product_id}": {
+      "delete": {
+        "tags": ["Order"],
+        "summary": "Delete Products",
+        "operationId": "delete_products_api_wechatorder_products__product_id__delete",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "Product Id" },
+            "name": "product_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatorder/orders": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Get Orders Wx",
+        "operationId": "get_orders_wx_api_wechatorder_orders_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "string", "title": "Openid" },
+            "name": "openid",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "Status" },
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "title": "Page Size",
+              "default": 10
+            },
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultSchema_list__T__"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Order"],
+        "summary": "Add Orders",
+        "operationId": "add_orders_api_wechatorder_orders_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/OrderCreate" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatorder/orders/delivery": {
+      "post": {
+        "tags": ["Order"],
+        "summary": "Delivery Orders",
+        "operationId": "delivery_orders_api_wechatorder_orders_delivery_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/WechatUserDeliveryReq" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatorder/orders/return": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Return Orders",
+        "operationId": "return_orders_api_wechatorder_orders_return_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "string", "title": "Openid" },
+            "name": "openid",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Order Id" },
+            "name": "order_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultSchema_list__T__"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatorder/pc/orders": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Get Orders Pc",
+        "operationId": "get_orders_pc_api_wechatorder_pc_orders_get",
+        "parameters": [
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Order Id" },
+            "name": "order_id",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Name", "default": "" },
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Phone", "default": "" },
+            "name": "phone",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Status" },
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "title": "Page Size",
+              "default": 10
+            },
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultSchema_list_schemas.order.OrderDetailResponse__"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "OAuth2PasswordBearer": [] }]
+      },
+      "patch": {
+        "tags": ["Order"],
+        "summary": "Update Orders Pc",
+        "operationId": "update_orders_pc_api_wechatorder_pc_orders_patch",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "Order Id" },
+            "name": "order_id",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/OrderUpdate" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatorder/pc/orders/status": {
+      "patch": {
+        "tags": ["Order"],
+        "summary": "Update Orders Status Pc",
+        "operationId": "update_orders_status_pc_api_wechatorder_pc_orders_status_patch",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "Order Id" },
+            "name": "order_id",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "Status" },
+            "name": "status",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatorder/pc/return": {
+      "post": {
+        "tags": ["Order"],
+        "summary": "Add Return Goods",
+        "operationId": "add_return_goods_api_wechatorder_pc_return_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ReturnGoodsAdd" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatorder/pc/products": {
+      "patch": {
+        "tags": ["Order"],
+        "summary": "Update Products Pc",
+        "operationId": "update_products_pc_api_wechatorder_pc_products_patch",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "Order Id" },
+            "name": "order_id",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "Product Id" },
+            "name": "product_id",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "Product Info Id" },
+            "name": "product_info_id",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ProductInfoUpdate" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatorder/pc/orders/{order_id}/export": {
+      "get": {
+        "tags": ["Order"],
+        "summary": "Export Order Excel",
+        "description": "导出订单Excel文件",
+        "operationId": "export_order_excel_api_wechatorder_pc_orders__order_id__export_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "Order Id" },
+            "name": "order_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Response" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatbanner/pc/upload": {
+      "post": {
+        "tags": ["Banner"],
+        "summary": "Upload File",
+        "description": "接收上传的文件和表单数据，并保存到本地",
+        "operationId": "upload_file_api_wechatbanner_pc_upload_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_file_api_wechatbanner_pc_upload_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "OAuth2PasswordBearer": [] }]
+      }
+    },
+    "/api/wechatbanner/pc/": {
+      "get": {
+        "tags": ["Banner"],
+        "summary": "Get Banners",
+        "operationId": "get_banners_api_wechatbanner_pc__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultSchema_list_schemas.banner.BannerBase__"
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "OAuth2PasswordBearer": [] }]
+      },
+      "delete": {
+        "tags": ["Banner"],
+        "summary": "Delete File",
+        "operationId": "delete_file_api_wechatbanner_pc__delete",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "File Id" },
+            "name": "file_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "OAuth2PasswordBearer": [] }]
+      }
+    },
+    "/api/wechatbanner/": {
+      "get": {
+        "tags": ["Banner"],
+        "summary": "Get Banners",
+        "operationId": "get_banners_api_wechatbanner__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultSchema_list_schemas.banner.BannerBase__"
                 }
               }
             }
           }
         }
       }
+    },
+    "/api/wechataddress/pc/address": {
+      "post": {
+        "tags": ["Address"],
+        "summary": "Create Address",
+        "operationId": "create_address_api_wechataddress_pc_address_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AddressBase" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "OAuth2PasswordBearer": [] }]
+      },
+      "delete": {
+        "tags": ["Address"],
+        "summary": "Delete Address",
+        "operationId": "delete_address_api_wechataddress_pc_address_delete",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "Id" },
+            "name": "id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "OAuth2PasswordBearer": [] }]
+      },
+      "patch": {
+        "tags": ["Address"],
+        "summary": "Update Address",
+        "operationId": "update_address_api_wechataddress_pc_address_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AddressUpdate" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "OAuth2PasswordBearer": [] }]
+      }
+    },
+    "/api/wechataddress/pc/addresses": {
+      "get": {
+        "tags": ["Address"],
+        "summary": "Get Addresses",
+        "operationId": "get_addresses_api_wechataddress_pc_addresses_get",
+        "parameters": [
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Name", "default": "" },
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Phone", "default": "" },
+            "name": "phone",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Address", "default": "" },
+            "name": "address",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "title": "Page Size",
+              "default": 10
+            },
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultSchema_list_schemas.address.AddressOut__"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "OAuth2PasswordBearer": [] }]
+      }
+    },
+    "/api/wechatwithdrawal/withdrawal": {
+      "get": {
+        "tags": ["Withdrawal"],
+        "summary": "Get Withdrawal",
+        "operationId": "get_withdrawal_api_wechatwithdrawal_withdrawal_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "string", "title": "Openid" },
+            "name": "openid",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "title": "Page Size",
+              "default": 10
+            },
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultSchema_list_schemas.withdrawal.WithdrawalOut__"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Withdrawal"],
+        "summary": "Create Withdrawal",
+        "operationId": "create_withdrawal_api_wechatwithdrawal_withdrawal_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/WithdrawalCreate" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatwithdrawal/pc/withdrawal": {
+      "get": {
+        "tags": ["Withdrawal"],
+        "summary": "Get Withdrawal",
+        "operationId": "get_withdrawal_api_wechatwithdrawal_pc_withdrawal_get",
+        "parameters": [
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Name", "default": "" },
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Phone", "default": "" },
+            "name": "phone",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "string", "title": "Id Code", "default": "" },
+            "name": "id_code",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Receive Code",
+              "default": ""
+            },
+            "name": "receive_code",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Status" },
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "title": "Page Size",
+              "default": 10
+            },
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultSchema_list_schemas.withdrawal.WithdrawalOut__"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "OAuth2PasswordBearer": [] }]
+      },
+      "patch": {
+        "tags": ["Withdrawal"],
+        "summary": "Update Withdrawal",
+        "operationId": "update_withdrawal_api_wechatwithdrawal_pc_withdrawal_patch",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "Id" },
+            "name": "id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ResultSchema" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wechatwithdrawal/pc/withdrawal/{user_id}": {
+      "get": {
+        "tags": ["Withdrawal"],
+        "summary": "Get Withdrawal",
+        "operationId": "get_withdrawal_api_wechatwithdrawal_pc_withdrawal__user_id__get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": { "type": "integer", "title": "User Id" },
+            "name": "user_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": { "type": "integer", "title": "Page", "default": 1 },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "title": "Page Size",
+              "default": 10
+            },
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultSchema_list_schemas.withdrawal.WithdrawalOut__"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "OAuth2PasswordBearer": [] }]
+      }
     }
   },
   "components": {
     "schemas": {
-      "Body_upload_file_api_upload__post": {
+      "AddressBase": {
         "properties": {
-          "file": {
+          "name": { "type": "string", "title": "Name", "example": "<NAME>" },
+          "phone": {
             "type": "string",
-            "format": "binary",
-            "title": "File"
+            "title": "Phone",
+            "example": "555-555-5555"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail",
+            "example": "555-555-5555"
           }
         },
         "type": "object",
-        "required": [
-          "file"
-        ],
-        "title": "Body_upload_file_api_upload__post"
+        "required": ["name", "phone", "detail"],
+        "title": "AddressBase"
+      },
+      "AddressOut": {
+        "properties": {
+          "name": { "type": "string", "title": "Name", "example": "<NAME>" },
+          "phone": {
+            "type": "string",
+            "title": "Phone",
+            "example": "555-555-5555"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail",
+            "example": "555-555-5555"
+          },
+          "id": { "type": "integer", "title": "Id" },
+          "update_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Update Time"
+          }
+        },
+        "type": "object",
+        "required": ["name", "phone", "detail", "id", "update_time"],
+        "title": "AddressOut"
+      },
+      "AddressUpdate": {
+        "properties": {
+          "name": { "type": "string", "title": "Name", "example": "<NAME>" },
+          "phone": {
+            "type": "string",
+            "title": "Phone",
+            "example": "555-555-5555"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail",
+            "example": "555-555-5555"
+          },
+          "id": { "type": "string", "title": "Id" }
+        },
+        "type": "object",
+        "required": ["name", "phone", "detail", "id"],
+        "title": "AddressUpdate"
+      },
+      "BannerBase": {
+        "properties": {
+          "id": { "type": "integer", "title": "Id" },
+          "location": { "type": "string", "title": "Location" },
+          "url": { "type": "string", "title": "Url" },
+          "path": { "type": "string", "title": "Path" }
+        },
+        "type": "object",
+        "required": ["id", "location", "url", "path"],
+        "title": "BannerBase"
+      },
+      "Body_upload_file_api_wechatbanner_pc_upload_post": {
+        "properties": {
+          "file": { "type": "string", "format": "binary", "title": "File" }
+        },
+        "type": "object",
+        "required": ["file"],
+        "title": "Body_upload_file_api_wechatbanner_pc_upload_post"
+      },
+      "Body_upload_file_api_wechatorder_upload_post": {
+        "properties": {
+          "file": { "type": "string", "format": "binary", "title": "File" }
+        },
+        "type": "object",
+        "required": ["file"],
+        "title": "Body_upload_file_api_wechatorder_upload_post"
+      },
+      "Discriminator": {
+        "properties": {
+          "propertyName": { "type": "string", "title": "Propertyname" },
+          "mapping": {
+            "additionalProperties": { "type": "string" },
+            "type": "object",
+            "title": "Mapping"
+          }
+        },
+        "type": "object",
+        "required": ["propertyName"],
+        "title": "Discriminator"
+      },
+      "Encoding": {
+        "properties": {
+          "contentType": { "type": "string", "title": "Contenttype" },
+          "headers": {
+            "additionalProperties": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/Header" },
+                { "$ref": "#/components/schemas/Reference" }
+              ]
+            },
+            "type": "object",
+            "title": "Headers"
+          },
+          "style": { "type": "string", "title": "Style" },
+          "explode": { "type": "boolean", "title": "Explode" },
+          "allowReserved": { "type": "boolean", "title": "Allowreserved" }
+        },
+        "type": "object",
+        "title": "Encoding"
+      },
+      "Example": {
+        "properties": {
+          "summary": { "type": "string", "title": "Summary" },
+          "description": { "type": "string", "title": "Description" },
+          "value": { "title": "Value" },
+          "externalValue": {
+            "type": "string",
+            "maxLength": 65536,
+            "minLength": 1,
+            "format": "uri",
+            "title": "Externalvalue"
+          }
+        },
+        "type": "object",
+        "title": "Example"
+      },
+      "ExternalDocumentation": {
+        "properties": {
+          "description": { "type": "string", "title": "Description" },
+          "url": {
+            "type": "string",
+            "maxLength": 65536,
+            "minLength": 1,
+            "format": "uri",
+            "title": "Url"
+          }
+        },
+        "type": "object",
+        "required": ["url"],
+        "title": "ExternalDocumentation"
       },
       "HTTPValidationError": {
         "properties": {
           "detail": {
-            "items": {
-              "$ref": "#/components/schemas/ValidationError"
-            },
+            "items": { "$ref": "#/components/schemas/ValidationError" },
             "type": "array",
             "title": "Detail"
           }
@@ -547,329 +1812,553 @@
         "type": "object",
         "title": "HTTPValidationError"
       },
-      "ProductCreateReq": {
+      "Header": {
         "properties": {
-          "product_name": {
-            "type": "string",
-            "title": "Product Name",
-            "example": "产品名称"
+          "description": { "type": "string", "title": "Description" },
+          "required": { "type": "boolean", "title": "Required" },
+          "deprecated": { "type": "boolean", "title": "Deprecated" },
+          "style": { "type": "string", "title": "Style" },
+          "explode": { "type": "boolean", "title": "Explode" },
+          "allowReserved": { "type": "boolean", "title": "Allowreserved" },
+          "schema": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Schema" },
+              { "$ref": "#/components/schemas/Reference" }
+            ],
+            "title": "Schema"
           },
-          "product_code": {
-            "type": "string",
-            "title": "Product Code",
-            "example": "货号"
-          },
-          "product_infos": {
-            "items": {
-              "$ref": "#/components/schemas/ProductInfoBase"
+          "example": { "title": "Example" },
+          "examples": {
+            "additionalProperties": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/Example" },
+                { "$ref": "#/components/schemas/Reference" }
+              ]
             },
-            "type": "array",
-            "title": "Product Infos",
-            "description": "产品信息",
-            "example": []
+            "type": "object",
+            "title": "Examples"
           },
-          "product_urls": {
-            "items": {
-              "type": "string"
+          "content": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/MediaType"
             },
-            "type": "array",
-            "title": "Product Urls",
-            "description": "产品链接",
-            "example": []
+            "type": "object",
+            "title": "Content"
           }
         },
         "type": "object",
-        "required": [
-          "product_name",
-          "product_code",
-          "product_infos",
-          "product_urls"
-        ],
-        "title": "ProductCreateReq"
+        "title": "Header"
       },
-      "ProductInfoBase": {
+      "Link": {
         "properties": {
-          "product_id": {
-            "type": "integer",
-            "title": "Product Id",
-            "description": "Product ID"
+          "operationRef": { "type": "string", "title": "Operationref" },
+          "operationId": { "type": "string", "title": "Operationid" },
+          "parameters": {
+            "additionalProperties": { "anyOf": [{}, { "type": "string" }] },
+            "type": "object",
+            "title": "Parameters"
           },
+          "requestBody": {
+            "anyOf": [{}, { "type": "string" }],
+            "title": "Requestbody"
+          },
+          "description": { "type": "string", "title": "Description" },
+          "server": { "$ref": "#/components/schemas/Server" }
+        },
+        "type": "object",
+        "title": "Link"
+      },
+      "MediaType": {
+        "properties": {
+          "schema": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Schema" },
+              { "$ref": "#/components/schemas/Reference" }
+            ],
+            "title": "Schema"
+          },
+          "example": { "title": "Example" },
+          "examples": {
+            "additionalProperties": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/Example" },
+                { "$ref": "#/components/schemas/Reference" }
+              ]
+            },
+            "type": "object",
+            "title": "Examples"
+          },
+          "encoding": {
+            "additionalProperties": { "$ref": "#/components/schemas/Encoding" },
+            "type": "object",
+            "title": "Encoding"
+          }
+        },
+        "type": "object",
+        "title": "MediaType"
+      },
+      "OrderCreate": {
+        "properties": {
+          "openid": { "type": "string", "title": "Openid" },
+          "product_ids": {
+            "items": { "type": "integer" },
+            "type": "array",
+            "title": "Product Ids"
+          }
+        },
+        "type": "object",
+        "required": ["openid", "product_ids"],
+        "title": "OrderCreate"
+      },
+      "OrderDetailResponse": {
+        "properties": {
+          "id": { "type": "integer", "title": "Id" },
+          "user_id": { "type": "integer", "title": "User Id" },
+          "status": { "type": "integer", "title": "Status" },
+          "delivery_site": { "type": "string", "title": "Delivery Site" },
+          "tracking_code": { "type": "string", "title": "Tracking Code" },
+          "address_id": { "type": "integer", "title": "Address Id" },
+          "finally_cost": { "type": "number", "title": "Finally Cost" },
+          "create_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Create Time"
+          },
+          "update_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Update Time"
+          },
+          "products": {
+            "items": { "$ref": "#/components/schemas/ProductResponse" },
+            "type": "array",
+            "title": "Products"
+          },
+          "delivery_name": { "type": "string", "title": "Delivery Name" },
+          "delivery_phone": { "type": "string", "title": "Delivery Phone" },
+          "return_address": { "type": "string", "title": "Return Address" },
+          "name": { "type": "string", "title": "Name" },
+          "phone": { "type": "string", "title": "Phone" }
+        },
+        "type": "object",
+        "required": ["id", "user_id", "status", "create_time", "products"],
+        "title": "OrderDetailResponse"
+      },
+      "OrderUpdate": {
+        "properties": {
+          "finally_cost": { "type": "number", "title": "Finally Cost" },
+          "status": { "type": "integer", "title": "Status" },
+          "address_id": { "type": "integer", "title": "Address Id" },
+          "money_to_user": { "type": "number", "title": "Money To User" },
+          "phone_code": { "type": "string", "title": "Phone Code" }
+        },
+        "type": "object",
+        "required": ["status"],
+        "title": "OrderUpdate"
+      },
+      "ProductCreate": {
+        "properties": {
+          "user_id": { "type": "integer", "title": "User Id" },
+          "openid": {
+            "type": "string",
+            "title": "Openid",
+            "description": "openid"
+          },
+          "product_name": {
+            "type": "string",
+            "maxLength": 64,
+            "title": "Product Name",
+            "description": "产品名称"
+          },
+          "product_code": {
+            "type": "string",
+            "maxLength": 64,
+            "title": "Product Code",
+            "description": "货号"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 255,
+            "title": "Description",
+            "description": "瑕疵描述"
+          },
+          "product_infos": {
+            "items": { "$ref": "#/components/schemas/ProductInfoCreate" },
+            "type": "array",
+            "title": "Product Infos",
+            "description": "产品信息列表"
+          },
+          "product_urls": {
+            "items": { "$ref": "#/components/schemas/ProductUrlCreate" },
+            "type": "array",
+            "title": "Product Urls",
+            "description": "产品链接列表"
+          }
+        },
+        "type": "object",
+        "required": ["openid", "product_name", "product_code", "product_infos"],
+        "title": "ProductCreate"
+      },
+      "ProductInfoCreate": {
+        "properties": {
           "size": {
             "type": "string",
+            "maxLength": 64,
             "title": "Size",
-            "description": "Size of the product"
+            "description": "产品尺寸"
           },
           "number": {
             "type": "integer",
             "title": "Number",
-            "description": "Number of the product"
-          },
-          "status": {
-            "type": "integer",
-            "title": "Status",
-            "description": "Status of the product"
-          },
-          "price": {
-            "type": "string",
-            "title": "Price",
-            "description": "Price of the product"
-          },
-          "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "报价描述"
-          },
-          "finally_price": {
-            "type": "string",
-            "title": "Finally Price",
-            "description": "最终单价"
-          },
-          "reason": {
-            "type": "string",
-            "title": "Reason",
-            "description": "实物不符合原因"
+            "description": "产品数量"
           }
         },
         "type": "object",
+        "required": ["size", "number"],
+        "title": "ProductInfoCreate"
+      },
+      "ProductInfoResponse": {
+        "properties": {
+          "id": { "type": "integer", "title": "Id" },
+          "size": { "type": "string", "title": "Size" },
+          "number": { "type": "integer", "title": "Number" },
+          "status": { "type": "integer", "title": "Status" },
+          "price": { "type": "number", "title": "Price" },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "default": ""
+          },
+          "finally_price": { "type": "number", "title": "Finally Price" },
+          "reason": { "type": "string", "title": "Reason" }
+        },
+        "type": "object",
         "required": [
-          "product_id",
+          "id",
           "size",
           "number",
           "status",
           "price",
-          "description",
-          "finally_price",
-          "reason"
+          "finally_price"
         ],
-        "title": "ProductInfoBase"
+        "title": "ProductInfoResponse"
+      },
+      "ProductInfoUpdate": {
+        "properties": {
+          "size": { "type": "string", "title": "Size" },
+          "number": { "type": "integer", "title": "Number" },
+          "status": { "type": "integer", "title": "Status" },
+          "price": { "type": "number", "title": "Price" },
+          "description": { "type": "string", "title": "Description" },
+          "finally_price": { "type": "number", "title": "Finally Price" },
+          "reason": { "type": "string", "title": "Reason" }
+        },
+        "type": "object",
+        "title": "ProductInfoUpdate"
+      },
+      "ProductResponse": {
+        "properties": {
+          "id": { "type": "integer", "title": "Id" },
+          "user_id": { "type": "integer", "title": "User Id" },
+          "product_name": { "type": "string", "title": "Product Name" },
+          "product_code": { "type": "string", "title": "Product Code" },
+          "description": { "type": "string", "title": "Description" },
+          "create_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Create Time"
+          },
+          "update_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Update Time"
+          },
+          "product_infos": {
+            "items": { "$ref": "#/components/schemas/ProductInfoResponse" },
+            "type": "array",
+            "title": "Product Infos",
+            "default": []
+          },
+          "product_urls": {
+            "items": { "$ref": "#/components/schemas/ProductUrlResponse" },
+            "type": "array",
+            "title": "Product Urls",
+            "default": []
+          },
+          "status": { "type": "integer", "title": "Status" }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "user_id",
+          "product_name",
+          "product_code",
+          "create_time",
+          "status"
+        ],
+        "title": "ProductResponse"
+      },
+      "ProductUrlCreate": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "maxLength": 512,
+            "title": "Url",
+            "description": "产品图片链接"
+          },
+          "path": {
+            "type": "string",
+            "maxLength": 512,
+            "title": "Path",
+            "description": "图片路径"
+          }
+        },
+        "type": "object",
+        "required": ["url", "path"],
+        "title": "ProductUrlCreate"
+      },
+      "ProductUrlResponse": {
+        "properties": { "url": { "type": "string", "title": "Url" } },
+        "type": "object",
+        "required": ["url"],
+        "title": "ProductUrlResponse"
+      },
+      "Reference": {
+        "properties": { "$ref": { "type": "string", "title": "$Ref" } },
+        "type": "object",
+        "required": ["$ref"],
+        "title": "Reference"
       },
       "RegistryRequest": {
         "properties": {
-          "code": {
-            "type": "string",
-            "title": "Code"
+          "code": { "type": "string", "title": "Code" },
+          "name": { "type": "string", "title": "Name" },
+          "phone": { "type": "string", "title": "Phone" },
+          "id_code": { "type": "string", "title": "Id Code" },
+          "verify_code": { "type": "string", "title": "Verify Code" }
+        },
+        "type": "object",
+        "required": ["code", "name", "phone", "id_code", "verify_code"],
+        "title": "RegistryRequest"
+      },
+      "Response": {
+        "properties": {
+          "description": { "type": "string", "title": "Description" },
+          "headers": {
+            "additionalProperties": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/Header" },
+                { "$ref": "#/components/schemas/Reference" }
+              ]
+            },
+            "type": "object",
+            "title": "Headers"
           },
-          "name": {
-            "type": "string",
-            "title": "Name"
+          "content": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/MediaType"
+            },
+            "type": "object",
+            "title": "Content"
           },
-          "phone": {
-            "type": "string",
-            "title": "Phone"
-          },
-          "id_code": {
-            "type": "string",
-            "title": "Id Code"
-          },
-          "verify_code": {
-            "type": "string",
-            "title": "Verify Code"
+          "links": {
+            "additionalProperties": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/Link" },
+                { "$ref": "#/components/schemas/Reference" }
+              ]
+            },
+            "type": "object",
+            "title": "Links"
           }
         },
         "type": "object",
-        "required": [
-          "code",
-          "name",
-          "phone",
-          "id_code",
-          "verify_code"
-        ],
-        "title": "RegistryRequest"
+        "required": ["description"],
+        "title": "Response"
       },
       "ResultSchema": {
         "properties": {
-          "code": {
-            "type": "integer",
-            "title": "Code"
-          },
+          "code": { "type": "integer", "title": "Code" },
           "data": {
-            "anyOf": [
-              {},
-              {
-                "items": {},
-                "type": "array"
-              }
-            ],
+            "anyOf": [{}, { "items": {}, "type": "array" }],
             "title": "Data"
           },
-          "total": {
-            "type": "integer",
-            "title": "Total"
-          },
-          "msg": {
-            "type": "string",
-            "title": "Msg"
-          }
+          "total": { "type": "integer", "title": "Total" },
+          "msg": { "type": "string", "title": "Msg" }
         },
         "type": "object",
-        "required": [
-          "code"
-        ],
+        "required": ["code"],
         "title": "ResultSchema",
         "description": "结果数据模型 "
       },
-      "ResultSchema_Dict_": {
+      "ResultSchema_UserLoginResponse_": {
         "properties": {
-          "code": {
-            "type": "integer",
-            "title": "Code"
-          },
+          "code": { "type": "integer", "title": "Code" },
           "data": {
             "anyOf": [
+              { "$ref": "#/components/schemas/UserLoginResponse" },
               {
-                "type": "object"
-              },
-              {
-                "items": {
-                  "type": "object"
-                },
+                "items": { "$ref": "#/components/schemas/UserLoginResponse" },
                 "type": "array"
               }
             ],
             "title": "Data"
           },
-          "total": {
-            "type": "integer",
-            "title": "Total"
-          },
-          "msg": {
-            "type": "string",
-            "title": "Msg"
-          }
+          "total": { "type": "integer", "title": "Total" },
+          "msg": { "type": "string", "title": "Msg" }
         },
         "type": "object",
-        "required": [
-          "code"
-        ],
-        "title": "ResultSchema[Dict]",
-        "description": "结果数据模型 "
-      },
-      "ResultSchema_UserOut_": {
-        "properties": {
-          "code": {
-            "type": "integer",
-            "title": "Code"
-          },
-          "data": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/UserOut"
-              },
-              {
-                "items": {
-                  "$ref": "#/components/schemas/UserOut"
-                },
-                "type": "array"
-              }
-            ],
-            "title": "Data"
-          },
-          "total": {
-            "type": "integer",
-            "title": "Total"
-          },
-          "msg": {
-            "type": "string",
-            "title": "Msg"
-          }
-        },
-        "type": "object",
-        "required": [
-          "code"
-        ],
-        "title": "ResultSchema[UserOut]",
+        "required": ["code"],
+        "title": "ResultSchema[UserLoginResponse]",
         "description": "结果数据模型 "
       },
       "ResultSchema_WeChatLoginResponse_": {
         "properties": {
-          "code": {
-            "type": "integer",
-            "title": "Code"
-          },
+          "code": { "type": "integer", "title": "Code" },
           "data": {
             "anyOf": [
+              { "$ref": "#/components/schemas/WeChatLoginResponse" },
               {
-                "$ref": "#/components/schemas/WeChatLoginResponse"
-              },
-              {
-                "items": {
-                  "$ref": "#/components/schemas/WeChatLoginResponse"
-                },
+                "items": { "$ref": "#/components/schemas/WeChatLoginResponse" },
                 "type": "array"
               }
             ],
             "title": "Data"
           },
-          "total": {
-            "type": "integer",
-            "title": "Total"
-          },
-          "msg": {
-            "type": "string",
-            "title": "Msg"
-          }
+          "total": { "type": "integer", "title": "Total" },
+          "msg": { "type": "string", "title": "Msg" }
         },
         "type": "object",
-        "required": [
-          "code"
-        ],
+        "required": ["code"],
         "title": "ResultSchema[WeChatLoginResponse]",
         "description": "结果数据模型 "
       },
-      "ResultSchema_WeChatUserInformation_": {
+      "ResultSchema_WeChatUserInformationOut_": {
         "properties": {
-          "code": {
-            "type": "integer",
-            "title": "Code"
-          },
+          "code": { "type": "integer", "title": "Code" },
           "data": {
             "anyOf": [
-              {
-                "$ref": "#/components/schemas/WeChatUserInformation"
-              },
+              { "$ref": "#/components/schemas/WeChatUserInformationOut" },
               {
                 "items": {
-                  "$ref": "#/components/schemas/WeChatUserInformation"
+                  "$ref": "#/components/schemas/WeChatUserInformationOut"
                 },
                 "type": "array"
               }
             ],
             "title": "Data"
           },
-          "total": {
-            "type": "integer",
-            "title": "Total"
-          },
-          "msg": {
-            "type": "string",
-            "title": "Msg"
-          }
+          "total": { "type": "integer", "title": "Total" },
+          "msg": { "type": "string", "title": "Msg" }
         },
         "type": "object",
-        "required": [
-          "code"
-        ],
-        "title": "ResultSchema[WeChatUserInformation]",
+        "required": ["code"],
+        "title": "ResultSchema[WeChatUserInformationOut]",
         "description": "结果数据模型 "
       },
-      "ResultSchema_list_schemas.sys_log.SysLogOut__": {
+      "ResultSchema_bool_": {
         "properties": {
-          "code": {
-            "type": "integer",
-            "title": "Code"
+          "code": { "type": "integer", "title": "Code" },
+          "data": {
+            "anyOf": [
+              { "type": "boolean" },
+              { "items": { "type": "boolean" }, "type": "array" }
+            ],
+            "title": "Data"
           },
+          "total": { "type": "integer", "title": "Total" },
+          "msg": { "type": "string", "title": "Msg" }
+        },
+        "type": "object",
+        "required": ["code"],
+        "title": "ResultSchema[bool]",
+        "description": "结果数据模型 "
+      },
+      "ResultSchema_list__T__": {
+        "properties": {
+          "code": { "type": "integer", "title": "Code" },
+          "data": {
+            "anyOf": [
+              { "items": {}, "type": "array" },
+              { "items": { "items": {}, "type": "array" }, "type": "array" }
+            ],
+            "title": "Data"
+          },
+          "total": { "type": "integer", "title": "Total" },
+          "msg": { "type": "string", "title": "Msg" }
+        },
+        "type": "object",
+        "required": ["code"],
+        "title": "ResultSchema[list[~T]]",
+        "description": "结果数据模型 "
+      },
+      "ResultSchema_list_schemas.address.AddressOut__": {
+        "properties": {
+          "code": { "type": "integer", "title": "Code" },
           "data": {
             "anyOf": [
               {
+                "items": { "$ref": "#/components/schemas/AddressOut" },
+                "type": "array"
+              },
+              {
                 "items": {
-                  "$ref": "#/components/schemas/SysLogOut"
+                  "items": { "$ref": "#/components/schemas/AddressOut" },
+                  "type": "array"
                 },
+                "type": "array"
+              }
+            ],
+            "title": "Data"
+          },
+          "total": { "type": "integer", "title": "Total" },
+          "msg": { "type": "string", "title": "Msg" }
+        },
+        "type": "object",
+        "required": ["code"],
+        "title": "ResultSchema[list[schemas.address.AddressOut]]",
+        "description": "结果数据模型 "
+      },
+      "ResultSchema_list_schemas.banner.BannerBase__": {
+        "properties": {
+          "code": { "type": "integer", "title": "Code" },
+          "data": {
+            "anyOf": [
+              {
+                "items": { "$ref": "#/components/schemas/BannerBase" },
+                "type": "array"
+              },
+              {
+                "items": {
+                  "items": { "$ref": "#/components/schemas/BannerBase" },
+                  "type": "array"
+                },
+                "type": "array"
+              }
+            ],
+            "title": "Data"
+          },
+          "total": { "type": "integer", "title": "Total" },
+          "msg": { "type": "string", "title": "Msg" }
+        },
+        "type": "object",
+        "required": ["code"],
+        "title": "ResultSchema[list[schemas.banner.BannerBase]]",
+        "description": "结果数据模型 "
+      },
+      "ResultSchema_list_schemas.order.OrderDetailResponse__": {
+        "properties": {
+          "code": { "type": "integer", "title": "Code" },
+          "data": {
+            "anyOf": [
+              {
+                "items": { "$ref": "#/components/schemas/OrderDetailResponse" },
                 "type": "array"
               },
               {
                 "items": {
                   "items": {
-                    "$ref": "#/components/schemas/SysLogOut"
+                    "$ref": "#/components/schemas/OrderDetailResponse"
                   },
                   "type": "array"
                 },
@@ -878,81 +2367,431 @@
             ],
             "title": "Data"
           },
-          "total": {
-            "type": "integer",
-            "title": "Total"
+          "total": { "type": "integer", "title": "Total" },
+          "msg": { "type": "string", "title": "Msg" }
+        },
+        "type": "object",
+        "required": ["code"],
+        "title": "ResultSchema[list[schemas.order.OrderDetailResponse]]",
+        "description": "结果数据模型 "
+      },
+      "ResultSchema_list_schemas.user.WeChatUserInformationOut__": {
+        "properties": {
+          "code": { "type": "integer", "title": "Code" },
+          "data": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/WeChatUserInformationOut"
+                },
+                "type": "array"
+              },
+              {
+                "items": {
+                  "items": {
+                    "$ref": "#/components/schemas/WeChatUserInformationOut"
+                  },
+                  "type": "array"
+                },
+                "type": "array"
+              }
+            ],
+            "title": "Data"
           },
-          "msg": {
+          "total": { "type": "integer", "title": "Total" },
+          "msg": { "type": "string", "title": "Msg" }
+        },
+        "type": "object",
+        "required": ["code"],
+        "title": "ResultSchema[list[schemas.user.WeChatUserInformationOut]]",
+        "description": "结果数据模型 "
+      },
+      "ResultSchema_list_schemas.withdrawal.WithdrawalOut__": {
+        "properties": {
+          "code": { "type": "integer", "title": "Code" },
+          "data": {
+            "anyOf": [
+              {
+                "items": { "$ref": "#/components/schemas/WithdrawalOut" },
+                "type": "array"
+              },
+              {
+                "items": {
+                  "items": { "$ref": "#/components/schemas/WithdrawalOut" },
+                  "type": "array"
+                },
+                "type": "array"
+              }
+            ],
+            "title": "Data"
+          },
+          "total": { "type": "integer", "title": "Total" },
+          "msg": { "type": "string", "title": "Msg" }
+        },
+        "type": "object",
+        "required": ["code"],
+        "title": "ResultSchema[list[schemas.withdrawal.WithdrawalOut]]",
+        "description": "结果数据模型 "
+      },
+      "ReturnGoodsAdd": {
+        "properties": {
+          "product_id": { "type": "integer", "title": "Product Id" },
+          "product_info_id": { "type": "integer", "title": "Product Info Id" },
+          "order_id": { "type": "integer", "title": "Order Id" },
+          "return_delivery_site": {
             "type": "string",
-            "title": "Msg"
+            "title": "Return Delivery Site"
+          },
+          "return_tracking_code": {
+            "type": "string",
+            "title": "Return Tracking Code"
           }
         },
         "type": "object",
         "required": [
-          "code"
+          "product_id",
+          "product_info_id",
+          "order_id",
+          "return_delivery_site",
+          "return_tracking_code"
         ],
-        "title": "ResultSchema[list[schemas.sys_log.SysLogOut]]",
-        "description": "结果数据模型 "
+        "title": "ReturnGoodsAdd"
+      },
+      "Schema": {
+        "properties": {
+          "$schema": { "type": "string", "title": "$Schema" },
+          "$vocabulary": { "type": "string", "title": "$Vocabulary" },
+          "$id": { "type": "string", "title": "$Id" },
+          "$anchor": { "type": "string", "title": "$Anchor" },
+          "$dynamicAnchor": { "type": "string", "title": "$Dynamicanchor" },
+          "$ref": { "type": "string", "title": "$Ref" },
+          "$dynamicRef": { "type": "string", "title": "$Dynamicref" },
+          "$defs": {
+            "additionalProperties": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/Schema" },
+                { "type": "boolean" }
+              ]
+            },
+            "type": "object",
+            "title": "$Defs"
+          },
+          "$comment": { "type": "string", "title": "$Comment" },
+          "allOf": {
+            "items": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/Schema" },
+                { "type": "boolean" }
+              ]
+            },
+            "type": "array",
+            "title": "Allof"
+          },
+          "anyOf": {
+            "items": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/Schema" },
+                { "type": "boolean" }
+              ]
+            },
+            "type": "array",
+            "title": "Anyof"
+          },
+          "oneOf": {
+            "items": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/Schema" },
+                { "type": "boolean" }
+              ]
+            },
+            "type": "array",
+            "title": "Oneof"
+          },
+          "not": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Schema" },
+              { "type": "boolean" }
+            ],
+            "title": "Not"
+          },
+          "if": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Schema" },
+              { "type": "boolean" }
+            ],
+            "title": "If"
+          },
+          "then": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Schema" },
+              { "type": "boolean" }
+            ],
+            "title": "Then"
+          },
+          "else": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Schema" },
+              { "type": "boolean" }
+            ],
+            "title": "Else"
+          },
+          "dependentSchemas": {
+            "additionalProperties": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/Schema" },
+                { "type": "boolean" }
+              ]
+            },
+            "type": "object",
+            "title": "Dependentschemas"
+          },
+          "prefixItems": {
+            "items": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/Schema" },
+                { "type": "boolean" }
+              ]
+            },
+            "type": "array",
+            "title": "Prefixitems"
+          },
+          "items": {
+            "anyOf": [
+              {
+                "anyOf": [
+                  { "$ref": "#/components/schemas/Schema" },
+                  { "type": "boolean" }
+                ]
+              },
+              {
+                "items": {
+                  "anyOf": [
+                    { "$ref": "#/components/schemas/Schema" },
+                    { "type": "boolean" }
+                  ]
+                },
+                "type": "array"
+              }
+            ],
+            "title": "Items"
+          },
+          "contains": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Schema" },
+              { "type": "boolean" }
+            ],
+            "title": "Contains"
+          },
+          "properties": {
+            "additionalProperties": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/Schema" },
+                { "type": "boolean" }
+              ]
+            },
+            "type": "object",
+            "title": "Properties"
+          },
+          "patternProperties": {
+            "additionalProperties": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/Schema" },
+                { "type": "boolean" }
+              ]
+            },
+            "type": "object",
+            "title": "Patternproperties"
+          },
+          "additionalProperties": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Schema" },
+              { "type": "boolean" }
+            ],
+            "title": "Additionalproperties"
+          },
+          "propertyNames": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Schema" },
+              { "type": "boolean" }
+            ],
+            "title": "Propertynames"
+          },
+          "unevaluatedItems": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Schema" },
+              { "type": "boolean" }
+            ],
+            "title": "Unevaluateditems"
+          },
+          "unevaluatedProperties": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Schema" },
+              { "type": "boolean" }
+            ],
+            "title": "Unevaluatedproperties"
+          },
+          "type": { "type": "string", "title": "Type" },
+          "enum": { "items": {}, "type": "array", "title": "Enum" },
+          "const": { "title": "Const" },
+          "multipleOf": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Multipleof"
+          },
+          "maximum": { "type": "number", "title": "Maximum" },
+          "exclusiveMaximum": { "type": "number", "title": "Exclusivemaximum" },
+          "minimum": { "type": "number", "title": "Minimum" },
+          "exclusiveMinimum": { "type": "number", "title": "Exclusiveminimum" },
+          "maxLength": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Maxlength"
+          },
+          "minLength": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Minlength"
+          },
+          "pattern": { "type": "string", "title": "Pattern" },
+          "maxItems": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Maxitems"
+          },
+          "minItems": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Minitems"
+          },
+          "uniqueItems": { "type": "boolean", "title": "Uniqueitems" },
+          "maxContains": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Maxcontains"
+          },
+          "minContains": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Mincontains"
+          },
+          "maxProperties": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Maxproperties"
+          },
+          "minProperties": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Minproperties"
+          },
+          "required": {
+            "items": { "type": "string" },
+            "type": "array",
+            "title": "Required"
+          },
+          "dependentRequired": {
+            "additionalProperties": {
+              "items": { "type": "string" },
+              "type": "array",
+              "uniqueItems": true
+            },
+            "type": "object",
+            "title": "Dependentrequired"
+          },
+          "format": { "type": "string", "title": "Format" },
+          "contentEncoding": { "type": "string", "title": "Contentencoding" },
+          "contentMediaType": { "type": "string", "title": "Contentmediatype" },
+          "contentSchema": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Schema" },
+              { "type": "boolean" }
+            ],
+            "title": "Contentschema"
+          },
+          "title": { "type": "string", "title": "Title" },
+          "description": { "type": "string", "title": "Description" },
+          "default": { "title": "Default" },
+          "deprecated": { "type": "boolean", "title": "Deprecated" },
+          "readOnly": { "type": "boolean", "title": "Readonly" },
+          "writeOnly": { "type": "boolean", "title": "Writeonly" },
+          "examples": { "items": {}, "type": "array", "title": "Examples" },
+          "discriminator": { "$ref": "#/components/schemas/Discriminator" },
+          "xml": { "$ref": "#/components/schemas/XML" },
+          "externalDocs": {
+            "$ref": "#/components/schemas/ExternalDocumentation"
+          },
+          "example": { "title": "Example" }
+        },
+        "type": "object",
+        "title": "Schema"
       },
       "SendCodeRequest": {
         "properties": {
-          "phone_number": {
-            "type": "string",
-            "title": "Phone Number"
-          }
+          "phone_number": { "type": "string", "title": "Phone Number" }
         },
         "type": "object",
-        "required": [
-          "phone_number"
-        ],
+        "required": ["phone_number"],
         "title": "SendCodeRequest"
       },
-      "SysLogOut": {
+      "Server": {
         "properties": {
           "url": {
-            "type": "string",
-            "title": "Url",
-            "example": "请求url"
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 65536,
+                "minLength": 1,
+                "format": "uri"
+              },
+              { "type": "string" }
+            ],
+            "title": "Url"
           },
-          "method": {
-            "type": "string",
-            "title": "Method",
-            "example": "请求方法"
-          },
-          "ip": {
-            "type": "string",
-            "title": "Ip",
-            "example": "请求ip"
-          },
-          "params": {
-            "type": "string",
-            "title": "Params",
-            "example": "请求参数"
-          },
-          "spend_time": {
-            "type": "string",
-            "title": "Spend Time",
-            "example": "响应时间"
-          },
-          "create_time": {
-            "type": "string",
-            "title": "Create Time",
-            "example": "创建时间"
-          },
-          "id": {
-            "type": "integer",
-            "title": "Id"
+          "description": { "type": "string", "title": "Description" },
+          "variables": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ServerVariable"
+            },
+            "type": "object",
+            "title": "Variables"
           }
         },
         "type": "object",
-        "required": [
-          "url",
-          "method",
-          "ip",
-          "id"
-        ],
-        "title": "SysLogOut",
-        "description": "查询数据的数据模型 "
+        "required": ["url"],
+        "title": "Server"
+      },
+      "ServerVariable": {
+        "properties": {
+          "enum": {
+            "items": { "type": "string", "minLength": 1 },
+            "type": "array",
+            "minLength": 1,
+            "title": "Enum"
+          },
+          "default": { "type": "string", "title": "Default" },
+          "description": { "type": "string", "title": "Description" }
+        },
+        "type": "object",
+        "required": ["default"],
+        "title": "ServerVariable"
+      },
+      "UpdateProductList": {
+        "properties": {
+          "product_id": { "type": "integer", "title": "Product Id" },
+          "product_info_ids": {
+            "items": { "type": "integer" },
+            "type": "array",
+            "title": "Product Info Ids"
+          },
+          "un_product_info_ids": {
+            "items": { "type": "integer" },
+            "type": "array",
+            "title": "Un Product Info Ids"
+          }
+        },
+        "type": "object",
+        "required": ["product_id", "product_info_ids", "un_product_info_ids"],
+        "title": "UpdateProductList"
       },
       "UserLogin": {
         "properties": {
@@ -968,230 +2807,85 @@
           }
         },
         "type": "object",
-        "required": [
-          "username",
-          "password"
-        ],
+        "required": ["username", "password"],
         "title": "UserLogin",
         "description": "登录 "
       },
-      "UserOut": {
+      "UserLoginResponse": {
         "properties": {
+          "access_token": { "type": "string", "title": "Access Token" },
+          "token_type": { "type": "string", "title": "Token Type" }
+        },
+        "type": "object",
+        "required": ["access_token", "token_type"],
+        "title": "UserLoginResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": { "anyOf": [{ "type": "string" }, { "type": "integer" }] },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": { "type": "string", "title": "Message" },
+          "type": { "type": "string", "title": "Error Type" }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
+      },
+      "VerifyCodeRequest": {
+        "properties": {
+          "phone_number": { "type": "string", "title": "Phone Number" },
+          "code": { "type": "string", "title": "Code" }
+        },
+        "type": "object",
+        "required": ["phone_number", "code"],
+        "title": "VerifyCodeRequest"
+      },
+      "WeChatAuthReq": {
+        "properties": {
+          "openid": { "type": "string", "title": "Openid" },
+          "name": { "type": "string", "title": "Name" },
+          "id_code": { "type": "string", "title": "Id Code" }
+        },
+        "type": "object",
+        "required": ["openid", "name", "id_code"],
+        "title": "WeChatAuthReq"
+      },
+      "WeChatLoginRequest": {
+        "properties": {
+          "code": { "type": "string", "title": "Code" },
+          "phone": { "type": "string", "title": "Phone" },
+          "verify_code": { "type": "string", "title": "Verify Code" }
+        },
+        "type": "object",
+        "required": ["code", "phone", "verify_code"],
+        "title": "WeChatLoginRequest"
+      },
+      "WeChatLoginResponse": {
+        "properties": { "openid": { "type": "string", "title": "Openid" } },
+        "type": "object",
+        "required": ["openid"],
+        "title": "WeChatLoginResponse"
+      },
+      "WeChatUserInformationOut": {
+        "properties": {
+          "openid": { "type": "string", "title": "Openid" },
+          "name": { "type": "string", "title": "Name" },
+          "id_code": { "type": "string", "title": "Id Code" },
+          "balance": { "type": "string", "title": "Balance" },
+          "receive_name": { "type": "string", "title": "Receive Name" },
+          "receive_code": { "type": "string", "title": "Receive Code" },
+          "phone": { "type": "string", "title": "Phone" },
+          "id": { "type": "integer", "title": "Id" },
           "create_time": {
             "type": "string",
             "format": "date-time",
             "title": "Create Time"
           },
-          "update_time": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Update Time"
-          },
-          "name": {
-            "type": "string",
-            "title": "Name",
-            "example": "用户名"
-          },
-          "avatar": {
-            "type": "string",
-            "title": "Avatar",
-            "example": "头像"
-          },
-          "sex": {
-            "type": "integer",
-            "maximum": 2,
-            "minimum": 0,
-            "title": "Sex",
-            "default": 0,
-            "example": "性别: 0 未知 1 男 2 女"
-          },
-          "phone": {
-            "type": "string",
-            "title": "Phone",
-            "example": "手机号"
-          },
-          "id": {
-            "type": "integer",
-            "title": "Id"
-          },
-          "version": {
-            "type": "integer",
-            "title": "Version"
-          },
-          "is_deleted": {
-            "type": "integer",
-            "title": "Is Deleted"
-          },
-          "role_name": {
-            "type": "string",
-            "title": "Role Name",
-            "example": "角色名"
-          }
-        },
-        "type": "object",
-        "required": [
-          "name",
-          "id",
-          "version",
-          "is_deleted"
-        ],
-        "title": "UserOut",
-        "description": "查询数据的数据模型 "
-      },
-      "ValidationError": {
-        "properties": {
-          "loc": {
-            "items": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "integer"
-                }
-              ]
-            },
-            "type": "array",
-            "title": "Location"
-          },
-          "msg": {
-            "type": "string",
-            "title": "Message"
-          },
-          "type": {
-            "type": "string",
-            "title": "Error Type"
-          }
-        },
-        "type": "object",
-        "required": [
-          "loc",
-          "msg",
-          "type"
-        ],
-        "title": "ValidationError"
-      },
-      "VerifyCodeRequest": {
-        "properties": {
-          "phone_number": {
-            "type": "string",
-            "title": "Phone Number"
-          },
-          "code": {
-            "type": "string",
-            "title": "Code"
-          }
-        },
-        "type": "object",
-        "required": [
-          "phone_number",
-          "code"
-        ],
-        "title": "VerifyCodeRequest"
-      },
-      "WeChatAuthReq": {
-        "properties": {
-          "openid": {
-            "type": "string",
-            "title": "Openid"
-          },
-          "name": {
-            "type": "string",
-            "title": "Name"
-          },
-          "id_code": {
-            "type": "string",
-            "title": "Id Code"
-          }
-        },
-        "type": "object",
-        "required": [
-          "openid",
-          "name",
-          "id_code"
-        ],
-        "title": "WeChatAuthReq"
-      },
-      "WeChatLoginRequest": {
-        "properties": {
-          "code": {
-            "type": "string",
-            "title": "Code"
-          },
-          "phone": {
-            "type": "string",
-            "title": "Phone"
-          },
-          "verify_code": {
-            "type": "string",
-            "title": "Verify Code"
-          }
-        },
-        "type": "object",
-        "required": [
-          "code",
-          "phone",
-          "verify_code"
-        ],
-        "title": "WeChatLoginRequest"
-      },
-      "WeChatLoginResponse": {
-        "properties": {
-          "openid": {
-            "type": "string",
-            "title": "Openid"
-          },
-          "session_key": {
-            "type": "string",
-            "title": "Session Key"
-          }
-        },
-        "type": "object",
-        "required": [
-          "openid",
-          "session_key"
-        ],
-        "title": "WeChatLoginResponse"
-      },
-      "WeChatUserBase": {
-        "properties": {
-          "openid": {
-            "type": "string",
-            "title": "Openid"
-          }
-        },
-        "type": "object",
-        "required": [
-          "openid"
-        ],
-        "title": "WeChatUserBase"
-      },
-      "WeChatUserInformation": {
-        "properties": {
-          "openid": {
-            "type": "string",
-            "title": "Openid"
-          },
-          "name": {
-            "type": "string",
-            "title": "Name"
-          },
-          "id_code": {
-            "type": "string",
-            "title": "Id Code"
-          },
-          "balance": {
-            "type": "string",
-            "title": "Balance"
-          },
-          "receive_name": {
-            "type": "string",
-            "title": "Receive Name"
-          },
-          "receive_code": {
-            "type": "string",
-            "title": "Receive Code"
-          }
+          "is_deleted": { "type": "integer", "title": "Is Deleted" },
+          "admin_image": { "type": "string", "title": "Admin Image" }
         },
         "type": "object",
         "required": [
@@ -1199,10 +2893,95 @@
           "name",
           "id_code",
           "balance",
-          "receive_name",
-          "receive_code"
+          "phone",
+          "id",
+          "create_time",
+          "is_deleted"
         ],
-        "title": "WeChatUserInformation"
+        "title": "WeChatUserInformationOut"
+      },
+      "WechatUserDeliveryReq": {
+        "properties": {
+          "openid": { "type": "string", "title": "Openid" },
+          "order_id": { "type": "integer", "title": "Order Id" },
+          "update_product": {
+            "items": { "$ref": "#/components/schemas/UpdateProductList" },
+            "type": "array",
+            "title": "Update Product"
+          },
+          "delivery_site": { "type": "string", "title": "Delivery Site" },
+          "tracking_code": { "type": "string", "title": "Tracking Code" },
+          "delivery_name": { "type": "string", "title": "Delivery Name" },
+          "delivery_phone": { "type": "string", "title": "Delivery Phone" },
+          "return_address": { "type": "string", "title": "Return Address" }
+        },
+        "type": "object",
+        "required": [
+          "openid",
+          "order_id",
+          "update_product",
+          "delivery_site",
+          "tracking_code",
+          "delivery_name",
+          "delivery_phone",
+          "return_address"
+        ],
+        "title": "WechatUserDeliveryReq"
+      },
+      "WithdrawalCreate": {
+        "properties": {
+          "openid": { "type": "string", "title": "Openid" },
+          "withdrawal_money": { "type": "string", "title": "Withdrawal Money" }
+        },
+        "type": "object",
+        "required": ["openid"],
+        "title": "WithdrawalCreate"
+      },
+      "WithdrawalOut": {
+        "properties": {
+          "openid": { "type": "string", "title": "Openid" },
+          "withdrawal_money": { "type": "string", "title": "Withdrawal Money" },
+          "id": { "type": "integer", "title": "Id" },
+          "user_id": { "type": "integer", "title": "User Id" },
+          "create_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Create Time"
+          },
+          "id_code": { "type": "string", "title": "Id Code" },
+          "receive_code": { "type": "string", "title": "Receive Code" },
+          "status": { "type": "integer", "title": "Status" },
+          "name": { "type": "string", "title": "Name" },
+          "reason": { "type": "string", "title": "Reason" },
+          "phone": { "type": "string", "title": "Phone" }
+        },
+        "type": "object",
+        "required": [
+          "openid",
+          "id",
+          "user_id",
+          "create_time",
+          "id_code",
+          "status"
+        ],
+        "title": "WithdrawalOut"
+      },
+      "XML": {
+        "properties": {
+          "name": { "type": "string", "title": "Name" },
+          "namespace": { "type": "string", "title": "Namespace" },
+          "prefix": { "type": "string", "title": "Prefix" },
+          "attribute": { "type": "boolean", "title": "Attribute" },
+          "wrapped": { "type": "boolean", "title": "Wrapped" }
+        },
+        "type": "object",
+        "title": "XML"
+      }
+    },
+    "securitySchemes": {
+      "OAuth2PasswordBearer": {
+        "type": "oauth2",
+        "flows": { "password": { "scopes": {}, "tokenUrl": "token" } }
       }
     }
   }
