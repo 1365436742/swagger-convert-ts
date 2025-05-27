@@ -1,6 +1,6 @@
-## 使用说明
-
 webpack-proxy-mock-plugin 支持可视化mock能力
+
+## 使用说明
 
 ```js
 const path = require('path')
