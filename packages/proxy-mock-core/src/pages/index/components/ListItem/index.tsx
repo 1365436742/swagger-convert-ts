@@ -110,32 +110,38 @@ const ListItem: React.FC<ListItemProps> = ({ item, onUpdateList }) => {
         open={opneUpdataSceneModal}
         onChange={setOpneUpdataSceneModal}
       ></UpdataSceneModal>
-      <UpdataSceneModal
-        initialValues={initialValuesSence}
-        title="修改场景数据"
-        btnText="修改"
-        open={opneEditUpdataSceneModal}
-        onChange={setEditOpneUpdataSceneModal}
-        onFinish={async values => {
-          try {
-            const res = await updateSence({
-              url,
-              method,
-              senceContent: values.senceContent,
-              senceName: values.senceName,
-              oldSenceName: initialValuesSence?.oldSenceName,
-            })
-            if (res.data.status === 1) {
-              message.success(res.data.message)
-              if (initialValuesSence?.oldSenceName !== values.senceName) {
-                await selectSence({ url, method, senceName: values.senceName })
+      {opneEditUpdataSceneModal && (
+        <UpdataSceneModal
+          initialValues={initialValuesSence}
+          title="修改场景数据"
+          btnText="修改"
+          open={opneEditUpdataSceneModal}
+          onChange={setEditOpneUpdataSceneModal}
+          onFinish={async values => {
+            try {
+              const res = await updateSence({
+                url,
+                method,
+                senceContent: values.senceContent,
+                senceName: values.senceName,
+                oldSenceName: initialValuesSence?.oldSenceName,
+              })
+              if (res.data.status === 1) {
+                message.success(res.data.message)
+                if (initialValuesSence?.oldSenceName !== values.senceName) {
+                  await selectSence({
+                    url,
+                    method,
+                    senceName: values.senceName,
+                  })
+                }
+                onUpdateList?.()
+                setEditOpneUpdataSceneModal(false)
               }
-              onUpdateList?.()
-              setEditOpneUpdataSceneModal(false)
-            }
-          } catch (error) {}
-        }}
-      ></UpdataSceneModal>
+            } catch (error) {}
+          }}
+        ></UpdataSceneModal>
+      )}
       <div className="left">
         <Flex gap="small" className="action">
           <Switch
