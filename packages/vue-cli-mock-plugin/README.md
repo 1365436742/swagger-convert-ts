@@ -1,3 +1,5 @@
+vue-cli-mock-plugin 支持可视化mock能力
+
 # 插件
 ```bash
 npm i vue-cli-mock-plugin -D 或
