@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-plugin-mock-proxy",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "./plugin-src",
   "scripts": {
     "serve": "vue-cli-service serve"
