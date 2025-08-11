@@ -7,6 +7,7 @@ yarn add vue-cli-mock-plugin -D
 ```
 
 ```javascript
+// sse mock https://www.npmjs.com/package/proxy-mock-core
 const { defineConfig } = require('@vue/cli-service')
 const path = require('path')
 module.exports = defineConfig({
