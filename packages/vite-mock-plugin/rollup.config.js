@@ -11,30 +11,49 @@ const globals = {
   superagent: '$superagent',
 }
 
-export default {
-  input: 'plugin-src/index.ts', // 指定 TypeScript 入口文件
-  output: [
-    {
+// 修正 external 配置
+const external = [...Object.keys(globals), 'path', 'fs', 'url']
+
+export default [
+  // CommonJS 版本
+  {
+    input: 'plugin-src/index.ts',
+    output: {
       file: 'dist/index.cjs',
       inlineDynamicImports: true,
-      format: 'cjs', // CommonJS 格式
+      format: 'cjs',
       globals,
     },
-    {
+    external,
+    plugins: [
+      del({ targets: 'dist/*' }),
+      json(),
+      resolve({ preferBuiltins: true }),
+      commonjs(),
+      typescript({ tsconfig: './tsconfig.plugin.json' }),
+    ],
+  },
+  // ESM 版本 - 注入 __dirname
+  {
+    input: 'plugin-src/index.ts',
+    output: {
       file: 'dist/index.esm.js',
       inlineDynamicImports: true,
-      format: 'esm', // ES Module 格式
+      format: 'esm',
       globals,
+      banner: `
+import { fileURLToPath as fileURLToPathBanner } from 'url';
+import { dirname as dirnameBanner } from 'path';
+const __filename = fileURLToPathBanner(import.meta.url);
+const __dirname = dirnameBanner(__filename);
+      `.trim(),
     },
-  ],
-  external: Object.keys(globals),
-  plugins: [
-    del({ targets: 'dist/*' }), // 删除 dist 目录中的所有文件
-    json(), // 使用 JSON 插件
-    resolve({
-      preferBuiltins: true,
-    }), // 解析 Node.js 模块
-    commonjs(), // 转换 CommonJS 模块为 ES6
-    typescript({ tsconfig: './tsconfig.plugin.json' }), // 使用 TypeScript 插件
-  ],
-}
+    external,
+    plugins: [
+      json(),
+      resolve({ preferBuiltins: true }),
+      commonjs(),
+      typescript({ tsconfig: './tsconfig.plugin.json' }),
+    ],
+  },
+]
