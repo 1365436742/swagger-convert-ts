@@ -3,6 +3,7 @@ webpack-proxy-mock-plugin 支持可视化mock能力
 ## 使用说明
 
 ```js
+// sse mock https://www.npmjs.com/package/proxy-mock-core
 const path = require('path')
 const ProxyMockPlugin = require('webpack-proxy-mock-plugin')
 module.exports = {
