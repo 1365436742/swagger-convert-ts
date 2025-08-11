@@ -27,7 +27,13 @@ if(json){
   console.log("匹配成功",json);
 }
 ```
-
+```js
+路径匹配方式
+/**
+ * 动态路由匹配
+ * /prefix/:param1/:param2/suffix
+ */
+```
 ```js
 SSE 流式输出
 module.exports = async ({ req, res }) => {
