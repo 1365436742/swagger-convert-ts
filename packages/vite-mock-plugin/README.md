@@ -5,9 +5,8 @@ vite-plugin-proxy-mock 支持可视化mock能力
 // ReferenceError: require is not defined
 // import ProxyMockPlugin from 'vite-plugin-proxy-mock';
 // 替换成
-import { createRequire } from 'module'
-const require = createRequire(import.meta.url)
-const ProxyMockPlugin = require('vite-plugin-proxy-mock')
+// @ts-ignore
+import ProxyMockPlugin from './node_modules/vite-plugin-proxy-mock/dist/index.esm.js';
 ```
 ## 使用方式
 
