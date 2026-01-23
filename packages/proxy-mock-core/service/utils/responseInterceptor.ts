@@ -20,6 +20,45 @@ export function responseInterceptor<
     const originalProxyRes = proxyRes
     let buffer = Buffer.from('', 'utf8')
 
+    if (
+      proxyRes.headers['content-type'] &&
+      proxyRes.headers['content-type'].includes('text/event-stream')
+    ) {
+      const dummyBuffer = Buffer.from('')
+      const interceptorResult = await interceptor(dummyBuffer, proxyRes, req, res)
+
+      if (res.headersSent) {
+        return
+      }
+
+      if (interceptorResult !== dummyBuffer) {
+        res.write(Buffer.from(interceptorResult))
+        res.end()
+        return
+      }
+
+      let stream: any = proxyRes
+      switch (proxyRes.headers['content-encoding']) {
+        case 'gzip':
+          stream = proxyRes.pipe(
+            zlib.createGunzip({ flush: zlib.constants.Z_SYNC_FLUSH }),
+          )
+          break
+        case 'deflate':
+          stream = proxyRes.pipe(
+            zlib.createInflate({ flush: zlib.constants.Z_SYNC_FLUSH }),
+          )
+          break
+        case 'br':
+          stream = proxyRes.pipe(zlib.createBrotliDecompress())
+          break
+      }
+
+      copyHeaders(proxyRes, res)
+      stream.pipe(res)
+      return
+    }
+
     // decompress proxy response
     const _proxyRes = decompress<TReq>(
       proxyRes,
@@ -36,6 +75,7 @@ export function responseInterceptor<
         await interceptor(buffer, originalProxyRes, req, res),
       )
       if (res.getHeader('Content-Type') === 'text/event-stream') {
+        res.write(interceptedBuffer)
         res.end()
         return
       } else {

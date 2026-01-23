@@ -49,10 +49,12 @@ class ProxyMockPlugin {
               if (!this.mainServiceInfo) {
                 return responseBuffer
               }
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               //@ts-ignore
               const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`
               let { pathname } = new URL(fullUrl)
               if (this.options.urlPreciseMatching) {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 //@ts-ignore
                 pathname = req.originalUrl
               }
