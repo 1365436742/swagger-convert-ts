@@ -1,0 +1,2164 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "App",
+        "description": "WaterCloud .NET敏捷开发框架<br/>项目地址:<a href='https://gitee.com/qian_wei_hong/WaterCloud'>https://gitee.com/qian_wei_hong/WaterCloud</a>",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/App/upgradation": {
+            "post": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取版本更新",
+                "requestBody": {
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateDataDto"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateDataDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateDataDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateDataDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetDictHoliday": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取请假事由字典",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/CheckCurrentUserIsApproval": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取当前用户是否有审批权限",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetOvertimeMyInfo": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取我的加班请假信息",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/UpdateMyOvertimeInfo": {
+            "post": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "修改自己请假数据",
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OvertimeUpdateDto"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OvertimeUpdateDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OvertimeUpdateDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OvertimeUpdateDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/UpdateUserPwd": {
+            "post": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "修改密码",
+                "requestBody": {
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserPwdDto"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserPwdDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserPwdDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserPwdDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetCurrentUser": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取当前登录人信息",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetWorkGroup": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取加班小组",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetUserService": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取普通员工信息",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetLeaderUserService": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取领导用户信息",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetDataJson": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取各品牌作业进度对量*******获取业务进度调用(xxx/xxx的进度也是这里)比",
+                "parameters": [
+                    {
+                        "name": "KeyWords",
+                        "in": "query",
+                        "description": "输入字符",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetProductDataJson": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取各品牌作业进度对比------------------在各品牌作业进度对比的时候，调用",
+                "parameters": [
+                    {
+                        "name": "businessId",
+                        "in": "query",
+                        "description": "业务Id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetOrgTotalJson": {
+            "post": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取小组作业量排行 ------------------获取小组作业量排行",
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetOrgTotalJsonDto"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetOrgTotalJsonDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetOrgTotalJsonDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetOrgTotalJsonDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetLookList": {
+            "post": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "根据业务类型，获取各个机构Top10排名数据（计划数量，实际数量）",
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LookListDto"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LookListDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LookListDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LookListDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetUserDataListByBusinessId": {
+            "post": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "个人作业量排行榜调用***********************个人作业量排行",
+                "requestBody": {
+                    "description": "输入参数",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetUserDataListByBusinessIdRequest"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetUserDataListByBusinessIdRequest"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetUserDataListByBusinessIdRequest"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetUserDataListByBusinessIdRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/DeleteOvertime1": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "删除一条加班请假信息",
+                "parameters": [
+                    {
+                        "name": "Id",
+                        "in": "query",
+                        "description": "申请Id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/LeaderOvertime": {
+            "post": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "加班请假领导进行审批接口",
+                "requestBody": {
+                    "description": "加班请假的实体",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ApproveRequestDto"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ApproveRequestDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ApproveRequestDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ApproveRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetOvertimeList": {
+            "post": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取请假加班列表",
+                "requestBody": {
+                    "description": "查询加班请假的实体",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/QueryOvertimeListDto"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/QueryOvertimeListDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/QueryOvertimeListDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/QueryOvertimeListDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/OverTimeApply": {
+            "post": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "加班请假申请",
+                "requestBody": {
+                    "description": "加班|请假 实体",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OvertimeApplicationRequest"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OvertimeApplicationRequest"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OvertimeApplicationRequest"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OvertimeApplicationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/UpdateCarNo": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "修改车架号信息",
+                "parameters": [
+                    {
+                        "name": "oldCarNo",
+                        "in": "query",
+                        "description": "老车架号",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "newCarNo",
+                        "in": "query",
+                        "description": "新车架号",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/DeleteCarNo": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "删除一条CarNo记录",
+                "parameters": [
+                    {
+                        "name": "carNo",
+                        "in": "query",
+                        "description": "车架号",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/InserOrUpdateCarNo": {
+            "post": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "新增修改车架号",
+                "requestBody": {
+                    "description": "车架号实体信息",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "$ref": "#/components/schemas/JToken"
+                                }
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "$ref": "#/components/schemas/JToken"
+                                }
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "$ref": "#/components/schemas/JToken"
+                                }
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "$ref": "#/components/schemas/JToken"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetOrderList": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取业务类型",
+                "parameters": [
+                    {
+                        "name": "businessId",
+                        "in": "query",
+                        "description": "业务类型",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "planStatus",
+                        "in": "query",
+                        "description": "计划状态",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetCardNoList": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取车架号列表",
+                "parameters": [
+                    {
+                        "name": "businessId",
+                        "in": "query",
+                        "description": "业务类型id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "orderCode",
+                        "in": "query",
+                        "description": "计划编号",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/GetDictResult": {
+            "get": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "获取业务类型列表",
+                "parameters": [
+                    {
+                        "name": "dictId",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/App/Login": {
+            "post": {
+                "tags": [
+                    "App"
+                ],
+                "summary": "App登陆",
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AppUserInput"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AppUserInput"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AppUserInput"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AppUserInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlwaysResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AlwaysResult": {
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "nullable": true
+                    },
+                    "message": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AppUserInput": {
+                "required": [
+                    "password",
+                    "username"
+                ],
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "用户名"
+                    },
+                    "password": {
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "密码"
+                    }
+                },
+                "additionalProperties": false,
+                "description": "用户输入的账号密码"
+            },
+            "ApproveRequestDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "approverId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "opinion": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isApproved": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GetOrgTotalJsonDto": {
+                "type": "object",
+                "properties": {
+                    "pagination": {
+                        "$ref": "#/components/schemas/OrderEntitySoulPage"
+                    },
+                    "businessId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "date": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false,
+                "description": "获取小组作业排行榜"
+            },
+            "GetUserDataListByBusinessIdRequest": {
+                "type": "object",
+                "properties": {
+                    "pagination": {
+                        "$ref": "#/components/schemas/PerformanceEntitySoulPage"
+                    },
+                    "businessId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "date": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false,
+                "description": "获取业务Top的输入参数"
+            },
+            "JToken": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/JToken"
+                }
+            },
+            "LookListDto": {
+                "type": "object",
+                "properties": {
+                    "pagination": {
+                        "$ref": "#/components/schemas/PerformanceEntitySoulPage"
+                    },
+                    "keyword": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "businessId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "startTime": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "endTime": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false,
+                "description": "获取业务Top的输入参数"
+            },
+            "OrderDetailEntity": {
+                "type": "object",
+                "properties": {
+                    "f_Id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_OrderId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_OpId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_OpName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_OrderState": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "f_CarNo": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_ProductName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_ProductDescription": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_ProductUnit": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_NeedNum": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "f_LastModifyTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "f_ActualNum": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "f_Description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_CreatorTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "f_CreatorUserId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_CreatorUserName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_NeedTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "f_ActualTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "OrderEntity": {
+                "type": "object",
+                "properties": {
+                    "f_Id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_OrderCode": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_OrderState": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "f_NeedTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "f_ActualTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "f_DeleteMark": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "f_EnabledMark": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "f_Description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_CreatorTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "f_CreatorUserId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_CreatorUserName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_LastModifyTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "f_LastModifyUserId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_DeleteTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "f_DeleteUserId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_PlanNum": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "f_ActualNum": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "f_PlanWorkNum": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "f_ActualWorkNum": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "f_ProductCode": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_ProductName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_BusinessId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_BusinessName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_OrgId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_OrgName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_PlanSource": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "f_ShipName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_Flight": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "list": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/OrderDetailEntity"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "OrderEntitySoulPage": {
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "count": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/OrderEntity"
+                        },
+                        "nullable": true
+                    },
+                    "obj": {
+                        "nullable": true
+                    },
+                    "page": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "rows": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "columns": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "tableFilterType": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "filterSos": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "field": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "order": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "OvertimeApplicationEntity": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "overtimeDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "overtimeHours": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "overtimeTeam": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "reason": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "status": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "approver1": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "approver1Time": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "approver1Opinion": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "approver2": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "approver2Time": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "approver2Opinion": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "applicant": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "applyTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "updatedBy": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "updatedTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "deleteBy": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "deleteTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "deleteState": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "overtimeNum": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "overtimeStatus": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "approver1Id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "approver2Id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "overtimeCode": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "applicantUserName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "updatedUserName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "askForLeaveTypeId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "askForLeaveTypeName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "askForLeaveUserId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "askForLeaveUserName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "employeeList": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/OvertimeEmployeesEntity"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "OvertimeApplicationRequest": {
+                "type": "object",
+                "properties": {
+                    "overTimeMain": {
+                        "$ref": "#/components/schemas/OvertimeApplicationEntity"
+                    },
+                    "overTimeDetail": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/OvertimeEmployeesEntity"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "OvertimeEmployeesEntity": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "overtimeApplicationId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "employeeCode": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "employeeName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "actualOvertimeHours": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "status": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "createdTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "creatorUserId": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "OvertimeUpdateDto": {
+                "type": "object",
+                "properties": {
+                    "overTimeMain": {
+                        "$ref": "#/components/schemas/OvertimeApplicationEntity"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "PerformanceDetailEntity": {
+                "type": "object",
+                "properties": {
+                    "f_Id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_PerformanceId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_DeleteMark": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "f_EnabledMark": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "f_Description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_CreatorTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "f_CreatorUserId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_CreatorUserName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_LastModifyTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "f_LastModifyUserId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_DeleteTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "f_DeleteUserId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_ExcessLevel": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_ExcessMin": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "f_ExcessMax": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "f_ExcessBonus": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "PerformanceEntity": {
+                "type": "object",
+                "properties": {
+                    "f_Id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_DeleteMark": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "f_EnabledMark": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "f_Description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_CreatorTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "f_CreatorUserId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_CreatorUserName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_LastModifyTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "f_LastModifyUserId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_LastModifyUserName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_DeleteTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "f_DeleteUserId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_BusinessId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_BusinessName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_StartTime": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_EndTime": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_RatedNum": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "list": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PerformanceDetailEntity"
+                        },
+                        "nullable": true
+                    },
+                    "opId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "opName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "opNickName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "opDate": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "orgName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "orgId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "opNum": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "excessNum": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "f_ExcessLevel": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "f_ExcessMin": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "f_ExcessMax": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "f_ExcessBonus": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "f_UserCodeOrAccount": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "PerformanceEntitySoulPage": {
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "count": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PerformanceEntity"
+                        },
+                        "nullable": true
+                    },
+                    "obj": {
+                        "nullable": true
+                    },
+                    "page": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "rows": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "columns": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "tableFilterType": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "filterSos": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "field": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "order": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "QueryOvertimeListDto": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "startApplyTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "endApplyTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "isLeaveOrOvertime": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateDataDto": {
+                "type": "object",
+                "properties": {
+                    "appid": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "appVersion": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "wgtVersion": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "platform": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UserPwdDto": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "oldpwd": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "newpwd": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "securitySchemes": {
+            "WC-Token": {
+                "type": "apiKey",
+                "description": "header token",
+                "name": "WC-Token",
+                "in": "header"
+            }
+        }
+    },
+    "security": [
+        {
+            "WC-Token": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "App",
+            "description": "App用户接口"
+        }
+    ]
+}
